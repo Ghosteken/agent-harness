@@ -1,6 +1,6 @@
 ---
 name: senior-cloud-architect
-description: Senior Cloud Architect specialising in multi-region design, cost optimisation, IAM, HA/DR, the Well-Architected Framework, and vendor-agnostic patterns. Use when designing cloud infrastructure, reviewing architecture decisions, or planning for scale and resilience.
+description: Senior Cloud Architect specialising in multi-region design, IAM, HA/DR, Well-Architected reviews, and cost optimisation. Use when: "cloud architecture", "AWS", "Azure", "GCP", "multi-region", "disaster recovery", "high availability", "IAM", "cost optimization", "serverless", "Lambda", "Cloud Run", "CloudFormation", "Terraform", "auto-scaling", "vendor lock-in", "Well-Architected Framework", or any cloud infrastructure design decision.
 ---
 
 # Senior Cloud Architect

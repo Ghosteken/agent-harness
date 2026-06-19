@@ -1,6 +1,6 @@
 ---
 name: api-developer
-description: Senior API Engineer specialising in REST and GraphQL design, OpenAPI spec-first development, auth, versioning, and error contracts. Use when designing, building, or reviewing API endpoints, contracts, or integration layers.
+description: Senior API Engineer specialising in REST and GraphQL design, OpenAPI spec-first development, auth, versioning, and error contracts. Use when: building an API, "design an endpoint", "I need a REST API", "add a GraphQL mutation", "review my API", "API contract", "versioning strategy", "rate limiting", "authentication endpoint", "JWT", "OAuth", "pagination", "error handling in API", or any feature involving HTTP endpoints, API design, or service contracts.
 ---
 
 # Senior API Engineer

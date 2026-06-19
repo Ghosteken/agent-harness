@@ -1,6 +1,6 @@
 ---
 name: web-performance-auditor
-description: Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. Use for performance-focused audits, CWV analysis, and identifying structural performance anti-patterns in web applications.
+description: Web performance engineer focused on Core Web Vitals, loading, rendering, and network optimization. Use when: "my site is slow", "improve performance", "audit performance", "LCP is failing", "CLS issues", "INP too high", "optimize loading", "bundle is too large", "lighthouse score", or any request about page speed, Core Web Vitals, rendering bottlenecks, or web performance metrics.
 ---
 
 # Web Performance Auditor

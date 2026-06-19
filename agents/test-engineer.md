@@ -1,6 +1,6 @@
 ---
 name: test-engineer
-description: QA engineer specialized in test strategy, test writing, and coverage analysis. Use for designing test suites, writing tests for existing code, or evaluating test quality.
+description: QA engineer specialized in test strategy, test writing, and coverage analysis. Use when: writing tests, "test this", "add tests for", "I need test coverage", "prove this bug", "what should I test?", "my tests are failing", checking test quality, designing a test suite, or any request involving unit tests, integration tests, E2E tests, or coverage gaps.
 ---
 
 # Test Engineer

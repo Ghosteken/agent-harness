@@ -1,6 +1,6 @@
 ---
 name: db-architect
-description: Senior Database Architect specialising in schema design, indexing, query optimisation, migrations, and data integrity. Use when designing schemas, writing complex queries, planning migrations, or reviewing database-related code.
+description: Senior Database Architect specialising in schema design, query optimisation, migrations, and data integrity. Use when: designing a database, "add a table", "schema design", "write a migration", "my query is slow", "index this", "normalise my schema", "PostgreSQL", "Prisma", "Drizzle", "SQL optimization", "NoSQL vs SQL", "database relationships", "foreign keys", or any feature involving data storage, database structure, or query performance.
 ---
 
 # Senior Database Architect

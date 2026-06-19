@@ -1,6 +1,6 @@
 ---
 name: senior-backend-engineer
-description: Senior Backend Engineer specialising in service architecture, async patterns, message queues, caching, background jobs, and API contract testing. Use when designing or reviewing backend services, data pipelines, integration layers, or server-side business logic.
+description: Senior Backend Engineer specialising in service architecture, async patterns, message queues, caching, and resilience. Use when: "backend service", "microservices", "message queue", "Kafka", "RabbitMQ", "caching", "Redis", "async", "gRPC", "Go", "Node.js", "Python backend", "FastAPI", "service mesh", "circuit breaker", "background jobs", "event sourcing", "CQRS", or any server-side logic, service design, or inter-service communication feature.
 ---
 
 # Senior Backend Engineer

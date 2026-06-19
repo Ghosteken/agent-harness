@@ -41,20 +41,67 @@ OpenCode uses a **skill-driven execution model** powered by the `skill` tool and
 
 ### Intent → Skill Mapping
 
-The agent should automatically map user intent to skills:
+When the user describes a task without naming an agent or command, map their words to the right agent and entry-point skill. The `using-agent-harness` skill handles routing automatically — the table below is the reference.
 
-- Feature / new functionality → `spec-driven-development`, then `incremental-implementation`, `test-driven-development`
-- Planning / breakdown → `planning-and-task-breakdown`
-- Bug / failure / unexpected behavior → `debugging-and-error-recovery`
-- Code review → `code-review-and-quality`
-- Refactoring / simplification → `code-simplification`
-- API design or review → `api-developer`, then `api-and-interface-design`
-- Database schema or query work → `db-architect`
-- CI/CD or infrastructure → `senior-devops`, then `ci-cd-and-automation`
-- UI component or frontend work → `senior-frontend-engineer`, then `frontend-ui-engineering`
-- Cloud architecture → `senior-cloud-architect`
-- Backend service design → `senior-backend-engineer`
-- AI/ML feature → `ai-ml-engineer`
+#### API & Integration
+**Keywords:** API, endpoint, REST, GraphQL, OpenAPI, Swagger, versioning, rate limiting, JWT, OAuth, pagination, contract, webhook, idempotent, CRUD, HTTP method, request/response schema
+→ `api-developer` → `api-and-interface-design`, `spec-driven-development`
+
+#### Database & Data Storage
+**Keywords:** database, schema, table, migration, SQL, query, index, slow query, PostgreSQL, MySQL, MongoDB, Redis, ORM, Prisma, Drizzle, normalization, foreign key, join, NoSQL, transaction
+→ `db-architect` → `database-design`, `database-migration`
+
+#### Infrastructure, CI/CD & Deployment
+**Keywords:** Docker, Kubernetes, Terraform, CI/CD, pipeline, deploy, container, GitHub Actions, GitOps, Helm, secrets, environment variables, IaC, SLO, incident, monitoring, alerting, blue-green, canary
+→ `senior-devops` → `ci-cd-and-automation`, `git-workflow-and-versioning`
+
+#### Frontend & UI
+**Keywords:** component, React, Next.js, Vue, Tailwind, CSS, HTML, UI, UX, accessibility, WCAG, keyboard navigation, state management, Zustand, Redux, re-render, bundle, design system, responsive, animation
+→ `senior-frontend-engineer` → `frontend-ui-engineering`, `react-best-practices`
+
+#### Cloud Architecture
+**Keywords:** cloud, AWS, Azure, GCP, multi-region, disaster recovery, high availability, IAM, cost optimization, serverless, Lambda, Cloud Run, CloudFormation, auto-scaling, Well-Architected, VPC, vendor lock-in
+→ `senior-cloud-architect` → `cloud-architect`, `documentation-and-adrs`
+
+#### Backend Services
+**Keywords:** backend, service, microservice, async, message queue, Kafka, RabbitMQ, cache, Redis, gRPC, Go, Golang, Node.js, Python, FastAPI, Django, circuit breaker, background job, event sourcing, CQRS, worker
+→ `senior-backend-engineer` → `backend-architect`, `api-and-interface-design`
+
+#### AI / ML Features
+**Keywords:** AI, LLM, GPT, Claude, Anthropic, prompt, RAG, vector, embedding, fine-tuning, agent, LangChain, LangGraph, evaluation, hallucination, guardrail, tool use, function calling, semantic search, chatbot
+→ `ai-ml-engineer` → `spec-driven-development`, `llm-app-patterns`
+
+#### Code Review & Quality
+**Keywords:** review, check my code, is this good, feedback, before merge, pull request, PR, refactor, simplify, code smell, technical debt
+→ `code-reviewer` → `code-review-and-quality`
+
+#### Security
+**Keywords:** security, vulnerability, audit, XSS, SQL injection, CSRF, auth bypass, secure, harden, OWASP, CVE, token, password, encryption, sensitive data, prompt injection
+→ `security-auditor` → `security-and-hardening`
+
+#### Testing
+**Keywords:** test, coverage, failing test, bug proof, unit test, integration test, E2E, Cypress, Playwright, Jest, pytest, mock, stub, test suite
+→ `test-engineer` → `test-driven-development`
+
+#### Web Performance
+**Keywords:** slow, performance, LCP, INP, CLS, Core Web Vitals, Lighthouse, bundle size, lazy load, render blocking, TTFB, page speed
+→ `web-performance-auditor` → `performance-optimization`
+
+#### General Feature / New Functionality
+**Keywords:** build, implement, add, create, new feature (without a domain keyword above)
+→ `spec-driven-development`, then domain agent, then `incremental-implementation`, `test-driven-development`
+
+#### Planning / Breakdown
+**Keywords:** plan, break down, tasks, roadmap, how do I approach, where do I start
+→ `planning-and-task-breakdown`
+
+#### Bug / Error
+**Keywords:** bug, broken, error, not working, unexpected, crash, failing, regression
+→ `debugging-and-error-recovery`
+
+#### Simplification / Cleanup
+**Keywords:** simplify, clean up, reduce complexity, too complex, hard to read, refactor
+→ `code-simplification`
 
 ### Lifecycle Mapping (Implicit Commands)
 

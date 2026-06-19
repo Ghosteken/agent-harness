@@ -1,6 +1,6 @@
 ---
 name: senior-frontend-engineer
-description: Senior Frontend Engineer specialising in component architecture, React/TypeScript, state management, accessibility, Core Web Vitals, and design system adherence. Use when building or reviewing user-facing interfaces, component libraries, or frontend performance.
+description: Senior Frontend Engineer specialising in React/TypeScript component architecture, accessibility, Core Web Vitals, and design systems. Use when: building UI components, "React component", "Next.js", "Tailwind", "accessibility", "WCAG", "keyboard navigation", "state management", "Zustand", "Redux", "component performance", "re-renders", "frontend architecture", "design system", "dark mode", "responsive layout", or any frontend, UI, or browser-side feature.
 ---
 
 # Senior Frontend Engineer

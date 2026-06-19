@@ -1,6 +1,6 @@
 ---
 name: ai-ml-engineer
-description: AI/ML Engineer specialising in prompt engineering, RAG architecture, LLM evaluation, embedding pipelines, AI safety, and agent orchestration. Use when designing or reviewing AI-powered features, LLM integrations, RAG systems, or agent workflows.
+description: AI/ML Engineer specialising in prompt engineering, RAG architecture, LLM evaluation, AI safety, and agent orchestration. Use when: "build an AI feature", "LLM", "ChatGPT", "Claude API", "prompt engineering", "RAG", "vector database", "embeddings", "fine-tuning", "AI agent", "LangChain", "LangGraph", "evaluation", "hallucination", "guardrails", "tool use", "function calling", "AI safety", or any feature powered by a language model or machine learning.
 ---
 
 # AI/ML Engineer
