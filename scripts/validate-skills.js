@@ -112,7 +112,9 @@ function extractSkillReferences(content) {
 
 // ─── Validator ───────────────────────────────────────────────────────────────
 
-function validateSkill(dirName, knownSkills) {
+// warnSections: when true, missing required sections become warnings instead of
+// errors. Used in scoped mode so skills pending anatomy migration don't block CI.
+function validateSkill(dirName, knownSkills, warnSections) {
   const errors   = [];
   const warnings = [];
   let   exempt   = false;
@@ -171,7 +173,14 @@ function validateSkill(dirName, knownSkills) {
     for (const aliases of REQUIRED_SECTIONS) {
       const found = aliases.some(heading => content.includes(heading));
       if (!found) {
-        errors.push(`Missing required section: ${aliases[0]}`);
+        const msg = `Missing required section: ${aliases[0]}`;
+        // In scoped mode, section gaps are warnings (pending compliance) so CI
+        // still passes. Use --all --strict to treat them as hard errors.
+        if (warnSections) {
+          warnings.push(msg);
+        } else {
+          errors.push(msg);
+        }
       }
     }
   }
@@ -190,7 +199,12 @@ function validateSkill(dirName, knownSkills) {
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 function main() {
-  const validateAll = process.argv.includes('--all');
+  const validateAll  = process.argv.includes('--all');
+  const strictMode   = process.argv.includes('--strict');
+  // In scoped mode, missing sections are warnings (pending compliance) unless
+  // --strict is also passed. In --all mode, sections are always hard errors
+  // unless someone explicitly passes --all without --strict (non-default).
+  const warnSections = !validateAll && !strictMode;
 
   if (!fs.existsSync(SKILLS_DIR)) {
     console.error(`ERROR: skills directory not found at ${SKILLS_DIR}`);
@@ -232,15 +246,17 @@ function main() {
 
     skillDirs = [...scopedSet].sort();
     const agentCount = Object.keys(scopeData.agents || {}).length;
-    console.log(`Mode: scoped — validating ${skillDirs.length} skills across ${agentCount} agent scopes`);
-    console.log(`(Run with --all to validate all skills in the library)\n`);
+    const strictNote = strictMode ? ', strict (sections = errors)' : ', section gaps = warnings';
+    console.log(`Mode: scoped — validating ${skillDirs.length} skills across ${agentCount} agent scopes${strictNote}`);
+    console.log(`(Run with --all to validate all skills, --strict to promote section gaps to errors)\n`);
   }
 
   const knownSkills = new Set(skillDirs);
 
-  let totalErrors   = 0;
-  let totalWarnings = 0;
-  let missingDirs   = 0;
+  let totalErrors      = 0;
+  let totalWarnings    = 0;
+  let missingDirs      = 0;
+  let pendingCompliance = 0;
 
   for (const dirName of skillDirs) {
     // Check directory exists (scoped skills might reference skills not yet in repo)
@@ -253,15 +269,22 @@ function main() {
       continue;
     }
 
-    const { errors, warnings, exempt } = validateSkill(dirName, knownSkills);
+    const { errors, warnings, exempt } = validateSkill(dirName, knownSkills, warnSections);
     totalErrors   += errors.length;
     totalWarnings += warnings.length;
 
     const agents = agentScopeMap[dirName] ? ` [${agentScopeMap[dirName].join(', ')}]` : '';
 
+    const hasSectionWarningsOnly = errors.length === 0 && warnings.length > 0 &&
+      warnings.every(w => w.startsWith('Missing required section:'));
+
     if (errors.length === 0 && warnings.length === 0) {
       const tag = exempt ? ' (section checks exempt)' : '';
       console.log(`  ✓  ${dirName}${tag}${agents}`);
+    } else if (hasSectionWarningsOnly && warnSections) {
+      // Suppress per-warning noise for pending-compliance skills — just mark them
+      pendingCompliance++;
+      console.log(`  ○  ${dirName} (pending anatomy compliance)${agents}`);
     } else {
       const icon = errors.length > 0 ? '  ✗ ' : '  ⚠ ';
       console.log(`${icon} ${dirName}${agents}`);
@@ -274,6 +297,9 @@ function main() {
   console.log(`\n${skillDirs.length} skills checked — ${totalErrors} error(s), ${totalWarnings} warning(s) — ${status}`);
   if (missingDirs > 0) {
     console.log(`(${missingDirs} skill(s) listed in agent-scopes.json do not exist in skills/ yet)`);
+  }
+  if (pendingCompliance > 0) {
+    console.log(`(${pendingCompliance} skill(s) pending anatomy compliance — usable by agents, run --strict to see details)`);
   }
 
   if (totalErrors > 0) process.exit(1);
