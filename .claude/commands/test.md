@@ -16,4 +16,4 @@ For bug fixes (Prove-It pattern):
 4. Confirm the test passes
 5. Run the full test suite for regressions
 
-For browser-related issues, also invoke agent-skills:browser-testing-with-devtools to verify with Chrome DevTools MCP.
+For browser-related issues, also invoke agent-harness:browser-testing-with-devtools to verify with Chrome DevTools MCP.

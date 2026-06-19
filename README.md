@@ -63,6 +63,25 @@ git clone https://github.com/Ghosteken/agent-harness.git
 claude --plugin-dir /path/to/agent-harness
 ```
 
+**Script installer (local clone → global install):**
+
+```bash
+bash scripts/install.sh --global   # macOS / Linux / Git Bash
+.\scripts\install.ps1 -Global      # Windows PowerShell
+```
+
+**Claude desktop upload (`.plugin` file):**
+
+Use `agent-harness.plugin` at the repo root. To rebuild it after making changes:
+
+```bash
+bash scripts/build-plugin.sh                        # macOS / Linux / Git Bash
+.\scripts\build-plugin.ps1                          # Windows PowerShell
+.\scripts\build-plugin.ps1 -Out "C:\Desktop\agent-harness.plugin"  # custom output path
+```
+
+Then in Claude desktop: **Settings → Extensions → Upload local plugin** → select the `.plugin` file.
+
 </details>
 
 <details>

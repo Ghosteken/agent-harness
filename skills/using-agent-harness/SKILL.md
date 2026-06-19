@@ -8,9 +8,28 @@ description: Intent router for agent-harness — maps what the user describes to
 
 This meta-skill routes user intent to the correct agent persona and skill scope. Read it at the start of any session or when a user describes a task without specifying an agent or command.
 
-## How Routing Works
+## Two Entry Paths (Both Supported)
 
-When a user describes what they want to build, fix, or review — without explicitly naming an agent or command — match their words against the keyword table below to determine:
+**Path 1 — Slash commands (explicit, backwards-compatible):**
+Users can always invoke a command directly. Commands route straight to their skill — no agent lookup needed.
+
+| Command | Invokes | Purpose |
+|---------|---------|---------|
+| `/spec` | `spec-driven-development` | Write a structured spec before coding |
+| `/plan` | `planning-and-task-breakdown` | Break work into tasks with acceptance criteria |
+| `/build` | `incremental-implementation` + `test-driven-development` | Implement the next task (or whole plan with `auto`) |
+| `/test` | `test-driven-development` | TDD loop — red, green, refactor |
+| `/review` | `code-review-and-quality` | Five-axis code review before merge |
+| `/ship` | `shipping-and-launch` | Fan-out to code-reviewer + security-auditor + test-engineer |
+| `/webperf` | `performance-optimization` | Web performance audit via web-performance-auditor |
+| `/code-simplify` | `code-simplification` | Simplify without changing behavior |
+
+Commands are always valid. When a user types one, follow it directly — skip the intent routing below.
+
+---
+
+**Path 2 — Intent routing (natural language):**
+When a user describes what they want to build, fix, or review — without using a slash command — match their words against the keyword table below to determine:
 
 1. **Which agent to invoke** (the *who*)
 2. **Which skill to start with** (the *how*)
