@@ -43,16 +43,18 @@ Skills also activate automatically based on what you're doing — designing an A
 
 **Marketplace install:**
 
-```
-/plugin marketplace add Ghosteken/agent-harness
+```bash
+/plugin marketplace add https://github.com/Ghosteken/agent-harness.git
 /plugin install agent-harness
 ```
 
-> **SSH errors?** The marketplace clones repos via SSH. If you don't have SSH keys set up on GitHub, either [add your SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) or use the full HTTPS URL to force the HTTPS cloning:
-> ```bash
-> /plugin marketplace add https://github.com/Ghosteken/agent-harness.git
-> /plugin install agent-harness
-> ```
+**Direct CLI install:**
+
+```bash
+claude plugin install https://github.com/Ghosteken/agent-harness.git --scope user
+```
+
+> **Authentication issues?** If you encounter Git or SSH errors, using the full HTTPS URL as shown above is the most robust method. It bypasses SSH configuration and uses standard HTTPS cloning.
 
 **Local / development:**
 
@@ -158,7 +160,7 @@ The library contains **1,500+ specialist skills** across every engineering domai
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
-| [using-agent-skills](skills/using-agent-skills/SKILL.md) | Maps incoming work to the right skill workflow and defines shared operating rules | Starting a session or deciding which skill applies |
+| [using-agent-harness](skills/using-agent-harness/SKILL.md) | Maps incoming work to the right skill workflow and defines shared operating rules | Starting a session or deciding which skill applies |
 
 ### Define - Clarify what to build
 
@@ -418,7 +420,7 @@ agent-harness/
 │   ├── documentation-and-adrs/        #   Ship
 │   ├── observability-and-instrumentation/ # Ship
 │   ├── shipping-and-launch/           #   Ship
-│   └── using-agent-skills/            #   Meta
+│   └── using-agent-harness/           #   Meta
 ├── agents/                            # 11 specialist personas
 │   ├── code-reviewer.md               #   Quality & review
 │   ├── security-auditor.md            #   Quality & review
@@ -444,7 +446,7 @@ agent-harness/
 
 ## Why Agent Harness?
 
-AI coding agents default to the shortest path - which often means skipping specs, tests, security reviews, and the practices that make software reliable. Agent Skills gives agents structured workflows that enforce the same discipline senior engineers bring to production code.
+AI coding agents default to the shortest path - which often means skipping specs, tests, security reviews, and the practices that make software reliable. Agent Harness gives agents structured workflows that enforce the same discipline senior engineers bring to production code.
 
 Each skill encodes hard-won engineering judgment: *when* to write a spec, *what* to test, *how* to review, and *when* to ship. These aren't generic prompts - they're the kind of opinionated, process-driven workflows that separate production-quality work from prototype-quality work.
 

@@ -1,6 +1,6 @@
-# Using agent-skills with Antigravity CLI (agy)
+# Using agent-harness with Antigravity CLI (agy)
 
-The `agent-skills` package can be installed as a native plugin in the Antigravity CLI (`agy`), giving the agent access to structured workflows, personas, and custom slash commands.
+The `agent-harness` package can be installed as a native plugin in the Antigravity CLI (`agy`), giving the agent access to structured workflows, personas, and custom slash commands.
 
 ## Setup
 

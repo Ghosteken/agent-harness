@@ -48,8 +48,6 @@ The agent should automatically map user intent to skills:
 - Bug / failure / unexpected behavior → `debugging-and-error-recovery`
 - Code review → `code-review-and-quality`
 - Refactoring / simplification → `code-simplification`
-- API or interface design → `api-and-interface-design`
-- UI work → `frontend-ui-engineering`
 - API design or review → `api-developer`, then `api-and-interface-design`
 - Database schema or query work → `db-architect`
 - CI/CD or infrastructure → `senior-devops`, then `ci-cd-and-automation`

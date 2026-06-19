@@ -1,4 +1,4 @@
-# Using agent-skills with Gemini CLI
+# Using agent-harness with Gemini CLI
 
 ## Setup
 
@@ -16,7 +16,7 @@ gemini skills install https://github.com/Ghosteken/agent-harness.git --path skil
 
 ```bash
 git clone https://github.com/Ghosteken/agent-harness.git
-gemini skills install /path/to/agent-skills/skills/
+gemini skills install /path/to/agent-harness/skills/
 ```
 
 **Install for a specific workspace only:**

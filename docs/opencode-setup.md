@@ -1,6 +1,6 @@
 # OpenCode Setup
 
-This guide explains how to use Agent Skills with OpenCode in a way that closely mirrors the Claude Code experience (automatic skill selection, lifecycle-driven workflows, and strict process enforcement).
+This guide explains how to use Agent Harness with OpenCode in a way that closely mirrors the Claude Code experience (automatic skill selection, lifecycle-driven workflows, and strict process enforcement).
 
 ## Overview
 

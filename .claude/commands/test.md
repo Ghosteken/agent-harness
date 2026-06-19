@@ -2,7 +2,7 @@
 description: Run TDD workflow — write failing tests, implement, verify. For bugs, use the Prove-It pattern.
 ---
 
-Invoke the agent-skills:test-driven-development skill.
+Invoke the agent-harness:test-driven-development skill.
 
 For new features:
 1. Write tests that describe the expected behavior (they should FAIL)

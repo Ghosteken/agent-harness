@@ -1,6 +1,6 @@
-# Getting Started with agent-skills
+# Getting Started with agent-harness
 
-agent-skills works with any AI coding agent that accepts Markdown instructions. This guide covers the universal approach. For tool-specific setup, see the dedicated guides.
+agent-harness works with any AI coding agent that accepts Markdown instructions. This guide covers the universal approach. For tool-specific setup, see the dedicated guides.
 
 ## How Skills Work
 
@@ -37,7 +37,7 @@ Copy the relevant `SKILL.md` content into your agent's system prompt, rules file
 
 ### 4. Use the meta-skill for discovery
 
-Start with the `using-agent-skills` skill loaded. It contains a flowchart that maps task types to the appropriate skill.
+Start with the `using-agent-harness` skill loaded. It contains a flowchart that maps task types to the appropriate skill.
 
 ## Recommended Setup
 

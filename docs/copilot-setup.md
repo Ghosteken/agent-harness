@@ -1,4 +1,4 @@
-# Using agent-skills with GitHub Copilot
+# Using agent-harness with GitHub Copilot
 
 ## Setup
 
@@ -10,8 +10,8 @@ Copilot supports creating agent skills using a `.github/skills`, `.claude/skills
 mkdir -p .github
 
 # Create files for essential skills
-cat /path/to/agent-skills/skills/test-driven-development/SKILL.md > .github/skills/test-driven-development/SKILL.md
-cat /path/to/agent-skills/skills/code-review-and-quality/SKILL.md > .github/skills/code-review-and-quality/SKILL.md
+cat /path/to/agent-harness/skills/test-driven-development/SKILL.md > .github/skills/test-driven-development/SKILL.md
+cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md > .github/skills/code-review-and-quality/SKILL.md
 ```
 
 For more details, refer [Creating agent skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills).
@@ -27,9 +27,9 @@ Copilot supports specialized agent personas. Use the agent-skills agents:
 ```bash
 # Create the agents directory and copy agent definitions
 mkdir -p .github/agents
-cp /path/to/agent-skills/agents/code-reviewer.md .github/agents/code-reviewer.agent.md
-cp /path/to/agent-skills/agents/test-engineer.md .github/agents/test-engineer.agent.md
-cp /path/to/agent-skills/agents/security-auditor.md .github/agents/security-auditor.agent.md
+cp /path/to/agent-harness/agents/code-reviewer.md .github/agents/code-reviewer.agent.md
+cp /path/to/agent-harness/agents/test-engineer.md .github/agents/test-engineer.agent.md
+cp /path/to/agent-harness/agents/security-auditor.md .github/agents/security-auditor.agent.md
 ```
 
 Invoke agents in Copilot Chat:
