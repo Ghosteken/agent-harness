@@ -148,9 +148,11 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ---
 
-## All 24 Skills
+## Skills
 
-The commands above are entry points. The pack includes 24 skills total — 23 lifecycle skills plus the `using-agent-skills` meta-skill. Each skill is a structured workflow with steps, verification gates, and anti-rationalization tables. You can also reference any skill directly.
+The library contains **1,500+ specialist skills** across every engineering domain. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-skills` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope.
+
+### Core Lifecycle Skills
 
 ### Meta - Discover which skill applies
 
@@ -392,7 +394,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 skills (23 lifecycle + 1 meta)
+├── skills/                            # 24 core lifecycle skills + 1,500+ specialist skills
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

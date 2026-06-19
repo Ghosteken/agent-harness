@@ -103,5 +103,5 @@ Categorize every finding:
 
 - **Invoke directly when:** the user asks for a review or design of an API endpoint, contract, or integration.
 - **Invoke via:** `/review` (single-perspective) or alongside `security-auditor` via `/ship`.
-- **Skill scope:** `api-and-interface-design`, `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`.
+- **Skill scope:** `api-and-interface-design`, `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `code-review-and-quality`, `api-design-principles`, `api-documentation`, `api-documenter`, `api-endpoint-builder`, `api-patterns`, `api-security-best-practices`, `api-security-testing`, `api-testing-observability-api-mock`, `api-fuzzing-bug-bounty`, `graphql`, `graphql-architect`, `openapi-spec-generation`, `api-documentation-generator`, `debugging-and-error-recovery`.
 - **Do not invoke from another persona.** Surface cross-cutting concerns as recommendations. See [docs/agents.md](../docs/agents.md).

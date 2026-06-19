@@ -905,7 +905,7 @@ Keep a small list of high-frequency skills and reuse it across tasks to reduce c
 
 ## 🤖 Engineering Agent Scopes
 
-> These scopes define the curated skill sets each specialist agent persona draws from. When an agent is invoked, it operates within its scope — activating only the skills relevant to its domain.
+> These scopes define the curated skill sets each specialist agent persona draws from. When an agent is invoked, it operates within its scope — activating only the skills relevant to its domain. The full scope registry is at `scripts/agent-scopes.json`. Skills outside an agent's scope are available for manual invocation at any time.
 
 ### 🔌 API Developer Scope
 
@@ -913,11 +913,31 @@ _For designing and reviewing REST/GraphQL APIs, contracts, and integration layer
 
 **Agent:** [`api-developer`](../agents/api-developer.md)
 
+**Core lifecycle skills (6)**
 - [`api-and-interface-design`](../../skills/api-and-interface-design/): Contract-first API design, Hyrum's Law, versioning strategies.
 - [`spec-driven-development`](../../skills/spec-driven-development/): OpenAPI spec before implementation; spec as source of truth.
 - [`test-driven-development`](../../skills/test-driven-development/): Contract tests, integration tests, TDD cycle for endpoints.
 - [`security-and-hardening`](../../skills/security-and-hardening/): Auth patterns, input validation, OWASP API Security Top 10.
 - [`observability-and-instrumentation`](../../skills/observability-and-instrumentation/): Request tracing, error rate metrics, latency histograms.
+- [`code-review-and-quality`](../../skills/code-review-and-quality/): Five-axis review with API contract correctness checks.
+
+**Domain specialist skills (14)**
+- [`api-design-principles`](../../skills/api-design-principles/): REST constraints, resource modelling, HATEOAS, naming conventions.
+- [`api-documentation`](../../skills/api-documentation/): OpenAPI/Swagger docs, usage examples, changelog maintenance.
+- [`api-documenter`](../../skills/api-documenter/): Automated documentation generation from code and schemas.
+- [`api-endpoint-builder`](../../skills/api-endpoint-builder/): Scaffolding, routing, handler structure, middleware composition.
+- [`api-patterns`](../../skills/api-patterns/): Pagination, filtering, sorting, batch operations, idempotency keys.
+- [`api-security-best-practices`](../../skills/api-security-best-practices/): OAuth2, JWT, rate limiting, CORS, input sanitisation.
+- [`api-security-testing`](../../skills/api-security-testing/): Fuzzing, auth bypass checks, injection testing on endpoints.
+- [`api-testing-observability-api-mock`](../../skills/api-testing-observability-api-mock/): Contract mocking, consumer-driven contracts, WireMock/MSW patterns.
+- [`api-fuzzing-bug-bounty`](../../skills/api-fuzzing-bug-bounty/): Automated fuzz testing, boundary probing, bug-bounty scoping.
+- [`graphql`](../../skills/graphql/): Schema design, resolvers, N+1 prevention, subscriptions.
+- [`graphql-architect`](../../skills/graphql-architect/): Federation, schema stitching, persisted queries, schema governance.
+- [`openapi-spec-generation`](../../skills/openapi-spec-generation/): Code-first and design-first OpenAPI generation pipelines.
+- [`api-documentation-generator`](../../skills/api-documentation-generator/): Automated reference docs, SDK generation, changelog tooling.
+- [`debugging-and-error-recovery`](../../skills/debugging-and-error-recovery/): Five-step triage for endpoint failures, timeouts, and contract mismatches.
+
+---
 
 ### 🗄️ Database Architect Scope
 
@@ -925,11 +945,31 @@ _For schema design, query optimisation, migrations, and data integrity._
 
 **Agent:** [`db-architect`](../agents/db-architect.md)
 
+**Core lifecycle skills (6)**
 - [`source-driven-development`](../../skills/source-driven-development/): Ground schema decisions in database engine documentation.
 - [`incremental-implementation`](../../skills/incremental-implementation/): Safe, reversible migrations; thin vertical slices.
 - [`test-driven-development`](../../skills/test-driven-development/): Migration tests, query correctness tests, constraint validation.
 - [`security-and-hardening`](../../skills/security-and-hardening/): Encryption at rest, least-privilege DB users, parameterised queries.
 - [`performance-optimization`](../../skills/performance-optimization/): Index strategy, query plan analysis, connection pool tuning.
+- [`code-review-and-quality`](../../skills/code-review-and-quality/): Review schema changes for correctness and normalisation.
+
+**Domain specialist skills (14)**
+- [`database-design`](../../skills/database-design/): Normalisation (3NF/BCNF), entity-relationship modelling, constraints.
+- [`database-admin`](../../skills/database-admin/): User management, roles, backups, replication, maintenance tasks.
+- [`database-architect`](../../skills/database-architect/): Partitioning, sharding, replication topology, disaster-recovery planning.
+- [`database-migration`](../../skills/database-migration/): Reversible migrations, zero-downtime strategies, rollback plans.
+- [`database-optimizer`](../../skills/database-optimizer/): EXPLAIN/ANALYZE, index tuning, query rewriting, statistics updates.
+- [`postgres-best-practices`](../../skills/postgres-best-practices/): PostgreSQL-specific features, JSONB, CTEs, window functions, vacuuming.
+- [`postgresql`](../../skills/postgresql/): Core PostgreSQL usage, transactions, locking, extensions.
+- [`postgresql-optimization`](../../skills/postgresql-optimization/): Autovacuum tuning, connection pooling (PgBouncer), partitioning.
+- [`prisma-expert`](../../skills/prisma-expert/): Prisma ORM schema design, migrations, query optimisation, type safety.
+- [`drizzle-orm-expert`](../../skills/drizzle-orm-expert/): Drizzle ORM schema, relations, migrations, type-safe queries.
+- [`nosql-expert`](../../skills/nosql-expert/): Document, key-value, wide-column, and graph database trade-offs and patterns.
+- [`sql-optimization-patterns`](../../skills/sql-optimization-patterns/): Common table expressions, index-only scans, batch processing patterns.
+- [`neon-postgres`](../../skills/neon-postgres/): Serverless Postgres on Neon — branching, connection pooling, scaling.
+- [`dbt-transformation-patterns`](../../skills/dbt-transformation-patterns/): dbt models, tests, seeds, macros, and incremental materialisation.
+
+---
 
 ### ⚙️ Senior DevOps Scope
 
@@ -937,11 +977,31 @@ _For CI/CD pipelines, containerisation, IaC, secrets management, and incident re
 
 **Agent:** [`senior-devops`](../agents/senior-devops.md)
 
+**Core lifecycle skills (6)**
 - [`ci-cd-and-automation`](../../skills/ci-cd-and-automation/): Pipeline design, quality gates, deployment strategies.
 - [`git-workflow-and-versioning`](../../skills/git-workflow-and-versioning/): GitOps, trunk-based development, release branching.
 - [`security-and-hardening`](../../skills/security-and-hardening/): Secrets management, container hardening, IAM least privilege.
 - [`observability-and-instrumentation`](../../skills/observability-and-instrumentation/): SLO/SLI definition, symptom-based alerting, deployment events.
 - [`deprecation-and-migration`](../../skills/deprecation-and-migration/): Service decommission, blue-green cutover, canary rollout.
+- [`incremental-implementation`](../../skills/incremental-implementation/): Safe, phased infrastructure changes with rollback checkpoints.
+
+**Domain specialist skills (14)**
+- [`docker-expert`](../../skills/docker-expert/): Multi-stage builds, layer caching, distroless images, compose patterns.
+- [`kubernetes-architect`](../../skills/kubernetes-architect/): Cluster design, RBAC, network policies, resource quotas, HPA/VPA.
+- [`kubernetes-deployment`](../../skills/kubernetes-deployment/): Deployments, StatefulSets, DaemonSets, rolling updates, Helm releases.
+- [`terraform-specialist`](../../skills/terraform-specialist/): Module authoring, state management, workspace strategies, drift detection.
+- [`terraform-infrastructure`](../../skills/terraform-infrastructure/): Provider configuration, resource dependencies, remote backends, locking.
+- [`github-actions-advanced`](../../skills/github-actions-advanced/): Reusable workflows, matrix builds, OIDC auth, composite actions.
+- [`github-actions-templates`](../../skills/github-actions-templates/): Starter workflow templates for CI, release, and security scanning.
+- [`gitops-workflow`](../../skills/gitops-workflow/): ArgoCD/Flux patterns, declarative config, reconciliation loops.
+- [`helm-chart-scaffolding`](../../skills/helm-chart-scaffolding/): Chart structure, values schema, templating best practices, versioning.
+- [`incident-responder`](../../skills/incident-responder/): On-call runbooks, blameless post-mortems, mitigation playbooks.
+- [`observability-engineer`](../../skills/observability-engineer/): OpenTelemetry setup, distributed tracing, metrics pipelines, dashboards.
+- [`slo-implementation`](../../skills/slo-implementation/): SLO definition, error-budget policy, burn-rate alerting, review cadence.
+- [`devops-troubleshooter`](../../skills/devops-troubleshooter/): Systematic diagnosis of pipeline failures, pod crashes, and deploy issues.
+- [`deployment-engineer`](../../skills/deployment-engineer/): Release coordination, feature flags, staged rollouts, rollback procedures.
+
+---
 
 ### 🎨 Senior Frontend Engineer Scope
 
@@ -949,11 +1009,31 @@ _For React/TypeScript component architecture, accessibility, Core Web Vitals, an
 
 **Agent:** [`senior-frontend-engineer`](../agents/senior-frontend-engineer.md)
 
+**Core lifecycle skills (6)**
 - [`frontend-ui-engineering`](../../skills/frontend-ui-engineering/): Component architecture, design systems, state management.
 - [`browser-testing-with-devtools`](../../skills/browser-testing-with-devtools/): Live DOM inspection, network traces, performance profiling.
 - [`test-driven-development`](../../skills/test-driven-development/): Component tests, accessibility tests, E2E test strategy.
 - [`performance-optimization`](../../skills/performance-optimization/): Core Web Vitals, scope analysis, rendering optimisation.
 - [`code-review-and-quality`](../../skills/code-review-and-quality/): Five-axis review with frontend-specific correctness checks.
+- [`security-and-hardening`](../../skills/security-and-hardening/): XSS prevention, CSP, dependency auditing, client-side security.
+
+**Domain specialist skills (14)**
+- [`react-best-practices`](../../skills/react-best-practices/): Hooks, memoisation, React 18 concurrent features, performance patterns.
+- [`react-patterns`](../../skills/react-patterns/): Compound components, render props, context, custom hooks, composition.
+- [`nextjs-best-practices`](../../skills/nextjs-best-practices/): App Router, server components, ISR/SSG/SSR trade-offs, metadata API.
+- [`tailwind-patterns`](../../skills/tailwind-patterns/): Utility-first design, responsive layouts, dark mode, component extraction.
+- [`accessibility-compliance-accessibility-audit`](../../skills/accessibility-compliance-accessibility-audit/): WCAG 2.1 AA audit, axe-core, keyboard navigation, screen reader testing.
+- [`wcag-audit-patterns`](../../skills/wcag-audit-patterns/): Colour contrast, focus management, ARIA roles, form labelling.
+- [`web-performance-optimization`](../../skills/web-performance-optimization/): LCP, INP, CLS optimisation; code splitting; image and font strategies.
+- [`frontend-security-coder`](../../skills/frontend-security-coder/): XSS prevention, CSRF protection, secure cookie flags, sanitisation libraries.
+- [`ui-a11y`](../../skills/ui-a11y/): Component-level accessibility patterns, skip links, landmark regions.
+- [`react-component-performance`](../../skills/react-component-performance/): Profiler, memo, lazy, Suspense, avoiding unnecessary re-renders.
+- [`react-state-management`](../../skills/react-state-management/): Zustand, Redux Toolkit, React Query, Context boundaries, derived state.
+- [`senior-frontend`](../../skills/senior-frontend/): Technical leadership patterns, architecture decisions, mentoring guidelines.
+- [`ui-review`](../../skills/ui-review/): Structured UI code review — visual correctness, component API quality, props typing.
+- [`frontend-developer`](../../skills/frontend-developer/): Full-stack frontend development patterns, routing, data fetching, forms.
+
+---
 
 ### ☁️ Senior Cloud Architect Scope
 
@@ -961,11 +1041,31 @@ _For multi-region design, IAM, HA/DR, Well-Architected reviews, and cost optimis
 
 **Agent:** [`senior-cloud-architect`](../agents/senior-cloud-architect.md)
 
+**Core lifecycle skills (6)**
 - [`ci-cd-and-automation`](../../skills/ci-cd-and-automation/): IaC pipeline, terraform plan/apply gates, environment promotion.
 - [`security-and-hardening`](../../skills/security-and-hardening/): IAM least privilege, encryption in transit/at rest, audit logging.
 - [`observability-and-instrumentation`](../../skills/observability-and-instrumentation/): Cloud-native monitoring, SLO alignment, cost anomaly detection.
 - [`deprecation-and-migration`](../../skills/deprecation-and-migration/): Service retirement, cross-region migration patterns, DR testing.
 - [`performance-optimization`](../../skills/performance-optimization/): Right-sizing, reserved capacity analysis, data transfer cost reduction.
+- [`documentation-and-adrs`](../../skills/documentation-and-adrs/): Architecture Decision Records for infrastructure choices and trade-offs.
+
+**Domain specialist skills (14)**
+- [`cloud-architect`](../../skills/cloud-architect/): Well-Architected Framework pillars, trade-off analysis, reference architectures.
+- [`cloud-devops`](../../skills/cloud-devops/): Cloud-native CI/CD, managed services, platform engineering patterns.
+- [`aws-serverless`](../../skills/aws-serverless/): Lambda, API Gateway, EventBridge, Step Functions, SAM/CDK patterns.
+- [`aws-cost-optimizer`](../../skills/aws-cost-optimizer/): Reserved instances, Savings Plans, rightsizing, cost anomaly detection.
+- [`aws-skills`](../../skills/aws-skills/): Core AWS services — EC2, S3, RDS, ECS, EKS, VPC, IAM, CloudWatch.
+- [`azure-functions`](../../skills/azure-functions/): Serverless on Azure, Durable Functions, bindings, deployment slots.
+- [`cloudformation-best-practices`](../../skills/cloudformation-best-practices/): Stack design, nested stacks, change sets, drift detection, StackSets.
+- [`gcp-cloud-run`](../../skills/gcp-cloud-run/): Containerised workloads on GCP, Cloud Run concurrency, scaling, networking.
+- [`hybrid-cloud-architect`](../../skills/hybrid-cloud-architect/): Multi-cloud connectivity, on-premises integration, data sovereignty patterns.
+- [`hybrid-cloud-networking`](../../skills/hybrid-cloud-networking/): VPN, Direct Connect, ExpressRoute, transit gateway, peering strategies.
+- [`multi-cloud-architecture`](../../skills/multi-cloud-architecture/): Vendor-agnostic design, portability layers, workload placement decisions.
+- [`terraform-specialist`](../../skills/terraform-specialist/): Module authoring, state management, workspace strategies, drift detection.
+- [`kubernetes-architect`](../../skills/kubernetes-architect/): Multi-cluster design, cluster federation, platform engineering patterns.
+- [`container-security-hardening`](../../skills/container-security-hardening/): Image scanning, runtime security (Falco), pod security standards, RBAC.
+
+---
 
 ### 🖥️ Senior Backend Engineer Scope
 
@@ -973,11 +1073,31 @@ _For service architecture, async patterns, message queues, caching, and resilien
 
 **Agent:** [`senior-backend-engineer`](../agents/senior-backend-engineer.md)
 
+**Core lifecycle skills (6)**
 - [`api-and-interface-design`](../../skills/api-and-interface-design/): Service contracts, inter-service interfaces, API versioning.
 - [`test-driven-development`](../../skills/test-driven-development/): Unit, integration, and contract tests; idempotency test patterns.
 - [`performance-optimization`](../../skills/performance-optimization/): Caching strategy, async I/O, connection pool tuning, profiling.
 - [`security-and-hardening`](../../skills/security-and-hardening/): Input validation, dependency auditing, secure service-to-service auth.
 - [`observability-and-instrumentation`](../../skills/observability-and-instrumentation/): Structured logging, distributed tracing, RED metrics.
+- [`incremental-implementation`](../../skills/incremental-implementation/): Feature flags, safe defaults, rollback-friendly service changes.
+
+**Domain specialist skills (14)**
+- [`backend-architect`](../../skills/backend-architect/): Service decomposition, bounded contexts, data ownership, API gateway patterns.
+- [`backend-dev-guidelines`](../../skills/backend-dev-guidelines/): Coding standards, error handling conventions, logging contracts.
+- [`microservices-patterns`](../../skills/microservices-patterns/): Saga, outbox, CQRS, event sourcing, bulkhead, circuit breaker.
+- [`golang-pro`](../../skills/golang-pro/): Go idioms, goroutines, channels, context propagation, stdlib patterns.
+- [`nodejs-best-practices`](../../skills/nodejs-best-practices/): Event loop, async patterns, streams, worker threads, clustering.
+- [`nodejs-backend-patterns`](../../skills/nodejs-backend-patterns/): Express/Fastify patterns, middleware composition, DI containers.
+- [`async-python-patterns`](../../skills/async-python-patterns/): asyncio, FastAPI async, task queues, concurrency primitives in Python.
+- [`grpc-golang`](../../skills/grpc-golang/): Protocol Buffers, gRPC server/client in Go, streaming, interceptors.
+- [`service-mesh-expert`](../../skills/service-mesh-expert/): Istio/Linkerd, mTLS, traffic management, observability, retries.
+- [`go-concurrency-patterns`](../../skills/go-concurrency-patterns/): Worker pools, fan-out/fan-in, select, mutex, atomic operations.
+- [`rust-async-patterns`](../../skills/rust-async-patterns/): Tokio, async/await, ownership in async contexts, error handling.
+- [`backend-security-coder`](../../skills/backend-security-coder/): Secure coding practices, injection prevention, secrets in services.
+- [`fp-backend`](../../skills/fp-backend/): Functional patterns in backend — pure functions, immutability, monads.
+- [`debugging-and-error-recovery`](../../skills/debugging-and-error-recovery/): Five-step triage: reproduce, localise, reduce, fix, guard for services.
+
+---
 
 ### 🧠 AI/ML Engineer Scope
 
@@ -985,11 +1105,29 @@ _For prompt engineering, RAG architecture, LLM evaluation, AI safety, and agent 
 
 **Agent:** [`ai-ml-engineer`](../agents/ai-ml-engineer.md)
 
+**Core lifecycle skills (6)**
 - [`spec-driven-development`](../../skills/spec-driven-development/): Prompt spec before implementation; evaluation criteria before coding.
 - [`test-driven-development`](../../skills/test-driven-development/): Golden-set evaluation, regression tests on prompt changes.
 - [`security-and-hardening`](../../skills/security-and-hardening/): Prompt injection mitigation, output validation, PII handling.
 - [`observability-and-instrumentation`](../../skills/observability-and-instrumentation/): Token usage tracking, latency/cost metrics, model version pinning.
 - [`context-engineering`](../../skills/context-engineering/): Context packing for RAG, rules files for agent systems, MCP integrations.
+- [`code-review-and-quality`](../../skills/code-review-and-quality/): Review AI feature code for correctness, safety, and evaluation coverage.
+
+**Domain specialist skills (14)**
+- [`llm-app-patterns`](../../skills/llm-app-patterns/): Prompt chaining, structured output, function calling, multi-turn conversation.
+- [`llm-evaluation`](../../skills/llm-evaluation/): Evaluation frameworks, LLM-as-judge, RAGAS, human eval pipelines.
+- [`llm-ops`](../../skills/llm-ops/): Model versioning, A/B testing prompts, cost tracking, observability.
+- [`rag-engineer`](../../skills/rag-engineer/): Retrieval-augmented generation architecture, retriever tuning, re-ranking.
+- [`rag-implementation`](../../skills/rag-implementation/): Vector store selection, chunking strategies, embedding pipelines, hybrid search.
+- [`embedding-strategies`](../../skills/embedding-strategies/): Embedding model selection, fine-tuning, similarity metrics, indexing.
+- [`ai-agent-development`](../../skills/ai-agent-development/): Tool use, agent loops, planning, memory, error recovery in agents.
+- [`ai-agents-architect`](../../skills/ai-agents-architect/): Multi-agent systems, orchestration patterns, inter-agent communication.
+- [`ai-engineering-toolkit`](../../skills/ai-engineering-toolkit/): LLM SDKs, prompt management, eval harnesses, monitoring integrations.
+- [`langchain-architecture`](../../skills/langchain-architecture/): LangChain chains, agents, tools, memory, LCEL composition patterns.
+- [`langgraph`](../../skills/langgraph/): State machine agent graphs, conditional edges, human-in-the-loop nodes.
+- [`advanced-evaluation`](../../skills/advanced-evaluation/): Custom eval metrics, adversarial testing, red-teaming LLM applications.
+- [`agent-evaluation`](../../skills/agent-evaluation/): Evaluating agent trajectories, tool-use correctness, task completion rates.
+- [`autonomous-agent-patterns`](../../skills/autonomous-agent-patterns/): ReAct, Reflexion, plan-and-execute, self-critique agent architectures.
 
 ---
 

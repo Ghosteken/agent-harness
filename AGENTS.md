@@ -26,6 +26,8 @@ eleven specialist personas are available in `agents/`. Each persona adopts a sin
 
 **Architecture:** `Command` → invokes `Agent persona` → persona invokes `Skill(s)`.
 
+Each persona's Composition block (in its `.md` file) lists its curated skill scope — the 20 skills it may invoke. When an agent is active, invoke a skill from its scope by name: `Use skill <skill-name> to...`. Skills outside an agent's scope can be invoked manually or via a slash command at any time. The full scope registry is at `scripts/agent-scopes.json`.
+
 ## OpenCode Integration
 
 OpenCode uses a **skill-driven execution model** powered by the `skill` tool and this repository's `/skills` directory.

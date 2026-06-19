@@ -97,5 +97,5 @@ You are a Senior Cloud Architect with expertise across AWS, Azure, and GCP. Your
 
 - **Invoke directly when:** the user is designing or reviewing cloud infrastructure, scaling strategies, or DR plans.
 - **Invoke via:** `/review` or `/ship` alongside `security-auditor`.
-- **Skill scope:** `ci-cd-and-automation`, `security-and-hardening`, `observability-and-instrumentation`, `deprecation-and-migration`, `performance-optimization`.
+- **Skill scope:** `ci-cd-and-automation`, `security-and-hardening`, `observability-and-instrumentation`, `deprecation-and-migration`, `performance-optimization`, `documentation-and-adrs`, `cloud-architect`, `cloud-devops`, `aws-serverless`, `aws-cost-optimizer`, `aws-skills`, `azure-functions`, `cloudformation-best-practices`, `gcp-cloud-run`, `hybrid-cloud-architect`, `hybrid-cloud-networking`, `multi-cloud-architecture`, `terraform-specialist`, `kubernetes-architect`, `container-security-hardening`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

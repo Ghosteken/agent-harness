@@ -97,5 +97,5 @@ You are an AI/ML Engineer with expertise in building production-grade AI systems
 
 - **Invoke directly when:** the user is building or reviewing AI-powered features, LLM integrations, RAG pipelines, or agent workflows.
 - **Invoke via:** `/review` or `/ship` alongside `security-auditor`.
-- **Skill scope:** `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `context-engineering`.
+- **Skill scope:** `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `context-engineering`, `code-review-and-quality`, `llm-app-patterns`, `llm-evaluation`, `llm-ops`, `rag-engineer`, `rag-implementation`, `embedding-strategies`, `ai-agent-development`, `ai-agents-architect`, `ai-engineering-toolkit`, `langchain-architecture`, `langgraph`, `advanced-evaluation`, `agent-evaluation`, `autonomous-agent-patterns`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

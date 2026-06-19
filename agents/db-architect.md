@@ -99,5 +99,5 @@ You are a Senior Database Architect with expertise across relational (PostgreSQL
 
 - **Invoke directly when:** the user is designing a schema, writing migrations, optimising queries, or reviewing database-related code.
 - **Invoke via:** `/review` (single-perspective) or `/ship` alongside `security-auditor`.
-- **Skill scope:** `source-driven-development`, `incremental-implementation`, `test-driven-development`, `security-and-hardening`, `performance-optimization`.
+- **Skill scope:** `source-driven-development`, `incremental-implementation`, `test-driven-development`, `security-and-hardening`, `performance-optimization`, `code-review-and-quality`, `database-design`, `database-admin`, `database-architect`, `database-migration`, `database-optimizer`, `postgres-best-practices`, `postgresql`, `postgresql-optimization`, `prisma-expert`, `drizzle-orm-expert`, `nosql-expert`, `sql-optimization-patterns`, `neon-postgres`, `dbt-transformation-patterns`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

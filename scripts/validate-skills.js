@@ -2,7 +2,12 @@
 /**
  * validate-skills.js
  *
- * Validates every skill in skills/ against the rules in docs/skill-anatomy.md.
+ * Validates skills against the rules in docs/skill-anatomy.md.
+ *
+ * Default mode: validates only the skills listed in scripts/agent-scopes.json
+ * (the curated scopes for each agent persona).
+ *
+ * Full mode (--all): validates every skill in skills/.
  *
  * Checks (errors block CI):
  *   - SKILL.md exists in every skill directory
@@ -24,7 +29,8 @@ const path = require('path');
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
-const SKILLS_DIR = path.resolve(__dirname, '..', 'skills');
+const SKILLS_DIR   = path.resolve(__dirname, '..', 'skills');
+const SCOPES_FILE  = path.resolve(__dirname, 'agent-scopes.json');
 
 const MAX_DESCRIPTION_LENGTH = 1024;
 
@@ -45,7 +51,7 @@ const REQUIRED_SECTIONS = [
 // Every entry must have a documented reason.
 const SECTION_EXEMPT_SKILLS = {
   'using-agent-skills': 'Meta-skill — orchestrates other skills; When-to-Use and Verification are not applicable to a routing document.',
-  'idea-refine':        'Legacy structure predating skill-anatomy.md — uses How-It-Works/Usage/Anti-patterns instead of standard headings. Tracked for conformance in https://github.com/addyosmani/agent-skills/issues',
+  'idea-refine':        'Legacy structure predating skill-anatomy.md — uses How-It-Works/Usage/Anti-patterns instead of standard headings.',
 };
 
 // Regex patterns that indicate an explicit cross-skill reference.
@@ -148,9 +154,6 @@ function validateSkill(dirName, knownSkills) {
   }
 
   // ── Exemption guard ──────────────────────────────────────────────────────
-  // Exemptions are validator-owned (SECTION_EXEMPT_SKILLS above).
-  // If a skill's frontmatter tries to declare its own exemption, fail loud —
-  // that's a sign someone is trying to bypass the validator.
   if (fm.type === 'meta' || fm.exempt === 'sections') {
     if (!SECTION_EXEMPT_SKILLS[dirName]) {
       errors.push(
@@ -187,31 +190,81 @@ function validateSkill(dirName, knownSkills) {
 // ─── Main ────────────────────────────────────────────────────────────────────
 
 function main() {
+  const validateAll = process.argv.includes('--all');
+
   if (!fs.existsSync(SKILLS_DIR)) {
     console.error(`ERROR: skills directory not found at ${SKILLS_DIR}`);
     process.exit(1);
   }
 
-  const skillDirs = fs.readdirSync(SKILLS_DIR)
-    .filter(d => fs.statSync(path.join(SKILLS_DIR, d)).isDirectory())
-    .sort();
+  // ── Resolve which skills to validate ─────────────────────────────────────
+  let skillDirs;
+  let agentScopeMap = {};   // skill → [agent, ...]
+
+  if (validateAll) {
+    skillDirs = fs.readdirSync(SKILLS_DIR)
+      .filter(d => fs.statSync(path.join(SKILLS_DIR, d)).isDirectory())
+      .sort();
+    console.log(`Mode: full — validating all ${skillDirs.length} skills in skills/\n`);
+  } else {
+    if (!fs.existsSync(SCOPES_FILE)) {
+      console.error(`ERROR: scope file not found at ${SCOPES_FILE}`);
+      console.error(`Run with --all to validate every skill, or create ${SCOPES_FILE}.`);
+      process.exit(1);
+    }
+
+    let scopeData;
+    try {
+      scopeData = JSON.parse(fs.readFileSync(SCOPES_FILE, 'utf8'));
+    } catch (err) {
+      console.error(`ERROR: could not parse ${SCOPES_FILE}: ${err.message}`);
+      process.exit(1);
+    }
+
+    const scopedSet = new Set();
+    for (const [agentName, agentDef] of Object.entries(scopeData.agents || {})) {
+      for (const skill of agentDef.skills || []) {
+        scopedSet.add(skill);
+        if (!agentScopeMap[skill]) agentScopeMap[skill] = [];
+        agentScopeMap[skill].push(agentName);
+      }
+    }
+
+    skillDirs = [...scopedSet].sort();
+    const agentCount = Object.keys(scopeData.agents || {}).length;
+    console.log(`Mode: scoped — validating ${skillDirs.length} skills across ${agentCount} agent scopes`);
+    console.log(`(Run with --all to validate all skills in the library)\n`);
+  }
 
   const knownSkills = new Set(skillDirs);
 
   let totalErrors   = 0;
   let totalWarnings = 0;
+  let missingDirs   = 0;
 
   for (const dirName of skillDirs) {
+    // Check directory exists (scoped skills might reference skills not yet in repo)
+    if (!fs.existsSync(path.join(SKILLS_DIR, dirName))) {
+      const agents = agentScopeMap[dirName] ? ` [scope: ${agentScopeMap[dirName].join(', ')}]` : '';
+      console.log(`  ✗  ${dirName}${agents}`);
+      console.log(`       ERROR: Directory not found in skills/ — remove from agent-scopes.json or add the skill`);
+      totalErrors++;
+      missingDirs++;
+      continue;
+    }
+
     const { errors, warnings, exempt } = validateSkill(dirName, knownSkills);
     totalErrors   += errors.length;
     totalWarnings += warnings.length;
 
+    const agents = agentScopeMap[dirName] ? ` [${agentScopeMap[dirName].join(', ')}]` : '';
+
     if (errors.length === 0 && warnings.length === 0) {
       const tag = exempt ? ' (section checks exempt)' : '';
-      console.log(`  ✓  ${dirName}${tag}`);
+      console.log(`  ✓  ${dirName}${tag}${agents}`);
     } else {
       const icon = errors.length > 0 ? '  ✗ ' : '  ⚠ ';
-      console.log(`${icon} ${dirName}`);
+      console.log(`${icon} ${dirName}${agents}`);
       for (const msg of errors)   console.log(`       ERROR: ${msg}`);
       for (const msg of warnings) console.log(`       WARN:  ${msg}`);
     }
@@ -219,6 +272,9 @@ function main() {
 
   const status = totalErrors > 0 ? 'FAILED' : totalWarnings > 0 ? 'PASSED WITH WARNINGS' : 'PASSED';
   console.log(`\n${skillDirs.length} skills checked — ${totalErrors} error(s), ${totalWarnings} warning(s) — ${status}`);
+  if (missingDirs > 0) {
+    console.log(`(${missingDirs} skill(s) listed in agent-scopes.json do not exist in skills/ yet)`);
+  }
 
   if (totalErrors > 0) process.exit(1);
 }

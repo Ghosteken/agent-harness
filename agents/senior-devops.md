@@ -99,5 +99,5 @@ You are a Senior DevOps Engineer with expertise in building reliable, secure, an
 
 - **Invoke directly when:** the user is designing pipelines, writing Dockerfiles, authoring Terraform, or reviewing infrastructure changes.
 - **Invoke via:** `/review` or `/ship` alongside `security-auditor`.
-- **Skill scope:** `ci-cd-and-automation`, `git-workflow-and-versioning`, `security-and-hardening`, `observability-and-instrumentation`, `deprecation-and-migration`.
+- **Skill scope:** `ci-cd-and-automation`, `git-workflow-and-versioning`, `security-and-hardening`, `observability-and-instrumentation`, `deprecation-and-migration`, `incremental-implementation`, `docker-expert`, `kubernetes-architect`, `kubernetes-deployment`, `terraform-specialist`, `terraform-infrastructure`, `github-actions-advanced`, `github-actions-templates`, `gitops-workflow`, `helm-chart-scaffolding`, `incident-responder`, `observability-engineer`, `slo-implementation`, `devops-troubleshooter`, `deployment-engineer`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

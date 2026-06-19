@@ -96,5 +96,5 @@ You are a Senior Backend Engineer with expertise in building reliable, scalable,
 
 - **Invoke directly when:** the user is designing or reviewing backend services, async pipelines, or server-side business logic.
 - **Invoke via:** `/review` or `/ship` alongside `security-auditor` and `api-developer`.
-- **Skill scope:** `api-and-interface-design`, `test-driven-development`, `performance-optimization`, `security-and-hardening`, `observability-and-instrumentation`.
+- **Skill scope:** `api-and-interface-design`, `test-driven-development`, `performance-optimization`, `security-and-hardening`, `observability-and-instrumentation`, `incremental-implementation`, `backend-architect`, `backend-dev-guidelines`, `microservices-patterns`, `golang-pro`, `nodejs-best-practices`, `nodejs-backend-patterns`, `async-python-patterns`, `grpc-golang`, `service-mesh-expert`, `go-concurrency-patterns`, `rust-async-patterns`, `backend-security-coder`, `fp-backend`, `debugging-and-error-recovery`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).
