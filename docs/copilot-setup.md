@@ -4,7 +4,7 @@
 
 ### Copilot Instructions
 
-Copilot supports creating agent skills using a `.github/skills`, `.claude/skills`, or `.agents/skills` directory in your repository.
+Copilot supports creating agent harness skills using a `.github/skills`, `.claude/skills`, or `.agents/skills` directory in your repository.
 
 ```bash
 mkdir -p .github
@@ -14,11 +14,11 @@ cat /path/to/agent-harness/skills/test-driven-development/SKILL.md > .github/ski
 cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md > .github/skills/code-review-and-quality/SKILL.md
 ```
 
-For more details, refer [Creating agent skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills).
+For more details, refer [Creating agent harness skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills).
 
 ### Agent Personas (*.agent.md)
 
-Copilot supports specialized agent personas. Use the agent-skills agents:
+Copilot supports specialized agent personas. Use the agent-harness agents:
 
 > **Important:** GitHub Copilot requires custom agent files to be named `*.agent.md`.
 > Files named `*.md` are silently ignored by Copilot.

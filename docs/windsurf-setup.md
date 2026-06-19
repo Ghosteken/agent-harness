@@ -28,7 +28,7 @@ Keep `.windsurfrules` focused on 2-3 essential skills to stay within context lim
 
 ```
 # .windsurfrules
-# Essential agent-skills for this project
+# Essential agent-harness for this project
 
 [Paste test-driven-development SKILL.md]
 

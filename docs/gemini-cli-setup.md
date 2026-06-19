@@ -22,7 +22,7 @@ gemini skills install /path/to/agent-harness/skills/
 **Install for a specific workspace only:**
 
 ```bash
-gemini skills install /path/to/agent-skills/skills/ --scope workspace
+gemini skills install /path/to/agent-harness/skills/ --scope workspace
 ```
 
 Skills installed at workspace scope go into `.gemini/skills/` (or `.agents/skills/`). User-level skills go into `~/.gemini/skills/`.
@@ -41,9 +41,9 @@ For skills you want always loaded as persistent project context (rather than on-
 
 ```bash
 # Create GEMINI.md with core skills as persistent context
-cat /path/to/agent-skills/skills/incremental-implementation/SKILL.md > GEMINI.md
+cat /path/to/agent-harness/skills/incremental-implementation/SKILL.md > GEMINI.md
 echo -e "\n---\n" >> GEMINI.md
-cat /path/to/agent-skills/skills/code-review-and-quality/SKILL.md >> GEMINI.md
+cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md >> GEMINI.md
 ```
 
 You can also modularize by importing from separate files:
@@ -93,7 +93,7 @@ To enable these, ensure you have the relevant MCP extensions installed in your G
 
 Gemini CLI supports session lifecycle hooks. You can use these to automatically inject context or run validation scripts at the start of a session.
 
-To replicate the `agent-skills` experience from other tools, you can configure a `SessionStart` hook that reminds you of the available skills or loads a meta-skill.
+To replicate the `agent-harness` experience from other tools, you can configure a `SessionStart` hook that reminds you of the available skills or loads a meta-skill.
 
 ### Explicit Context Loading
 

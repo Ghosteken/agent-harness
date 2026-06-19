@@ -22,14 +22,14 @@ agy plugin install https://github.com/Ghosteken/agent-harness.git
    ```
 2. Install the plugin using `agy`:
    ```bash
-   agy plugin install /path/to/agent-skills
+   agy plugin install /path/to/agent-harness
    ```
 
-This will validate the plugin and install it into your global Antigravity configuration directory (`~/.gemini/antigravity-cli/plugins/agent-skills/`).
+This will validate the plugin and install it into your global Antigravity configuration directory (`~/.gemini/antigravity-cli/plugins/agent-harness/`).
 
 ### Option 2: Import from Gemini CLI
 
-If you have already installed `agent-skills` under your legacy Gemini CLI installation, you can import it directly:
+If you have already installed `agent-harness` under your legacy Gemini CLI installation, you can import it directly:
 ```bash
 agy plugin import gemini
 ```
@@ -74,7 +74,7 @@ Antigravity automatically discovers skills inside the plugin's `skills/` directo
 
 To validate that your local plugin is correctly structured and contains all skills, run:
 ```bash
-agy plugin validate /path/to/agent-skills
+agy plugin validate /path/to/agent-harness
 ```
 
 ---
