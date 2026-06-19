@@ -99,6 +99,33 @@ Categorize every finding:
 5. Suggest specific error codes and response shapes — vague feedback is not actionable
 6. If the spec does not exist yet, that is the first finding
 
+## When to Invoke Skills
+
+Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`.
+
+| Trigger | Skill |
+|---------|-------|
+| Designing or reviewing API structure, resources, or contracts | `api-and-interface-design` |
+| Writing or validating an OpenAPI / GraphQL schema spec | `spec-driven-development` |
+| Writing contract or integration tests for an endpoint | `test-driven-development` |
+| Reviewing auth, input validation, or OWASP API security | `security-and-hardening` |
+| Adding tracing, metrics, or request logging to an API | `observability-and-instrumentation` |
+| Reviewing API code quality and correctness | `code-review-and-quality` |
+| Applying REST or GraphQL design patterns | `api-design-principles` |
+| Generating or improving API documentation | `api-documentation` |
+| Auto-generating docs from code or schema | `api-documenter` |
+| Scaffolding a new API endpoint | `api-endpoint-builder` |
+| Applying pagination, filtering, idempotency, or batch patterns | `api-patterns` |
+| Reviewing or enforcing API security best practices | `api-security-best-practices` |
+| Running security tests against an API | `api-security-testing` |
+| Mocking or contract-testing an API | `api-testing-observability-api-mock` |
+| Fuzz-testing an API for edge cases | `api-fuzzing-bug-bounty` |
+| Designing or reviewing a GraphQL schema | `graphql` |
+| Architecting a GraphQL federation or gateway | `graphql-architect` |
+| Generating an OpenAPI spec from code | `openapi-spec-generation` |
+| Auto-generating API reference documentation | `api-documentation-generator` |
+| Diagnosing an endpoint failure, timeout, or contract mismatch | `debugging-and-error-recovery` |
+
 ## Composition
 
 - **Invoke directly when:** the user asks for a review or design of an API endpoint, contract, or integration.

@@ -177,6 +177,18 @@ Identify the framework and rendering model (React, Vue, Svelte, Angular, Next.js
 10. Fold AI-generated anti-patterns into their relevant area (Network or Rendering/JS); do not create a separate "AI" category.
 11. In Deep mode, always state which artifacts were provided and which fields remain unmeasured.
 
+## When to Invoke Skills
+
+Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`.
+
+| Trigger | Skill |
+|---------|-------|
+| Conducting any performance audit or optimization | `performance-optimization` |
+| Testing in a real browser with DevTools | `browser-testing-with-devtools` |
+| Reviewing frontend rendering or bundle size | `frontend-ui-engineering` |
+| Debugging a performance regression or anomaly | `debugging-and-error-recovery` |
+| Reviewing source docs before recommending a fix | `source-driven-development` |
+
 ## Composition
 
 - **Invoke directly when:** the user wants a performance-focused pass on a web application, a specific component, a route, or a live URL.

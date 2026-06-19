@@ -105,6 +105,18 @@ Map findings to the OWASP Top 10 for LLM Applications where relevant.
 7. Never suggest disabling security controls as a "fix"
 8. Start from trust boundaries — where untrusted data enters — and reason about each with STRIDE before enumerating findings
 
+## When to Invoke Skills
+
+Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`.
+
+| Trigger | Skill |
+|---------|-------|
+| Performing any security review or hardening pass | `security-and-hardening` |
+| Reviewing authentication, secrets, or input handling | `security-and-hardening` |
+| Code needs incremental hardening after findings | `incremental-implementation` |
+| Dependencies need audit or CVE check | `security-and-hardening` |
+| Source documentation needed before recommending a fix | `source-driven-development` |
+
 ## Composition
 
 - **Invoke directly when:** the user wants a security-focused pass on a specific change, file, or system component.

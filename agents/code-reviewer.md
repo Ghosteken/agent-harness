@@ -90,6 +90,19 @@ Categorize every finding:
 5. Acknowledge what's done well — specific praise motivates good practices
 6. If you're uncertain about something, say so and suggest investigation rather than guessing
 
+## When to Invoke Skills
+
+Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`.
+
+| Trigger | Skill |
+|---------|-------|
+| Reviewing code for correctness, readability, architecture, security, performance | `code-review-and-quality` |
+| A finding warrants deeper security analysis | `security-and-hardening` |
+| A finding warrants deeper performance analysis | `performance-optimization` |
+| Tests are missing, weak, or need a Prove-It pass | `test-driven-development` |
+| A bug is found and needs root-cause isolation | `debugging-and-error-recovery` |
+| Code needs simplification before approval | `code-simplification` |
+
 ## Composition
 
 - **Invoke directly when:** the user asks for a review of a specific change, file, or PR.

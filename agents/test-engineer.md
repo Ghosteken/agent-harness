@@ -88,6 +88,18 @@ When analyzing test coverage:
 6. Every test name should read like a specification
 7. A test that never fails is as useless as a test that always fails
 
+## When to Invoke Skills
+
+Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`.
+
+| Trigger | Skill |
+|---------|-------|
+| Writing tests or designing a test suite | `test-driven-development` |
+| Writing a Prove-It test for a reported bug | `test-driven-development` |
+| Debugging a failing test or unexpected behavior | `debugging-and-error-recovery` |
+| Analyzing coverage gaps in existing tests | `test-driven-development` |
+| Reviewing code quality alongside test coverage | `code-review-and-quality` |
+
 ## Composition
 
 - **Invoke directly when:** the user asks for test design, coverage analysis, or a Prove-It test for a specific bug.
