@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "agent-harness",
+  "description": "Production-grade engineering skills and agents for AI coding assistants — covering the full software development lifecycle from spec to ship.",
+  "owner": {
+    "name": "Nicholas Aigberua",
+    "url": "https://github.com/Ghosteken"
+  },
+  "plugins": [
+    {
+      "name": "agent-harness",
+      "source": {
+        "source": "github",
+        "repo": "Ghosteken/agent-harness"
+      },
+      "description": "Production-grade engineering skills and agents covering every phase of software development: spec, plan, build, verify, review, and ship.",
+      "homepage": "https://github.com/Ghosteken/agent-harness",
+      "license": "MIT",
+      "keywords": ["skills", "agents", "engineering", "spec", "tdd", "review", "ship", "api", "devops", "cloud", "backend", "frontend"]
+    }
+  ]
+}

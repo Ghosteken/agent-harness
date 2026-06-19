@@ -1,0 +1,25 @@
+{
+  "name": "agent-harness",
+  "description": "Production-grade engineering skills and agents for AI coding assistants — covering the full software development lifecycle from spec to ship.",
+  "author": {
+    "name": "Nicholas Aigberua"
+  },
+  "homepage": "https://github.com/Ghosteken/agent-harness",
+  "repository": "https://github.com/Ghosteken/agent-harness",
+  "license": "MIT",
+  "commands": "./.claude/commands",
+  "skills": "./skills",
+  "agents": [
+    "./agents/code-reviewer.md",
+    "./agents/security-auditor.md",
+    "./agents/test-engineer.md",
+    "./agents/web-performance-auditor.md",
+    "./agents/api-developer.md",
+    "./agents/db-architect.md",
+    "./agents/senior-devops.md",
+    "./agents/senior-frontend-engineer.md",
+    "./agents/senior-cloud-architect.md",
+    "./agents/senior-backend-engineer.md",
+    "./agents/ai-ml-engineer.md"
+  ]
+}
