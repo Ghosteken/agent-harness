@@ -176,6 +176,131 @@
         "agent-evaluation",
         "autonomous-agent-patterns"
       ]
+    },
+    "code-reviewer": {
+      "role": "Senior Staff Engineer",
+      "skills": [
+        "code-review-and-quality",
+        "security-and-hardening",
+        "performance-optimization",
+        "test-driven-development",
+        "debugging-and-error-recovery",
+        "code-simplification",
+        "source-driven-development",
+        "documentation-and-adrs",
+        "incremental-implementation",
+        "architecture-patterns",
+        "code-review-excellence",
+        "code-review-checklist",
+        "clean-code",
+        "doubt-driven-development",
+        "software-architecture",
+        "architecture-decision-records",
+        "comprehensive-review-full-review",
+        "comprehensive-review-pr-enhance",
+        "code-refactoring-refactor-clean",
+        "code-refactoring-tech-debt"
+      ]
+    },
+    "security-auditor": {
+      "role": "Security Engineer",
+      "skills": [
+        "security-and-hardening",
+        "incremental-implementation",
+        "source-driven-development",
+        "code-review-and-quality",
+        "debugging-and-error-recovery",
+        "api-security-best-practices",
+        "api-security-testing",
+        "broken-authentication",
+        "top-web-vulnerabilities",
+        "security-requirement-extraction",
+        "security-scanning-security-sast",
+        "security-scanning-security-dependencies",
+        "security-scanning-security-hardening",
+        "vulnerability-scanner",
+        "web-security-testing",
+        "threat-modeling-expert",
+        "attack-tree-construction",
+        "container-security-hardening",
+        "gha-security-review",
+        "secrets-management"
+      ]
+    },
+    "test-engineer": {
+      "role": "QA Engineer",
+      "skills": [
+        "test-driven-development",
+        "debugging-and-error-recovery",
+        "code-review-and-quality",
+        "quality-assurance",
+        "browser-testing-with-devtools",
+        "spec-driven-development",
+        "source-driven-development",
+        "e2e-testing",
+        "e2e-testing-patterns",
+        "testing-patterns",
+        "testing-qa",
+        "javascript-testing-patterns",
+        "playwright-skill",
+        "api-testing-observability-api-mock",
+        "unit-testing-test-generate",
+        "tdd-workflows",
+        "awt-e2e-testing",
+        "test-automator",
+        "debugging-strategies",
+        "performance-testing-review-ai-review"
+      ]
+    },
+    "web-performance-auditor": {
+      "role": "Web Performance Engineer",
+      "skills": [
+        "performance-optimization",
+        "browser-testing-with-devtools",
+        "frontend-ui-engineering",
+        "debugging-and-error-recovery",
+        "source-driven-development",
+        "web-performance-optimization",
+        "performance-profiling",
+        "pagespeed-enhancer",
+        "react-component-performance",
+        "code-simplification",
+        "observability-and-instrumentation",
+        "progressive-web-app",
+        "application-performance-performance-optimization",
+        "nextjs-best-practices",
+        "k6-load-testing",
+        "performance-testing-review-ai-review",
+        "grafana-dashboards",
+        "slo-implementation",
+        "tailwind-patterns",
+        "incremental-implementation"
+      ]
+    },
+    "senior-qa-engineer": {
+      "role": "Senior QA Engineer",
+      "skills": [
+        "quality-assurance",
+        "test-driven-development",
+        "browser-testing-with-devtools",
+        "debugging-and-error-recovery",
+        "source-driven-development",
+        "code-review-and-quality",
+        "spec-driven-development",
+        "incremental-implementation",
+        "git-workflow-and-versioning",
+        "observability-and-instrumentation",
+        "testing-qa",
+        "e2e-testing",
+        "e2e-testing-patterns",
+        "testing-patterns",
+        "playwright-skill",
+        "awt-e2e-testing",
+        "api-testing-observability-api-mock",
+        "debugging-strategies",
+        "performance-testing-review-ai-review",
+        "security-and-hardening"
+      ]
     }
   }
 }

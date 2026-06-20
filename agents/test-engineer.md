@@ -104,4 +104,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user asks for test design, coverage analysis, or a Prove-It test for a specific bug.
 - **Invoke via:** `/test` (TDD workflow) or `/ship` (parallel fan-out for coverage gap analysis alongside `code-reviewer` and `security-auditor`).
+- **Skill scope:** `test-driven-development`, `debugging-and-error-recovery`, `code-review-and-quality`, `quality-assurance`, `browser-testing-with-devtools`, `spec-driven-development`, `source-driven-development`, `e2e-testing`, `e2e-testing-patterns`, `testing-patterns`, `testing-qa`, `javascript-testing-patterns`, `playwright-skill`, `api-testing-observability-api-mock`, `unit-testing-test-generate`, `tdd-workflows`, `awt-e2e-testing`, `test-automator`, `debugging-strategies`, `performance-testing-review-ai-review`.
 - **Do not invoke from another persona.** Recommendations to add tests belong in your report; the user or a slash command decides when to act on them. See [docs/agents.md](../docs/agents.md).

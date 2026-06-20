@@ -409,6 +409,37 @@ User: /ship
 | Security audit | `security-auditor` |
 | Test coverage analysis | `test-engineer` |
 | Web performance audit | `web-performance-auditor` |
+| Feature verification or fix validation | `senior-qa-engineer` |
+
+### Intent → Skill routing
+
+> **How agents get involved differs by platform.** In **Claude Code**, only skills fire automatically from your words — agents never activate unless you name one explicitly (e.g. "use the api-developer agent") or run a slash command. In **OpenCode / Cursor / Copilot**, the agent column below applies — the platform routes your intent to the agent first, which then invokes the skill.
+
+**Domain intents:**
+
+| If you say... | Skill(s) invoked (Claude Code) | Agent auto-invoked (OpenCode / Cursor) |
+|---|---|---|
+| API, endpoint, REST, GraphQL, JWT, OAuth, webhook | `api-and-interface-design`, `spec-driven-development` | `api-developer` |
+| database, schema, migration, SQL, query, index, ORM | `database-design`, `database-migration` | `db-architect` |
+| Docker, Kubernetes, CI/CD, pipeline, deploy, IaC | `ci-cd-and-automation`, `git-workflow-and-versioning` | `senior-devops` |
+| component, React, CSS, accessibility, WCAG, bundle | `frontend-ui-engineering`, `react-best-practices` | `senior-frontend-engineer` |
+| cloud, AWS, Azure, GCP, IAM, multi-region, serverless | `cloud-architect`, `documentation-and-adrs` | `senior-cloud-architect` |
+| backend, microservice, async, Kafka, cache, Redis | `backend-architect`, `api-and-interface-design` | `senior-backend-engineer` |
+| AI, LLM, prompt, RAG, vector, embedding, hallucination | `spec-driven-development`, `llm-app-patterns` | `ai-ml-engineer` |
+| review, check my code, feedback, before merge, PR | `code-review-and-quality` | `code-reviewer` |
+| security, vulnerability, XSS, OWASP, harden, CVE | `security-and-hardening` | `security-auditor` |
+| test, coverage, unit test, E2E, Jest, Playwright, mock | `test-driven-development` | `test-engineer` |
+| verify, QA, does this work, confirm the fix, smoke test | `quality-assurance` | `senior-qa-engineer` |
+| slow, LCP, INP, CLS, Core Web Vitals, Lighthouse | `performance-optimization` | `web-performance-auditor` |
+
+**Cross-cutting intents** (skill only on both platforms — no agent):
+
+| If you say... | Skill(s) invoked |
+|---|---|
+| build, implement, add, create, new feature | `spec-driven-development` → domain agent → `incremental-implementation` → `test-driven-development` |
+| plan, break down, tasks, roadmap, where do I start | `planning-and-task-breakdown` |
+| bug, broken, error, not working, crash, failing | `debugging-and-error-recovery` |
+| simplify, clean up, reduce complexity, hard to read | `code-simplification` |
 
 ---
 

@@ -107,4 +107,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user asks for a review of a specific change, file, or PR.
 - **Invoke via:** `/review` (single-perspective review) or `/ship` (parallel fan-out alongside `security-auditor` and `test-engineer`).
+- **Skill scope:** `code-review-and-quality`, `security-and-hardening`, `performance-optimization`, `test-driven-development`, `debugging-and-error-recovery`, `code-simplification`, `source-driven-development`, `documentation-and-adrs`, `incremental-implementation`, `architecture-patterns`, `code-review-excellence`, `code-review-checklist`, `clean-code`, `doubt-driven-development`, `software-architecture`, `architecture-decision-records`, `comprehensive-review-full-review`, `comprehensive-review-pr-enhance`, `code-refactoring-refactor-clean`, `code-refactoring-tech-debt`.
 - **Do not invoke from another persona.** If you find yourself wanting to delegate to `security-auditor` or `test-engineer`, surface that as a recommendation in your report instead — orchestration belongs to slash commands, not personas. See [docs/agents.md](../docs/agents.md).

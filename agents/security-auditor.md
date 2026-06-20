@@ -121,4 +121,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user wants a security-focused pass on a specific change, file, or system component.
 - **Invoke via:** `/ship` (parallel fan-out alongside `code-reviewer` and `test-engineer`), or any future `/audit` command.
+- **Skill scope:** `security-and-hardening`, `incremental-implementation`, `source-driven-development`, `code-review-and-quality`, `debugging-and-error-recovery`, `api-security-best-practices`, `api-security-testing`, `broken-authentication`, `top-web-vulnerabilities`, `security-requirement-extraction`, `security-scanning-security-sast`, `security-scanning-security-dependencies`, `security-scanning-security-hardening`, `vulnerability-scanner`, `web-security-testing`, `threat-modeling-expert`, `attack-tree-construction`, `container-security-hardening`, `gha-security-review`, `secrets-management`.
 - **Do not invoke from another persona.** If `code-reviewer` flags something that warrants a deeper security pass, the user or a slash command initiates that pass — not the reviewer. See [docs/agents.md](../docs/agents.md).
