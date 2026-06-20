@@ -1,12 +1,39 @@
 ﻿---
 name: using-agent-harness
 type: meta
-description: Intent router for agent-harness — maps what the user describes to the right agent persona and skill. Use when starting any task to determine which agent and skill should handle it.
+description: Intent router and pre-flight checker for agent-harness — checks for a matching skill before any response, then maps what the user describes to the right agent persona and skill. Use when starting any task to determine which agent and skill should handle it.
 ---
 
 # Using Agent Harness
 
-This meta-skill routes user intent to the correct agent persona and skill scope. Read it at the start of any session or when a user describes a task without specifying an agent or command.
+This meta-skill is both a **pre-flight checker** and an intent router. It enforces skill usage before any response, then routes the user's intent to the correct agent persona and skill scope.
+
+## Pre-Flight Rule (Mandatory)
+
+**Before responding to anything — including clarifying questions — check whether a skill applies.**
+
+If there is even a 1% chance a skill is relevant, invoke it. This is not optional.
+
+```
+User message received
+        ↓
+Does any skill apply? (even 1% chance)
+        ↓ yes
+Invoke the skill — then respond
+        ↓ no
+Respond directly
+```
+
+**Thoughts that mean you are rationalising — stop and invoke the skill instead:**
+
+| Thought | Reality |
+|---|---|
+| "This is just a simple question" | Simple questions are still tasks. Check first. |
+| "I need more context before routing" | Routing comes before gathering context. |
+| "This is too small for a skill" | If a skill exists for it, use it. |
+| "I already know what to do" | Knowing the answer ≠ skipping the workflow. |
+| "Let me just quickly fix this" | Quick fixes without process create new bugs. |
+| "This doesn't match any skill exactly" | 1% match is enough. Invoke and adapt. |
 
 ## Two Entry Paths (Both Supported)
 
@@ -133,6 +160,83 @@ When a user describes what they want to build, fix, or review — without using 
 → **Agent:** `web-performance-auditor`
 → **Start with skill:** `performance-optimization`
 → **Command:** `/webperf`
+
+---
+
+### QA Verification
+**Trigger words:** verify, QA, does this work, check if it works, make sure nothing is broken, confirm the fix, regression check, validate the feature, working as expected, smoke test, sanity check, verify all the fixes are in place, is this working, confirm this is fixed
+
+→ **Agent:** `senior-qa-engineer`
+→ **Start with skill:** `quality-assurance`
+→ **Command:** `/test` or direct invocation
+
+---
+
+## Cross-Cutting Skills (No Agent — Invoke Directly)
+
+These skills fire regardless of domain. They cover situations that happen across every project and are not tied to a specific engineering area. **Check these before routing to a domain agent** — they often apply first.
+
+### Receiving Code Review Feedback
+**Trigger words:** someone reviewed my code, here are review comments, my PR has comments, reviewer said, feedback on my PR, address these comments, code review feedback, reviewer flagged
+
+→ **Skill:** `receiving-code-review`
+→ No agent. Invoke directly. Evaluate each comment technically before implementing.
+
+---
+
+### Requesting a Code Review
+**Trigger words:** request a review, ready for review, submit for review, ask for feedback, PR is ready, want someone to review
+
+→ **Skill:** `requesting-code-review`
+→ No agent. Invoke directly before opening a PR or asking for a review.
+
+---
+
+### Finishing a Development Branch
+**Trigger words:** I'm done, implementation complete, finished the feature, ready to merge, done with the branch, all tests pass, wrap this up, close this out
+
+→ **Skill:** `finishing-a-development-branch`
+→ No agent. Invoke directly when work is complete and the path forward (merge, PR, cleanup) needs to be decided.
+
+---
+
+### Systematic Debugging
+**Trigger words:** bug, broken, not working, unexpected behaviour, crash, error, failing, something is wrong, why is this happening, root cause, trace this
+
+→ **Skill:** `systematic-debugging`
+→ No agent. Invoke directly before proposing any fix. Root cause first, patch second.
+
+---
+
+### Verification Before Completion
+**Trigger words:** it works, I think it's done, looks good, should be fixed, seems to work, I believe this is correct, that should do it, done
+
+→ **Skill:** `verification-before-completion`
+→ No agent. Invoke whenever a completion or success claim is about to be made. Evidence before claims.
+
+---
+
+### Writing a Plan
+**Trigger words:** plan this, how should I approach, break this down, map this out, before I start, let me plan, write a plan for
+
+→ **Skill:** `writing-plans`
+→ No agent. Invoke before touching code on any multi-step task.
+
+---
+
+### Executing a Plan
+**Trigger words:** execute the plan, follow the plan, implement the plan, carry out the steps, run through the plan, start the plan
+
+→ **Skill:** `executing-plans`
+→ No agent. Invoke when a written plan exists and execution is starting.
+
+---
+
+### Brainstorming
+**Trigger words:** brainstorm, ideas for, what are the options, how could we, what should I build, explore approaches, what are the possibilities, think through
+
+→ **Skill:** `brainstorming`
+→ No agent. Invoke before any creative or architectural decision. Options before commitment.
 
 ---
 

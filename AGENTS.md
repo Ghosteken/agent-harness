@@ -101,12 +101,40 @@ When the user describes a task without naming an agent or command, map their wor
 → `planning-and-task-breakdown`
 
 #### Bug / Error
-**Keywords:** bug, broken, error, not working, unexpected, crash, failing, regression
-→ `debugging-and-error-recovery`
+**Keywords:** bug, broken, error, not working, unexpected, crash, failing, regression, something is wrong, why is this happening, root cause
+→ `systematic-debugging`
 
 #### Simplification / Cleanup
 **Keywords:** simplify, clean up, reduce complexity, too complex, hard to read, refactor
 → `code-simplification`
+
+#### Receiving Code Review Feedback
+**Keywords:** someone reviewed my code, here are review comments, PR has comments, reviewer said, feedback on my PR, address these comments, code review feedback
+→ `receiving-code-review`
+
+#### Requesting a Code Review
+**Keywords:** request a review, ready for review, submit for review, ask for feedback, PR is ready, want someone to review
+→ `requesting-code-review`
+
+#### Finishing a Branch
+**Keywords:** I'm done, implementation complete, finished the feature, ready to merge, done with the branch, all tests pass, wrap this up, close this out
+→ `finishing-a-development-branch`
+
+#### Verification / Completion Claims
+**Keywords:** it works, I think it's done, looks good, should be fixed, seems to work, I believe this is correct, done
+→ `verification-before-completion`
+
+#### Writing a Plan
+**Keywords:** plan this, how should I approach, break this down, map this out, before I start, let me plan, write a plan for
+→ `writing-plans`
+
+#### Executing a Plan
+**Keywords:** execute the plan, follow the plan, implement the plan, carry out the steps, run through the plan
+→ `executing-plans`
+
+#### Brainstorming
+**Keywords:** brainstorm, ideas for, what are the options, how could we, explore approaches, what are the possibilities, think through
+→ `brainstorming`
 
 ### Lifecycle Mapping (Implicit Commands)
 
