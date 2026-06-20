@@ -6,7 +6,7 @@ This is the agent-harness project — a production-grade collection of engineeri
 
 ```
 skills/       → Core skills (SKILL.md per directory)
-agents/       → Specialist agent personas (11 total — see below)
+agents/       → Specialist agent personas (12 total — see below)
 hooks/        → Session lifecycle hooks
 .claude/commands/ → Slash commands (/spec, /plan, /build, /test, /review, /code-simplify, /ship, /webperf)
 references/   → Supplementary checklists (testing, performance, security, accessibility)
@@ -28,6 +28,7 @@ docs/         → Setup guides for different tools
 | `senior-cloud-architect` | Senior Cloud Architect | Multi-region, IAM, HA/DR, cost optimisation |
 | `senior-backend-engineer` | Senior Backend Engineer | Service architecture, async, queues, caching |
 | `ai-ml-engineer` | AI/ML Engineer | Prompt engineering, RAG, LLM evaluation |
+| `senior-qa-engineer` | Senior QA Engineer | Feature verification, fix validation, regression checks |
 
 ## Skills by Phase
 

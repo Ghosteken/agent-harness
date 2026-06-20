@@ -8,7 +8,7 @@ agent-harness is a production-grade collection of engineering skills and special
 
 ## Agent Personas
 
-eleven specialist personas are available in `agents/`. Each persona adopts a single engineering role and operates within its curated skill scope.
+twelve specialist personas are available in `agents/`. Each persona adopts a single engineering role and operates within its curated skill scope.
 
 | Persona | Role | Trigger |
 |---------|------|---------|
@@ -23,6 +23,7 @@ eleven specialist personas are available in `agents/`. Each persona adopts a sin
 | `senior-cloud-architect` | Senior Cloud Architect | Cloud design, IAM, DR, cost |
 | `senior-backend-engineer` | Senior Backend Engineer | Services, async, queues, caching |
 | `ai-ml-engineer` | AI/ML Engineer | Prompts, RAG, LLM evaluation, AI safety |
+| `senior-qa-engineer` | Senior QA Engineer | Feature verification, fix validation, regression checks |
 
 **Architecture:** `Command` → invokes `Agent persona` → persona invokes `Skill(s)`.
 
@@ -82,6 +83,10 @@ When the user describes a task without naming an agent or command, map their wor
 #### Testing
 **Keywords:** test, coverage, failing test, bug proof, unit test, integration test, E2E, Cypress, Playwright, Jest, pytest, mock, stub, test suite
 → `test-engineer` → `test-driven-development`
+
+#### QA Verification
+**Keywords:** verify, QA, does this work, check if it works, make sure nothing is broken, confirm the fix, regression check, validate the feature, feature verification, working as expected, verify all fixes, end-to-end check, smoke test, sanity check, verify all the fixes are in place, is this working, confirm this is fixed
+→ `senior-qa-engineer` → `quality-assurance`
 
 #### Web Performance
 **Keywords:** slow, performance, LCP, INP, CLS, Core Web Vitals, Lighthouse, bundle size, lazy load, render blocking, TTFB, page speed

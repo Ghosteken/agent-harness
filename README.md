@@ -238,7 +238,7 @@ The library contains **1,500+ specialist skills** across every engineering domai
 
 ## Agent Personas
 
-11 specialist personas — each adopts a single engineering role and operates within a curated skill scope.
+12 specialist personas — each adopts a single engineering role and operates within a curated skill scope.
 
 ### Quality & Review Personas
 
@@ -248,6 +248,7 @@ The library contains **1,500+ specialist skills** across every engineering domai
 | [security-auditor](agents/security-auditor.md) | Security Engineer | Vulnerability detection, OWASP assessment |
 | [test-engineer](agents/test-engineer.md) | QA Specialist | Test strategy, coverage analysis, Prove-It pattern |
 | [web-performance-auditor](agents/web-performance-auditor.md) | Web Performance Engineer | Core Web Vitals audit; run via `/webperf` |
+| [senior-qa-engineer](agents/senior-qa-engineer.md) | Senior QA Engineer | Feature verification, fix validation, regression checks |
 
 ### Engineering Domain Personas
 

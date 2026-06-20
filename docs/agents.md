@@ -15,6 +15,7 @@ Specialist personas that play a single role with a single perspective. Each pers
 | [senior-cloud-architect](../agents/senior-cloud-architect.md) | Senior Cloud Architect | Multi-region design, IAM, HA/DR, cost optimisation |
 | [senior-backend-engineer](../agents/senior-backend-engineer.md) | Senior Backend Engineer | Service architecture, async patterns, queues, caching |
 | [ai-ml-engineer](../agents/ai-ml-engineer.md) | AI/ML Engineer | Prompt engineering, RAG, LLM evaluation, AI safety |
+| [senior-qa-engineer](../agents/senior-qa-engineer.md) | Senior QA Engineer | Feature verification, fix validation, regression checks |
 
 ## How personas relate to skills and commands
 
@@ -36,6 +37,9 @@ Pick this when you want one perspective on the current change and the user is in
 - "Review this PR" → invoke `code-reviewer` directly
 - "Are there security issues in `auth.ts`?" → invoke `security-auditor` directly
 - "What tests are missing for the checkout flow?" → invoke `test-engineer` directly
+- "Verify all the fixes are in place and working as expected" → invoke `senior-qa-engineer` directly
+- "QA this feature before we ship" → invoke `senior-qa-engineer` directly
+- "Check that nothing broke after the refactor" → invoke `senior-qa-engineer` directly
 - "Audit Core Web Vitals on the product page" → invoke `web-performance-auditor` directly
 - "Design this REST endpoint" → invoke `api-developer` directly
 - "Review this schema migration" → invoke `db-architect` directly
