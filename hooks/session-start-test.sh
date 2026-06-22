@@ -6,40 +6,39 @@ set -euo pipefail
 tmp_payload="$(mktemp)"
 trap 'rm -f "$tmp_payload"' EXIT
 
-has_jq=0
-if command -v jq >/dev/null 2>&1; then
-  has_jq=1
-fi
-
-payload="$(bash hooks/session-start.sh)"
+# Simulate Claude Code environment so the hook uses the hookSpecificOutput format
+payload="$(CLAUDE_PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)" bash hooks/session-start.sh)"
 printf '%s' "$payload" > "$tmp_payload"
 
-HAS_JQ="$has_jq" PAYLOAD_PATH="$tmp_payload" node <<'NODE'
+PAYLOAD_PATH="$tmp_payload" node <<'NODE'
 const fs = require('fs');
 
 const payload = JSON.parse(fs.readFileSync(process.env.PAYLOAD_PATH, 'utf8'));
-const hasJq = process.env.HAS_JQ === '1';
 
-if (hasJq) {
-  if (payload.priority !== 'IMPORTANT') {
-    throw new Error(`expected IMPORTANT priority, got ${payload.priority}`);
-  }
+// Claude Code format: hookSpecificOutput.additionalContext
+if (!payload.hookSpecificOutput) {
+  throw new Error(`expected hookSpecificOutput key, got: ${JSON.stringify(Object.keys(payload))}`);
+}
 
-  if (!payload.message.includes('agent-harness loaded.')) {
-    throw new Error('message is missing startup preface');
-  }
+if (payload.hookSpecificOutput.hookEventName !== 'SessionStart') {
+  throw new Error(`expected hookEventName "SessionStart", got ${payload.hookSpecificOutput.hookEventName}`);
+}
 
-  if (!payload.message.includes('# Using Agent Harness')) {
-    throw new Error('message is missing using-agent-harness content');
-  }
-} else {
-  if (payload.priority !== 'INFO') {
-    throw new Error(`expected INFO priority when jq is missing, got ${payload.priority}`);
-  }
+const context = payload.hookSpecificOutput.additionalContext;
+if (!context) {
+  throw new Error('additionalContext is empty');
+}
 
-  if (!payload.message.includes('jq is required')) {
-    throw new Error('message is missing jq fallback guidance');
-  }
+if (!context.includes('EXTREMELY_IMPORTANT')) {
+  throw new Error('additionalContext is missing EXTREMELY_IMPORTANT wrapper');
+}
+
+if (!context.includes('using-agent-harness')) {
+  throw new Error('additionalContext is missing using-agent-harness reference');
+}
+
+if (!context.includes('# Using Agent Harness')) {
+  throw new Error('additionalContext is missing SKILL.md content');
 }
 
 console.log('session-start JSON payload OK');
