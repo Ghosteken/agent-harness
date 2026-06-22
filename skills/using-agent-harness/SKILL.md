@@ -35,6 +35,46 @@ Respond directly
 | "Let me just quickly fix this" | Quick fixes without process create new bugs. |
 | "This doesn't match any skill exactly" | 1% match is enough. Invoke and adapt. |
 
+## Post-Implementation Gate (Mandatory)
+
+**After any file edit — before claiming the task is done — verification is required.**
+
+This gate is as non-negotiable as the Pre-Flight Rule. Skipping it is the exact failure mode this harness was built to prevent.
+
+```
+Files edited (Write / Edit / NotebookEdit called)
+        ↓
+UI / auth / functional change?
+        ↓ yes                          ↓ no
+Run /verify                     Run the relevant test / build command
+Open app in browser             Show actual command output
+Confirm:                              ↓
+  • No console errors           State actual result with evidence
+  • No Failed to fetch              ↓
+  • Forms submit correctly      Claim completion
+  • No regressions
+        ↓
+Claim completion
+```
+
+**Completion phrases that are BLOCKED without prior /verify:**
+
+| Blocked phrase | Required action |
+|---|---|
+| "It should work now" | Run /verify — show browser output |
+| "I believe the fix is in" | Run /verify — confirm no console errors |
+| "This looks correct" | Run the test — show 0 failures |
+| "The change is simple so…" | Simple changes break things. Run /verify. |
+| "I can't run the browser" | Say so explicitly — NEVER claim it works |
+
+**What /verify means for UI tasks:**
+- Open the affected page in a browser
+- Check browser console (zero errors, zero Failed to fetch)
+- Exercise the changed flow (form submit, tab switch, auth redirect, etc.)
+- Scroll to check no layout regressions
+
+---
+
 ## Two Entry Paths (Both Supported)
 
 **Path 1 — Slash commands (explicit, backwards-compatible):**
