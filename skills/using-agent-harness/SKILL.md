@@ -8,32 +8,92 @@ description: Intent router and pre-flight checker for agent-harness — checks f
 
 This meta-skill is both a **pre-flight checker** and an intent router. It enforces skill usage before any response, then routes the user's intent to the correct agent persona and skill scope.
 
+## Instruction Priority
+
+User instructions always take precedence:
+
+1. **User's explicit instructions** (CLAUDE.md, GEMINI.md, AGENTS.md, direct requests) — highest priority
+2. **This skill** — overrides default system behavior where they conflict
+3. **Default system prompt** — lowest priority
+
 ## Pre-Flight Rule (Mandatory)
 
-**Before responding to anything — including clarifying questions — check whether a skill applies.**
+**Before responding to anything — including clarifying questions — invoke the relevant skill first.**
 
-If there is even a 1% chance a skill is relevant, invoke it. This is not optional.
+If there is even a 1% chance a skill is relevant, **YOU ABSOLUTELY MUST invoke it.** This is not negotiable. This is not optional. You cannot rationalize your way out of this.
 
+```dot
+digraph skill_flow {
+    "User message received" [shape=doublecircle];
+    "About to enter plan mode?" [shape=doublecircle];
+    "Already brainstormed?" [shape=diamond];
+    "Invoke brainstorming skill" [shape=box];
+    "Might any skill apply?" [shape=diamond];
+    "Invoke the skill" [shape=box];
+    "Announce: 'Using [skill] to [purpose]'" [shape=box];
+    "Has checklist?" [shape=diamond];
+    "Create a todo per item" [shape=box];
+    "Follow skill exactly" [shape=box];
+    "Respond (including clarifications)" [shape=doublecircle];
+
+    "About to enter plan mode?" -> "Already brainstormed?";
+    "Already brainstormed?" -> "Invoke brainstorming skill" [label="no"];
+    "Already brainstormed?" -> "Might any skill apply?" [label="yes"];
+    "Invoke brainstorming skill" -> "Might any skill apply?";
+
+    "User message received" -> "Might any skill apply?";
+    "Might any skill apply?" -> "Invoke the skill" [label="yes, even 1%"];
+    "Might any skill apply?" -> "Respond (including clarifications)" [label="definitely not"];
+    "Invoke the skill" -> "Announce: 'Using [skill] to [purpose]'";
+    "Announce: 'Using [skill] to [purpose]'" -> "Has checklist?";
+    "Has checklist?" -> "Create a todo per item" [label="yes"];
+    "Has checklist?" -> "Follow skill exactly" [label="no"];
+    "Create a todo per item" -> "Follow skill exactly";
+}
 ```
-User message received
-        ↓
-Does any skill apply? (even 1% chance)
-        ↓ yes
-Invoke the skill — then respond
-        ↓ no
-Respond directly
-```
 
-**Thoughts that mean you are rationalising — stop and invoke the skill instead:**
+## Red Flags
+
+These thoughts mean STOP — you are rationalising. Invoke the skill instead.
 
 | Thought | Reality |
 |---|---|
-| "This is just a simple question" | Simple questions are still tasks. Check first. |
+| "This is just a simple question" | Questions are tasks. Check for skills. |
+| "I need more context first" | Skill check comes BEFORE clarifying questions. |
+| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
+| "I can check git/files quickly" | Files lack conversation context. Check for skills. |
+| "Let me gather information first" | Skills tell you HOW to gather information. |
+| "This doesn't need a formal skill" | If a skill exists, use it. |
+| "I remember this skill" | Skills evolve. Read current version. |
+| "This doesn't count as a task" | Action = task. Check for skills. |
+| "The skill is overkill" | Simple things become complex. Use it. |
+| "I'll just do this one thing first" | Check BEFORE doing anything. |
 | "I need more context before routing" | Routing comes before gathering context. |
-| "This is too small for a skill" | If a skill exists for it, use it. |
-| "I already know what to do" | Knowing the answer ≠ skipping the workflow. |
 | "Let me just quickly fix this" | Quick fixes without process create new bugs. |
 | "This doesn't match any skill exactly" | 1% match is enough. Invoke and adapt. |
+| "I already know what to do" | Knowing the answer ≠ skipping the workflow. |
+
+## Skill Priority
+
+When multiple skills could apply, use this order:
+
+1. **Process skills first** (brainstorming, systematic-debugging) — these determine HOW to approach the task
+2. **Implementation skills second** (frontend-design, mcp-builder) — these guide execution
+
+"Let's build X" → brainstorming first, then implementation skills.
+"Fix this bug" → systematic-debugging first, then domain-specific skills.
+
+## Skill Types
+
+**Rigid** (TDD, systematic-debugging): Follow exactly. Don't adapt away the discipline.
+
+**Flexible** (patterns): Adapt principles to context.
+
+The skill itself tells you which type it is.
+
+## User Instructions
+
+Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
 
 ## Post-Implementation Gate (Mandatory)
 
