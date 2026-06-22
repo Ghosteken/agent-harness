@@ -1,6 +1,6 @@
 {
   "name": "agent-harness",
-  "description": "Production-grade engineering skills and agents for AI coding assistants — covering the full software development lifecycle from spec to ship.",
+  "description": "Production-grade engineering skills and agents for AI coding assistants, covering the full software development lifecycle from spec to ship.",
   "author": {
     "name": "Nicholas Aigberua"
   },
@@ -20,6 +20,7 @@
     "./agents/senior-frontend-engineer.md",
     "./agents/senior-cloud-architect.md",
     "./agents/senior-backend-engineer.md",
-    "./agents/ai-ml-engineer.md"
+    "./agents/ai-ml-engineer.md",
+    "./agents/senior-qa-engineer.md"
   ]
 }
