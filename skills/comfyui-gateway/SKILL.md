@@ -418,7 +418,6 @@ comfyui-gateway/
 
 ## Related Skills
 
-- `ai-studio-image` - Complementary skill for enhanced analysis
 - `image-studio` - Complementary skill for enhanced analysis
 - `stability-ai` - Complementary skill for enhanced analysis
 

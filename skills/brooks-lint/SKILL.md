@@ -66,8 +66,6 @@ Brooks Lint applies each book's core principles as a review lens:
 # Install via Claude Code plugin marketplace
 # Search: "brooks-lint" in Claude Code > Extensions
 
-# Or install via NPX (Antigravity)
-npx antigravity-awesome-skills --claude
 # Then invoke: @brooks-lint
 ```
 

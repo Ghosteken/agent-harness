@@ -271,7 +271,6 @@ Estrategia: Publish-or-Skip (nao cancela toda campanha)
 
 | Skill | Quando usar |
 |-------|------------|
-| `ai-studio-image` | Gerar imagem humanizada para Instagram |
 | `stability-ai` | Gerar arte/ilustracao para posts |
 | `image-studio` | Routing inteligente entre geradores de imagem |
 | `instagram` | Execucao de publicacao Instagram |

@@ -44,15 +44,12 @@ Geracao de imagens via Stability AI (SD3.5, Ultra, Core). Text-to-image, img2img
 Skill para gerar imagens artisticas e fotorrealistas usando a Stability AI API.
 **Gratuito** com Community License (sem limite para uso pessoal/pequenas empresas).
 
-## Quando Usar Esta Skill Vs Ai-Studio-Image
+## Quando Usar Esta Skill
 
 | Cenario | Skill recomendada |
 |---------|-------------------|
-| Foto humanizada para Instagram/redes sociais | ai-studio-image |
 | Arte digital, ilustracao, concept art | **stability-ai** |
-| Foto com camera de celular (realismo casual) | ai-studio-image |
 | Fotorrealismo cinematografico (8K, detalhado) | **stability-ai** |
-| Material educacional com visual profissional | ai-studio-image |
 | Poster, wallpaper, book cover, game asset | **stability-ai** |
 | Inpainting (editar parte de uma imagem) | **stability-ai** |
 | Upscale (aumentar resolucao) | **stability-ai** |
@@ -180,7 +177,6 @@ Metadados salvos em `.meta.json` com: prompt original, prompt final, modelo, asp
 
 ## Integracao Com Outras Skills
 
-- **ai-studio-image**: Complementar — Stability AI para arte, Gemini para fotos humanizadas
 - **instagram**: Gerar arte → publicar no Instagram
 - **telegram**: Gerar imagem → enviar via bot
 
@@ -213,7 +209,6 @@ Metadados salvos em `.meta.json` com: prompt original, prompt final, modelo, asp
 
 ## Related Skills
 
-- `ai-studio-image` - Complementary skill for enhanced analysis
 - `comfyui-gateway` - Complementary skill for enhanced analysis
 - `image-studio` - Complementary skill for enhanced analysis
 

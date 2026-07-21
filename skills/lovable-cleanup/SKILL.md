@@ -14,7 +14,6 @@ tools: [claude, cursor, codex, antigravity, gemini-cli]
 # lovable-cleanup
 
 > Remove every trace of Lovable scaffolding and ship the project as your own.
-> Made with [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) · author: **whoisabhishekadhikari**
 
 ---
 
@@ -392,7 +391,6 @@ wrapper — React-level title tags override `index.html` at runtime.
 - [Lovable docs](https://docs.lovable.dev)
 - [shadcn/ui component list](https://ui.shadcn.com/docs/components)
 - [Radix UI primitives](https://www.radix-ui.com/primitives)
-- [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills)
 
 ---
 
@@ -412,5 +410,3 @@ After completing the audit, produce a cleanup report:
 ```
 
 ---
-
-*Made with [antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) · author: [whoisabhishekadhikari](https://github.com/whoisabhishekadhikari)*

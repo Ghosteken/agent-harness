@@ -5,14 +5,11 @@ risk: safe
 source: community
 metadata:
   category: ai-engineering
-  source_repo: pravin-python/antigravity-awesome-skills
   source_type: community
   date_added: "2025-05-07"
   author: community
   tags: [langgraph, langchain, multi-agent, orchestration, deepagents, rag, tool-calling]
   tools: [claude, cursor, gemini]
-  license: "MIT"
-  license_source: "https://github.com/pravin-python/antigravity-awesome-skills/blob/main/LICENSE"
 ---
 
 

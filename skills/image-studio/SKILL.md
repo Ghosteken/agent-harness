@@ -1,6 +1,6 @@
 ---
 name: image-studio
-description: "Studio de geracao de imagens inteligente — roteamento automatico entre ai-studio-image (fotos humanizadas/influencer) e stability-ai (arte/ ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modelo ideal automaticamente."
+description: "Studio de geracao de imagens inteligente — roteamento automatico para stability-ai (arte/ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modo ideal automaticamente."
 risk: safe
 source: community
 date_added: '2026-03-06'
@@ -22,7 +22,7 @@ tools:
 
 ## Overview
 
-Studio de geracao de imagens inteligente — roteamento automatico entre ai-studio-image (fotos humanizadas/influencer) e stability-ai (arte/ ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modelo ideal automaticamente. Geracao, edicao, upscale, remocao de fundo, inpainting e geracao de fotos realistas de pessoas em um unico workflow.
+Studio de geracao de imagens inteligente — roteamento automatico para stability-ai (arte/ilustracao/edicao). Detecta o tipo de imagem solicitada e escolhe o modo ideal automaticamente. Geracao, edicao, upscale, remocao de fundo e inpainting em um unico workflow.
 
 ## When to Use This Skill
 
@@ -36,55 +36,26 @@ Studio de geracao de imagens inteligente — roteamento automatico entre ai-stud
 
 ## How It Works
 
-> Voce e o **Diretor Criativo Visual** — escolhe o pincel certo para
-> cada obra. Fotos humanizadas com Gemini, arte e edicao com Stability.
-> Um comando, o modelo ideal, o resultado perfeito.
+> Voce e o **Diretor Criativo Visual** — escolhe o modo certo para
+> cada obra. Um comando, o modo ideal, o resultado perfeito.
 
 ---
 
 ## 1. Matriz De Decisao
 
-A primeira pergunta e sempre: **qual modelo serve melhor?**
+A primeira pergunta e sempre: **qual modo serve melhor?**
 
 ```
 PEDIDO DO USUARIO
       ↓
-E uma FOTO REALISTA de pessoa/influencer?
-  ↓ SIM: ai-studio-image
-  ↓ NAO → E uma ILUSTRACAO, ARTE ou DESENHO?
-             ↓ SIM: stability-ai (generate/ultra/core)
-             ↓ NAO → E uma EDICAO de imagem existente?
-                        ↓ SIM: stability-ai (img2img/inpaint/search-replace/erase)
-                        ↓ NAO → E um UPSCALE ou REMOCAO DE FUNDO?
-                                    ↓ SIM: stability-ai (upscale/remove-bg)
-                                    ↓ NAO: perguntar mais detalhes
+E uma ILUSTRACAO, ARTE ou DESENHO?
+  ↓ SIM: stability-ai (generate/ultra/core)
+  ↓ NAO → E uma EDICAO de imagem existente?
+             ↓ SIM: stability-ai (img2img/inpaint/search-replace/erase)
+             ↓ NAO → E um UPSCALE ou REMOCAO DE FUNDO?
+                        ↓ SIM: stability-ai (upscale/remove-bg)
+                        ↓ NAO: perguntar mais detalhes
 ```
-
----
-
-## Ai-Studio-Image (Gemini 2.0 Flash — Free)
-
-**Especialidade:** Fotos hiper-realistas de pessoas com toque humano
-
-| Pedido | Exemplo |
-|--------|---------|
-| Foto de influencer | "foto estilo instagram de mulher em cafe" |
-| Foto de perfil profissional | "headshot profissional homem terno" |
-| Foto lifestyle | "pessoa na praia com celular, luz dourada" |
-| Conteudo educacional humanizado | "professor ensinando com quadro" |
-| Foto produto com pessoa | "mulher segurando smartphone" |
-
-**Vantagens:**
-- Gratuito (gemini-2.0-flash-exp)
-- 5 camadas de humanizacao narrativa (device, lighting, imperfection, authenticity, environment)
-- 20 templates pre-configurados (10 influencer + 10 educacional)
-- Imperfeicoes sutis que tornam a foto credivel
-
-**Limitacoes:**
-- 1 imagem por vez, ~9s
-- ~1K resolucao
-- Nao suporta aspect_ratio customizado
-- 50 imgs/dia free tier
 
 ---
 
@@ -128,26 +99,7 @@ Usuario: "crie uma imagem de X"
 6. Oferecer: variacoes, ajustes, versao alternativa
 ```
 
-### 3.2 Geracao Com Ai-Studio-Image
-
-Usar sistema de templates e prompt engine:
-
-```bash
-
-## Template Especifico
-
-python generate.py --template "instagram-lifestyle" --customization "cafe, manha, sorriso"
-
-## Prompt Customizado
-
-python generate.py --prompt "mulher jovem em home office, luz natural, laptop"
-
-## Modo Humanizado Maximo (5 Camadas)
-
-python generate.py --prompt "..." --humanization maximum
-```
-
-### 3.3 Geracao Com Stability-Ai
+### 3.2 Geracao Com Stability-Ai
 
 Mapear para modo correto:
 
@@ -175,24 +127,6 @@ python generate.py upscale --image small.jpg --scale 4
 ```
 
 ---
-
-## Para Ai-Studio-Image (Fotos Realistas)
-
-**Estrutura ideal:**
-```
-[Sujeito principal] + [Acao/pose] + [Ambiente] + [Iluminacao] + [Detalhe humano]
-
-Exemplo:
-"jovem mulher brasileira, 25 anos, sorrindo naturalmente,
-sentada em cafe moderno, luz natural pela janela,
-segurando xicara de cafe, roupa casual chique,
-cabelo levemente bagunçado, foco suave no fundo"
-```
-
-**Evitar:**
-- Termos de arte (oil painting, digital art)
-- Nomes de artistas
-- Estilos nao-fotograficos
 
 ## Para Stability-Ai (Arte/Ilustracao)
 
@@ -222,8 +156,8 @@ extra fingers, bad anatomy, worst quality"
 IMAGE-STUDIO — [tipo de geracao]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-🎨 Modelo: [ai-studio-image / stability-ai]
-📋 Modo: [template / generate / inpaint / etc]
+🎨 Modelo: stability-ai
+📋 Modo: [generate / inpaint / etc]
 ⏱️ Tempo: ~Xs
 
 ✅ Imagem gerada!
@@ -235,23 +169,11 @@ IMAGE-STUDIO — [tipo de geracao]
    "[prompt otimizado]"
 
 💡 Variacoes disponiveis:
-   1. stability-ai versao arte
-   2. ai-studio-image versao humanizada
-   3. Ajuste de estilo/iluminacao
+   1. stability-ai versao alternativa
+   2. Ajuste de estilo/iluminacao
 ```
 
 ---
-
-## Post Instagram
-
-```
-Usuario: "imagem para post de lancamento do produto Auri"
-
-→ image-studio decide: foto realista de produto com pessoa
-→ ai-studio-image: "pessoa segurando dispositivo Alexa,
-   ambiente moderno, luz natural, expressao animada"
-→ Resultado: foto humanizada pronta para Instagram
-```
 
 ## Thumbnail Youtube
 
@@ -264,32 +186,12 @@ Usuario: "thumbnail para video de IA com impacto"
 → Resultado: thumbnail atraente e profissional
 ```
 
-## Foto De Perfil
-
-```
-Usuario: "foto profissional para LinkedIn"
-
-→ image-studio decide: foto realista de pessoa
-→ ai-studio-image template "linkedin-headshot":
-   "homem profissional, terno azul, fundo neutro,
-   luz de estudio, expressao confiante"
-→ Resultado: headshot convincente
-```
-
 ---
 
 ## 3. Fallback E Redundancia
 
 ```
-Se ai-studio-image falha (limite diario, erro de API):
-  → Tentar stability-ai modo ultra com prompt adaptado
-  → Informar usuario sobre mudanca de modelo
-
 Se stability-ai falha (créditos insuficientes):
-  → Tentar ai-studio-image com prompt adaptado
-  → Se mesmo tipo nao suportado: orientar sobre recarga
-
-Se ambos falham:
   → Gerar prompt detalhado que usuario pode usar manualmente
   → Sugerir DALL-E, Midjourney, Leonardo AI como alternativas
 ```
@@ -299,10 +201,6 @@ Se ambos falham:
 ## 4. Localizacao Das Skills
 
 ```
-ai-studio-image:
-  Scripts: C:\Users\renat\skills\ai-studio-image\
-  Gerar: python generate.py [--template T] [--prompt P]
-
 stability-ai:
   Scripts: C:\Users\renat\skills\stability-ai\
   Gerar: python generate.py [MODE] --prompt P --style S
@@ -322,7 +220,6 @@ stability-ai:
 
 ## Related Skills
 
-- `ai-studio-image` - Complementary skill for enhanced analysis
 - `comfyui-gateway` - Complementary skill for enhanced analysis
 - `stability-ai` - Complementary skill for enhanced analysis
 

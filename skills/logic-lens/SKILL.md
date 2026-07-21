@@ -46,8 +46,6 @@ Logic Lens uses Claude Code's reasoning capabilities to:
 # Install via Claude Code plugin marketplace
 # Search: "logic-lens" in Claude Code > Extensions
 
-# Or install via NPX (Antigravity)
-npx antigravity-awesome-skills --claude
 # Then invoke: @logic-lens
 ```
 

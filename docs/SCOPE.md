@@ -13,8 +13,6 @@
 1. **Install the repository or scope plugin:**
 
    ```bash
-   npx antigravity-awesome-skills
-   # or clone manually
    git clone https://github.com/Ghosteken/agent-harness.git .agent/skills
    ```
 
@@ -1133,7 +1131,7 @@ _For prompt engineering, RAG architecture, LLM evaluation, AI safety, and agent 
 
 ## Contributing
 
-Found a skill that should be in a scope? Or want to create a new scope? [Open an issue](https://github.com/sickn33/antigravity-awesome-skills/issues) or submit a PR!
+Found a skill that should be in a scope? Or want to create a new scope? Open an issue or submit a PR!
 
 ---
 

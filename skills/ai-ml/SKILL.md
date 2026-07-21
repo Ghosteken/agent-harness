@@ -55,7 +55,6 @@ Use @ai-agents-architect to design multi-agent system
 - `llm-application-dev-ai-assistant` - AI assistant development
 - `llm-application-dev-langchain-agent` - LangChain agents
 - `llm-application-dev-prompt-optimize` - Prompt engineering
-- `gemini-api-dev` - Gemini API
 
 #### Actions
 1. Select LLM provider

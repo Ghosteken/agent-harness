@@ -4,7 +4,6 @@ description: "Optimizes AI agent performance by pruning redundant context, manag
 category: prompt-engineering
 risk: safe
 source: self
-source_repo: Kench001/antigravity-awesome-skills
 source_type: self
 date_added: "2026-05-03"
 author: Kench001

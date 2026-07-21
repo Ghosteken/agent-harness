@@ -851,7 +851,6 @@ onde dimensao_score = (itens_ok / itens_total) * 100
 | **instagram** | Protecao de Meta tokens, Graph API secrets |
 | **whatsapp-cloud-api** | Protecao de WABA tokens, webhook secrets |
 | **telegram** | Protecao de bot tokens |
-| **ai-studio-image** | Protecao de Google API keys |
 | **stability-ai** | Protecao de Stability API keys |
 | **context-agent** | Persistir estado de auditoria entre sessoes |
 | **skill-sentinel** | Auditar seguranca das proprias skills |

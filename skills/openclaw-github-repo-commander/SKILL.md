@@ -89,10 +89,6 @@ Compare my skill repo with the top 5 similar repos on GitHub
 - All `gh` CLI operations use the user's existing authentication — no credentials are stored by this skill
 - The skill never modifies files without explicit user confirmation in Stage 6
 
-## Source Attribution
-
-Originally contributed by [@wd041216-bit](https://github.com/wd041216-bit) in [PR #340](https://github.com/sickn33/antigravity-awesome-skills/pull/340). No standalone upstream repository is currently available for this skill.
-
 **License**: MIT | **Version**: 4.0.0
 
 ## Limitations
