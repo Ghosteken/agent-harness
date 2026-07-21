@@ -318,7 +318,7 @@ Robust output handling:
 
 ## Related Skills
 
-Works well with: `rag-engineer`, `prompt-engineer`, `backend`, `mcp-builder`
+Works well with: `rag-engineer`, `backend`
 
 ## When to Use
 - User mentions or implies: build agent

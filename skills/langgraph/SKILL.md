@@ -488,7 +488,7 @@ Workflow:
 
 ## Related Skills
 
-Works well with: `crewai`, `autonomous-agents`, `langfuse`, `structured-output`
+Works well with: `structured-output`
 
 ## When to Use
 - User mentions or implies: langgraph

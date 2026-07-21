@@ -27,7 +27,6 @@ Expert guidance for designing, writing, debugging, and securing **production-gra
 
 ## When NOT to Use This Skill
 
-- The user is working with GitLab CI/CD → recommend `gitlab-ci-patterns`
 - The user is working with CircleCI, Jenkins, or other CI platforms
 - The task is purely about Docker image building without GitHub context → recommend `docker-expert`
 - The task is about Kubernetes deployment configuration → recommend `kubernetes-architect`
@@ -1090,7 +1089,6 @@ Before merging any workflow to `main`, verify:
 - `github-actions-templates` — Copy-paste ready workflow templates
 - `docker-expert` — Container build optimization and Dockerfile best practices
 - `kubernetes-architect` — Deploying to Kubernetes from GitHub Actions
-- `gitlab-ci-patterns` — GitLab CI/CD equivalent patterns
 
 ## Limitations
 

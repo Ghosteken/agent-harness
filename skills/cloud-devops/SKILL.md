@@ -32,7 +32,6 @@ Use this workflow when:
 - `aws-skills` - AWS development
 - `azure-functions` - Azure development
 - `gcp-cloud-run` - GCP development
-- `terraform-skill` - Terraform IaC
 - `terraform-specialist` - Advanced Terraform
 
 #### Actions
@@ -48,7 +47,6 @@ Use @cloud-architect to design multi-cloud architecture
 ```
 
 ```
-Use @terraform-skill to provision AWS infrastructure
 ```
 
 ### Phase 2: Container Orchestration
@@ -57,8 +55,6 @@ Use @terraform-skill to provision AWS infrastructure
 - `kubernetes-architect` - Kubernetes architecture
 - `docker-expert` - Docker containerization
 - `helm-chart-scaffolding` - Helm charts
-- `k8s-manifest-generator` - K8s manifests
-- `k8s-security-policies` - K8s security
 
 #### Actions
 1. Design container architecture
@@ -85,10 +81,7 @@ Use @helm-chart-scaffolding to create Helm chart
 
 #### Skills to Invoke
 - `deployment-engineer` - Deployment engineering
-- `cicd-automation-workflow-automate` - CI/CD automation
 - `github-actions-templates` - GitHub Actions
-- `gitlab-ci-patterns` - GitLab CI
-- `deployment-pipeline-design` - Pipeline design
 
 #### Actions
 1. Design deployment pipeline
@@ -100,7 +93,6 @@ Use @helm-chart-scaffolding to create Helm chart
 
 #### Copy-Paste Prompts
 ```
-Use @cicd-automation-workflow-automate to set up CI/CD pipeline
 ```
 
 ```
@@ -112,9 +104,6 @@ Use @github-actions-templates to create GitHub Actions workflow
 #### Skills to Invoke
 - `observability-engineer` - Observability engineering
 - `grafana-dashboards` - Grafana dashboards
-- `prometheus-configuration` - Prometheus setup
-- `datadog-automation` - Datadog integration
-- `sentry-automation` - Sentry error tracking
 
 #### Actions
 1. Design monitoring strategy
@@ -136,11 +125,7 @@ Use @grafana-dashboards to create monitoring dashboards
 ### Phase 5: Cloud Security
 
 #### Skills to Invoke
-- `cloud-penetration-testing` - Cloud pentesting
-- `aws-penetration-testing` - AWS security
-- `k8s-security-policies` - K8s security
 - `secrets-management` - Secrets management
-- `mtls-configuration` - mTLS setup
 
 #### Actions
 1. Assess cloud security
@@ -152,7 +137,6 @@ Use @grafana-dashboards to create monitoring dashboards
 
 #### Copy-Paste Prompts
 ```
-Use @cloud-penetration-testing to assess cloud security
 ```
 
 ```
@@ -162,8 +146,6 @@ Use @secrets-management to configure secrets
 ### Phase 6: Cost Optimization
 
 #### Skills to Invoke
-- `cost-optimization` - Cloud cost optimization
-- `database-cloud-optimization-cost-optimize` - Database cost optimization
 
 #### Actions
 1. Analyze cloud spending
@@ -175,15 +157,12 @@ Use @secrets-management to configure secrets
 
 #### Copy-Paste Prompts
 ```
-Use @cost-optimization to reduce cloud costs
 ```
 
 ### Phase 7: Disaster Recovery
 
 #### Skills to Invoke
 - `incident-responder` - Incident response
-- `incident-runbook-templates` - Runbook creation
-- `postmortem-writing` - Postmortem documentation
 
 #### Actions
 1. Design DR strategy
@@ -195,7 +174,6 @@ Use @cost-optimization to reduce cloud costs
 
 #### Copy-Paste Prompts
 ```
-Use @incident-runbook-templates to create runbooks
 ```
 
 ## Cloud Provider Workflows
@@ -229,9 +207,6 @@ Services: Cloud Run, GKE, Cloud Functions, BigQuery
 
 ## Related Workflow Bundles
 
-- `development` - Application development
-- `security-audit` - Security testing
-- `database` - Database operations
 - `testing-qa` - Testing workflows
 
 ## Limitations

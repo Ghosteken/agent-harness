@@ -318,7 +318,7 @@ Implement hybrid search:
 
 ## Related Skills
 
-Works well with: `ai-agents-architect`, `prompt-engineer`, `database-architect`, `backend`
+Works well with: `ai-agents-architect`, `database-architect`, `backend`
 
 ## When to Use
 - User mentions or implies: building RAG

@@ -380,7 +380,6 @@ resource "grafana_folder" "monitoring" {
 
 ## Related Skills
 
-- `prometheus-configuration` - For metric collection
 - `slo-implementation` - For SLO dashboards
 
 ## Limitations

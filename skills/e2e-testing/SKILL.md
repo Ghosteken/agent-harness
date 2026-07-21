@@ -64,7 +64,6 @@ Use @e2e-testing-patterns to design E2E test strategy
 
 #### Skills to Invoke
 - `playwright-skill` - Playwright tests
-- `webapp-testing` - Web app testing
 
 #### Actions
 1. Write test scripts
@@ -81,7 +80,6 @@ Use @playwright-skill to write E2E test scripts
 ### Phase 4: Browser Automation
 
 #### Skills to Invoke
-- `browser-automation` - Browser automation
 - `playwright-skill` - Playwright features
 
 #### Actions
@@ -93,14 +91,12 @@ Use @playwright-skill to write E2E test scripts
 
 #### Copy-Paste Prompts
 ```
-Use @browser-automation to automate browser interactions
 ```
 
 ### Phase 5: Visual Regression
 
 #### Skills to Invoke
 - `playwright-skill` - Visual testing
-- `ui-visual-validator` - Visual validation
 
 #### Actions
 1. Set up visual testing
@@ -118,7 +114,6 @@ Use @playwright-skill to implement visual regression testing
 
 #### Skills to Invoke
 - `playwright-skill` - Multi-browser
-- `webapp-testing` - Browser testing
 
 #### Actions
 1. Configure Chromium
@@ -136,7 +131,6 @@ Use @playwright-skill to run cross-browser tests
 
 #### Skills to Invoke
 - `github-actions-templates` - GitHub Actions
-- `cicd-automation-workflow-automate` - CI/CD
 
 #### Actions
 1. Create CI workflow
@@ -161,7 +155,6 @@ Use @github-actions-templates to integrate E2E tests with CI
 ## Related Workflow Bundles
 
 - `testing-qa` - Testing workflow
-- `development` - Development
 - `web-performance-optimization` - Performance
 
 ## Limitations

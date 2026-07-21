@@ -1,6 +1,6 @@
 # Agent Harness Skill Scopes
 
-`agent-harness` exposes a curated set of **171 skills** to the agent — the 24 hand-authored lifecycle skills plus a role-scoped extension set. This replaces an earlier draft of this document that described ~40 aspirational "packs" and activation scripts (`activate-skills.sh`, `data/scopes.json`) that were never actually implemented in this repository. What's described below is the real, working mechanism.
+`agent-harness` exposes a curated set of **173 skills** to the agent — the 24 hand-authored lifecycle skills, a role-scoped extension set, and a couple of skills restored from archive because other kept skills functionally depend on them. This replaces an earlier draft of this document that described ~40 aspirational "packs" and activation scripts (`activate-skills.sh`, `data/scopes.json`) that were never actually implemented in this repository. What's described below is the real, working mechanism.
 
 ## How scoping actually works
 
@@ -22,7 +22,7 @@
   | `senior-qa-engineer` | Senior QA Engineer |
 
 - **[`scripts/validate-skills.js`](../scripts/validate-skills.js)** validates this curated set by default (pass `--all` to validate every skill directory, including archived ones, if you're restoring something).
-- **`skills/`** contains only the 171 skills this scheme resolves to — everything else from the original bulk import lives in **`archive/skills-community/`**, unexposed to the agent but still browsable and restorable (`git mv` it back into `skills/` if you need it).
+- **`skills/`** contains only the 173 skills this scheme resolves to — everything else from the original bulk import lives in **`archive/skills-community/`**, unexposed to the agent but still browsable and restorable (`git mv` it back into `skills/` if you need it).
 - **`using-agent-harness/SKILL.md`** is the entry point: its Intent → Agent → Skill routing table maps natural-language requests to a persona + starting skill, and its Cross-Cutting Skills section lists the process skills (`brainstorming`, `writing-plans`, `systematic-debugging`, etc.) that apply regardless of domain.
 
 ## Using a scope

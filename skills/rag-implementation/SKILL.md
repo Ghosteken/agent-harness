@@ -27,7 +27,6 @@ Use this workflow when:
 ### Phase 1: Requirements Analysis
 
 #### Skills to Invoke
-- `ai-product` - AI product design
 - `rag-engineer` - RAG engineering
 
 #### Actions
@@ -39,7 +38,6 @@ Use this workflow when:
 
 #### Copy-Paste Prompts
 ```
-Use @ai-product to define RAG application requirements
 ```
 
 ### Phase 2: Embedding Selection
@@ -63,8 +61,6 @@ Use @embedding-strategies to select optimal embedding model
 ### Phase 3: Vector Database Setup
 
 #### Skills to Invoke
-- `vector-database-engineer` - Vector DB
-- `similarity-search-patterns` - Similarity search
 
 #### Actions
 1. Choose vector database
@@ -75,7 +71,6 @@ Use @embedding-strategies to select optimal embedding model
 
 #### Copy-Paste Prompts
 ```
-Use @vector-database-engineer to set up vector database
 ```
 
 ### Phase 4: Chunking Strategy
@@ -99,8 +94,6 @@ Use @rag-engineer to implement chunking strategy
 ### Phase 5: Retrieval Implementation
 
 #### Skills to Invoke
-- `similarity-search-patterns` - Similarity search
-- `hybrid-search-implementation` - Hybrid search
 
 #### Actions
 1. Implement vector search
@@ -111,18 +104,14 @@ Use @rag-engineer to implement chunking strategy
 
 #### Copy-Paste Prompts
 ```
-Use @similarity-search-patterns to implement retrieval
 ```
 
 ```
-Use @hybrid-search-implementation to add hybrid search
 ```
 
 ### Phase 6: LLM Integration
 
 #### Skills to Invoke
-- `llm-application-dev-ai-assistant` - LLM integration
-- `llm-application-dev-prompt-optimize` - Prompt optimization
 
 #### Actions
 1. Select LLM provider
@@ -133,13 +122,11 @@ Use @hybrid-search-implementation to add hybrid search
 
 #### Copy-Paste Prompts
 ```
-Use @llm-application-dev-ai-assistant to integrate LLM
 ```
 
 ### Phase 7: Caching
 
 #### Skills to Invoke
-- `prompt-caching` - Prompt caching
 - `rag-engineer` - RAG optimization
 
 #### Actions
@@ -151,14 +138,12 @@ Use @llm-application-dev-ai-assistant to integrate LLM
 
 #### Copy-Paste Prompts
 ```
-Use @prompt-caching to implement RAG caching
 ```
 
 ### Phase 8: Evaluation
 
 #### Skills to Invoke
 - `llm-evaluation` - LLM evaluation
-- `evaluation` - AI evaluation
 
 #### Actions
 1. Define evaluation metrics
@@ -191,9 +176,7 @@ User Query -> Embedding -> Vector Search -> Retrieved Docs -> LLM -> Response
 
 ## Related Workflow Bundles
 
-- `ai-ml` - AI/ML development
 - `ai-agent-development` - AI agents
-- `database` - Vector databases
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

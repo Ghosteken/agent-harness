@@ -38,7 +38,7 @@ Refer to `resources/implementation-playbook.md` for detailed patterns, checklist
 
 ## Related Skills
 
-Works well with: `event-sourcing-architect`, `saga-orchestration`, `workflow-automation`, `dbos-*`
+Works well with: `dbos-*`
 
 ## Resources
 
