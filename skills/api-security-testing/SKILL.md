@@ -28,7 +28,6 @@ Use this workflow when:
 
 #### Skills to Invoke
 - `api-fuzzing-bug-bounty` - API fuzzing
-- `scanning-tools` - API scanning
 
 #### Actions
 1. Enumerate endpoints
@@ -63,7 +62,6 @@ Use @broken-authentication to test API authentication
 ### Phase 3: Authorization Testing
 
 #### Skills to Invoke
-- `idor-testing` - IDOR testing
 
 #### Actions
 1. Test object-level authorization
@@ -74,14 +72,12 @@ Use @broken-authentication to test API authentication
 
 #### Copy-Paste Prompts
 ```
-Use @idor-testing to test API authorization
 ```
 
 ### Phase 4: Input Validation
 
 #### Skills to Invoke
 - `api-fuzzing-bug-bounty` - API fuzzing
-- `sql-injection-testing` - Injection testing
 
 #### Actions
 1. Test parameter validation
@@ -166,7 +162,6 @@ Use @api-security-best-practices to audit API error handling
 
 ## Related Workflow Bundles
 
-- `security-audit` - Security auditing
 - `web-security-testing` - Web security
 - `api-development` - API development
 

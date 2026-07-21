@@ -28,7 +28,6 @@ Use this workflow when:
 
 #### Skills to Invoke
 - `ai-agents-architect` - Agent architecture
-- `autonomous-agents` - Autonomous patterns
 
 #### Actions
 1. Define agent purpose
@@ -46,7 +45,6 @@ Use @ai-agents-architect to design AI agent architecture
 
 #### Skills to Invoke
 - `autonomous-agent-patterns` - Agent patterns
-- `autonomous-agents` - Autonomous agents
 
 #### Actions
 1. Choose agent framework
@@ -63,8 +61,6 @@ Use @autonomous-agent-patterns to implement single agent
 ### Phase 3: Multi-Agent System
 
 #### Skills to Invoke
-- `crewai` - CrewAI framework
-- `multi-agent-patterns` - Multi-agent patterns
 
 #### Actions
 1. Define agent roles
@@ -82,7 +78,6 @@ Use @crewai to build multi-agent system with roles
 
 #### Skills to Invoke
 - `langgraph` - LangGraph orchestration
-- `workflow-orchestration-patterns` - Orchestration
 
 #### Actions
 1. Design workflow graph
@@ -99,8 +94,6 @@ Use @langgraph to create stateful agent workflows
 ### Phase 5: Tool Integration
 
 #### Skills to Invoke
-- `agent-tool-builder` - Tool building
-- `tool-design` - Tool design
 
 #### Actions
 1. Identify tool needs
@@ -111,14 +104,11 @@ Use @langgraph to create stateful agent workflows
 
 #### Copy-Paste Prompts
 ```
-Use @agent-tool-builder to create agent tools
 ```
 
 ### Phase 6: Memory Systems
 
 #### Skills to Invoke
-- `agent-memory-systems` - Memory architecture
-- `conversation-memory` - Conversation memory
 
 #### Actions
 1. Design memory structure
@@ -129,14 +119,12 @@ Use @agent-tool-builder to create agent tools
 
 #### Copy-Paste Prompts
 ```
-Use @agent-memory-systems to implement agent memory
 ```
 
 ### Phase 7: Evaluation
 
 #### Skills to Invoke
 - `agent-evaluation` - Agent evaluation
-- `evaluation` - AI evaluation
 
 #### Actions
 1. Define evaluation criteria
@@ -168,9 +156,7 @@ User Input -> Planner -> Agent -> Tools -> Memory -> Response
 
 ## Related Workflow Bundles
 
-- `ai-ml` - AI/ML development
 - `rag-implementation` - RAG systems
-- `workflow-automation` - Workflow patterns
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

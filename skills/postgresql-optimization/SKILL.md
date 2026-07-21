@@ -82,7 +82,6 @@ Use @database-design to design PostgreSQL indexing strategy
 
 #### Skills to Invoke
 - `sql-optimization-patterns` - Query tuning
-- `sql-pro` - SQL expertise
 
 #### Actions
 1. Rewrite inefficient queries
@@ -136,7 +135,6 @@ Use @database-admin to schedule PostgreSQL maintenance
 
 #### Skills to Invoke
 - `grafana-dashboards` - Monitoring dashboards
-- `prometheus-configuration` - Metrics collection
 
 #### Actions
 1. Set up monitoring
@@ -169,7 +167,6 @@ Use @grafana-dashboards to create PostgreSQL monitoring
 
 ## Related Workflow Bundles
 
-- `database` - Database operations
 - `cloud-devops` - Infrastructure
 - `performance-optimization` - Performance
 

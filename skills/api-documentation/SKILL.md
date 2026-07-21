@@ -64,7 +64,6 @@ Use @openapi-spec-generation to create OpenAPI specification
 
 #### Skills to Invoke
 - `api-documentation-generator` - Documentation
-- `documentation-templates` - Templates
 
 #### Actions
 1. Create getting started
@@ -82,7 +81,6 @@ Use @api-documentation-generator to create developer guide
 
 #### Skills to Invoke
 - `api-documenter` - Code examples
-- `tutorial-engineer` - Tutorials
 
 #### Actions
 1. Create example requests
@@ -116,8 +114,6 @@ Use @api-documenter to set up interactive documentation
 ### Phase 6: Documentation Site
 
 #### Skills to Invoke
-- `docs-architect` - Documentation architecture
-- `wiki-page-writer` - Documentation
 
 #### Actions
 1. Choose platform
@@ -128,7 +124,6 @@ Use @api-documenter to set up interactive documentation
 
 #### Copy-Paste Prompts
 ```
-Use @docs-architect to design API documentation site
 ```
 
 ### Phase 7: Maintenance
@@ -158,9 +153,7 @@ Use @api-documenter to set up automated doc generation
 
 ## Related Workflow Bundles
 
-- `documentation` - Documentation
 - `api-development` - API development
-- `development` - Development
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

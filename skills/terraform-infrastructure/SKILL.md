@@ -27,7 +27,6 @@ Use this workflow when:
 ### Phase 1: Terraform Setup
 
 #### Skills to Invoke
-- `terraform-skill` - Terraform basics
 - `terraform-specialist` - Advanced Terraform
 
 #### Actions
@@ -39,13 +38,11 @@ Use this workflow when:
 
 #### Copy-Paste Prompts
 ```
-Use @terraform-skill to set up Terraform project
 ```
 
 ### Phase 2: Resource Provisioning
 
 #### Skills to Invoke
-- `terraform-module-library` - Terraform modules
 - `cloud-architect` - Cloud architecture
 
 #### Actions
@@ -57,13 +54,11 @@ Use @terraform-skill to set up Terraform project
 
 #### Copy-Paste Prompts
 ```
-Use @terraform-module-library to provision cloud resources
 ```
 
 ### Phase 3: Module Creation
 
 #### Skills to Invoke
-- `terraform-module-library` - Module creation
 
 #### Actions
 1. Design module interface
@@ -74,7 +69,6 @@ Use @terraform-module-library to provision cloud resources
 
 #### Copy-Paste Prompts
 ```
-Use @terraform-module-library to create reusable Terraform module
 ```
 
 ### Phase 4: State Management
@@ -114,7 +108,6 @@ Use @terraform-specialist to set up multi-environment Terraform
 ### Phase 6: CI/CD Integration
 
 #### Skills to Invoke
-- `cicd-automation-workflow-automate` - CI/CD
 - `github-actions-templates` - GitHub Actions
 
 #### Actions
@@ -126,7 +119,6 @@ Use @terraform-specialist to set up multi-environment Terraform
 
 #### Copy-Paste Prompts
 ```
-Use @cicd-automation-workflow-automate to create Terraform CI/CD
 ```
 
 ### Phase 7: Security

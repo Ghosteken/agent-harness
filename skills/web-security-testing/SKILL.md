@@ -27,7 +27,6 @@ Use this workflow when:
 ### Phase 1: Reconnaissance
 
 #### Skills to Invoke
-- `scanning-tools` - Security scanning
 - `top-web-vulnerabilities` - OWASP knowledge
 
 #### Actions
@@ -39,14 +38,11 @@ Use this workflow when:
 
 #### Copy-Paste Prompts
 ```
-Use @scanning-tools to perform web application reconnaissance
 ```
 
 ### Phase 2: Injection Testing
 
 #### Skills to Invoke
-- `sql-injection-testing` - SQL injection
-- `sqlmap-database-pentesting` - SQLMap
 
 #### Actions
 1. Test SQL injection
@@ -57,18 +53,14 @@ Use @scanning-tools to perform web application reconnaissance
 
 #### Copy-Paste Prompts
 ```
-Use @sql-injection-testing to test for SQL injection
 ```
 
 ```
-Use @sqlmap-database-pentesting to automate SQL injection testing
 ```
 
 ### Phase 3: XSS Testing
 
 #### Skills to Invoke
-- `xss-html-injection` - XSS testing
-- `html-injection-testing` - HTML injection
 
 #### Actions
 1. Test reflected XSS
@@ -79,7 +71,6 @@ Use @sqlmap-database-pentesting to automate SQL injection testing
 
 #### Copy-Paste Prompts
 ```
-Use @xss-html-injection to test for cross-site scripting
 ```
 
 ### Phase 4: Authentication Testing
@@ -102,8 +93,6 @@ Use @broken-authentication to test authentication security
 ### Phase 5: Access Control Testing
 
 #### Skills to Invoke
-- `idor-testing` - IDOR testing
-- `file-path-traversal` - Path traversal
 
 #### Actions
 1. Test vertical privilege escalation
@@ -114,11 +103,9 @@ Use @broken-authentication to test authentication security
 
 #### Copy-Paste Prompts
 ```
-Use @idor-testing to test for insecure direct object references
 ```
 
 ```
-Use @file-path-traversal to test for path traversal
 ```
 
 ### Phase 6: Security Headers
@@ -178,7 +165,6 @@ Use @reporting-standards to create security report
 
 ## Related Workflow Bundles
 
-- `security-audit` - Security auditing
 - `api-security-testing` - API security
 - `wordpress-security` - WordPress security
 

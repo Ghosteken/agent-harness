@@ -171,7 +171,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## Skills
 
-The library contains a curated set of **171 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **173 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -276,6 +276,7 @@ Quick-reference material that skills pull in when needed:
 | [security-checklist.md](references/security-checklist.md) | Pre-commit checks, auth, input validation, headers, CORS, OWASP Top 10 |
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |
+| [orchestration-patterns.md](references/orchestration-patterns.md) | Endorsed and anti-pattern agent orchestration — who's allowed to invoke whom |
 
 ---
 
@@ -454,7 +455,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (171 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (173 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
@@ -479,11 +480,12 @@ agent-harness/
 │   ├── observability-and-instrumentation/ # Ship
 │   ├── shipping-and-launch/           #   Ship
 │   └── using-agent-harness/           #   Meta
-├── agents/                            # 11 specialist personas
+├── agents/                            # 12 specialist personas
 │   ├── code-reviewer.md               #   Quality & review
 │   ├── security-auditor.md            #   Quality & review
 │   ├── test-engineer.md               #   Quality & review
 │   ├── web-performance-auditor.md     #   Quality & review
+│   ├── senior-qa-engineer.md          #   Quality & review
 │   ├── api-developer.md               #   Engineering domain
 │   ├── db-architect.md                #   Engineering domain
 │   ├── senior-devops.md               #   Engineering domain
@@ -491,7 +493,7 @@ agent-harness/
 │   ├── senior-cloud-architect.md      #   Engineering domain
 │   ├── senior-backend-engineer.md     #   Engineering domain
 │   └── ai-ml-engineer.md              #   Engineering domain
-├── references/                        # 4 supplementary checklists
+├── references/                        # 5 supplementary checklists
 ├── hooks/                             # Session lifecycle hooks
 ├── .claude/commands/                  # 8 slash commands (Claude Code)
 ├── .gemini/commands/                  # Slash commands (Gemini CLI)

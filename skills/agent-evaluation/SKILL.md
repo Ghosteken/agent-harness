@@ -23,8 +23,6 @@ Testing and benchmarking LLM agents including behavioral testing, capability ass
 ## Prerequisites
 
 - Knowledge: Testing methodologies, Statistical analysis basics, LLM behavior patterns
-- Skills_recommended: autonomous-agents, multi-agent-orchestration
-- Required skills: testing-fundamentals, llm-fundamentals
 
 ## Scope
 
@@ -1072,15 +1070,9 @@ class LeakageDetector {
 
 ## Collaboration
 
-### Delegation Triggers
-
-- implement|fix|improve -> autonomous-agents (Need to fix issues found in evaluation)
-- orchestration|coordination -> multi-agent-orchestration (Need to evaluate orchestration patterns)
-- communication|message -> agent-communication (Need to evaluate communication)
-
 ### Complete Agent Development Cycle
 
-Skills: agent-evaluation, autonomous-agents, multi-agent-orchestration
+Skills: agent-evaluation
 
 Workflow:
 
@@ -1120,7 +1112,6 @@ Workflow:
 
 ## Related Skills
 
-Works well with: `multi-agent-orchestration`, `agent-communication`, `autonomous-agents`
 
 ## When to Use
 - User mentions or implies: agent testing

@@ -991,7 +991,6 @@ spec:
 - `github-actions-advanced` — CI pipeline patterns including scanner integration
 - `kubernetes-architect` — Full Kubernetes architecture, not just security
 - `api-security-best-practices` — Application-level security (injection, auth, OWASP)
-- `k8s-security-policies` — Extended Kubernetes security policies
 
 ## Limitations
 

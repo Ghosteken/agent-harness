@@ -28,7 +28,6 @@ Use this workflow when:
 
 #### Skills to Invoke
 - `docker-expert` - Docker containerization
-- `k8s-manifest-generator` - K8s manifests
 
 #### Actions
 1. Create Dockerfile
@@ -45,7 +44,6 @@ Use @docker-expert to containerize application for K8s
 ### Phase 2: K8s Manifests
 
 #### Skills to Invoke
-- `k8s-manifest-generator` - Manifest generation
 - `kubernetes-architect` - K8s architecture
 
 #### Actions
@@ -57,7 +55,6 @@ Use @docker-expert to containerize application for K8s
 
 #### Copy-Paste Prompts
 ```
-Use @k8s-manifest-generator to create K8s manifests
 ```
 
 ### Phase 3: Helm Chart
@@ -80,8 +77,6 @@ Use @helm-chart-scaffolding to create Helm chart
 ### Phase 4: Service Mesh
 
 #### Skills to Invoke
-- `istio-traffic-management` - Istio
-- `linkerd-patterns` - Linkerd
 - `service-mesh-expert` - Service mesh
 
 #### Actions
@@ -93,14 +88,11 @@ Use @helm-chart-scaffolding to create Helm chart
 
 #### Copy-Paste Prompts
 ```
-Use @istio-traffic-management to configure Istio
 ```
 
 ### Phase 5: Security
 
 #### Skills to Invoke
-- `k8s-security-policies` - K8s security
-- `mtls-configuration` - mTLS
 
 #### Actions
 1. Configure RBAC
@@ -111,14 +103,12 @@ Use @istio-traffic-management to configure Istio
 
 #### Copy-Paste Prompts
 ```
-Use @k8s-security-policies to secure Kubernetes cluster
 ```
 
 ### Phase 6: Observability
 
 #### Skills to Invoke
 - `grafana-dashboards` - Grafana
-- `prometheus-configuration` - Prometheus
 
 #### Actions
 1. Install monitoring stack
@@ -129,7 +119,6 @@ Use @k8s-security-policies to secure Kubernetes cluster
 
 #### Copy-Paste Prompts
 ```
-Use @prometheus-configuration to set up K8s monitoring
 ```
 
 ### Phase 7: Deployment

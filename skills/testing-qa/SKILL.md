@@ -51,9 +51,7 @@ Use @test-driven-development to implement TDD workflow
 
 #### Skills to Invoke
 - `javascript-testing-patterns` - Jest/Vitest
-- `python-testing-patterns` - pytest
 - `unit-testing-test-generate` - Test generation
-- `tdd-orchestrator` - TDD orchestration
 
 #### Actions
 1. Write unit tests
@@ -68,7 +66,6 @@ Use @javascript-testing-patterns to write Jest tests
 ```
 
 ```
-Use @python-testing-patterns to write pytest tests
 ```
 
 ```
@@ -98,7 +95,6 @@ Use @api-testing-observability-api-mock to test APIs
 #### Skills to Invoke
 - `playwright-skill` - Playwright testing
 - `e2e-testing-patterns` - E2E patterns
-- `webapp-testing` - Web app testing
 
 #### Actions
 1. Design E2E scenarios
@@ -119,9 +115,6 @@ Use @e2e-testing-patterns to design E2E strategy
 ### Phase 5: Browser Automation
 
 #### Skills to Invoke
-- `browser-automation` - Browser automation
-- `webapp-testing` - Browser testing
-- `screenshots` - Screenshot automation
 
 #### Actions
 1. Set up browser automation
@@ -132,7 +125,6 @@ Use @e2e-testing-patterns to design E2E strategy
 
 #### Copy-Paste Prompts
 ```
-Use @browser-automation to automate browser tasks
 ```
 
 ```
@@ -142,7 +134,6 @@ Use @screenshots to capture marketing screenshots
 ### Phase 6: Performance Testing
 
 #### Skills to Invoke
-- `performance-engineer` - Performance engineering
 - `performance-profiling` - Performance profiling
 - `web-performance-optimization` - Web performance
 
@@ -155,7 +146,6 @@ Use @screenshots to capture marketing screenshots
 
 #### Copy-Paste Prompts
 ```
-Use @performance-engineer to test application performance
 ```
 
 ### Phase 7: Code Review
@@ -163,7 +153,6 @@ Use @performance-engineer to test application performance
 #### Skills to Invoke
 - `code-reviewer` - AI code review
 - `code-review-excellence` - Review best practices
-- `find-bugs` - Bug detection
 - `security-scanning-security-sast` - Security scanning
 
 #### Actions
@@ -179,13 +168,11 @@ Use @code-reviewer to review pull requests
 ```
 
 ```
-Use @find-bugs to detect bugs in code
 ```
 
 ### Phase 8: Quality Gates
 
 #### Skills to Invoke
-- `lint-and-validate` - Linting
 - `verification-before-completion` - Verification
 
 #### Actions
@@ -197,7 +184,6 @@ Use @find-bugs to detect bugs in code
 
 #### Copy-Paste Prompts
 ```
-Use @lint-and-validate to check code quality
 ```
 
 ```
@@ -224,10 +210,7 @@ Use @verification-before-completion to verify changes
 
 ## Related Workflow Bundles
 
-- `development` - Development workflow
-- `security-audit` - Security testing
 - `cloud-devops` - CI/CD integration
-- `ai-ml` - AI testing
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

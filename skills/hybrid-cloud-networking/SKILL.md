@@ -238,7 +238,6 @@ az network vpn-connection show-device-config-script
 ## Related Skills
 
 - `multi-cloud-architecture` - For architecture decisions
-- `terraform-module-library` - For IaC implementation
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

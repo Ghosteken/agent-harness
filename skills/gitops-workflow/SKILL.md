@@ -309,7 +309,6 @@ argocd app sync my-app --force
 
 ## Related Skills
 
-- `k8s-manifest-generator` - For creating manifests
 - `helm-chart-scaffolding` - For packaging applications
 
 ## Limitations

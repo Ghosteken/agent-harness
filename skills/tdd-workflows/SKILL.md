@@ -10,9 +10,9 @@ date_added: "2026-06-02"
 
 > **This is an alias.** The canonical skill is **`tdd-workflows-tdd-cycle`**.
 
-This skill redirects to `tdd-workflows-tdd-cycle`. Load it from the vault:
+This skill redirects to `tdd-workflows-tdd-cycle`. Load it from:
 
-`skill-libraries/testing/tdd-workflows-tdd-cycle/SKILL.md`
+`skills/tdd-workflows-tdd-cycle/SKILL.md`
 
 ## When to Use
 - Use this skill when working with tdd workflows tdd cycle (Alias for tdd-workflows-tdd-cycle)
