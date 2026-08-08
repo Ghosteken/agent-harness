@@ -325,6 +325,23 @@ app.use('/api/auth/', rateLimit({
 }));
 ```
 
+## API-Specific Security Patterns
+
+The OWASP API Security Top 10 covers failure modes specific to APIs, distinct from the general OWASP Top 10 above — mostly around authorization granularity, since APIs expose object- and function-level operations directly:
+
+1. **Broken Object Level Authorization** — always verify the caller can access the specific object, not just that they're authenticated (see the Broken Access Control example above)
+2. **Broken Authentication** — weak or missing token validation
+3. **Broken Object Property Level Authorization** — validate which *fields* of an object a caller may read/write, not just the object itself
+4. **Unrestricted Resource Consumption** — enforce rate limits, pagination, and payload size caps
+5. **Broken Function Level Authorization** — check role/permission per endpoint, including admin-only routes
+6. **Unrestricted Access to Sensitive Business Flows** — rate-limit and monitor flows attackers automate (checkout, signup, password reset)
+7. **Server-Side Request Forgery** — see the SSRF section above
+8. **Security Misconfiguration** — see Security Misconfiguration above
+9. **Improper Inventory Management** — document and version every endpoint; retire deprecated versions instead of leaving them reachable
+10. **Unsafe Consumption of APIs** — validate and sanitize responses from third-party APIs exactly as you would user input
+
+For token-based (JWT) authentication specifically: sign with a strong secret (256-bit minimum) from an environment variable, set short expiry on access tokens (~1 hour), use a separate longer-lived refresh token stored server-side (so it can be revoked), and never put sensitive data in the JWT payload — it's signed, not encrypted.
+
 ## Secrets Management
 
 ```

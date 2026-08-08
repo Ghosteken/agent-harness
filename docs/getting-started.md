@@ -107,14 +107,16 @@ The `.claude/commands/` directory contains slash commands for Claude Code:
 | Command | Skill Invoked |
 |---------|---------------|
 | `/spec` | spec-driven-development |
+| `/feature-doc` | feature-doc |
 | `/plan` | planning-and-task-breakdown |
 | `/build` | incremental-implementation + test-driven-development |
-| `/build auto` | planning-and-task-breakdown → incremental-implementation + test-driven-development (whole plan, one approval) |
 | `/test` | test-driven-development |
 | `/review` | code-review-and-quality |
 | `/code-simplify` | code-simplification |
 | `/ship` | shipping-and-launch |
 | `/webperf` | web-performance-auditor (specialist agent, web apps only) |
+
+`/build auto` is a mode of `/build`, not a separate command — it runs the whole plan (planning-and-task-breakdown → incremental-implementation + test-driven-development) in one approved pass instead of pausing between tasks.
 
 ## Using References
 
@@ -126,6 +128,7 @@ The `references/` directory contains supplementary checklists:
 | `performance-checklist.md` | performance-optimization |
 | `security-checklist.md` | security-and-hardening |
 | `accessibility-checklist.md` | frontend-ui-engineering |
+| `orchestration-patterns.md` | using-agent-harness (who's allowed to invoke whom) |
 
 Load a reference when you need detailed patterns beyond what the skill covers.
 

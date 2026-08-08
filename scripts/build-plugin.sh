@@ -40,7 +40,9 @@ cd "$REPO_ROOT"
 zip -r "$TMP_ZIP" . \
   --exclude ".git/*" \
   --exclude "agent-harness.plugin" \
-  --exclude "skills/windows-privilege-escalation/*" \
+  --exclude "archive/*" \
+  --exclude ".claude/settings.local.json" \
+  --exclude ".claude/settings.local.*" \
   2>/dev/null || true
 
 [[ -f "$TMP_ZIP" ]] || { echo "ERROR: zip failed" >&2; exit 1; }

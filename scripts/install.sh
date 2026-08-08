@@ -106,7 +106,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 
-if [[ -f "${REPO_ROOT}/plugin.json" ]]; then
+if [[ -f "${REPO_ROOT}/.claude-plugin/plugin.json" ]]; then
   # Running from inside the repo — copy local files
   info "Source: local clone at ${REPO_ROOT}"
   run mkdir -p "$INSTALL_DIR"

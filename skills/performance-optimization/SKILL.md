@@ -312,6 +312,12 @@ npx bundlesize --config bundlesize.config.json
 npx lhci autorun
 ```
 
+## Tooling Reference
+
+- **Measurement:** Lighthouse, WebPageTest, Chrome DevTools Performance tab, PageSpeed Insights, the `web-vitals` library for RUM
+- **Bundle analysis:** `webpack-bundle-analyzer`, `source-map-explorer`, Bundlephobia (check a package's size before installing it)
+- **Production monitoring:** Sentry, New Relic, Datadog, or equivalent APM for ongoing regression detection
+
 ## See Also
 
 For detailed performance checklists, optimization commands, and anti-pattern reference, see `references/performance-checklist.md`.

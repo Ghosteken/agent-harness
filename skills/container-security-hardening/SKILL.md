@@ -33,7 +33,7 @@ A production-focused guide for building, scanning, and running containers secure
 - The user is primarily asking about GitHub Actions CI/CD → recommend `github-actions-advanced`
 - The user needs general Docker usage help (not security) → recommend `docker-expert`
 - The user is working with Kubernetes orchestration beyond security → recommend `kubernetes-architect`
-- The user needs application-level security (SQL injection, XSS) → recommend `api-security-best-practices`
+- The user needs application-level security (SQL injection, XSS) → recommend `security-and-hardening`
 
 ---
 
@@ -990,7 +990,7 @@ spec:
 - `gha-security-review` — Security audit of GitHub Actions workflows
 - `github-actions-advanced` — CI pipeline patterns including scanner integration
 - `kubernetes-architect` — Full Kubernetes architecture, not just security
-- `api-security-best-practices` — Application-level security (injection, auth, OWASP)
+- `security-and-hardening` — Application-level security (injection, auth, OWASP)
 
 ## Limitations
 
