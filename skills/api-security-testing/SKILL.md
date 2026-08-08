@@ -45,7 +45,7 @@ Use @api-fuzzing-bug-bounty to discover API endpoints
 
 #### Skills to Invoke
 - `broken-authentication` - Auth testing
-- `api-security-best-practices` - API auth
+- `security-and-hardening` - API auth
 
 #### Actions
 1. Test API key validation
@@ -94,7 +94,7 @@ Use @api-fuzzing-bug-bounty to fuzz API parameters
 ### Phase 5: Rate Limiting
 
 #### Skills to Invoke
-- `api-security-best-practices` - Rate limiting
+- `security-and-hardening` - Rate limiting
 
 #### Actions
 1. Test rate limit headers
@@ -105,7 +105,7 @@ Use @api-fuzzing-bug-bounty to fuzz API parameters
 
 #### Copy-Paste Prompts
 ```
-Use @api-security-best-practices to test rate limiting
+Use @security-and-hardening to test rate limiting
 ```
 
 ### Phase 6: GraphQL Testing
@@ -128,7 +128,7 @@ Use @api-fuzzing-bug-bounty to test GraphQL security
 ### Phase 7: Error Handling
 
 #### Skills to Invoke
-- `api-security-best-practices` - Error handling
+- `security-and-hardening` - Error handling
 
 #### Actions
 1. Test error messages
@@ -139,7 +139,7 @@ Use @api-fuzzing-bug-bounty to test GraphQL security
 
 #### Copy-Paste Prompts
 ```
-Use @api-security-best-practices to audit API error handling
+Use @security-and-hardening to audit API error handling
 ```
 
 ## API Security Checklist

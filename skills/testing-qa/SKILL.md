@@ -135,7 +135,7 @@ Use @screenshots to capture marketing screenshots
 
 #### Skills to Invoke
 - `performance-profiling` - Performance profiling
-- `web-performance-optimization` - Web performance
+- `performance-optimization` - Web performance
 
 #### Actions
 1. Design performance tests
@@ -152,7 +152,7 @@ Use @screenshots to capture marketing screenshots
 
 #### Skills to Invoke
 - `code-reviewer` - AI code review
-- `code-review-excellence` - Review best practices
+- `code-review-and-quality` - Review best practices
 - `security-scanning-security-sast` - Security scanning
 
 #### Actions

@@ -29,12 +29,13 @@ if (-not $Out) {
 
 $timestamp = Get-Date -Format "yyyyMMddHHmmss"
 $tmpZip = Join-Path $env:TEMP "agent-harness-plugin-$timestamp.zip"
+$stageDir = Join-Path $env:TEMP "agent-harness-plugin-stage-$timestamp"
 
 Write-Host "[agent-harness] Building plugin from: $RepoRoot"
 Write-Host "[agent-harness] Output: $Out"
 
-# Collect items, excluding .git and existing .plugin
-$exclude = @("agent-harness.plugin", ".git")
+# Collect items, excluding .git, the existing .plugin, and archive/ (pre-prune bulk content not meant to ship)
+$exclude = @("agent-harness.plugin", ".git", "archive")
 $items = Get-ChildItem $RepoRoot | Where-Object { $_.Name -notin $exclude }
 
 if (-not $items) {
@@ -42,11 +43,23 @@ if (-not $items) {
   exit 1
 }
 
+# Stage into a temp copy so we can drop local-only files (e.g. .claude/settings.local.json)
+# without touching the real working tree.
+New-Item -ItemType Directory -Force -Path $stageDir | Out-Null
+foreach ($item in $items) {
+  Copy-Item -Path $item.FullName -Destination (Join-Path $stageDir $item.Name) -Recurse -Force
+}
+Get-ChildItem -Path $stageDir -Recurse -Filter "settings.local.*" -File | Remove-Item -Force
+
+$stagedItems = Get-ChildItem $stageDir
+
 # Zip the items (skip anything that can't be read)
 try {
-  Compress-Archive -Path $items.FullName -DestinationPath $tmpZip -Force
+  Compress-Archive -Path $stagedItems.FullName -DestinationPath $tmpZip -Force
 } catch {
   Write-Warning "Some files could not be included: $_"
+} finally {
+  Remove-Item -Recurse -Force $stageDir -ErrorAction SilentlyContinue
 }
 
 if (-not (Test-Path $tmpZip)) {

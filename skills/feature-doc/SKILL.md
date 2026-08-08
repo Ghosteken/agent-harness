@@ -78,3 +78,10 @@ Summarize what was created and ask if anything needs correcting. Keep revising u
 ### 8. State the boundary
 
 Make clear that this output is a planning artifact — implementing the feature is a separate, later step.
+
+## Interaction with other skills
+
+- **`interview-me`** — upstream. If the feature request itself is underspecified ("build something for X"), resolve intent with `interview-me` first; `feature-doc` then documents a feature that's already been identified, not extracts what to build.
+- **`idea-refine`** — upstream. For a vague concept that hasn't been shaped into a concrete feature yet, run ideation there first; `feature-doc` assumes the feature is already concrete enough to interview about and document.
+- **`spec-driven-development`** — a lighter alternative, not a prerequisite. It produces a single `SPEC.md` PRD; `feature-doc` produces three cross-referenced, per-actor artifacts grounded in existing project docs. Reach for `feature-doc` when a feature needs that level of structure (multiple actors, traceable rules, Gherkin test cases); reach for `spec-driven-development` when a single PRD is enough.
+- **`planning-and-task-breakdown`** — downstream. Once a feature's doc set exists, break `implementation-guide.md`'s workflow steps into tasks the normal way.

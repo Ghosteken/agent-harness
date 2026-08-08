@@ -171,7 +171,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## Skills
 
-The library contains a curated set of **173 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **168 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -188,6 +188,7 @@ The library contains a curated set of **173 skills** across every engineering do
 | [interview-me](skills/interview-me/SKILL.md) | One-question-at-a-time interview that extracts what the user actually wants instead of what they think they should want, until ~95% confidence | The ask is underspecified, or the user invokes "interview me" / "grill me" |
 | [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking to turn vague ideas into concrete proposals | You have a rough concept that needs exploration |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
+| [feature-doc](skills/feature-doc/SKILL.md) | Interview + produce a feature spec, implementation guide, and test cases per feature/actor, grounded in the project's own docs | A feature needs more structure than a single PRD — multiple actors, traceable rules, Gherkin test cases |
 
 ### Plan - Break it down
 
@@ -455,7 +456,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (173 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (168 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
@@ -498,7 +499,7 @@ agent-harness/
 ├── .claude/commands/                  # 8 slash commands (Claude Code)
 ├── .gemini/commands/                  # Slash commands (Gemini CLI)
 ├── commands/                          # Slash commands (Antigravity CLI)
-├── plugin.json                        # Plugin manifest
+├── .claude-plugin/plugin.json          # Plugin manifest
 └── docs/                              # Setup guides per tool
 ```
 

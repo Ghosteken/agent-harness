@@ -155,7 +155,7 @@ Use @github-actions-templates to integrate E2E tests with CI
 ## Related Workflow Bundles
 
 - `testing-qa` - Testing workflow
-- `web-performance-optimization` - Performance
+- `performance-optimization` - Performance
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

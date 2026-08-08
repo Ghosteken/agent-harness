@@ -5,12 +5,18 @@ This is the agent-harness project — a production-grade collection of engineeri
 ## Project Structure
 
 ```
-skills/       → Core skills (SKILL.md per directory)
-agents/       → Specialist agent personas (12 total — see below)
-hooks/        → Session lifecycle hooks
-.claude/commands/ → Slash commands (/spec, /plan, /build, /test, /review, /code-simplify, /ship, /webperf)
-references/   → Supplementary checklists (testing, performance, security, accessibility)
-docs/         → Setup guides for different tools
+skills/            → Curated skills (SKILL.md per directory) exposed to the agent
+archive/           → Pre-prune bulk-import skills and tooling, kept but not exposed
+agents/            → Specialist agent personas (12 total — see below)
+hooks/             → Session lifecycle hooks
+.claude/commands/  → Slash commands for Claude Code
+commands/          → Slash commands for Antigravity CLI
+.gemini/commands/  → Slash commands for Gemini CLI
+.claude-plugin/    → Plugin manifest (plugin.json) and marketplace listing
+scripts/           → Skill validation (validate-skills.js), agent-scopes.json, install/build scripts
+references/        → Supplementary checklists (testing, performance, security, accessibility, orchestration)
+docs/              → Setup guides for different tools
+CONTRIBUTING.md    → Guidelines for adding or editing skills
 ```
 
 ## Agent Personas
@@ -32,7 +38,7 @@ docs/         → Setup guides for different tools
 
 ## Skills by Phase
 
-**Define:** interview-me, idea-refine, spec-driven-development
+**Define:** interview-me, idea-refine, spec-driven-development, feature-doc
 **Plan:** planning-and-task-breakdown
 **Build:** incremental-implementation, test-driven-development, context-engineering, source-driven-development, doubt-driven-development, frontend-ui-engineering, api-and-interface-design
 **Verify:** browser-testing-with-devtools, debugging-and-error-recovery

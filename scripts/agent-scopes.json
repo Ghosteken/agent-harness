@@ -16,7 +16,6 @@
         "api-documenter",
         "api-endpoint-builder",
         "api-patterns",
-        "api-security-best-practices",
         "api-security-testing",
         "api-testing-observability-api-mock",
         "api-fuzzing-bug-bounty",
@@ -24,7 +23,8 @@
         "graphql-architect",
         "openapi-spec-generation",
         "api-documentation-generator",
-        "debugging-and-error-recovery"
+        "debugging-and-error-recovery",
+        "feature-doc"
       ]
     },
     "db-architect": {
@@ -49,7 +49,8 @@
         "nosql-expert",
         "sql-optimization-patterns",
         "neon-postgres",
-        "dbt-transformation-patterns"
+        "dbt-transformation-patterns",
+        "feature-doc"
       ]
     },
     "senior-devops": {
@@ -74,7 +75,8 @@
         "observability-engineer",
         "slo-implementation",
         "devops-troubleshooter",
-        "deployment-engineer"
+        "deployment-engineer",
+        "feature-doc"
       ]
     },
     "senior-frontend-engineer": {
@@ -89,17 +91,16 @@
         "react-best-practices",
         "react-patterns",
         "nextjs-best-practices",
-        "tailwind-patterns",
         "accessibility-compliance-accessibility-audit",
         "wcag-audit-patterns",
-        "web-performance-optimization",
         "frontend-security-coder",
         "ui-a11y",
         "react-component-performance",
         "react-state-management",
         "senior-frontend",
         "ui-review",
-        "frontend-developer"
+        "frontend-developer",
+        "feature-doc"
       ]
     },
     "senior-cloud-architect": {
@@ -115,7 +116,6 @@
         "cloud-devops",
         "aws-serverless",
         "aws-cost-optimizer",
-        "aws-skills",
         "azure-functions",
         "cloudformation-best-practices",
         "gcp-cloud-run",
@@ -124,7 +124,8 @@
         "multi-cloud-architecture",
         "terraform-specialist",
         "kubernetes-architect",
-        "container-security-hardening"
+        "container-security-hardening",
+        "feature-doc"
       ]
     },
     "senior-backend-engineer": {
@@ -149,7 +150,8 @@
         "rust-async-patterns",
         "backend-security-coder",
         "fp-backend",
-        "debugging-and-error-recovery"
+        "debugging-and-error-recovery",
+        "feature-doc"
       ]
     },
     "ai-ml-engineer": {
@@ -174,7 +176,8 @@
         "langgraph",
         "advanced-evaluation",
         "agent-evaluation",
-        "autonomous-agent-patterns"
+        "autonomous-agent-patterns",
+        "feature-doc"
       ]
     },
     "code-reviewer": {
@@ -190,8 +193,6 @@
         "documentation-and-adrs",
         "incremental-implementation",
         "architecture-patterns",
-        "code-review-excellence",
-        "code-review-checklist",
         "clean-code",
         "doubt-driven-development",
         "software-architecture",
@@ -199,7 +200,8 @@
         "comprehensive-review-full-review",
         "comprehensive-review-pr-enhance",
         "code-refactoring-refactor-clean",
-        "code-refactoring-tech-debt"
+        "code-refactoring-tech-debt",
+        "feature-doc"
       ]
     },
     "security-auditor": {
@@ -210,7 +212,6 @@
         "source-driven-development",
         "code-review-and-quality",
         "debugging-and-error-recovery",
-        "api-security-best-practices",
         "api-security-testing",
         "broken-authentication",
         "top-web-vulnerabilities",
@@ -224,7 +225,8 @@
         "attack-tree-construction",
         "container-security-hardening",
         "gha-security-review",
-        "secrets-management"
+        "secrets-management",
+        "feature-doc"
       ]
     },
     "test-engineer": {
@@ -249,7 +251,8 @@
         "awt-e2e-testing",
         "test-automator",
         "debugging-strategies",
-        "performance-testing-review-ai-review"
+        "performance-testing-review-ai-review",
+        "feature-doc"
       ]
     },
     "web-performance-auditor": {
@@ -260,7 +263,6 @@
         "frontend-ui-engineering",
         "debugging-and-error-recovery",
         "source-driven-development",
-        "web-performance-optimization",
         "performance-profiling",
         "pagespeed-enhancer",
         "react-component-performance",
@@ -273,8 +275,8 @@
         "performance-testing-review-ai-review",
         "grafana-dashboards",
         "slo-implementation",
-        "tailwind-patterns",
-        "incremental-implementation"
+        "incremental-implementation",
+        "feature-doc"
       ]
     },
     "senior-qa-engineer": {
@@ -299,7 +301,8 @@
         "api-testing-observability-api-mock",
         "debugging-strategies",
         "performance-testing-review-ai-review",
-        "security-and-hardening"
+        "security-and-hardening",
+        "feature-doc"
       ]
     }
   }

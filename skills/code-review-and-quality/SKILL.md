@@ -310,6 +310,26 @@ Part of code review is dependency review:
 - [ ] **Approve** — Ready to merge
 - [ ] **Request changes** — Issues must be addressed
 ```
+## Review Comment Templates
+
+**Requesting a change:**
+
+> **Issue:** [describe the problem]
+>
+> **Current code:** *(quote the problematic lines)*
+>
+> **Suggested fix:** *(quote the improved lines)*
+>
+> **Why:** [explain why this is better]
+
+**Asking a question:**
+
+> **Question:** [your question]
+>
+> **Context:** [why you're asking]
+>
+> **Suggestion:** [if you have one]
+
 ## See Also
 
 - For detailed security review guidance, see `references/security-checklist.md`

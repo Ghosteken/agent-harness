@@ -340,6 +340,47 @@ These skills fire regardless of domain. They cover situations that happen across
 
 ---
 
+### Extracting Underspecified Intent
+**Trigger words:** interview me, grill me, help me figure out what I actually want, I'm not sure what I need, ask me questions first
+
+→ **Skill:** `interview-me`
+→ No agent. Invoke when a request is underspecified — one question at a time until confident what's actually being asked for.
+
+---
+
+### Refining a Vague Idea
+**Trigger words:** help me think through this idea, refine this concept, I have a rough idea, explore this direction, is this idea any good
+
+→ **Skill:** `idea-refine`
+→ No agent. Invoke on a vague concept that needs divergent/convergent thinking before it's concrete enough to spec.
+
+---
+
+### Documenting a Feature Before Building It
+**Trigger words:** document this feature, write a feature spec, spec out this feature before I build it, pre-implementation doc, feature doc set, implementation guide for this feature, actor variant of this feature
+
+→ **Skill:** `feature-doc`
+→ No agent. Invoke before implementing a new feature or a new actor-facing variant of one — produces a feature spec, implementation guide, and test cases grounded in the project's own docs. Heavier and more structured than `spec-driven-development`'s single PRD; use when a feature needs that level of detail.
+→ **Command:** `/feature-doc`
+
+---
+
+### Coordinating Multiple Agents on a Plan
+**Trigger words:** coordinate multiple agents, dispatch subagents for this plan, run these tasks in parallel with fresh agents, subagent-driven execution
+
+→ **Skill:** `subagent-driven-development`
+→ No agent. Invoke when executing a written plan whose tasks are independent enough to dispatch to fresh subagents, each reviewed before the next starts.
+
+---
+
+### Starting a Brand-New Project from a Vague Prompt
+**Trigger words:** new project, start from scratch, I have an idea for an app, greenfield project, build me a [thing] from nothing
+
+→ **Skill:** `not-a-vibe-coder`
+→ No agent. Invoke only for brand-new projects — turns a vague prompt into 8 structured planning files. Do not use on existing codebases.
+
+---
+
 ## Lifecycle Commands
 
 When the user describes a full feature (not just one concern), follow the lifecycle:

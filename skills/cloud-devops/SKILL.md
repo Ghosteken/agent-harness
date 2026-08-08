@@ -29,7 +29,6 @@ Use this workflow when:
 
 #### Skills to Invoke
 - `cloud-architect` - Cloud architecture
-- `aws-skills` - AWS development
 - `azure-functions` - Azure development
 - `gcp-cloud-run` - GCP development
 - `terraform-specialist` - Advanced Terraform
@@ -180,7 +179,7 @@ Use @secrets-management to configure secrets
 
 ### AWS
 ```
-Skills: aws-skills, aws-serverless, aws-penetration-testing
+Skills: aws-serverless, aws-penetration-testing
 Services: EC2, Lambda, S3, RDS, ECS, EKS
 ```
 

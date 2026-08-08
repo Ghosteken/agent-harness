@@ -87,7 +87,7 @@ if ((Test-Path $InstallDir) -and (-not $DryRun)) {
 # Determine source
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $RepoRoot  = Split-Path -Parent $ScriptDir
-$LocalPluginJson = Join-Path $RepoRoot 'plugin.json'
+$LocalPluginJson = Join-Path $RepoRoot '.claude-plugin\plugin.json'
 
 if (Test-Path $LocalPluginJson) {
   Write-Info "Source: local clone at $RepoRoot"

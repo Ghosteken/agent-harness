@@ -111,7 +111,7 @@ Use @broken-authentication to test authentication security
 ### Phase 6: Security Headers
 
 #### Skills to Invoke
-- `api-security-best-practices` - Security headers
+- `security-and-hardening` - Security headers
 
 #### Actions
 1. Check CSP implementation
@@ -122,7 +122,7 @@ Use @broken-authentication to test authentication security
 
 #### Copy-Paste Prompts
 ```
-Use @api-security-best-practices to audit security headers
+Use @security-and-hardening to audit security headers
 ```
 
 ### Phase 7: Reporting
