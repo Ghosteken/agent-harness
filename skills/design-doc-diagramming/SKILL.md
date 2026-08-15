@@ -18,6 +18,7 @@ For the prose sections of a design doc (goals, non-goals, alternatives considere
 - Asked to convert existing code, config, or infrastructure-as-code into an architecture or deployment diagram
 - A design doc already exists but its diagrams are stale relative to the code
 - NOT for a single ad-hoc diagram inside a Claude Artifact — use `artifact-diagramming` there, since it covers Artifact-specific rendering constraints this skill doesn't
+- NOT for a standalone, directly-editable diagram file — use `excalidraw-diagramming` when the deliverable is a `.excalidraw` file rather than Mermaid embedded in a doc
 
 ## Process
 
@@ -87,3 +88,4 @@ Follow the target document type's conventions from `feature-doc` / `documentatio
 - `documentation-and-adrs` — architecture decision record conventions
 - `spec-driven-development` — writing the specification a design doc often accompanies
 - `artifact-diagramming` — for a single diagram rendered inside a Claude Artifact, not a project design doc
+- `excalidraw-diagramming` — for a standalone, directly-editable `.excalidraw` file rather than a Mermaid diagram embedded in the doc

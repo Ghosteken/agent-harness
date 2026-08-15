@@ -1,6 +1,6 @@
 ---
 name: debugging-and-error-recovery
-description: Guides systematic root-cause debugging. Use when tests fail, builds break, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need a systematic approach to finding and fixing the root cause rather than guessing.
+description: Guides systematic root-cause debugging, including a feedback-loop-first discipline for hard, non-deterministic, or performance-regression bugs. Use when tests fail, builds break, behavior doesn't match expectations, you encounter any unexpected error, or the user says "diagnose"/"debug this". Use when you need a systematic approach to finding and fixing the root cause rather than guessing.
 ---
 
 # Debugging and Error Recovery
@@ -32,6 +32,43 @@ When anything unexpected happens:
 ```
 
 **Don't push past a failing test or broken build to work on the next feature.** Errors compound. A bug in Step 3 that goes unfixed makes Steps 4-10 wrong.
+
+## Hard Bugs: Build the Feedback Loop First
+
+The triage checklist below works for ordinary bugs. For a hard bug — one that resists a first pass, or a performance regression — the checklist compresses into one overriding rule: **before forming any theory about the cause, build a tight, scriptable pass/fail signal that goes red on this exact bug.** Bisection, hypothesis-testing, and instrumentation all just consume that signal once it exists. Without it, no amount of reading the code will substitute.
+
+Spend disproportionate effort here — this step, done well, does most of the work of finding the cause.
+
+**If the loop will show secrets** (tokens, credentials, PII in payloads), redact every one before displaying it — write `<REDACTED>` in its place, and prefer building the loop against environment variables so the credential never has to appear in output you show. If a redacted artifact isn't enough to diagnose the bug, say so and ask the user rather than showing the unredacted version.
+
+**Ways to construct the loop, roughly in order of preference:**
+
+1. A failing test at whatever seam reaches the bug — unit, integration, or end-to-end.
+2. A curl/HTTP script against a running dev server.
+3. A CLI invocation with a fixture input, diffed against a known-good snapshot.
+4. A headless-browser script (Playwright/Puppeteer) driving the UI and asserting on DOM, console, or network.
+5. A replayed capture — save a real request, payload, or event log to disk and run it back through the code path in isolation.
+6. A throwaway harness — the smallest possible subset of the system (one service, mocked dependencies) that still exercises the bug through a single function call.
+7. A property/fuzz loop, when the bug is "sometimes wrong output" — generate hundreds of random inputs and look for the failure mode.
+8. A bisection harness, when the bug appeared between two known-good and known-bad states — automate "boot at state X, check, repeat" so `git bisect run` can drive it unattended.
+9. A differential loop — run the same input through the old and new version (or two configs) and diff the outputs.
+10. As a last resort, a human-in-the-loop script that structures what a human must manually click through, so even a manual step produces a captured, structured result instead of an untracked one-off.
+
+Once a loop exists, **tighten** it before trusting it: make it faster (cache setup, skip unrelated init), make the signal sharper (assert on the specific symptom, not "didn't crash"), and make it more deterministic (pin time, seed the RNG, isolate the filesystem, freeze the network). A slow, flaky loop is barely better than no loop at all.
+
+**Non-deterministic bugs:** don't chase a clean, always-reproduces repro — chase a *higher reproduction rate*. Loop the trigger many times, parallelize it, add stress, narrow timing windows, inject artificial delays. A bug that fails half the time is debuggable; one that fails one time in a hundred usually isn't yet — keep raising the rate until it is.
+
+**If you genuinely cannot build a loop,** stop and say so explicitly, listing what you tried. Ask the user for one of: access to an environment that reproduces it, a redacted captured artifact (HAR file, log dump, core dump, timestamped recording), or permission to add temporary instrumentation to a live environment. Do not proceed to hypothesize without a loop — a theory built on reading code alone, for a bug that's already resisted a first pass, is a guess wearing a theory's clothes.
+
+**This step is done** when you can name one command you have already run at least once (show the invocation and its redacted output) that is red-capable (drives the actual bug path and asserts the user's exact symptom, not merely "no crash"), deterministic (or, for flaky bugs, reproducible at a workable rate), fast, and runnable unattended. If you catch yourself reading code to form a theory before this command exists, stop — that jump is the exact failure this section exists to prevent.
+
+Once the loop is red, **minimize** before hypothesizing: shrink the repro to the smallest scenario that still goes red, cutting inputs, callers, config, and steps one at a time and re-running the loop after each cut. Stop when every remaining element is load-bearing — removing any one of them turns the loop green. A minimized repro shrinks the hypothesis space and becomes the regression test in Step 5.
+
+**Hypothesize before instrumenting, not while instrumenting.** Generate 3–5 ranked hypotheses before testing any of them — generating just one anchors on the first plausible idea. Each must be falsifiable: state what result would confirm it and what would rule it out ("if X is the cause, changing Y makes the bug disappear; changing Z makes it worse"). If you can't state that prediction, the hypothesis is a vibe — sharpen it or drop it. Show the ranked list to the user before testing any of them; they often have context that re-ranks it instantly, and it's a cheap checkpoint that doesn't need to block if they're unavailable.
+
+**When instrumenting**, map every probe to a specific hypothesis and change one variable at a time. Prefer a debugger/REPL breakpoint over logging when the environment supports it — one breakpoint beats ten logs. Tag every debug log with a unique prefix (e.g. `[DEBUG-a4f2]`) so cleanup afterward is a single grep, and never "log everything and grep" as a first move. For performance regressions specifically, logs are usually the wrong tool — establish a timing baseline first (a timing harness, a profiler, a query plan), then bisect against that baseline.
+
+**At the end of a hard-bug pass**, if no seam exists for a regression test that exercises the real bug pattern (not a shallow single-caller test standing in for a multi-caller chain), that absence is itself a finding — note it explicitly as evidence the architecture is preventing the bug from being locked down, and surface it as a follow-up recommendation once the fix has landed, not before.
 
 ## The Triage Checklist
 
@@ -268,6 +305,8 @@ Add logging only when it helps. Remove it when done.
 | "It works on my machine" | Environments differ. Check CI, check config, check dependencies. |
 | "I'll fix it in the next commit" | Fix it now. The next commit will introduce new bugs on top of this one. |
 | "This is a flaky test, ignore it" | Flaky tests mask real bugs. Fix the flakiness or understand why it's intermittent. |
+| "I'll just read the code and form a theory" | For a bug that's already resisted a first pass, that's a guess wearing a theory's clothes — build the feedback loop first, then theorize. |
+| "Non-reproducible means undebuggable" | It means the reproduction rate is too low, not zero. Raise the rate — stress, parallelize, narrow timing — until it's workable. |
 
 ## Treating Error Output as Untrusted Data
 

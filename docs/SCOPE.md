@@ -1,6 +1,6 @@
 # Agent Harness Skill Scopes
 
-`agent-harness` exposes a curated set of **169 skills** to the agent — the 24 hand-authored lifecycle skills, a role-scoped extension set, and a couple of skills restored from archive because other kept skills functionally depend on them. This replaces an earlier draft of this document that described ~40 aspirational "packs" and activation scripts (`activate-skills.sh`, `data/scopes.json`) that were never actually implemented in this repository. What's described below is the real, working mechanism.
+`agent-harness` exposes a curated set of **174 skills** to the agent — the 24 hand-authored lifecycle skills, a role-scoped extension set, and a couple of skills restored from archive because other kept skills functionally depend on them. This replaces an earlier draft of this document that described ~40 aspirational "packs" and activation scripts (`activate-skills.sh`, `data/scopes.json`) that were never actually implemented in this repository. What's described below is the real, working mechanism.
 
 ## How scoping actually works
 

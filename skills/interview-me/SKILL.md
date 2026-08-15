@@ -1,6 +1,6 @@
 ---
 name: interview-me
-description: Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent. Use when an ask is underspecified ("build me X" without "for whom" or "why now"), when the user explicitly invokes ("interview me", "grill me", "are we sure?", "stress-test my thinking"), or when you catch yourself silently filling in ambiguous requirements before any plan, spec, or code exists.
+description: Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent for a single ambiguous ask. Use when an ask is underspecified ("build me X" without "for whom" or "why now"), when the user explicitly invokes "interview me," or when you catch yourself silently filling in ambiguous requirements before any plan, spec, or code exists. For stress-testing a plan or decision that already has many branching sub-decisions, use `grilling` instead.
 ---
 
 # Interview Me
@@ -21,7 +21,8 @@ Apply this skill when:
 - The request is conventional rather than specific ("build me X", "make it faster") and you can't unpack the convention without guessing
 - You're tempted to start with assumptions you haven't surfaced
 - The user hasn't said which value they're optimizing for when two reasonable ones are in tension (simplicity vs. flexibility, cost vs. speed)
-- The user explicitly invokes: "interview me", "grill me", "before we start, are we sure?", "stress-test my thinking"
+- The user explicitly invokes: "interview me", "before we start, are we sure?"
+- If the thing being stress-tested is already a multi-decision plan or design (not a single ambiguous ask), use `grilling` instead — see [Interaction with Other Skills](#interaction-with-other-skills)
 
 **When NOT to use:**
 
@@ -179,6 +180,7 @@ Two questions in, the agent has discovered the actual ask isn't "a dashboard." I
 
 ## Interaction with Other Skills
 
+- **`grilling`**: sibling, not overlap. Interview-me extracts a single intent one question at a time, waiting for the user between each; `grilling` stress-tests an already-branching plan or decision by batching every currently-unblocked question per round. Use interview-me when the ask is one underspecified thing; use `grilling` when it's a plan with many interdependent decisions still open.
 - **`idea-refine`**: downstream. If the confirmed intent is "I want X but I don't know how to scope it," hand off to `idea-refine` to generate variations against the now-explicit intent.
 - **`spec-driven-development`**: downstream. If the confirmed intent is concrete ("I want X for Y users with Z success criteria"), hand off to `spec-driven-development` to write it down.
 - **`planning-and-task-breakdown`**: two hops downstream of this skill (after the spec).
