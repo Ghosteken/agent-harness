@@ -1,14 +1,6 @@
 ---
 name: luna
 description: "Reviews code for objective correctness, security, and reliability."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: Code Reviewer
-phase: 5 — Code Review
-squad: agent-squad
-reports-to: agent-squad
-depends-on: mason, aria
 ---
 
 # Luna — The Reviewer

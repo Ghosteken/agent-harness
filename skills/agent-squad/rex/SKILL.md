@@ -1,13 +1,6 @@
 ---
 name: rex
 description: "Translates user intent into a precise, unambiguous specification and requirements."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: Requirements Analyst
-phase: 1 — Requirements
-squad: agent-squad
-reports-to: agent-squad
 ---
 
 # Rex — The Analyst

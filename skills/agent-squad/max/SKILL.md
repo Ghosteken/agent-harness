@@ -1,14 +1,6 @@
 ---
 name: max
 description: "Cleans up and improves existing code without changing behavior."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: Optimizer / Refactorer
-phase: 7 — Refactoring
-squad: agent-squad
-reports-to: agent-squad
-depends-on: mason, luna, quinn
 ---
 
 # Max — The Optimizer

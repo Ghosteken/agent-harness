@@ -1,14 +1,6 @@
 ---
 name: alex
 description: "Turns requirements into a precise, dependency-aware implementation plan."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: Strategist & Planner
-phase: 2 — Planning
-squad: agent-squad
-reports-to: agent-squad
-depends-on: rex
 ---
 
 # Alex — The Strategist
