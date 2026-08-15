@@ -1,0 +1,30 @@
+name: Build Plugin (PowerShell)
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  build-plugin:
+    name: Build agent-harness.plugin via build-plugin.ps1
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build plugin bundle
+        shell: pwsh
+        run: ./scripts/build-plugin.ps1
+
+      - name: Verify the build is fresh and lean
+        shell: bash
+        run: bash scripts/check-plugin-freshness.sh
+
+      - name: Upload built plugin as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-harness.plugin
+          path: agent-harness.plugin
+          retention-days: 14
