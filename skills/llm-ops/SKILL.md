@@ -1,22 +1,6 @@
 ---
 name: llm-ops
-description: "LLM Operations -- RAG, embeddings, vector databases, fine-tuning, prompt engineering avancado, custos de LLM, evals de qualidade e arquiteturas de IA para producao."
-risk: safe
-source: community
-date_added: '2026-03-06'
-author: renat
-tags:
-- llm
-- rag
-- embeddings
-- vector-db
-- fine-tuning
-tools:
-- claude-code
-- antigravity
-- cursor
-- gemini-cli
-- codex-cli
+description: LLM Operations -- RAG, embeddings, vector databases, fine-tuning, prompt engineering avancado, custos de LLM, evals de qualidade e arquiteturas de IA para producao.
 ---
 
 # LLM-OPS -- IA de Producao

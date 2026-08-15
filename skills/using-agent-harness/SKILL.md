@@ -1,4 +1,4 @@
-﻿---
+---
 name: using-agent-harness
 type: meta
 description: Intent router and pre-flight checker for agent-harness — checks for a matching skill before any response, then maps what the user describes to the right agent persona and skill. Use when starting any task to determine which agent and skill should handle it.

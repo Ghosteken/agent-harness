@@ -1,9 +1,6 @@
 ---
 name: gitops-workflow
-description: "Complete guide to implementing GitOps workflows with ArgoCD and Flux for automated Kubernetes deployments."
-risk: critical
-source: community
-date_added: "2026-02-27"
+description: Complete guide to implementing GitOps workflows with ArgoCD and Flux for automated Kubernetes deployments.
 ---
 
 # GitOps Workflow

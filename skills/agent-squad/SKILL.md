@@ -1,10 +1,6 @@
 ---
 name: agent-squad
 description: Main agent orchestrator that coordinates a specialized squad of agents
-role: Orchestrator / Agent Panel
-phase: all
-squad: agent-squad
-version: 1.0
 ---
 
 # Main Agent — The Orchestrator

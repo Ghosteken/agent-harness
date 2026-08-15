@@ -1,9 +1,6 @@
 ---
 name: subagent-driven-development
-description: "Use when executing implementation plans with independent tasks in the current session"
-risk: unknown
-source: community
-date_added: "2026-02-27"
+description: Use when executing implementation plans with independent tasks in the current session
 ---
 
 # Subagent-Driven Development
