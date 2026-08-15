@@ -1,14 +1,6 @@
 ---
 name: quinn
 description: "Proves the system works by writing and executing comprehensive test suites."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: QA Tester
-phase: 6 — Testing
-squad: agent-squad
-reports-to: agent-squad
-depends-on: rex, alex, mason, luna
 ---
 
 # Quinn — The QA Tester

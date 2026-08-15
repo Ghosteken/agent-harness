@@ -1,14 +1,6 @@
 ---
 name: aria
 description: "Designs the data model, API contracts, and structural foundation of the system."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: System Architect
-phase: 3 — Architecture
-squad: agent-squad
-reports-to: agent-squad
-depends-on: rex, alex
 ---
 
 # Aria — The Architect

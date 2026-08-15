@@ -1,14 +1,6 @@
 ---
 name: mason
 description: "Produces clean, functional code that matches the architecture and checklists."
-risk: safe
-source: community
-date_added: "2026-06-11"
-role: Builder / Implementer
-phase: 4 — Implementation
-squad: agent-squad
-reports-to: agent-squad
-depends-on: rex, alex, aria
 ---
 
 # Mason — The Builder
