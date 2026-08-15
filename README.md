@@ -171,7 +171,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## Skills
 
-The library contains a curated set of **168 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **169 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -189,6 +189,7 @@ The library contains a curated set of **168 skills** across every engineering do
 | [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking to turn vague ideas into concrete proposals | You have a rough concept that needs exploration |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
 | [feature-doc](skills/feature-doc/SKILL.md) | Interview + produce a feature spec, implementation guide, and test cases per feature/actor, grounded in the project's own docs | A feature needs more structure than a single PRD — multiple actors, traceable rules, Gherkin test cases |
+| [design-doc-diagramming](skills/design-doc-diagramming/SKILL.md) | Picks the right Mermaid diagram type for the content, drafts and validates it, and assembles it into an architecture/API/feature/database/system design doc | Writing or updating a design doc, or converting existing code/config into an architecture or deployment diagram |
 
 ### Plan - Break it down
 

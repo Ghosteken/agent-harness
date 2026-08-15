@@ -38,7 +38,7 @@ CONTRIBUTING.md    → Guidelines for adding or editing skills
 
 ## Skills by Phase
 
-**Define:** interview-me, idea-refine, spec-driven-development, feature-doc
+**Define:** interview-me, idea-refine, spec-driven-development, feature-doc, design-doc-diagramming
 **Plan:** planning-and-task-breakdown
 **Build:** incremental-implementation, test-driven-development, context-engineering, source-driven-development, doubt-driven-development, frontend-ui-engineering, api-and-interface-design
 **Verify:** browser-testing-with-devtools, debugging-and-error-recovery
