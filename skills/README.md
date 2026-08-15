@@ -1,6 +1,6 @@
 # Skills Directory
 
-This folder holds agent-harness's curated skill set: **168 skills** — the 24 hand-authored lifecycle skills, a role-scoped extension set defined in [`scripts/agent-scopes.json`](../scripts/agent-scopes.json), and a couple of skills restored because other kept skills depend on them (e.g. `multi-agent-brainstorming`, required by `brainstorming`'s handoff rule).
+This folder holds agent-harness's curated skill set: **174 skills** — the 24 hand-authored lifecycle skills, a role-scoped extension set defined in [`scripts/agent-scopes.json`](../scripts/agent-scopes.json), and a couple of skills restored because other kept skills depend on them (e.g. `multi-agent-brainstorming`, required by `brainstorming`'s handoff rule).
 
 ## What Are Skills?
 

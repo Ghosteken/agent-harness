@@ -1,0 +1,6 @@
+# Force LF line endings for Markdown regardless of local core.autocrlf
+# settings. CRLF in a SKILL.md breaks frontmatter parsing in at least one
+# plugin viewer (the \r before the closing --- isn't recognized as part
+# of the delimiter, so the frontmatter fails to strip and renders as raw
+# text instead of being parsed and hidden).
+*.md text eol=lf

@@ -171,7 +171,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## Skills
 
-The library contains a curated set of **168 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **174 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -185,16 +185,21 @@ The library contains a curated set of **168 skills** across every engineering do
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
-| [interview-me](skills/interview-me/SKILL.md) | One-question-at-a-time interview that extracts what the user actually wants instead of what they think they should want, until ~95% confidence | The ask is underspecified, or the user invokes "interview me" / "grill me" |
+| [interview-me](skills/interview-me/SKILL.md) | One-question-at-a-time interview that extracts what the user actually wants instead of what they think they should want, until ~95% confidence | The ask is underspecified, or the user invokes "interview me" |
+| [grilling](skills/grilling/SKILL.md) | Maps a plan or decision as a tree and interrogates a whole round of unblocked questions at once | Stress-testing a plan with multiple branching sub-decisions, or the user says "grill me" |
 | [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking to turn vague ideas into concrete proposals | You have a rough concept that needs exploration |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
 | [feature-doc](skills/feature-doc/SKILL.md) | Interview + produce a feature spec, implementation guide, and test cases per feature/actor, grounded in the project's own docs | A feature needs more structure than a single PRD — multiple actors, traceable rules, Gherkin test cases |
+| [design-doc-diagramming](skills/design-doc-diagramming/SKILL.md) | Picks the right Mermaid diagram type for the content, drafts and validates it, and assembles it into an architecture/API/feature/database/system design doc | Writing or updating a design doc, or converting existing code/config into an architecture or deployment diagram |
+| [excalidraw-diagramming](skills/excalidraw-diagramming/SKILL.md) | Generates a directly-editable `.excalidraw` diagram file with hand-computed element positions | A standalone, editable diagram file is wanted rather than Mermaid embedded in a doc |
+| [acquire-codebase-knowledge](skills/acquire-codebase-knowledge/SKILL.md) | Maps an unfamiliar codebase into seven evidence-backed documents (stack, structure, architecture, conventions, integrations, testing, concerns) | Asked to map, document, or onboard into an existing codebase |
 
 ### Plan - Break it down
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
 | [planning-and-task-breakdown](skills/planning-and-task-breakdown/SKILL.md) | Decompose specs into small, verifiable tasks with acceptance criteria and dependency ordering | You have a spec and need implementable units |
+| [github-issue-planning](skills/github-issue-planning/SKILL.md) | Turns a completed spec into a GitHub Issues hierarchy (Epic → Feature → Story/Enabler → Task) with dependencies, priorities, and board placement | The team tracks work in GitHub Issues/Projects and needs that specific artifact shape |
 
 ### Build - Write the code
 

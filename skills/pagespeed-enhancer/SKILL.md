@@ -1,10 +1,6 @@
 ---
 name: pagespeed-enhancer
-description: "Scan, audit, and fix web performance issues across all four Lighthouse/PageSpeed Insights pillars — Performance, Accessibility, Best Practices, and SEO — in structured batches."
-risk: safe
-source: personal
-date_added: "2026-06-14"
-author: WHOISABHISHEKADHIKARI
+description: Scan, audit, and fix web performance issues across all four Lighthouse/PageSpeed Insights pillars — Performance, Accessibility, Best Practices, and SEO — in structured batches.
 ---
 
 # PageSpeed Enhancer Skill

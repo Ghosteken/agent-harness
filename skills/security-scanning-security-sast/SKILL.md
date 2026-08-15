@@ -1,13 +1,6 @@
 ---
 name: security-scanning-security-sast
-description: 'Static Application Security Testing (SAST) for code vulnerability
-
-  analysis across multiple languages and frameworks
-
-  '
-risk: unknown
-source: community
-date_added: '2026-02-27'
+description: "'Static Application Security Testing (SAST) for code vulnerability"
 ---
 # SAST Security Plugin
 
