@@ -1,4 +1,4 @@
-description = "Implement tasks incrementally — build, test, verify, commit. Add \"auto\" to run the whole plan in one approved pass."
+description = "Implement tasks incrementally — build, test, verify, propose commit. Add \"auto\" to run the whole plan in one approved pass."
 
 prompt = """
 Invoke the incremental-implementation skill alongside test-driven-development.
@@ -10,6 +10,8 @@ Invoke the incremental-implementation skill alongside test-driven-development.
 
 The arguments select the mode. Treat `auto` (canonical) or `all` as autonomous mode; anything else (or empty) is the default single-task mode. Note: autonomous mode is not faster per task — it runs the same test-driven loop — it only removes the human stepping between tasks.
 
+Never run `git commit` (or `git add` followed by a commit) yourself, in either mode, unless the user explicitly asks you to commit in that message. Draft a commit message and tell the user the change is ready, then leave the actual commit to them.
+
 ## Default: one task
 
 Pick the next pending task from the plan. Then:
@@ -20,24 +22,24 @@ Pick the next pending task from the plan. Then:
 4. Implement the minimum code to pass the test (GREEN)
 5. Run the full test suite to check for regressions
 6. Run the build to verify compilation
-7. Commit with a descriptive message
+7. Draft a commit message and tell the user the change is ready to commit — do not run `git commit` yourself
 8. Mark the task complete and stop
 
 ## Autonomous: the whole plan (`/build auto`)
 
-Use this once a spec exists and you want to collapse plan + build into one run. It removes the manual stepping between tasks — not the verification. Every task still earns a passing test and its own commit.
+Use this once a spec exists and you want to collapse plan + build into one run. It removes the manual stepping between tasks — not the verification, and not the no-auto-commit rule. Every task still earns a passing test; none earns an agent-run commit.
 
-1. Require a spec. Look only for a spec at a known path: SPEC.md at the repo root, docs/SPEC.md, or a file under spec/. A README or arbitrary doc does NOT count. If none exists, stop and tell the user to run /spec first — do not invent requirements.
-2. Establish a clean baseline. Run `git status --porcelain`. If there are uncommitted changes outside the expected planning artifacts (SPEC.md, docs/SPEC.md, spec/*, tasks/plan.md, tasks/todo.md), stop and ask the user to commit, stash, or confirm how to handle them. Autonomous per-task commits must not absorb unrelated local work, or the clean-rollback guarantee breaks.
-3. Plan if needed. If there is no tasks/plan.md, invoke the planning-and-task-breakdown skill to generate one.
-4. Single checkpoint. Present the full plan and wait for an unambiguous affirmative (e.g. "approve", "go", "yes"). Treat hedged responses ("looks reasonable", "I guess") as NOT approved. This is the only human gate — after approval, run autonomously. If you generated tasks/plan.md, commit it as a single preparatory commit now so it doesn't bleed into the first task's commit.
-5. Execute every task in dependency order. Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → commit → mark complete). Stage only the files that task touched plus its task-status update — never `git add -A` blindly — and make one commit per task so any point is a clean rollback.
+1. Require a spec. Look only for a spec at a known path: docs/specs/<feature-slug>/SPEC.md, or (legacy) SPEC.md at the repo root. A README or arbitrary doc does NOT count. If none exists, stop and tell the user to run /spec first — do not invent requirements.
+2. Establish a clean baseline. Run `git status --porcelain`. If there are uncommitted changes outside the expected planning artifacts (docs/specs/**, docs/plans/*), stop and ask the user how to handle them — do not commit, stash, or discard anything yourself.
+3. Plan if needed. If there is no docs/plans/<feature-slug>-plan.md, invoke the planning-and-task-breakdown skill to generate one.
+4. Single checkpoint. Present the full plan and wait for an unambiguous affirmative (e.g. "approve", "go", "yes"). Treat hedged responses ("looks reasonable", "I guess") as NOT approved. This is the only human gate — after approval, run autonomously through implementation (but still never auto-commit).
+5. Execute every task in dependency order. Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → draft commit message → mark complete). Since nothing gets committed automatically, the per-task "clean rollback" property now lives in the task-status log and diffs you present, not in git history — call this out to the user, and suggest they commit after each task (or batch) themselves if they want that guarantee restored as real git history.
 6. Stop and ask the user (do not push through) when:
    - a test can't be made to pass or the build breaks without an obvious fix → follow the debugging-and-error-recovery skill
    - the spec is ambiguous, or a task needs a decision the spec doesn't cover
-   - a task is high-risk or irreversible — auth/permission changes, destructive data migrations, payments, deletions, deploys, anything touching secrets, or anything you can't undo with `git revert` → follow the doubt-driven-development skill and get explicit sign-off before continuing
+   - a task is high-risk or irreversible — auth/permission changes, destructive data migrations, payments, deletions, deploys, anything touching secrets, or anything that would be hard to undo without a commit history to revert to → follow the doubt-driven-development skill and get explicit sign-off before continuing
    After the user resolves a blocker, they re-invoke /build auto — it resumes from the next pending task.
-7. Summarize at the end: tasks completed, tests added, commits made, and anything skipped, flagged, or left for the user.
+7. Summarize at the end: tasks completed, tests added, commit messages proposed (not yet run), and anything skipped, flagged, or left for the user.
 
 If any step fails, follow the debugging-and-error-recovery skill.
 """

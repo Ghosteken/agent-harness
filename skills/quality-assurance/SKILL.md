@@ -29,7 +29,7 @@ This skill executes verification scenarios against a known expected behaviour (s
 
 Before executing anything:
 
-1. Look for a SPEC.md, task description, acceptance criteria, issue description, or feature doc
+1. Look for a spec (`docs/specs/<feature-slug>/SPEC.md`, or legacy `SPEC.md`), task description, acceptance criteria, issue description, or feature doc
 2. If found — list the specific behaviours to confirm (one per scenario)
 3. If not found — **stop and ask**: "What is the expected behaviour for [X]? I need a reference before I can verify."
 

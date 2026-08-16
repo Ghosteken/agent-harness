@@ -353,7 +353,7 @@ Here is how responsibilities flow from layer to layer when you build a new API e
 User: /spec "add a user authentication endpoint"
 ```
 → `/spec` command activates the `spec-driven-development` skill  
-→ Skill produces `SPEC.md` covering: objective, endpoint contract, auth scheme, error codes, test strategy
+→ Skill produces `docs/specs/<feature-slug>/SPEC.md` covering: objective, endpoint contract, auth scheme, error codes, test strategy
 
 **Step 2 — Plan the tasks**
 ```
@@ -361,7 +361,7 @@ User: /plan
 ```
 → `/plan` command activates `planning-and-task-breakdown` skill  
 → Skill decomposes the spec into atomic, verifiable tasks with acceptance criteria  
-→ Produces `tasks/plan.md` + `tasks/todo.md`
+→ Produces `docs/plans/<feature-slug>-plan.md` (+ `docs/plans/<feature-slug>-todo.md` if a separate task list is kept)
 
 **Step 3 — Build incrementally**
 ```

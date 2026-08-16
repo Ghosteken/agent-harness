@@ -13,6 +13,10 @@ Git is your safety net. Treat commits as save points, branches as sandboxes, and
 
 Always. Every code change flows through git.
 
+## Who Runs `git commit`
+
+Everything below describes commit *hygiene* — how commits should be shaped once they exist. It is not an instruction for an agent to run `git commit` autonomously. **Never run `git commit` (or stage-then-commit) without the user explicitly asking for it in that message.** Instead: stage nothing implicitly, and when a slice is ready, draft the commit message described below and tell the user it's ready — then leave the actual commit to them. If the user explicitly asks you to commit in a given session, that permission is for that session only, not a standing default.
+
 ## Core Principles
 
 ### Trunk-Based Development (Recommended)
@@ -33,17 +37,17 @@ This is the recommended default. Teams using gitflow or long-lived branches can 
 
 ### 1. Commit Early, Commit Often
 
-Each successful increment gets its own commit. Don't accumulate large uncommitted changes.
+Each successful increment should become its own commit. Don't let large uncommitted changes pile up.
 
 ```
 Work pattern:
-  Implement slice → Test → Verify → Commit → Next slice
+  Implement slice → Test → Verify → Propose commit → Next slice
 
 Not this:
   Implement everything → Hope it works → Giant commit
 ```
 
-Commits are save points. If the next change breaks something, you can revert to the last known-good state instantly.
+When an agent is doing the work, "Propose commit" means drafting the message and telling the user it's ready — not running `git commit`. Commits are save points. If the next change breaks something, the user can revert to the last known-good state instantly, once they've actually committed it.
 
 ### 2. Atomic Commits
 
@@ -176,17 +180,17 @@ Benefits:
 Agent starts work
     │
     ├── Makes a change
-    │   ├── Test passes? → Commit → Continue
-    │   └── Test fails? → Revert to last commit → Investigate
+    │   ├── Test passes? → Propose commit message → Continue (don't wait for the commit)
+    │   └── Test fails? → Flag it, offer to revert to last commit → Investigate
     │
     ├── Makes another change
-    │   ├── Test passes? → Commit → Continue
-    │   └── Test fails? → Revert to last commit → Investigate
+    │   ├── Test passes? → Propose commit message → Continue
+    │   └── Test fails? → Flag it, offer to revert to last commit → Investigate
     │
-    └── Feature complete → All commits form a clean history
+    └── Feature complete → Summarize all proposed commits for the user
 ```
 
-This pattern means you never lose more than one increment of work. If an agent goes off the rails, `git reset --hard HEAD` takes you back to the last successful state.
+This pattern means the user never loses more than one increment of reviewed work. Note the actual safety net (`git reset --hard HEAD` or reverting to the last commit) only exists once commits actually happen — since the agent doesn't run `git commit` itself, encourage the user to commit each proposed message promptly if they want that rollback guarantee to be real, not just described.
 
 ## Change Summaries
 
