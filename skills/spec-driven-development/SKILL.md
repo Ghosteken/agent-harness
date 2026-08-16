@@ -81,7 +81,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
    - **Ask first:** Database schema changes, adding dependencies, changing CI config
    - **Never do:** Commit secrets, edit vendor directories, remove failing tests without approval
 
-**Naming the spec file.** Name it after the feature, not a fixed filename — e.g. `SPEC-<feature-slug>.md` in the project root, or `specs/<feature-slug>/SPEC.md` if the project already keeps a `specs/` directory. A bare `SPEC.md` collides the moment a second feature gets spec'd. Before writing, check whether a spec for this feature already exists; if so, confirm with the human whether to update it in place or start a new one.
+**Naming the spec file.** Save every spec under `specs/<feature-slug>/SPEC.md`. If the `specs/` directory doesn't exist yet, create it — that's the standard home for specs, not the project root. A bare root-level `SPEC.md` collides the moment a second feature gets spec'd. Before writing, check whether a spec folder for this feature already exists; if so, confirm with the human whether to update it in place or start a new one (e.g. `specs/<feature-slug>-2/SPEC.md`).
 
 **Spec template:**
 
@@ -201,4 +201,4 @@ Before proceeding to implementation, confirm:
 - [ ] The human has reviewed and approved the spec
 - [ ] Success criteria are specific and testable
 - [ ] Boundaries (Always/Ask First/Never) are defined
-- [ ] The spec is saved to a feature-named file in the repository (not a bare `SPEC.md` that could collide with another feature's spec)
+- [ ] The spec is saved to `specs/<feature-slug>/SPEC.md` (creating `specs/` if needed), not a bare root-level `SPEC.md` that could collide with another feature's spec
