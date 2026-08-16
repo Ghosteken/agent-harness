@@ -460,7 +460,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (174 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (178 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

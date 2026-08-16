@@ -141,6 +141,10 @@ If a task is L or larger, it should be broken into smaller tasks. An agent perfo
 - It touches two or more independent subsystems (e.g., auth and billing)
 - You find yourself writing "and" in the task title (a sign it is two tasks)
 
+## Saving the Plan
+
+Save every plan under `plans/<feature-slug>-plan.md`. If the `plans/` directory doesn't exist yet, create it — that's the standard home for plans, not the project root or a scattered location. Check whether a plan for this feature already exists before writing; if so, confirm with the human whether to update it in place or start a new one (e.g. `plans/<feature-slug>-2-plan.md`).
+
 ## Plan Document Template
 
 ```markdown
