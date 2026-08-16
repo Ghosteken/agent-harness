@@ -444,8 +444,7 @@ User: /ship
 | If you say... | Skill(s) invoked |
 |---|---|
 | build, implement, add, create, new feature | `spec-driven-development` → domain agent → `incremental-implementation` → `test-driven-development` |
-| plan this, how should I approach, break this down | `writing-plans` |
-| plan, break down, tasks, roadmap, where do I start | `planning-and-task-breakdown` |
+| plan this, how should I approach, break this down, plan, tasks, roadmap, where do I start | `planning-and-task-breakdown` |
 | execute the plan, follow the plan, implement the plan | `executing-plans` |
 | bug, broken, not working, crash, something is wrong, root cause | `systematic-debugging` |
 | simplify, clean up, reduce complexity, hard to read | `code-simplification` |

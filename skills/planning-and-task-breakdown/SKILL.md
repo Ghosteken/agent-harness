@@ -119,8 +119,9 @@ Add explicit checkpoints:
 - [ ] All tests pass
 - [ ] Application builds without errors
 - [ ] Core user flow works end-to-end
-- [ ] Review with human before proceeding
 ```
+
+Checkpoints are automated verification gates (tests/build/manual-check pass), not human-approval pauses — continue straight into the next phase once they're green. Only stop mid-plan for a genuine blocker: a decision only the human can make, missing credentials/access, or a checkpoint that fails.
 
 ## Task Sizing Guidelines
 
@@ -220,4 +221,5 @@ Before starting implementation, confirm:
 - [ ] Task dependencies are identified and ordered correctly
 - [ ] No task touches more than ~5 files
 - [ ] Checkpoints exist between major phases
-- [ ] The human has reviewed and approved the plan
+
+Once the plan meets these criteria, proceed directly into implementation — don't pause the session to wait for a human sign-off on the plan itself. Keep going through checkpoints as long as their automated checks pass; stop only for a genuine blocker (an open question needing human input, missing access, or a failed checkpoint).
