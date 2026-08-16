@@ -27,7 +27,7 @@ This directory is intentionally small. `agent-harness` started from a bulk impor
 
 The set that remains here is:
 1. **24 core lifecycle skills** — `using-agent-harness` (the intent router and pre-flight mandate) plus 23 others covering the full define → plan → build → verify → review → ship lifecycle. See root [`CLAUDE.md`](../CLAUDE.md) and [`README.md`](../README.md) for the full list.
-2. **A handful of cross-cutting process skills** the router treats as always-relevant regardless of domain: `brainstorming`, `writing-plans`, `executing-plans`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `subagent-driven-development`.
+2. **A handful of cross-cutting process skills** the router treats as always-relevant regardless of domain: `brainstorming`, `planning-and-task-breakdown`, `executing-plans`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `subagent-driven-development`.
 3. **Role-scoped extension skills** — each of the 12 agent personas (`agents/*.md`) has a ~20-skill scope defined in `scripts/agent-scopes.json`, validated by `scripts/validate-skills.js`.
 
 ## How to Use Skills

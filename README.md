@@ -353,7 +353,7 @@ Here is how responsibilities flow from layer to layer when you build a new API e
 User: /spec "add a user authentication endpoint"
 ```
 → `/spec` command activates the `spec-driven-development` skill  
-→ Skill produces `SPEC.md` covering: objective, endpoint contract, auth scheme, error codes, test strategy
+→ Skill produces `docs/specs/<feature-slug>/SPEC.md` covering: objective, endpoint contract, auth scheme, error codes, test strategy
 
 **Step 2 — Plan the tasks**
 ```
@@ -361,7 +361,7 @@ User: /plan
 ```
 → `/plan` command activates `planning-and-task-breakdown` skill  
 → Skill decomposes the spec into atomic, verifiable tasks with acceptance criteria  
-→ Produces `tasks/plan.md` + `tasks/todo.md`
+→ Produces `docs/plans/<feature-slug>-plan.md` (+ `docs/plans/<feature-slug>-todo.md` if a separate task list is kept)
 
 **Step 3 — Build incrementally**
 ```
@@ -444,8 +444,7 @@ User: /ship
 | If you say... | Skill(s) invoked |
 |---|---|
 | build, implement, add, create, new feature | `spec-driven-development` → domain agent → `incremental-implementation` → `test-driven-development` |
-| plan this, how should I approach, break this down | `writing-plans` |
-| plan, break down, tasks, roadmap, where do I start | `planning-and-task-breakdown` |
+| plan this, how should I approach, break this down, plan, tasks, roadmap, where do I start | `planning-and-task-breakdown` |
 | execute the plan, follow the plan, implement the plan | `executing-plans` |
 | bug, broken, not working, crash, something is wrong, root cause | `systematic-debugging` |
 | simplify, clean up, reduce complexity, hard to read | `code-simplification` |
@@ -461,7 +460,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (174 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (178 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

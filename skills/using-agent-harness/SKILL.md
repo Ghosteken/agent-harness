@@ -319,7 +319,7 @@ These skills fire regardless of domain. They cover situations that happen across
 ### Writing a Plan
 **Trigger words:** plan this, how should I approach, break this down, map this out, before I start, let me plan, write a plan for
 
-→ **Skill:** `writing-plans`
+→ **Skill:** `planning-and-task-breakdown`
 → No agent. Invoke before touching code on any multi-step task.
 
 ---

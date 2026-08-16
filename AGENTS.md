@@ -126,7 +126,7 @@ When the user describes a task without naming an agent or command, map their wor
 
 #### Writing a Plan
 **Keywords:** plan this, how should I approach, break this down, map this out, before I start, let me plan, write a plan for
-→ `writing-plans`
+→ `planning-and-task-breakdown`
 
 #### Executing a Plan
 **Keywords:** execute the plan, follow the plan, implement the plan, carry out the steps, run through the plan

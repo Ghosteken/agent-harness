@@ -22,8 +22,8 @@
   | `senior-qa-engineer` | Senior QA Engineer |
 
 - **[`scripts/validate-skills.js`](../scripts/validate-skills.js)** validates this curated set by default (pass `--all` to validate every skill directory, including archived ones, if you're restoring something).
-- **`skills/`** contains only the 168 skills this scheme resolves to — everything else from the original bulk import lives in **`archive/skills-community/`**, unexposed to the agent but still browsable and restorable (`git mv` it back into `skills/` if you need it).
-- **`using-agent-harness/SKILL.md`** is the entry point: its Intent → Agent → Skill routing table maps natural-language requests to a persona + starting skill, and its Cross-Cutting Skills section lists the process skills (`brainstorming`, `writing-plans`, `systematic-debugging`, etc.) that apply regardless of domain.
+- **`skills/`** contains only the 178 skills this scheme resolves to — everything else from the original bulk import lives in **`archive/skills-community/`**, unexposed to the agent but still browsable and restorable (`git mv` it back into `skills/` if you need it).
+- **`using-agent-harness/SKILL.md`** is the entry point: its Intent → Agent → Skill routing table maps natural-language requests to a persona + starting skill, and its Cross-Cutting Skills section lists the process skills (`brainstorming`, `planning-and-task-breakdown`, `systematic-debugging`, etc.) that apply regardless of domain.
 
 ## Using a scope
 

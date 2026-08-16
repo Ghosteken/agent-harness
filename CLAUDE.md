@@ -64,3 +64,4 @@ CONTRIBUTING.md    → Guidelines for adding or editing skills
 - Always: Follow the skill-anatomy.md format for new skills
 - Never: Add skills that are vague advice instead of actionable processes
 - Never: Duplicate content between skills — reference other skills instead
+- Never: Run `git commit` (or stage-then-commit) without the user explicitly asking for it in that message — always draft a commit message and leave the actual commit to the user, even mid-task or mid-plan. This overrides any per-slice "commit" step described by `incremental-implementation`, `git-workflow-and-versioning`, `build`, or `subagent-driven-development` — those describe commit *hygiene* for when the user commits, not an instruction to commit automatically.
