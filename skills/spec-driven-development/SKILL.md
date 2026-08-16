@@ -35,6 +35,8 @@ SPECIFY ──→ PLAN ──→ TASKS ──→ IMPLEMENT
 
 Start with a high-level vision. Ask the human clarifying questions until requirements are concrete.
 
+**Ask with a tool, not with text.** When a clarifying question or an open question boils down to a small set of distinct answers (pick-one-of-N, yes/no, "which of these approaches"), ask it with the AskUserQuestion tool so the human can select an answer directly, rather than printing a numbered list and waiting for a freeform reply. This applies to the Phase 1 clarifying questions and to the final "Open Questions" checkpoint before implementation starts. Reserve plain text for questions that genuinely need a freeform answer (e.g. "what should this be called").
+
 **Surface assumptions immediately.** Before writing any spec content, list what you're assuming:
 
 ```
@@ -78,6 +80,8 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
    - **Always do:** Run tests before commits, follow naming conventions, validate inputs
    - **Ask first:** Database schema changes, adding dependencies, changing CI config
    - **Never do:** Commit secrets, edit vendor directories, remove failing tests without approval
+
+**Naming the spec file.** Name it after the feature, not a fixed filename — e.g. `SPEC-<feature-slug>.md` in the project root, or `specs/<feature-slug>/SPEC.md` if the project already keeps a `specs/` directory. A bare `SPEC.md` collides the moment a second feature gets spec'd. Before writing, check whether a spec for this feature already exists; if so, confirm with the human whether to update it in place or start a new one.
 
 **Spec template:**
 
@@ -197,4 +201,4 @@ Before proceeding to implementation, confirm:
 - [ ] The human has reviewed and approved the spec
 - [ ] Success criteria are specific and testable
 - [ ] Boundaries (Always/Ask First/Never) are defined
-- [ ] The spec is saved to a file in the repository
+- [ ] The spec is saved to a feature-named file in the repository (not a bare `SPEC.md` that could collide with another feature's spec)
