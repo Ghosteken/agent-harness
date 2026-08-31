@@ -356,6 +356,15 @@ These skills fire regardless of domain. They cover situations that happen across
 
 ---
 
+### Deep-Diving a Feature-Shaped Idea
+**Trigger words:** deep dive on this idea, go deep on requirements, ask me everything before we build this, cover every angle, fully spec this before building, don't miss anything — or a one-liner naming a feature domain with many independent sub-decisions (role-based access, multi-tenancy, notifications, payments, search, a workflow engine)
+
+→ **Skill:** `deep-dive`
+→ No agent. Invoke when a short idea implies a whole feature domain rather than one ambiguity — builds a decision tree grounded in the codebase, interrogates it in batched rounds scaled to the idea's real size (not a fixed count), and produces a ready-to-use prompt plus a detailed spec file. Upstream of `spec-driven-development` and `feature-doc`, not a replacement for either.
+→ **Command:** `/deep-dive`
+
+---
+
 ### Documenting a Feature Before Building It
 **Trigger words:** document this feature, write a feature spec, spec out this feature before I build it, pre-implementation doc, feature doc set, implementation guide for this feature, actor variant of this feature
 
