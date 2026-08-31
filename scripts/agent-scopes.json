@@ -24,7 +24,8 @@
         "openapi-spec-generation",
         "api-documentation-generator",
         "debugging-and-error-recovery",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "db-architect": {
@@ -50,7 +51,8 @@
         "sql-optimization-patterns",
         "neon-postgres",
         "dbt-transformation-patterns",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "senior-devops": {
@@ -76,7 +78,8 @@
         "slo-implementation",
         "devops-troubleshooter",
         "deployment-engineer",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "senior-frontend-engineer": {
@@ -100,7 +103,8 @@
         "senior-frontend",
         "ui-review",
         "frontend-developer",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "senior-cloud-architect": {
@@ -125,7 +129,8 @@
         "terraform-specialist",
         "kubernetes-architect",
         "container-security-hardening",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "senior-backend-engineer": {
@@ -151,7 +156,8 @@
         "backend-security-coder",
         "fp-backend",
         "debugging-and-error-recovery",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "ai-ml-engineer": {
@@ -177,7 +183,8 @@
         "advanced-evaluation",
         "agent-evaluation",
         "autonomous-agent-patterns",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "code-reviewer": {
@@ -201,7 +208,8 @@
         "comprehensive-review-pr-enhance",
         "code-refactoring-refactor-clean",
         "code-refactoring-tech-debt",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "security-auditor": {
@@ -226,7 +234,8 @@
         "container-security-hardening",
         "gha-security-review",
         "secrets-management",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "test-engineer": {
@@ -252,7 +261,8 @@
         "test-automator",
         "debugging-strategies",
         "performance-testing-review-ai-review",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "web-performance-auditor": {
@@ -276,7 +286,8 @@
         "grafana-dashboards",
         "slo-implementation",
         "incremental-implementation",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     },
     "senior-qa-engineer": {
@@ -302,7 +313,8 @@
         "debugging-strategies",
         "performance-testing-review-ai-review",
         "security-and-hardening",
-        "feature-doc"
+        "feature-doc",
+        "deep-dive"
       ]
     }
   }
