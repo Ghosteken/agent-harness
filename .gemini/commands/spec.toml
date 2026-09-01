@@ -11,7 +11,7 @@ Begin by understanding what the user wants to build. Ask clarifying questions ab
 
 Whenever a clarifying question or open question has a small set of distinct answers (a choice between approaches, yes/no, pick-one-of-N), ask it directly instead of printing it as plain text — including the "Open Questions" checkpoint before implementation starts. Only fall back to plain text for questions that genuinely need a freeform answer.
 
-Then generate a structured spec covering all six core areas: objective, commands, project structure, code style, testing strategy, and boundaries.
+Then generate a structured spec covering all six core areas: objective, commands, project structure, code style, testing strategy (unit tests are always in scope, never optional), and boundaries.
 
 Save every spec under `specs/<feature-slug>/SPEC.md` in the project's external output location (see references/external-output-paths.md) — never inside the project's own repo. Create the folder if it doesn't exist yet. Check whether a spec folder for this feature already exists before writing — if so, confirm with the user whether to update it in place or create a new one (e.g. specs/<feature-slug>-2/SPEC.md). Never overwrite an unrelated existing spec by defaulting to a generic name. Confirm the chosen path and content with the user before proceeding.
 """

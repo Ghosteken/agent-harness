@@ -19,7 +19,7 @@ Pick the next pending task from the plan. Then:
 
 1. Read the task's acceptance criteria
 2. Load relevant context (existing code, patterns, types)
-3. Write a failing test for the expected behavior (RED)
+3. Write a failing unit test for the expected behavior (RED) — every task gets one, not just tasks that "need" it
 4. Implement the minimum code to pass the test (GREEN)
 5. Run the full test suite to check for regressions
 6. Run the build to verify compilation

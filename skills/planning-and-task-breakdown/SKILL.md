@@ -90,7 +90,7 @@ Each task follows this structure:
 - [ ] [Specific, testable condition]
 
 **Verification:**
-- [ ] Tests pass: `npm test -- --grep "feature-name"`
+- [ ] Unit test(s) added for this task's logic: `npm test -- --grep "feature-name"` — every task gets unit test coverage, not just tasks that "need" it
 - [ ] Build succeeds: `npm run build`
 - [ ] Manual check: [description of what to verify]
 
@@ -116,7 +116,7 @@ Add explicit checkpoints:
 
 ```markdown
 ## Checkpoint: After Tasks 1-3
-- [ ] All tests pass
+- [ ] All unit tests pass, including the ones added for these tasks
 - [ ] Application builds without errors
 - [ ] Core user flow works end-to-end
 ```
@@ -206,12 +206,14 @@ When multiple agents or sessions are available:
 | "The tasks are obvious" | Write them down anyway. Explicit tasks surface hidden dependencies and forgotten edge cases. |
 | "Planning is overhead" | Planning is the task. Implementation without a plan is just typing. |
 | "I can hold it all in my head" | Context windows are finite. Written plans survive session boundaries and compaction. |
+| "This task is too small to need a unit test" | Small tasks are exactly where a missing test goes unnoticed until it breaks something later. Every task gets one. |
 
 ## Red Flags
 
 - Starting implementation without a written task list
 - Tasks that say "implement the feature" without acceptance criteria
 - No verification steps in the plan
+- A task's verification step has no unit test line
 - All tasks are XL-sized
 - No checkpoints between tasks
 - Dependency order isn't considered

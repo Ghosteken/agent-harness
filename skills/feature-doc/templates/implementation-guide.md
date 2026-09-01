@@ -62,9 +62,9 @@ sequenceDiagram
 
 ## Rules Summary
 
-| Rule ID | Description | Step | Enforcement point | Failure behavior |
-|---|---|---|---|---|
-| `RULE-<feature-slug>-<n>` | <what it checks> | <workflow step it's tied to> | <where in code/system it's enforced> | <what happens when it fails> |
+| Rule ID | Description | Step | Enforcement point | Failure behavior | Unit test |
+|---|---|---|---|---|---|
+| `RULE-<feature-slug>-<n>` | <what it checks> | <workflow step it's tied to> | <where in code/system it's enforced> | <what happens when it fails> | <unit test name/location covering this rule at the enforcement point — every rule gets one, in addition to any Gherkin scenario in test-cases.md> |
 
 ## Open Questions / Assumptions
 
