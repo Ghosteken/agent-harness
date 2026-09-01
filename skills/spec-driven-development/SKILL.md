@@ -81,7 +81,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
    - **Ask first:** Database schema changes, adding dependencies, changing CI config
    - **Never do:** Commit secrets, edit vendor directories, remove failing tests without approval
 
-**Naming the spec file.** Save every spec under `docs/specs/<feature-slug>/SPEC.md`. If `docs/`, `docs/specs/`, or the feature's subfolder don't exist yet, create them — that's the standard home for specs, not the project root or a bare `specs/` folder. A generic root-level `SPEC.md` collides the moment a second feature gets spec'd. Before writing, check whether a spec folder for this feature already exists; if so, confirm with the human whether to update it in place or start a new one (e.g. `docs/specs/<feature-slug>-2/SPEC.md`).
+**Naming the spec file.** Save every spec under `specs/<feature-slug>/SPEC.md` in the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or even just ignores. Create the folder if it doesn't exist. A generic root-level `SPEC.md` collides the moment a second feature gets spec'd. Before writing, check whether a spec folder for this feature already exists; if so, confirm with the human whether to update it in place or start a new one (e.g. `specs/<feature-slug>-2/SPEC.md`).
 
 **Spec template:**
 
@@ -172,7 +172,7 @@ The spec is a living document, not a one-time artifact:
 
 - **Update when decisions change** — If you discover the data model needs to change, update the spec first, then implement.
 - **Update when scope changes** — Features added or cut should be reflected in the spec.
-- **Commit the spec** — The spec belongs in version control alongside the code.
+- **Keep it at its external path** — the spec lives outside the project's repo (see `references/external-output-paths.md`), not in version control alongside the code.
 - **Reference the spec in PRs** — Link back to the spec section that each PR implements.
 
 ## Common Rationalizations
@@ -201,4 +201,4 @@ Before proceeding to implementation, confirm:
 - [ ] The human has reviewed and approved the spec
 - [ ] Success criteria are specific and testable
 - [ ] Boundaries (Always/Ask First/Never) are defined
-- [ ] The spec is saved to `docs/specs/<feature-slug>/SPEC.md` (creating `docs/specs/<feature-slug>/` if needed), not a bare root-level `SPEC.md` that could collide with another feature's spec
+- [ ] The spec is saved to `specs/<feature-slug>/SPEC.md` in the project's external output location (see `references/external-output-paths.md`), not a path inside the project's own repo

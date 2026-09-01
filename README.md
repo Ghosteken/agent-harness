@@ -284,6 +284,7 @@ Quick-reference material that skills pull in when needed:
 | [performance-checklist.md](references/performance-checklist.md) | Core Web Vitals targets, frontend/backend checklists, measurement commands |
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |
 | [orchestration-patterns.md](references/orchestration-patterns.md) | Endorsed and anti-pattern agent orchestration — who's allowed to invoke whom |
+| [external-output-paths.md](references/external-output-paths.md) | Where every file-producing skill writes its output — always outside the project's repo |
 
 ---
 
@@ -354,7 +355,7 @@ Here is how responsibilities flow from layer to layer when you build a new API e
 User: /spec "add a user authentication endpoint"
 ```
 → `/spec` command activates the `spec-driven-development` skill  
-→ Skill produces `docs/specs/<feature-slug>/SPEC.md` covering: objective, endpoint contract, auth scheme, error codes, test strategy
+→ Skill produces `specs/<feature-slug>/SPEC.md` in the project's external output location (see [references/external-output-paths.md](references/external-output-paths.md)) covering: objective, endpoint contract, auth scheme, error codes, test strategy
 
 **Step 2 — Plan the tasks**
 ```
@@ -362,7 +363,7 @@ User: /plan
 ```
 → `/plan` command activates `planning-and-task-breakdown` skill  
 → Skill decomposes the spec into atomic, verifiable tasks with acceptance criteria  
-→ Produces `docs/plans/<feature-slug>-plan.md` (+ `docs/plans/<feature-slug>-todo.md` if a separate task list is kept)
+→ Produces `plans/<feature-slug>-plan.md` (+ `plans/<feature-slug>-todo.md` if a separate task list is kept) in the project's external output location
 
 **Step 3 — Build incrementally**
 ```
@@ -499,7 +500,7 @@ agent-harness/
 │   ├── senior-cloud-architect.md      #   Engineering domain
 │   ├── senior-backend-engineer.md     #   Engineering domain
 │   └── ai-ml-engineer.md              #   Engineering domain
-├── references/                        # 5 supplementary checklists
+├── references/                        # 6 supplementary checklists
 ├── hooks/                             # Session lifecycle hooks
 ├── .claude/commands/                  # 8 slash commands (Claude Code)
 ├── .gemini/commands/                  # Slash commands (Gemini CLI)

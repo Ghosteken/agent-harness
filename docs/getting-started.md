@@ -129,16 +129,15 @@ The `references/` directory contains supplementary checklists:
 | `security-checklist.md` | security-and-hardening |
 | `accessibility-checklist.md` | frontend-ui-engineering |
 | `orchestration-patterns.md` | using-agent-harness (who's allowed to invoke whom) |
+| `external-output-paths.md` | every file-producing skill (where generated artifacts live, outside the project's repo) |
 
 Load a reference when you need detailed patterns beyond what the skill covers.
 
 ## Spec and task artifacts
 
-The `/spec` and `/plan` commands create working artifacts (`docs/specs/<feature-slug>/SPEC.md`, `docs/plans/<feature-slug>-plan.md`, `docs/plans/<feature-slug>-todo.md`). Treat them as **living documents** while the work is in progress:
+The `/spec`, `/plan`, `/feature-doc`, and `/deep-dive` commands (along with `interview-me`, `idea-refine`, `documentation-and-adrs`, and `acquire-codebase-knowledge`) all write their working artifacts to a location **outside the current project's repository** — see [references/external-output-paths.md](../references/external-output-paths.md) for the exact root and per-skill subpaths. None of these files are ever written into a path git in the project tracks, or even a merely-gitignored path inside it.
 
-- Keep them in version control during development so the human and the agent have a shared source of truth.
-- Update them when scope or decisions change.
-- If your repo doesn’t want these files long‑term, delete them before merge or add the folder to `.gitignore` — the workflow doesn’t require them to be permanent.
+Treat them as **living documents** while the work is in progress — update them when scope or decisions change — but look for them at their external path (the skill tells you the full path after writing), not inside `docs/` in the project itself.
 
 ## Tips
 

@@ -143,7 +143,7 @@ If a task is L or larger, it should be broken into smaller tasks. An agent perfo
 
 ## Saving the Plan
 
-Save every plan under `docs/plans/<feature-slug>-plan.md`. If `docs/` and/or `docs/plans/` don't exist yet, create them — that's the standard home for plans, not the project root or a scattered location. Check whether a plan for this feature already exists before writing; if so, confirm with the human whether to update it in place or start a new one (e.g. `docs/plans/<feature-slug>-2-plan.md`).
+Save every plan under `plans/<feature-slug>-plan.md` in the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, not a path git in this project tracks or ignores. Create the folder if it doesn't exist. Check whether a plan for this feature already exists before writing; if so, confirm with the human whether to update it in place or start a new one (e.g. `plans/<feature-slug>-2-plan.md`).
 
 ## Plan Document Template
 
@@ -225,6 +225,6 @@ Before starting implementation, confirm:
 - [ ] Task dependencies are identified and ordered correctly
 - [ ] No task touches more than ~5 files
 - [ ] Checkpoints exist between major phases
-- [ ] The plan is saved to `docs/plans/<feature-slug>-plan.md` (creating `docs/plans/` if needed), not a bare root-level or scattered file
+- [ ] The plan is saved to `plans/<feature-slug>-plan.md` in the project's external output location (see `references/external-output-paths.md`), not a path inside the project's own repo
 
 Once the plan meets these criteria, proceed directly into implementation — don't pause the session to wait for a human sign-off on the plan itself. Keep going through checkpoints as long as their automated checks pass; stop only for a genuine blocker (an open question needing human input, missing access, or a failed checkpoint).

@@ -30,7 +30,7 @@ If the user names a focus area ("architecture only," "testing and concerns"), st
 
 ### 3. Populate the seven documents
 
-Write `STACK.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `INTEGRATIONS.md`, `TESTING.md`, and `CONCERNS.md` to `docs/codebase/`. Every non-trivial claim needs a short evidence pointer (a file path, a config key, a command's output) — a claim with no evidence pointer is a guess, not a documented fact. Mark anything undeterminable `[TODO]` and anything requiring team intent `[ASK USER]`, per the convention in `references/codebase-knowledge-templates.md`.
+Write `STACK.md`, `STRUCTURE.md`, `ARCHITECTURE.md`, `CONVENTIONS.md`, `INTEGRATIONS.md`, `TESTING.md`, and `CONCERNS.md` to `codebase/` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Every non-trivial claim needs a short evidence pointer (a file path, a config key, a command's output) — a claim with no evidence pointer is a guess, not a documented fact. Mark anything undeterminable `[TODO]` and anything requiring team intent `[ASK USER]`, per the convention in `references/codebase-knowledge-templates.md`.
 
 ### 4. Validate before presenting
 
@@ -61,7 +61,7 @@ Summarize all seven documents, then list every `[ASK USER]` item as a numbered q
 
 ## Verification
 
-- [ ] All seven documents exist in `docs/codebase/` with every required section present
+- [ ] All seven documents exist in `codebase/` under the project's external output location (see `references/external-output-paths.md`) with every required section present
 - [ ] Every non-trivial claim carries an evidence pointer to a real file, config value, or command output
 - [ ] Every undeterminable fact is marked `[TODO]`, not guessed
 - [ ] Every team-intent question is marked `[ASK USER]` and listed in the final summary
