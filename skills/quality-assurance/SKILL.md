@@ -29,7 +29,7 @@ This skill executes verification scenarios against a known expected behaviour (s
 
 Before executing anything:
 
-1. Look for a spec (`specs/<feature-slug>/SPEC.md` under the project's external output location — see `references/external-output-paths.md` — or legacy in-repo `SPEC.md`), task description, acceptance criteria, issue description, or feature doc
+1. Look for a spec, under the project's external output location (see `references/external-output-paths.md`) — `specs/<feature-slug>/SPEC.md`'s Success Criteria section, or `features/<feature-slug>/<actor-slug>/feature-spec.md` + `test-cases.md` if `feature-doc` produced one (its Gherkin scenarios are usually the most direct source of scenarios to execute) — or a legacy in-repo `SPEC.md`, task description, acceptance criteria, or issue description
 2. If found — list the specific behaviours to confirm (one per scenario)
 3. If not found — **stop and ask**: "What is the expected behaviour for [X]? I need a reference before I can verify."
 
@@ -37,7 +37,7 @@ Before executing anything:
 
 ### Step 2 — Plan Scenarios
 
-Map expected behaviours to concrete verification scenarios:
+If `test-cases.md` exists (from `feature-doc`), its Gherkin scenarios are already concrete verification scenarios — execute those directly rather than re-deriving them from the feature spec. Otherwise, map expected behaviours to concrete verification scenarios:
 
 | Type | What to check |
 |---|---|
