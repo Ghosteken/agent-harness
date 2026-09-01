@@ -13,12 +13,14 @@ Produces the documentation that must exist *before* a feature is implemented: wh
 
 ## Output layout
 
+Written to the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores:
+
 ```
-docs/features/<feature-slug>/<actor-slug>/
+features/<feature-slug>/<actor-slug>/
   feature-spec.md
   implementation-guide.md
   test-cases.md
-docs/features/README.md        # index of every feature/actor doc set, created if missing
+features/README.md        # index of every feature/actor doc set, created if missing
 ```
 
 If the feature behaves identically for every actor it applies to, use a single actor folder named `shared` instead of duplicating identical content across actor folders.
@@ -31,7 +33,7 @@ Ask for the feature name or a short description of it. Nothing else yet — don'
 
 ### 2. Locate source docs
 
-Look for a `docs/` folder in the current project (create `docs/features/` later if `docs/` doesn't exist yet — that's expected for a first-time run, not an error).
+Look for a `docs/` folder in the current project — this is a read of the project's own existing documentation, unrelated to where this skill's output gets written (see Output layout above).
 
 Search `docs/` (and its immediate subfolders) for files that look like a technical spec or product doc — by name (`*technical*spec*`, `*product*doc*`, `*architecture*`, `*prd*`, etc.) and by skimming headings if names are ambiguous. If more than one candidate is found, ask the user which is the technical doc (primary source of truth for architecture, data model, actors/roles, APIs) and which is the product doc (secondary source for personas, journeys, feature framing) — do not guess which is which.
 
@@ -59,7 +61,7 @@ Use AskUserQuestion for discrete choices with a small option set; use plain foll
 
 ### 5. Draft
 
-Copy the three templates from `templates/` into `docs/features/<feature-slug>/<actor-slug>/` and fill every section. No placeholder text, no `TODO`, no bracketed `[...]` left anywhere in the output — if something is still genuinely unresolved after the interview, say so explicitly in the "Open Questions / Assumptions" section of `implementation-guide.md` rather than leaving a blank.
+Copy the three templates from `templates/` into `features/<feature-slug>/<actor-slug>/` under the project's external output location and fill every section. No placeholder text, no `TODO`, no bracketed `[...]` left anywhere in the output — if something is still genuinely unresolved after the interview, say so explicitly in the "Open Questions / Assumptions" section of `implementation-guide.md` rather than leaving a blank.
 
 Two rules that make the three files cohere as one set:
 - Every step under **Workflow & Lifecycle** in `implementation-guide.md` carries at least one tagged rule, `RULE-<feature-slug>-<n>` (see `reference.md` for the convention).
@@ -69,7 +71,7 @@ Read `reference.md` before drafting `implementation-guide.md` for the first time
 
 ### 6. Update the index
 
-Add or update the corresponding row(s) in `docs/features/README.md` (create it from scratch, with just a header and table, if this is the first feature documented in the project).
+Add or update the corresponding row(s) in `features/README.md` under the project's external output location (create it from scratch, with just a header and table, if this is the first feature documented in the project).
 
 ### 7. Present and iterate
 

@@ -90,7 +90,7 @@ step 1's exploration, not generic advice.]
 - [Anything genuinely unresolved — not a deferred edge case, an actual unknown]
 ```
 
-Save to `docs/deep-dives/<topic-slug>.md`, creating the directory if it doesn't exist. If a file for this topic already exists, ask whether to update it in place or start a new one (`<topic-slug>-2.md`). This is a distinct location from `docs/specs/` and `docs/features/` — this skill's output is upstream of `spec-driven-development` and `feature-doc`, not a replacement for either.
+Save to `deep-dives/<topic-slug>.md` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Create the directory if it doesn't exist. If a file for this topic already exists, ask whether to update it in place or start a new one (`<topic-slug>-2.md`). This is a distinct subpath from `specs/` and `features/` — this skill's output is upstream of `spec-driven-development` and `feature-doc`, not a replacement for either.
 
 ## Common Rationalizations
 
@@ -102,6 +102,7 @@ Save to `docs/deep-dives/<topic-slug>.md`, creating the directory if it doesn't 
 | "I should add a few more branches to seem thorough" | Padding degrades both outputs with noise the user has to read past. A branch earns its place only if answering it differently would change the prompt or spec. A smaller idea deserves a smaller tree. |
 | "Edge cases can go in Open Questions instead of their own branch" | Open Questions is for genuinely unresolved items. A known edge case with a knowable answer belongs in its branch, decided like everything else — not deferred. |
 | "The feature can live in its own new module, I'll skip checking existing patterns" | A spec that ignores the codebase's current separation of concerns produces something that gets re-architected on review. Step 1's exploration is mandatory, not optional context-gathering. |
+| "I'll just save the spec into docs/ in the project, it's easier to find" | Both outputs go to the project's external output location (`references/external-output-paths.md`), never a path inside the project's repo — not even a gitignored one. Tell the user the full external path so it's still easy to find. |
 
 ## Red Flags
 
@@ -124,7 +125,7 @@ Save to `docs/deep-dives/<topic-slug>.md`, creating the directory if it doesn't 
 - [ ] The user gave an explicit "yes" to the full restatement before either output was produced
 - [ ] Output A (the Desired Prompt) is 2-3 paragraphs, self-contained, and usable without the interview transcript
 - [ ] Output B (the spec file) has an Architectural Fit section grounded in real codebase conventions, and every branch lists its edge cases, rationale, and assumptions
-- [ ] The spec was saved to `docs/deep-dives/<topic-slug>.md`, with the existing-file case handled if applicable
+- [ ] The spec was saved to `deep-dives/<topic-slug>.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 
 ## Interaction with Other Skills
 

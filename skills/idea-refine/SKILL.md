@@ -29,7 +29,7 @@ bash /mnt/skills/user/idea-refine/scripts/idea-refine.sh
 
 ## Output
 
-The final output is a markdown one-pager saved to `docs/ideas/[idea-name].md` (after user confirmation), containing:
+The final output is a markdown one-pager saved to `[idea-name].md` under the project's external output location (see `references/external-output-paths.md` — outside the project's repo, never inside it even gitignored), after user confirmation, containing:
 - Problem Statement
 - Recommended Direction
 - Key Assumptions
@@ -137,7 +137,7 @@ Produce a concrete artifact — a markdown one-pager that moves work forward:
 
 **The "Not Doing" list is arguably the most valuable part.** Focus is about saying no to good ideas. Make the trade-offs explicit.
 
-Ask the user if they'd like to save this to `docs/ideas/[idea-name].md` (or a location of their choosing). Only save if they confirm.
+Ask the user if they'd like to save this to the project's external output location (see `references/external-output-paths.md`). Only save if they confirm.
 
 ### Anti-patterns to Avoid
 

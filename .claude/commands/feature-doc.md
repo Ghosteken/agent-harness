@@ -6,6 +6,6 @@ Invoke the agent-harness:feature-doc skill.
 
 Identify the feature to document, then locate and read the project's own technical/product docs before asking anything else. Interview the user to resolve every material unknown the docs don't already answer — actors, triggers, preconditions, data sources, edge cases — never assume or default anything feature-specific.
 
-Produce three cross-referenced artifacts under `docs/features/<feature-slug>/<actor-slug>/`: `feature-spec.md`, `implementation-guide.md`, and `test-cases.md`, and update the index at `docs/features/README.md`.
+Produce three cross-referenced artifacts under `features/<feature-slug>/<actor-slug>/` in the project's external output location (see `references/external-output-paths.md` — never inside the project's own repo): `feature-spec.md`, `implementation-guide.md`, and `test-cases.md`, and update the index at `features/README.md`.
 
 State clearly that this output is a planning artifact — implementing the feature is a separate, later step.
