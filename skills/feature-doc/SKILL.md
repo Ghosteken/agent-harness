@@ -63,9 +63,10 @@ Use AskUserQuestion for discrete choices with a small option set; use plain foll
 
 Copy the three templates from `templates/` into `features/<feature-slug>/<actor-slug>/` under the project's external output location and fill every section. No placeholder text, no `TODO`, no bracketed `[...]` left anywhere in the output — if something is still genuinely unresolved after the interview, say so explicitly in the "Open Questions / Assumptions" section of `implementation-guide.md` rather than leaving a blank.
 
-Two rules that make the three files cohere as one set:
+Three rules that make the three files cohere as one set:
 - Every step under **Workflow & Lifecycle** in `implementation-guide.md` carries at least one tagged rule, `RULE-<feature-slug>-<n>` (see `reference.md` for the convention).
 - Every rule that appears anywhere (workflow steps, alternate/unhappy paths, specs) must be covered by at least one Gherkin scenario in `test-cases.md`, tracked in that file's traceability table.
+- Every rule also gets a unit test named in `implementation-guide.md`'s Rules Summary table, at the enforcement point — the Gherkin scenario proves the behavior end to end; the unit test proves the rule in isolation. Neither substitutes for the other.
 
 Read `reference.md` before drafting `implementation-guide.md` for the first time in a session — it defines the use-case-vs-workflow distinction and the DDD vocabulary the template expects, and getting this wrong is the most common way these docs end up confused with each other.
 

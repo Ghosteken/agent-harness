@@ -74,7 +74,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
 
 4. **Code Style** — One real code snippet showing your style beats three paragraphs describing it. Include naming conventions, formatting rules, and examples of good output.
 
-5. **Testing Strategy** — What framework, where tests live, coverage expectations, which test levels for which concerns.
+5. **Testing Strategy** — What framework, where tests live, coverage expectations, which test levels for which concerns. **Unit tests are always in scope, non-negotiably** — state the unit-testing framework and where unit tests live even when integration/e2e coverage is lighter; a spec that only discusses higher-level test levels is incomplete.
 
 6. **Boundaries** — Three-tier system:
    - **Always do:** Run tests before commits, follow naming conventions, validate inputs
@@ -104,7 +104,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
 [Example snippet + key conventions]
 
 ## Testing Strategy
-[Framework, test locations, coverage requirements, test levels]
+[Unit test framework and location (always required), plus any integration/e2e frameworks, coverage requirements, test levels]
 
 ## Boundaries
 - Always: [...]

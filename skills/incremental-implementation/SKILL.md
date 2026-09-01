@@ -36,8 +36,8 @@ Build in thin vertical slices — implement one piece, test it, verify it, then 
 For each slice:
 
 1. **Implement** the smallest complete piece of functionality
-2. **Test** — run the test suite (or write a test if none exists)
-3. **Verify** — confirm the slice works as expected (tests pass, build succeeds, manual check)
+2. **Test** — every slice gets a unit test, not just slices that "need" one; run the full suite alongside it
+3. **Verify** — confirm the slice works as expected (unit tests pass, build succeeds, manual check)
 4. **Propose a commit** — draft a descriptive message and tell the user the slice is ready (see `git-workflow-and-versioning` for atomic commit guidance). **Never run `git commit` yourself** — leave the actual commit to the user unless they've explicitly asked you to commit in this session.
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
 
@@ -201,6 +201,7 @@ Be explicit about what's in scope and what's NOT in scope for each increment.
 After each increment, verify:
 
 - [ ] The change does one thing and does it completely
+- [ ] A unit test was added for this increment's new logic
 - [ ] All existing tests still pass (`npm test`)
 - [ ] The build succeeds (`npm run build`)
 - [ ] Type checking passes (`npx tsc --noEmit`)
@@ -215,6 +216,7 @@ After each increment, verify:
 | Rationalization | Reality |
 |---|---|
 | "I'll test it all at the end" | Bugs compound. A bug in Slice 1 makes Slices 2-5 wrong. Test each slice. |
+| "This slice is too trivial for a unit test" | Trivial slices are where regressions hide longest — no one re-checks something assumed too simple to break. |
 | "It's faster to do it all at once" | It *feels* faster until something breaks and you can't find which of 500 changed lines caused it. |
 | "These changes are too small to commit separately" | Small commits are free. Large commits hide bugs and make rollbacks painful — propose them as separate commits even though the user runs the actual `git commit`. |
 | "I'll add the feature flag later" | If the feature isn't complete, it shouldn't be user-visible. Add the flag now. |
@@ -239,7 +241,7 @@ After each increment, verify:
 
 After completing all increments for a task:
 
-- [ ] Each increment was individually tested and left with a proposed commit message
+- [ ] Each increment was individually tested (a unit test was added, not just an existing-suite check) and left with a proposed commit message
 - [ ] The full test suite passes
 - [ ] The build is clean
 - [ ] The feature works end-to-end as specified
