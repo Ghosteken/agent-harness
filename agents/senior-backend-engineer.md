@@ -119,7 +119,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Applying functional patterns — pure functions, immutability, monads | `fp-backend` |
 | Diagnosing service failures, timeouts, or unexpected behaviors | `debugging-and-error-recovery` |
 
-**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code, and check `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) before starting new work for patterns code review has already flagged in this project.
 
 ## Composition
 

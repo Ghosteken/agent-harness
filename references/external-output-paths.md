@@ -26,6 +26,11 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
+| `code-review-and-quality` | `review-findings.md` — a single running log, **appended to**, not replaced per review (see below) |
+
+### `review-findings.md` is append-only, not per-topic
+
+Every other row above is a fresh artifact per feature/idea/topic. `review-findings.md` is different: it's one continuously-growing log for the whole project, and every review adds to the end of it rather than creating a new file or asking to overwrite. Don't apply the "ask whether to update in place or create a new variant" convention to it — always append.
 
 ## Conventions every producer follows
 
@@ -36,3 +41,5 @@ Create the root and any subdirectory on first write. None of this is expected to
 ## Skills that read these artifacts back
 
 `quality-assurance`, `requesting-code-review`, and `subagent-driven-development` (among others) may need to locate a spec or plan another skill produced. Check the external location above first. Only fall back to an in-repo path if the user says the artifact was placed there manually.
+
+`review-findings.md` specifically is meant to be read by implementation-facing skills and agents (`incremental-implementation`, `test-driven-development`, `executing-plans`, `subagent-driven-development`, and code-writing agent personas) before starting new work — check it for previously-flagged patterns relevant to the task at hand, if the file exists.

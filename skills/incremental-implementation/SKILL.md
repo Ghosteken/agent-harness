@@ -250,3 +250,4 @@ After completing all increments for a task:
 ## See Also
 
 - `references/coding-patterns.md` — structural patterns to apply while implementing each slice (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
+- `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — check it before starting a task, if it exists; it's a running log of patterns code review has already flagged in this project, and repeating one is avoidable
