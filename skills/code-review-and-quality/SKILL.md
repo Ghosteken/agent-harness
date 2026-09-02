@@ -132,3 +132,4 @@ After any refactor or implementation change, check for now-orphaned code: an old
 - `references/code-smells-checklist.md` — named smells for the Reuse/Simplification/Altitude angles
 - `references/security-checklist.md` — deeper security review guidance
 - `references/performance-checklist.md` — deeper performance review guidance
+- `references/coding-patterns.md` — structural patterns to check for on the Architecture axis (boundaries, decision/action separation, unrepresentable invalid states, useful errors)

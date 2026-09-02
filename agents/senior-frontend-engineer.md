@@ -120,6 +120,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Reviewing UI code quality, component API, or props typing | `ui-review` |
 | Building full-stack frontend patterns, routing, or forms | `frontend-developer` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user is building or reviewing UI components, pages, or frontend performance.

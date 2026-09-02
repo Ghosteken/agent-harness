@@ -117,6 +117,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Dependencies need audit or CVE check | `security-and-hardening` |
 | Source documentation needed before recommending a fix | `source-driven-development` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user wants a security-focused pass on a specific change, file, or system component.

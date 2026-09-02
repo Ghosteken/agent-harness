@@ -436,7 +436,7 @@ container.textContent = await llm.reply(userMessage);
 ```
 ## See Also
 
-For detailed security checklists and pre-commit verification steps, see `references/security-checklist.md`.
+For detailed security checklists and pre-commit verification steps, see `references/security-checklist.md`. For structural patterns (external systems behind a boundary and useful, detailed errors especially — sanitized errors that don't leak internals still need to be debuggable server-side), see `references/coding-patterns.md`.
 
 ## Common Rationalizations
 

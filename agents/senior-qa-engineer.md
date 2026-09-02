@@ -114,6 +114,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Verification surfaces code quality concerns worth documenting | `code-review-and-quality` |
 | Spec is absent and needs to be written before verification can begin | `spec-driven-development` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user asks to verify a feature, confirm a fix, run a regression check, or QA a change — rather than write new tests or design coverage.

@@ -238,6 +238,10 @@ Done!
 **Alternative workflow:**
 - **executing-plans** - Use for parallel session instead of same-session execution
 
+## See Also
+
+- `references/coding-patterns.md` — structural patterns each dispatched subagent should apply to its task's implementation
+
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.
 - Do not treat the output as a substitute for environment-specific validation, testing, or expert review.

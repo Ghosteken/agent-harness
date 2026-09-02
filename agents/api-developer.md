@@ -126,6 +126,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Auto-generating API reference documentation | `api-documentation-generator` |
 | Diagnosing an endpoint failure, timeout, or contract mismatch | `debugging-and-error-recovery` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user asks for a review or design of an API endpoint, contract, or integration.

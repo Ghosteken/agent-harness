@@ -344,7 +344,7 @@ This separation ensures the test is written without knowledge of the fix, making
 
 ## See Also
 
-For detailed testing patterns, examples, and anti-patterns across frameworks, see `references/testing-patterns.md`.
+For detailed testing patterns, examples, and anti-patterns across frameworks, see `references/testing-patterns.md`. For structural patterns worth applying to the code under test (decisions separated from actions especially — it's what makes something testable without mocking I/O), see `references/coding-patterns.md`.
 
 ## Common Rationalizations
 

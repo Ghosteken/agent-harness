@@ -120,6 +120,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Designing multi-cluster Kubernetes or platform engineering patterns | `kubernetes-architect` |
 | Hardening container images, pod security, or runtime security | `container-security-hardening` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user is designing or reviewing cloud infrastructure, scaling strategies, or DR plans.

@@ -122,6 +122,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Diagnosing pipeline failures, pod crashes, or deploy issues | `devops-troubleshooter` |
 | Coordinating a release, feature flag rollout, or rollback | `deployment-engineer` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user is designing pipelines, writing Dockerfiles, authoring Terraform, or reviewing infrastructure changes.

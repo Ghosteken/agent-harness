@@ -329,3 +329,7 @@ After completing a simplification pass:
 - [ ] No error handling was removed or weakened
 - [ ] No dead code was left behind (unused imports, unreachable branches)
 - [ ] A teammate or review agent would approve the change as a net improvement
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns that often point at what to simplify toward (a clear main path, decisions separated from actions) rather than just "fewer lines"

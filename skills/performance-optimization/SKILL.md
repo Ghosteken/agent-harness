@@ -320,7 +320,7 @@ npx lhci autorun
 
 ## See Also
 
-For detailed performance checklists, optimization commands, and anti-pattern reference, see `references/performance-checklist.md`.
+For detailed performance checklists, optimization commands, and anti-pattern reference, see `references/performance-checklist.md`. For structural patterns worth checking when a bottleneck traces back to design rather than a specific query or bundle, see `references/coding-patterns.md`.
 
 
 ## Common Rationalizations

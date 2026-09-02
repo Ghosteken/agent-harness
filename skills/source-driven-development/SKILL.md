@@ -192,3 +192,7 @@ After implementing with source-driven development:
 - [ ] No deprecated APIs are used (checked against migration guides)
 - [ ] Conflicts between docs and existing code were surfaced to the user
 - [ ] Anything that could not be verified is explicitly flagged as unverified
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns to apply alongside official framework docs when writing the actual code

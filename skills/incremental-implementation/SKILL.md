@@ -246,3 +246,7 @@ After completing all increments for a task:
 - [ ] The build is clean
 - [ ] The feature works end-to-end as specified
 - [ ] No unreviewed changes remain — the user has a summary and a proposed commit message for each increment; committing is theirs to do (or explicitly delegated to you)
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns to apply while implementing each slice (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
