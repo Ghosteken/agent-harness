@@ -72,7 +72,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
    docs/          → Documentation
    ```
 
-4. **Code Style** — One real code snippet showing your style beats three paragraphs describing it. Include naming conventions, formatting rules, and examples of good output.
+4. **Code Style** — One real code snippet showing your style beats three paragraphs describing it. Include naming conventions, formatting rules, and examples of good output. See `references/coding-patterns.md` for structural conventions (boundaries around external systems, decisions separated from actions, etc.) worth calling out here if the feature touches them.
 
 5. **Testing Strategy** — What framework, where tests live, coverage expectations, which test levels for which concerns. **Unit tests are always in scope, non-negotiably** — state the unit-testing framework and where unit tests live even when integration/e2e coverage is lighter; a spec that only discusses higher-level test levels is incomplete.
 

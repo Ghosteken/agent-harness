@@ -78,6 +78,11 @@ After all tasks complete and verified:
 ## When to Use
 This skill is applicable to execute the workflow or actions described in the overview.
 
+## See Also
+
+- `references/coding-patterns.md` — structural patterns to apply while executing each task's implementation
+- `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — check it before starting, if it exists, for patterns code review has already flagged in this project
+
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.
 - Do not treat the output as a substitute for environment-specific validation, testing, or expert review.

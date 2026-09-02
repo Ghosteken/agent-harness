@@ -120,6 +120,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Evaluating agent trajectories, tool-use correctness, or task completion | `agent-evaluation` |
 | Implementing ReAct, Reflexion, plan-and-execute, or self-critique patterns | `autonomous-agent-patterns` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code, and check `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) before starting new work for patterns code review has already flagged in this project.
+
 ## Composition
 
 - **Invoke directly when:** the user is building or reviewing AI-powered features, LLM integrations, RAG pipelines, or agent workflows.

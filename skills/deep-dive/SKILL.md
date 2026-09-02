@@ -72,7 +72,9 @@ Structure:
 ## Architectural Fit
 [How this integrates with the codebase's existing patterns and separation of
 concerns — which layer owns what, matching current conventions. Grounded in
-step 1's exploration, not generic advice.]
+step 1's exploration, not generic advice. Check decisions against
+references/coding-patterns.md where relevant (boundaries around external
+systems, decisions separated from actions, etc.).]
 
 ## [Branch Name]
 **Decision:** [what was decided]

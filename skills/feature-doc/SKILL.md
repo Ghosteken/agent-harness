@@ -88,3 +88,7 @@ Make clear that this output is a planning artifact — implementing the feature 
 - **`idea-refine`** — upstream. For a vague concept that hasn't been shaped into a concrete feature yet, run ideation there first; `feature-doc` assumes the feature is already concrete enough to interview about and document.
 - **`spec-driven-development`** — a lighter alternative, not a prerequisite. It produces a single `SPEC.md` PRD; `feature-doc` produces three cross-referenced, per-actor artifacts grounded in existing project docs. Reach for `feature-doc` when a feature needs that level of structure (multiple actors, traceable rules, Gherkin test cases); reach for `spec-driven-development` when a single PRD is enough.
 - **`planning-and-task-breakdown`** — downstream. Once a feature's doc set exists, break `implementation-guide.md`'s workflow steps into tasks the normal way.
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns worth checking the Domain Model and Workflow & Lifecycle sections against (unrepresentable invalid states, decisions separated from actions, external systems behind a boundary)

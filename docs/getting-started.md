@@ -130,6 +130,7 @@ The `references/` directory contains supplementary checklists:
 | `accessibility-checklist.md` | frontend-ui-engineering |
 | `orchestration-patterns.md` | using-agent-harness (who's allowed to invoke whom) |
 | `external-output-paths.md` | every file-producing skill (where generated artifacts live, outside the project's repo) |
+| `coding-patterns.md` | incremental-implementation, spec-driven-development, feature-doc, deep-dive, code-review-and-quality (structural patterns for build/plan/spec work) |
 
 Load a reference when you need detailed patterns beyond what the skill covers.
 

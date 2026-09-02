@@ -294,7 +294,7 @@ function useToggleTask() {
 
 ## See Also
 
-For detailed accessibility requirements and testing tools, see `references/accessibility-checklist.md`.
+For detailed accessibility requirements and testing tools, see `references/accessibility-checklist.md`. For structural patterns (unrepresentable invalid states especially — a common source of impossible UI states like "loading and error at once"), see `references/coding-patterns.md`.
 
 ## Common Rationalizations
 

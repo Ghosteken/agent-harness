@@ -86,6 +86,21 @@ Each finding states the file:line, the problem, the concrete failure scenario, a
 
 If the review tooling exposes a structured findings reporter, call it once with the ranked list instead of writing the findings as prose — a structured report is what lets the cap and severities actually be enforced downstream, rather than re-litigated in freeform text.
 
+### Phase 4 — Record findings for future implementation
+
+If any Critical or Important finding survived Phase 2 (Suggestions are too routine to log), append each one as a dated entry to `review-findings.md` in the project's external output location (see `references/external-output-paths.md`) — a single running log for the project, always appended to, never overwritten or replaced per review:
+
+```markdown
+## <YYYY-MM-DD> — <what was reviewed: file/PR/branch/feature>
+- **Axis:** Correctness | Security | Architecture | Performance | Readability
+- **Finding:** <the specific bad pattern or problem observed, one line>
+- **Avoid by:** <concrete guidance for next time — what to do instead, not just what was wrong>
+```
+
+Create the file (with a one-line header explaining its purpose) if this is the first entry for the project. Skip this step entirely on a clean review with nothing above Suggestion severity — an empty review doesn't need a log entry. Tell the user the entry was recorded and where, the same as any other external-output artifact.
+
+This log exists so `incremental-implementation`, `test-driven-development`, `executing-plans`, `subagent-driven-development`, and code-writing agent personas can check it before starting new work and avoid repeating a mistake this project has already made once.
+
 ## Dead Code Hygiene
 
 After any refactor or implementation change, check for now-orphaned code: an old helper replaced by a new one, a component nothing renders anymore, a constant with no remaining references. List it explicitly and ask before deleting — don't leave it lying around, but don't silently remove something you're not sure is unused either.
@@ -108,6 +123,7 @@ After any refactor or implementation change, check for now-orphaned code: an old
 | "AI-generated code is probably fine" | AI code is confident and plausible even when wrong — it needs the verify step applied, not skipped. |
 | "The tests pass, so it's good" | Tests are necessary but not sufficient — they don't catch architecture, security, or readability problems by themselves. |
 | "This finding felt right, I'll report it without checking" | Skipping Phase 2 is exactly how a review pipeline degrades into noise; an unverified candidate stays a candidate. |
+| "The author already knows about this finding, no need to log it" | The log isn't for this author in this session — it's for whoever writes the next similar code, possibly a different agent with no memory of this conversation. |
 
 ## Red Flags
 
@@ -126,9 +142,11 @@ After any refactor or implementation change, check for now-orphaned code: an old
 - [ ] Every reported finding passed an independent verify step (CONFIRMED or PLAUSIBLE)
 - [ ] Findings are ranked, severity-labeled, and capped at 8
 - [ ] The report ends with an explicit Approve / Request changes verdict
+- [ ] Any Critical/Important finding was appended to `review-findings.md` at the external output location (or the review had none, and this step was correctly skipped)
 
 ## See Also
 
 - `references/code-smells-checklist.md` — named smells for the Reuse/Simplification/Altitude angles
 - `references/security-checklist.md` — deeper security review guidance
 - `references/performance-checklist.md` — deeper performance review guidance
+- `references/coding-patterns.md` — structural patterns to check for on the Architecture axis (boundaries, decision/action separation, unrepresentable invalid states, useful errors)

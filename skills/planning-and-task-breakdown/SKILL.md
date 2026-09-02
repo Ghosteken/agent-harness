@@ -230,3 +230,7 @@ Before starting implementation, confirm:
 - [ ] The plan is saved to `plans/<feature-slug>-plan.md` in the project's external output location (see `references/external-output-paths.md`), not a path inside the project's own repo
 
 Once the plan meets these criteria, proceed directly into implementation — don't pause the session to wait for a human sign-off on the plan itself. Keep going through checkpoints as long as their automated checks pass; stop only for a genuine blocker (an open question needing human input, missing access, or a failed checkpoint).
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns worth naming in a task's acceptance criteria when the task involves an external system, a decision-heavy flow (validation, retries, pricing, permissions), or state that could otherwise be modeled with independent nullable/boolean fields

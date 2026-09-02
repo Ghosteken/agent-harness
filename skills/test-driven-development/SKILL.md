@@ -344,7 +344,7 @@ This separation ensures the test is written without knowledge of the fix, making
 
 ## See Also
 
-For detailed testing patterns, examples, and anti-patterns across frameworks, see `references/testing-patterns.md`.
+For detailed testing patterns, examples, and anti-patterns across frameworks, see `references/testing-patterns.md`. For structural patterns worth applying to the code under test (decisions separated from actions especially — it's what makes something testable without mocking I/O), see `references/coding-patterns.md`. Check `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) before writing tests for a new area — a previously-flagged pattern is worth a dedicated test case, not just a mental note.
 
 ## Common Rationalizations
 

@@ -238,6 +238,11 @@ Done!
 **Alternative workflow:**
 - **executing-plans** - Use for parallel session instead of same-session execution
 
+## See Also
+
+- `references/coding-patterns.md` — structural patterns each dispatched subagent should apply to its task's implementation
+- `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — worth including in each subagent's task brief, if it exists, so previously-flagged patterns don't get repeated by a fresh subagent with no memory of past reviews
+
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.
 - Do not treat the output as a substitute for environment-specific validation, testing, or expert review.

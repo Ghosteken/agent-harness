@@ -292,3 +292,7 @@ After designing an API:
 - [ ] New fields are additive and optional (backward compatible)
 - [ ] Naming follows consistent conventions across all endpoints
 - [ ] API documentation or types are committed alongside the implementation
+
+## See Also
+
+- `references/coding-patterns.md` — structural patterns for the implementation (external systems behind a boundary, unrepresentable invalid states, useful errors) that follows from a designed contract

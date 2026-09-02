@@ -285,6 +285,7 @@ Quick-reference material that skills pull in when needed:
 | [accessibility-checklist.md](references/accessibility-checklist.md) | Keyboard nav, screen readers, visual design, ARIA, testing tools |
 | [orchestration-patterns.md](references/orchestration-patterns.md) | Endorsed and anti-pattern agent orchestration — who's allowed to invoke whom |
 | [external-output-paths.md](references/external-output-paths.md) | Where every file-producing skill writes its output — always outside the project's repo |
+| [coding-patterns.md](references/coding-patterns.md) | Structural patterns for build/plan/spec work — clear main path, boundaries around external systems, unrepresentable invalid states, decisions separated from actions, useful errors |
 
 ---
 
@@ -500,7 +501,7 @@ agent-harness/
 │   ├── senior-cloud-architect.md      #   Engineering domain
 │   ├── senior-backend-engineer.md     #   Engineering domain
 │   └── ai-ml-engineer.md              #   Engineering domain
-├── references/                        # 6 supplementary checklists
+├── references/                        # 11 supplementary checklists
 ├── hooks/                             # Session lifecycle hooks
 ├── .claude/commands/                  # 8 slash commands (Claude Code)
 ├── .gemini/commands/                  # Slash commands (Gemini CLI)

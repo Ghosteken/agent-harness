@@ -103,6 +103,8 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | A bug is found and needs root-cause isolation | `debugging-and-error-recovery` |
 | Code needs simplification before approval | `code-simplification` |
 
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+
 ## Composition
 
 - **Invoke directly when:** the user asks for a review of a specific change, file, or PR.
