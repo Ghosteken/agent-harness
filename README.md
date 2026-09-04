@@ -6,7 +6,7 @@
 
 **Production-grade engineering skills for AI coding agents.**
 
-Skills encode the workflows, quality gates, and best practices that senior engineers use when building software — packaged so AI agents follow them consistently across every phase of development.
+Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Skills](https://img.shields.io/badge/skills-174-brightgreen)](docs/SCOPE.md)
