@@ -19,14 +19,7 @@ Skills encode the workflows, quality gates, and best practices that senior engin
 
 </div>
 
-```
-  DEFINE          PLAN           BUILD          VERIFY         REVIEW          SHIP
- ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐
- │ Idea │ ───▶ │ Spec │ ───▶ │ Code │ ───▶ │ Test │ ───▶ │  QA  │ ───▶ │  Go  │
- │Refine│      │  PRD │      │ Impl │      │Debug │      │ Gate │      │ Live │
- └──────┘      └──────┘      └──────┘      └──────┘      └──────┘      └──────┘
-  /spec          /plan          /build        /test         /review       /ship
-```
+![DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP pipeline](assets/diagram-pipeline.png)
 
 ---
 
@@ -338,28 +331,11 @@ Every skill follows a consistent anatomy:
 
 Agent Harness uses a three-layer architecture. Understanding the layers helps you get the most out of it.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  Layer 1 — Commands  (the WHEN)                                 │
-│  /spec  /plan  /build  /test  /review  /code-simplify  /ship    │
-│  User-facing entry points. Each command knows which agent and   │
-│  skill(s) to activate for a given phase of the lifecycle.       │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │ invokes
-┌──────────────────────────▼──────────────────────────────────────┐
-│  Layer 2 — Agent Personas  (the WHO)                            │
-│  api-developer  /  senior-backend-engineer  /  code-reviewer    │
-│  Each persona adopts a single engineering role and perspective.  │
-│  It holds a curated scope of skills for its domain.             │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │ invokes
-┌──────────────────────────▼──────────────────────────────────────┐
-│  Layer 3 — Skills  (the HOW)                                    │
-│  spec-driven-development / test-driven-development / etc.       │
-│  Step-by-step workflows with checkpoints, exit criteria, and    │
-│  anti-rationalization guards. The process knowledge lives here. │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Three-layer architecture: Commands invoke Agent Personas invoke Skills](assets/diagram-architecture.png)
+
+- **Layer 1 — Commands (the WHEN):** user-facing entry points (`/spec`, `/plan`, `/build`, `/test`, `/review`, `/code-simplify`, `/ship`). Each command knows which agent and skill(s) to activate for a given phase of the lifecycle.
+- **Layer 2 — Agent Personas (the WHO):** each persona adopts a single engineering role and perspective, holding a curated scope of skills for its domain.
+- **Layer 3 — Skills (the HOW):** step-by-step workflows with checkpoints, exit criteria, and anti-rationalization guards. The process knowledge lives here.
 
 ### Step-by-step: Building an API Feature
 
@@ -407,6 +383,8 @@ User: /ship
 - `test-engineer` → coverage report  
 
 → Main agent merges all reports → single go/no-go decision with rollback plan
+
+![Request lifecycle: what each command actually invokes, from /spec through /ship](assets/diagram-request-lifecycle.png)
 
 ### Responsibility Summary
 
