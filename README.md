@@ -1,18 +1,25 @@
+<div align="center">
+
+![Agent Harness logo](assets/agent.jpg)
+
 # Agent Harness
 
 **Production-grade engineering skills for AI coding agents.**
 
-Skills encode the workflows, quality gates, and best practices that senior engineers use when building software. These ones are packaged so AI agents follow them consistently across every phase of development.
+Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Skills](https://img.shields.io/badge/skills-174-brightgreen)](docs/SCOPE.md)
+[![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
+[![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-```
-  DEFINE          PLAN           BUILD          VERIFY         REVIEW          SHIP
- ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐      ┌──────┐
- │ Idea │ ───▶ │ Spec │ ───▶ │ Code │ ───▶ │ Test │ ───▶ │  QA  │ ───▶ │  Go  │
- │Refine│      │  PRD │      │ Impl │      │Debug │      │ Gate │      │ Live │
- └──────┘      └──────┘      └──────┘      └──────┘      └──────┘      └──────┘
-  /spec          /plan          /build        /test         /review       /ship
-```
+[Quick Start](#quick-start) • [Commands](#commands) • [Skills](#skills) • [Agent Personas](#agent-personas) • [How It Works](#how-it-works-end-to-end-workflow) • [Contributing](#contributing)
+
+</div>
+
+![DEFINE → PLAN → BUILD → VERIFY → REVIEW → SHIP pipeline](assets/diagram-pipeline.png)
 
 ---
 
@@ -30,13 +37,13 @@ Skills encode the workflows, quality gates, and best practices that senior engin
 | Simplify the code | `/code-simplify` | Clarity over cleverness |
 | Ship to production | `/ship` | Faster is safer |
 
-Want fewer manual steps once the spec exists? **`/build auto`** generates the plan and implements every task in a single approved pass — you approve the plan once, then it runs autonomously. It removes the human stepping *between* tasks, not the verification: every task is still test-driven and committed individually, and it pauses on failures or risky steps.
+Want fewer manual steps once the spec exists? **`/build auto`** generates the plan and implements every task in a single approved pass you approve the plan once, then it runs autonomously. It removes the human stepping *between* tasks, not the verification: every task is still test-driven and committed individually, and it pauses on failures or risky steps.
 
-Skills also activate automatically based on what you're doing — designing an API triggers `api-and-interface-design`, building UI triggers `frontend-ui-engineering`, and so on.
+Skills also activate automatically based on what you're doing designing an API triggers `api-and-interface-design`, building UI triggers `frontend-ui-engineering`, and so on.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
 <details>
 <summary><b>Claude Code (recommended)</b></summary>
@@ -169,9 +176,9 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ---
 
-## Skills
+## 🛠️ Skills
 
-The library contains a curated set of **174 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** — 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill — that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **174 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -243,7 +250,7 @@ The library contains a curated set of **174 skills** across every engineering do
 
 ---
 
-## Agent Personas
+## 🧑‍💻 Agent Personas
 
 12 specialist personas — each adopts a single engineering role and operates within a curated skill scope.
 
@@ -273,7 +280,7 @@ See [docs/agents.md](docs/agents.md) for the decision matrix, orchestration rule
 
 ---
 
-## Reference Checklists
+## 📋 Reference Checklists
 
 Quick-reference material that skills pull in when needed:
 
@@ -289,7 +296,7 @@ Quick-reference material that skills pull in when needed:
 
 ---
 
-## How Skills Work
+## ⚙️ How Skills Work
 
 Every skill follows a consistent anatomy:
 
@@ -320,32 +327,15 @@ Every skill follows a consistent anatomy:
 
 ---
 
-## How It Works: End-to-End Workflow
+## 🔄 How It Works: End-to-End Workflow
 
 Agent Harness uses a three-layer architecture. Understanding the layers helps you get the most out of it.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  Layer 1 — Commands  (the WHEN)                                 │
-│  /spec  /plan  /build  /test  /review  /code-simplify  /ship    │
-│  User-facing entry points. Each command knows which agent and   │
-│  skill(s) to activate for a given phase of the lifecycle.       │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │ invokes
-┌──────────────────────────▼──────────────────────────────────────┐
-│  Layer 2 — Agent Personas  (the WHO)                            │
-│  api-developer  /  senior-backend-engineer  /  code-reviewer    │
-│  Each persona adopts a single engineering role and perspective.  │
-│  It holds a curated scope of skills for its domain.             │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │ invokes
-┌──────────────────────────▼──────────────────────────────────────┐
-│  Layer 3 — Skills  (the HOW)                                    │
-│  spec-driven-development / test-driven-development / etc.       │
-│  Step-by-step workflows with checkpoints, exit criteria, and    │
-│  anti-rationalization guards. The process knowledge lives here. │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Three-layer architecture: Commands invoke Agent Personas invoke Skills](assets/diagram-architecture.png)
+
+- **Layer 1 — Commands (the WHEN):** user-facing entry points (`/spec`, `/plan`, `/build`, `/test`, `/review`, `/code-simplify`, `/ship`). Each command knows which agent and skill(s) to activate for a given phase of the lifecycle.
+- **Layer 2 — Agent Personas (the WHO):** each persona adopts a single engineering role and perspective, holding a curated scope of skills for its domain.
+- **Layer 3 — Skills (the HOW):** step-by-step workflows with checkpoints, exit criteria, and anti-rationalization guards. The process knowledge lives here.
 
 ### Step-by-step: Building an API Feature
 
@@ -393,6 +383,8 @@ User: /ship
 - `test-engineer` → coverage report  
 
 → Main agent merges all reports → single go/no-go decision with rollback plan
+
+![Request lifecycle: what each command actually invokes, from /spec through /ship](assets/diagram-request-lifecycle.png)
 
 ### Responsibility Summary
 
@@ -459,7 +451,7 @@ User: /ship
 
 ---
 
-## Project Structure
+## 📁 Project Structure
 
 ```
 agent-harness/
@@ -512,9 +504,9 @@ agent-harness/
 
 ---
 
-## Why Agent Harness?
+## 💡 Why Agent Harness?
 
-AI coding agents default to the shortest path - which often means skipping specs, tests, security reviews, and the practices that make software reliable. Agent Harness gives agents structured workflows that enforce the same discipline senior engineers bring to production code.
+> AI coding agents default to the shortest path — which often means skipping specs, tests, security reviews, and the practices that make software reliable. Agent Harness gives agents structured workflows that enforce the same discipline senior engineers bring to production code.
 
 Each skill encodes hard-won engineering judgment: *when* to write a spec, *what* to test, *how* to review, and *when* to ship. These aren't generic prompts - they're the kind of opinionated, process-driven workflows that separate production-quality work from prototype-quality work.
 
@@ -522,7 +514,7 @@ Skills bake in best practices from Google's engineering culture — including co
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Skills should be **specific** (actionable steps, not vague advice), **verifiable** (clear exit criteria with evidence requirements), **battle-tested** (based on real workflows), and **minimal** (only what's needed to guide the agent).
 
@@ -530,6 +522,12 @@ See [docs/skill-anatomy.md](docs/skill-anatomy.md) for the format specification 
 
 ---
 
-## License
+<div align="center">
 
-MIT - use these skills in your projects, teams, and tools.
+## 📄 License
+
+**MIT** — use these skills in your projects, teams, and tools.
+
+<sub>Built by [Nicholas Aigberua](https://github.com/Ghosteken) · If this saved you time, consider starring the repo ⭐</sub>
+
+</div>
