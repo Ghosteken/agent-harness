@@ -24,6 +24,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `planning-and-task-breakdown` | `plans/<feature-slug>-plan.md` (+ `-todo.md` if a separate task list is kept) |
 | `breakdown-feature-prd` | `features/<feature-slug>/prd.md`, plus a maintained index at `features/README.md` (see below) |
 | `breakdown-feature-implementation` | `features/<feature-slug>/implementation-plan.md` |
+| `story-mode` | `features/<feature-slug>/story.md` (whole-project scope: `features/story.md`), sharing the `features/README.md` index with `breakdown-feature-prd` |
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
@@ -35,7 +36,7 @@ Every other row above is a fresh artifact per feature/idea/topic. `review-findin
 
 ### `features/README.md` is a maintained index, not a fresh artifact
 
-Similarly, `features/README.md` isn't a per-topic artifact — it's a single index `breakdown-feature-prd` keeps up to date, adding or refreshing one line per feature every time it writes or updates that feature's `prd.md`. Update it in place; don't create numbered variants of it.
+Similarly, `features/README.md` isn't a per-topic artifact — it's a single index `breakdown-feature-prd` keeps up to date, adding or refreshing one line per feature every time it writes or updates that feature's `prd.md`. `story-mode` shares this same index, refreshing the same feature's line when it writes `story.md`. Update it in place; don't create numbered variants of it.
 
 ## Conventions every producer follows
 
