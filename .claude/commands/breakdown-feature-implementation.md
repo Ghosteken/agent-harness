@@ -1,0 +1,11 @@
+---
+description: Turn a feature PRD into a technical implementation plan — architecture, database schema, API design, frontend architecture, and security/performance
+---
+
+Invoke the agent-harness:breakdown-feature-implementation skill.
+
+Locate the input first — one feature's `features/<feature-slug>/prd.md` (from `/breakdown-feature-prd`), or any other spec the user points at. Stop and ask if it's missing; never infer requirements from the current implementation. This command always operates on one feature at a time.
+
+Explore the codebase's actual stack and architecture before drafting anything — every diagram and component tree must reflect what's really there, never an invented or example stack. Then draft: Goal, Requirements, and Technical Considerations covering System Architecture (a Mermaid diagram via the design-doc-diagramming skill, organized as Frontend/API/Business Logic/Data/Infrastructure layers), Database Schema Design (an ER diagram plus table/index/FK/migration details), API Design (a per-feature endpoint table following the api-and-interface-design skill's conventions), Frontend Architecture (component hierarchy, state management, key types — genericized to the project's real UI library), and Security & Performance (cross-referencing the security-and-hardening and performance-optimization skills). Pseudocode only — no real code blocks.
+
+Save to `features/<feature-slug>/implementation-plan.md` in the project's external output location (see `references/external-output-paths.md`) — never inside the project's own repo, sibling to that feature's `prd.md`. Check whether a plan for this feature already exists before writing; if so, confirm with the user whether to update it in place or start a new one. Tell the user the full path, and suggest `/plan` as the next step to cut this into ordered tasks.
