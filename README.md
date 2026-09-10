@@ -9,7 +9,7 @@
 Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-175-brightgreen)](docs/SCOPE.md)
+[![Skills](https://img.shields.io/badge/skills-176-brightgreen)](docs/SCOPE.md)
 [![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
 [![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
@@ -178,7 +178,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## 🛠️ Skills
 
-The library contains a curated set of **175 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **176 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -456,7 +456,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (175 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (176 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
