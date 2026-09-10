@@ -9,7 +9,7 @@
 Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-174-brightgreen)](docs/SCOPE.md)
+[![Skills](https://img.shields.io/badge/skills-173-brightgreen)](docs/SCOPE.md)
 [![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
 [![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
@@ -178,7 +178,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## 🛠️ Skills
 
-The library contains a curated set of **174 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **173 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -197,7 +197,6 @@ The library contains a curated set of **174 skills** across every engineering do
 | [idea-refine](skills/idea-refine/SKILL.md) | Structured divergent/convergent thinking to turn vague ideas into concrete proposals | You have a rough concept that needs exploration |
 | [deep-dive](skills/deep-dive/SKILL.md) | Builds a decision tree from a one-line feature idea and interrogates it in batched rounds scaled to its real size, producing a ready-to-use prompt plus a detailed spec file | A short idea implies a whole feature domain with many independent sub-decisions — role-based access, multi-tenancy, notifications, payments |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
-| [feature-doc](skills/feature-doc/SKILL.md) | Interview + produce a feature spec, implementation guide, and test cases per feature/actor, grounded in the project's own docs | A feature needs more structure than a single PRD — multiple actors, traceable rules, Gherkin test cases |
 | [design-doc-diagramming](skills/design-doc-diagramming/SKILL.md) | Picks the right Mermaid diagram type for the content, drafts and validates it, and assembles it into an architecture/API/feature/database/system design doc | Writing or updating a design doc, or converting existing code/config into an architecture or deployment diagram |
 | [excalidraw-diagramming](skills/excalidraw-diagramming/SKILL.md) | Generates a directly-editable `.excalidraw` diagram file with hand-computed element positions | A standalone, editable diagram file is wanted rather than Mermaid embedded in a doc |
 | [acquire-codebase-knowledge](skills/acquire-codebase-knowledge/SKILL.md) | Maps an unfamiliar codebase into seven evidence-backed documents (stack, structure, architecture, conventions, integrations, testing, concerns) | Asked to map, document, or onboard into an existing codebase |
@@ -455,7 +454,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (178 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (173 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

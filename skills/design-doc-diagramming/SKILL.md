@@ -9,7 +9,7 @@ description: Chooses the right Mermaid diagram type for the content, drafts and 
 
 A design doc earns its keep when a diagram answers a question faster than the prose around it would. This skill covers the part that's easy to get wrong: picking the diagram type that actually matches the content (a flowchart forced to represent a request/response sequence loses the ordering that made it worth drawing), drafting it small enough to stay legible, validating it before it ships, and slotting it into a document structure appropriate to what's being designed.
 
-For the prose sections of a design doc (goals, non-goals, alternatives considered, rollout plan), defer to `feature-doc`, `spec-driven-development`, or `documentation-and-adrs` — this skill owns diagram selection and quality, not general doc-writing conventions.
+For the prose sections of a design doc (goals, non-goals, alternatives considered, rollout plan), defer to `spec-driven-development` or `documentation-and-adrs` — this skill owns diagram selection and quality, not general doc-writing conventions.
 
 ## When to Use
 
@@ -52,7 +52,7 @@ If `mermaid-cli` (`mmdc`) is available in the project, validate syntax with it (
 
 ### 5. Assemble and place the document
 
-Follow the target document type's conventions from `feature-doc` / `documentation-and-adrs` for the surrounding prose structure. Save the document where the project already keeps design docs (check for an existing `docs/design/`, `docs/adr/`, or similar directory before inventing a new location) and match its existing naming pattern.
+Follow the target document type's conventions from `documentation-and-adrs` for the surrounding prose structure. Save the document where the project already keeps design docs (check for an existing `docs/design/`, `docs/adr/`, or similar directory before inventing a new location) and match its existing naming pattern.
 
 ## Common Rationalizations
 
@@ -84,7 +84,6 @@ Follow the target document type's conventions from `feature-doc` / `documentatio
 ## See Also
 
 - `references/mermaid-diagram-patterns.md` — diagram type selection, syntax skeletons, accessibility rules
-- `feature-doc` — the prose structure for a pre-implementation feature doc
 - `documentation-and-adrs` — architecture decision record conventions
 - `spec-driven-development` — writing the specification a design doc often accompanies
 - `artifact-diagramming` — for a single diagram rendered inside a Claude Artifact, not a project design doc

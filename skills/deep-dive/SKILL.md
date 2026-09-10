@@ -60,7 +60,7 @@ Once the frontier is empty, synthesize the full tree and its answers into a comp
 
 ### 5. Output A — the Desired Prompt
 
-Write 2-3 paragraphs that crystallize every locked-in decision into one instruction, in prose dense enough to hand off on its own — to a fresh session, or straight into `/spec`, `/feature-doc`, `/plan`, or `/build`. This is not a summary of the interview; it reads like a well-specified feature request from someone who already knew all the answers.
+Write 2-3 paragraphs that crystallize every locked-in decision into one instruction, in prose dense enough to hand off on its own — to a fresh session, or straight into `/spec`, `/plan`, or `/build`. This is not a summary of the interview; it reads like a well-specified feature request from someone who already knew all the answers.
 
 ### 6. Output B — the detailed spec file
 
@@ -92,7 +92,7 @@ systems, decisions separated from actions, etc.).]
 - [Anything genuinely unresolved — not a deferred edge case, an actual unknown]
 ```
 
-Save to `deep-dives/<topic-slug>.md` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Create the directory if it doesn't exist. If a file for this topic already exists, ask whether to update it in place or start a new one (`<topic-slug>-2.md`). This is a distinct subpath from `specs/` and `features/` — this skill's output is upstream of `spec-driven-development` and `feature-doc`, not a replacement for either.
+Save to `deep-dives/<topic-slug>.md` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Create the directory if it doesn't exist. If a file for this topic already exists, ask whether to update it in place or start a new one (`<topic-slug>-2.md`). This is a distinct subpath from `specs/` — this skill's output is upstream of `spec-driven-development`, not a replacement for it.
 
 ## Common Rationalizations
 
@@ -135,4 +135,4 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - **`brainstorming`** — borrowed narrowly, only for genuine architectural forks surfaced while mapping the tree, not the full brainstorming workflow end to end.
 - **`interview-me`** — sibling for narrower asks. If the idea turns out to be one ambiguity rather than a whole domain, stop and hand off instead of forcing a tree onto it.
 - **`idea-refine`** — sibling for pre-idea exploration. If the idea is too vague to even decompose into branches, hand off upstream first.
-- **`spec-driven-development`**, **`feature-doc`**, **`planning-and-task-breakdown`** — downstream. The Desired Prompt or the spec file is a seed input to these, not a replacement for any of them.
+- **`spec-driven-development`**, **`planning-and-task-breakdown`** — downstream. The Desired Prompt or the spec file is a seed input to these, not a replacement for either.

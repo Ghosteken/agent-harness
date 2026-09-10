@@ -22,7 +22,6 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `idea-refine` | `ideas/[idea-name].md` |
 | `spec-driven-development` | `specs/<feature-slug>/SPEC.md` |
 | `planning-and-task-breakdown` | `plans/<feature-slug>-plan.md` (+ `-todo.md` if a separate task list is kept) |
-| `feature-doc` | `features/<feature-slug>/<actor-slug>/{feature-spec,implementation-guide,test-cases}.md`, plus an index at `features/README.md` |
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
