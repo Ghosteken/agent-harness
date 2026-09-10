@@ -15,7 +15,7 @@ Skills encode the workflows, quality gates, and best practices that senior engin
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-[Quick Start](#quick-start) • [Commands](#commands) • [Skills](#skills) • [Agent Personas](#agent-personas) • [How It Works](#how-it-works-end-to-end-workflow) • [Contributing](#contributing)
+[Quick Start](#-quick-start) • [Commands](#commands) • [Skills](#-skills) • [Agent Personas](#-agent-personas) • [How It Works](#-how-it-works-end-to-end-workflow) • [Contributing](#-contributing)
 
 </div>
 
