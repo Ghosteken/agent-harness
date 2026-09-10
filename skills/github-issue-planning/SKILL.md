@@ -20,7 +20,7 @@ description: Turns a completed spec or feature plan into a GitHub Issues hierarc
 
 ### 1. Confirm inputs exist
 
-This skill turns finished planning artifacts into issues — it doesn't produce the plan itself. Confirm a PRD or spec, and ideally a technical breakdown, already exist (via `spec-driven-development` or `feature-doc`) before generating issues from them. Generating issues from an unclear or unwritten plan just produces unclear, unwritten issues with a GitHub Issues wrapper around them.
+This skill turns finished planning artifacts into issues — it doesn't produce the plan itself. Confirm a PRD or spec, and ideally a technical breakdown, already exist (via `spec-driven-development`) before generating issues from them. Generating issues from an unclear or unwritten plan just produces unclear, unwritten issues with a GitHub Issues wrapper around them.
 
 ### 2. Build the work-item hierarchy
 
@@ -87,6 +87,6 @@ Output a checklist ordered Epic → Feature → Story/Enabler → Task, so issue
 
 ## See Also
 
-- `spec-driven-development` / `feature-doc` — produce the PRD/spec this skill turns into issues; run first
+- `spec-driven-development` — produces the PRD/spec this skill turns into issues; run first
 - `planning-and-task-breakdown` — for a task list an agent executes directly in this session, rather than a GitHub Issues hierarchy for a team
 - `ci-cd-and-automation` — for wiring the project-board automation (PR-to-column moves) this skill's Step 6 assumes may already exist

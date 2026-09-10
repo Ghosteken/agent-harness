@@ -360,17 +360,26 @@ These skills fire regardless of domain. They cover situations that happen across
 **Trigger words:** deep dive on this idea, go deep on requirements, ask me everything before we build this, cover every angle, fully spec this before building, don't miss anything — or a one-liner naming a feature domain with many independent sub-decisions (role-based access, multi-tenancy, notifications, payments, search, a workflow engine)
 
 → **Skill:** `deep-dive`
-→ No agent. Invoke when a short idea implies a whole feature domain rather than one ambiguity — builds a decision tree grounded in the codebase, interrogates it in batched rounds scaled to the idea's real size (not a fixed count), and produces a ready-to-use prompt plus a detailed spec file. Upstream of `spec-driven-development` and `feature-doc`, not a replacement for either.
+→ No agent. Invoke when a short idea implies a whole feature domain rather than one ambiguity — builds a decision tree grounded in the codebase, interrogates it in batched rounds scaled to the idea's real size (not a fixed count), and produces a ready-to-use prompt plus a detailed spec file. Upstream of `spec-driven-development`, not a replacement for it — and upstream of `breakdown-feature-prd` too, when the idea needed that much interrogation before it's concrete enough to write PRDs from.
 → **Command:** `/deep-dive`
 
 ---
 
-### Documenting a Feature Before Building It
-**Trigger words:** document this feature, write a feature spec, spec out this feature before I build it, pre-implementation doc, feature doc set, implementation guide for this feature, actor variant of this feature
+### Writing Feature PRDs
+**Trigger words:** write a PRD for this feature, break down this project into feature PRDs, product requirements, PM-facing spec, user stories and acceptance criteria for this feature, document all the features in this project
 
-→ **Skill:** `feature-doc`
-→ No agent. Invoke before implementing a new feature or a new actor-facing variant of one — produces a feature spec, implementation guide, and test cases grounded in the project's own docs. Heavier and more structured than `spec-driven-development`'s single PRD; use when a feature needs that level of detail.
-→ **Command:** `/feature-doc`
+→ **Skill:** `breakdown-feature-prd`
+→ No agent. Invoke for a product-facing PRD (Problem/Solution/Impact, personas, Given/When/Then user stories) grounded in project context or docs — either swept across every feature it identifies, or for one named feature. Not the engineering spec itself (`spec-driven-development` is downstream of this).
+→ **Command:** `/breakdown-feature-prd`
+
+---
+
+### Planning a Feature's Technical Implementation
+**Trigger words:** implementation plan for this feature, technical design for this feature, turn this PRD into an architecture doc, system architecture for this feature, database schema and API design for this feature
+
+→ **Skill:** `breakdown-feature-implementation`
+→ No agent. Invoke when a feature PRD exists and needs a technical design — architecture, database schema, API design, frontend architecture, security/performance — before task breakdown. Not a task list itself (`planning-and-task-breakdown` is downstream of this).
+→ **Command:** `/breakdown-feature-implementation`
 
 ---
 

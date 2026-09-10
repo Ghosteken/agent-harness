@@ -24,7 +24,6 @@
         "openapi-spec-generation",
         "api-documentation-generator",
         "debugging-and-error-recovery",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -51,7 +50,6 @@
         "sql-optimization-patterns",
         "neon-postgres",
         "dbt-transformation-patterns",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -78,7 +76,6 @@
         "slo-implementation",
         "devops-troubleshooter",
         "deployment-engineer",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -103,7 +100,6 @@
         "senior-frontend",
         "ui-review",
         "frontend-developer",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -129,7 +125,6 @@
         "terraform-specialist",
         "kubernetes-architect",
         "container-security-hardening",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -156,7 +151,6 @@
         "backend-security-coder",
         "fp-backend",
         "debugging-and-error-recovery",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -183,7 +177,6 @@
         "advanced-evaluation",
         "agent-evaluation",
         "autonomous-agent-patterns",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -208,7 +201,6 @@
         "comprehensive-review-pr-enhance",
         "code-refactoring-refactor-clean",
         "code-refactoring-tech-debt",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -234,7 +226,6 @@
         "container-security-hardening",
         "gha-security-review",
         "secrets-management",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -261,7 +252,6 @@
         "test-automator",
         "debugging-strategies",
         "performance-testing-review-ai-review",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -286,7 +276,6 @@
         "grafana-dashboards",
         "slo-implementation",
         "incremental-implementation",
-        "feature-doc",
         "deep-dive"
       ]
     },
@@ -313,7 +302,6 @@
         "debugging-strategies",
         "performance-testing-review-ai-review",
         "security-and-hardening",
-        "feature-doc",
         "deep-dive"
       ]
     }

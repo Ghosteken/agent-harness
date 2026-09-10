@@ -22,7 +22,8 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `idea-refine` | `ideas/[idea-name].md` |
 | `spec-driven-development` | `specs/<feature-slug>/SPEC.md` |
 | `planning-and-task-breakdown` | `plans/<feature-slug>-plan.md` (+ `-todo.md` if a separate task list is kept) |
-| `feature-doc` | `features/<feature-slug>/<actor-slug>/{feature-spec,implementation-guide,test-cases}.md`, plus an index at `features/README.md` |
+| `breakdown-feature-prd` | `features/<feature-slug>/prd.md`, plus a maintained index at `features/README.md` (see below) |
+| `breakdown-feature-implementation` | `features/<feature-slug>/implementation-plan.md` |
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
@@ -31,6 +32,10 @@ Create the root and any subdirectory on first write. None of this is expected to
 ### `review-findings.md` is append-only, not per-topic
 
 Every other row above is a fresh artifact per feature/idea/topic. `review-findings.md` is different: it's one continuously-growing log for the whole project, and every review adds to the end of it rather than creating a new file or asking to overwrite. Don't apply the "ask whether to update in place or create a new variant" convention to it — always append.
+
+### `features/README.md` is a maintained index, not a fresh artifact
+
+Similarly, `features/README.md` isn't a per-topic artifact — it's a single index `breakdown-feature-prd` keeps up to date, adding or refreshing one line per feature every time it writes or updates that feature's `prd.md`. Update it in place; don't create numbered variants of it.
 
 ## Conventions every producer follows
 
@@ -41,5 +46,7 @@ Every other row above is a fresh artifact per feature/idea/topic. `review-findin
 ## Skills that read these artifacts back
 
 `quality-assurance`, `requesting-code-review`, and `subagent-driven-development` (among others) may need to locate a spec or plan another skill produced. Check the external location above first. Only fall back to an in-repo path if the user says the artifact was placed there manually.
+
+A feature's `prd.md` from `breakdown-feature-prd` is meant to be read as input by `breakdown-feature-implementation`, `spec-driven-development`'s downstream steps, `planning-and-task-breakdown`, and `github-issue-planning` — check `features/<feature-slug>/prd.md` (and the `features/README.md` index, if the feature slug isn't known yet) before asking the user to restate requirements that already exist there.
 
 `review-findings.md` specifically is meant to be read by implementation-facing skills and agents (`incremental-implementation`, `test-driven-development`, `executing-plans`, `subagent-driven-development`, and code-writing agent personas) before starting new work — check it for previously-flagged patterns relevant to the task at hand, if the file exists.
