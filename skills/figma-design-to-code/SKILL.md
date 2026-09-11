@@ -20,7 +20,7 @@ Converts a Figma design into real, production-ready code in the project's own st
 
 ### 1. Resolve the target
 
-Get the Figma link (ask if one wasn't given) and confirm the specific frame or selection in scope — not an entire file when one screen was meant. Extract the file key and node-id from the link (see `references/figma-rest-api-reference.md` for the URL format). Scope creep here means outdated context and wasted extraction work.
+Get the Figma link (ask if one wasn't given) and confirm the specific frame or selection in scope — not an entire file when one screen was meant. Extract the file key and node-id from the link (see `references/figma-rest-api-reference.md` for the URL format). Also confirm whether prototype interactions/animations on that frame are in scope, or only static visual fidelity — extracting trigger events and transition curves for a purely static port is wasted effort. Scope creep here means outdated context and wasted extraction work.
 
 ### 2. Primary extraction — Figma MCP
 
@@ -38,7 +38,7 @@ Always run this pass too, not only when MCP is unavailable — it is a required 
 - **Typography** — font family, weight, size, line-height, letter-spacing, alignment
 - **Constraints** — how each node behaves on resize, for responsive fidelity
 
-Cross-check every one of these against what the MCP context surfaced. A value that's rounded, defaulted, or missing from the MCP pass is exactly what this step exists to catch. See `references/figma-rest-api-reference.md` for the endpoints and exact fields.
+Cross-check every one of these against what the MCP context surfaced. A value that's rounded, defaulted, or missing from the MCP pass is exactly what this step exists to catch. See `references/figma-rest-api-reference.md` for the endpoints and exact fields, and `references/figma-to-css-property-mapping.md` for translating each of these categories to its correct CSS output rather than guessing.
 
 ### 4. Assets
 
@@ -50,7 +50,7 @@ Audit the project's existing components, tokens, and design system before writin
 
 ### 6. Build in the project's real stack
 
-Write the implementation in the project's actual framework and styling approach — never the MCP tool's example snippet verbatim, which targets a generic setup. If the project's conventions aren't already known, ground this in `acquire-codebase-knowledge` or prior exploration rather than guessing.
+Write the implementation in the project's actual framework and styling approach — never the MCP tool's example snippet verbatim, which targets a generic setup. If the project's conventions aren't already known, ground this in `acquire-codebase-knowledge` or prior exploration rather than guessing. For every property pulled in Step 3 — typography, dimensions, auto-layout, visual effects, variants/tokens, and (if in scope) prototype interactions/animations — apply `references/figma-to-css-property-mapping.md` so each one lands on its correct CSS/code output, not an approximation.
 
 ### 7. Verify fidelity
 
@@ -72,6 +72,7 @@ Compare the rendered result against the Figma screenshot/export, node by node: s
 - A hand-drawn SVG or substituted icon instead of the exported asset
 - Font size/weight, spacing, or color values that don't match either data source exactly
 - No REST API cross-check pass — only MCP's summarized context was used
+- A raw value mapped to the wrong CSS property, or approximated instead of looked up in `references/figma-to-css-property-mapping.md`
 - No final visual comparison against the Figma screenshot/export before calling the work done
 
 ## Verification
@@ -82,11 +83,13 @@ Compare the rendered result against the Figma screenshot/export, node by node: s
 - [ ] Every image/icon is the exported asset at the correct size — none hand-drawn or substituted
 - [ ] Existing components/tokens were reused wherever an equivalent already exists in the project
 - [ ] Generated code targets the project's actual stack, not a generic example snippet
+- [ ] Every extracted property (typography, dimensions, auto-layout, visual effects, variants/tokens) was mapped per `references/figma-to-css-property-mapping.md`, not approximated
 - [ ] A final side-by-side comparison against the Figma screenshot confirms spacing, typography, color, radius, shadows, and assets match exactly
 
 ## See Also
 
 - `references/figma-rest-api-reference.md` — REST API endpoints, auth, and how to extract a file key/node-id from a Figma link
+- `references/figma-to-css-property-mapping.md` — translating each extracted Figma property to its correct CSS (or equivalent styling-system) output
 - `frontend-ui-engineering` — component architecture and design-system conventions this skill's output should match
 - `react-best-practices` — if the target stack is React, for hooks/composition conventions to follow while implementing
 - `api-and-interface-design` — if the ported screen also needs new backend contracts

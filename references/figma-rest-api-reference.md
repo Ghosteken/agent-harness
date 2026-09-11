@@ -47,3 +47,5 @@ Same tier as MCP server access for Dev/Full seat users. Batch node-id lookups in
 - A bulk or offline extraction across many frames, where an interactive MCP session isn't practical
 
 This is a cross-check, not a replacement — the MCP server's Code Connect mapping and existing-component reuse guidance aren't something the raw REST data gives back for free. Use both together: MCP for what to build with, REST for confirming every value is exactly right.
+
+Once a value is pulled from here, see `references/figma-to-css-property-mapping.md` for where it belongs in the output — extracting the right value and mapping it to the wrong CSS property is still a fidelity miss.
