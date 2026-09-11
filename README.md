@@ -9,7 +9,7 @@
 Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-176-brightgreen)](docs/SCOPE.md)
+[![Skills](https://img.shields.io/badge/skills-177-brightgreen)](docs/SCOPE.md)
 [![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
 [![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
@@ -178,7 +178,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## 🛠️ Skills
 
-The library contains a curated set of **176 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **177 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -220,6 +220,7 @@ The library contains a curated set of **176 skills** across every engineering do
 | [source-driven-development](skills/source-driven-development/SKILL.md) | Ground every framework decision in official documentation - verify, cite sources, flag what's unverified | You want authoritative, source-cited code for any framework or library |
 | [doubt-driven-development](skills/doubt-driven-development/SKILL.md) | Adversarial fresh-context review of every non-trivial decision in-flight - CLAIM → EXTRACT → DOUBT → RECONCILE → STOP, with optional user-authorized cross-model escalation | Stakes are high (production, security, irreversible), working in unfamiliar code, or a confident output is cheaper to verify now than to debug later |
 | [frontend-ui-engineering](skills/frontend-ui-engineering/SKILL.md) | Component architecture, design systems, state management, responsive design, WCAG 2.1 AA accessibility | Building or modifying user-facing interfaces |
+| [figma-design-to-code](skills/figma-design-to-code/SKILL.md) | Implements a Figma frame/selection as code with pixel-exact fidelity — cross-checks the Figma MCP server's context against the REST API's raw node data for every metric and asset | Porting or implementing a Figma design as production code |
 | [api-and-interface-design](skills/api-and-interface-design/SKILL.md) | Contract-first design, Hyrum's Law, One-Version Rule, error semantics, boundary validation | Designing APIs, module boundaries, or public interfaces |
 
 ### Verify - Prove it works
@@ -456,7 +457,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (176 total)
+├── skills/                            # 24 core lifecycle skills + curated specialist skills (177 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define
