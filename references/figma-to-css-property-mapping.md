@@ -37,6 +37,7 @@ Companion to the `figma-design-to-code` skill: once a node's raw values are pull
 | Padding (horizontal/vertical/per-side) | `padding` — use the shorthand only when all sides match, per-side properties otherwise |
 | Alignment | `justify-content` and `align-items` (e.g. center, space-between) |
 | Absolute position | `position: absolute` with the appropriate combination of `top`/`bottom`/`left`/`right` |
+| Fixed height/width on an auto-layout child | The size value alone isn't enough — flex items shrink by default (`flex-shrink: 1`), so a sibling competing for space can compress a "fixed" height below its intended value. Add `flex-shrink: 0` (or set `flex-basis` explicitly) on any child whose size in Figma is meant to hold regardless of its siblings. |
 
 ## Visual Styles & Effects
 
