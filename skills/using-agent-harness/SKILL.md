@@ -200,6 +200,15 @@ When a user describes what they want to build, fix, or review — without using 
 
 ---
 
+### Figma Design Implementation
+**Trigger words:** Figma, implement this design, build this screen from Figma, port this Figma frame, turn this Figma into code, design to code, Figma link, Figma selection
+
+→ **Agent:** `senior-frontend-engineer`
+→ **Start with skill:** `figma-design-to-code`
+→ **Command:** `/figma-design-to-code`
+
+---
+
 ### Cloud Architecture
 **Trigger words:** cloud, AWS, Azure, GCP, multi-region, disaster recovery, high availability, IAM, cost optimization, serverless, Lambda, Cloud Run, CloudFormation, auto-scaling, Well-Architected, CDN, VPC, vendor lock-in
 

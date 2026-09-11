@@ -40,7 +40,7 @@ CONTRIBUTING.md    → Guidelines for adding or editing skills
 
 **Define:** interview-me, grilling, idea-refine, deep-dive, spec-driven-development, breakdown-feature-prd, breakdown-feature-implementation, story-mode, design-doc-diagramming, excalidraw-diagramming, acquire-codebase-knowledge
 **Plan:** planning-and-task-breakdown, github-issue-planning
-**Build:** incremental-implementation, test-driven-development, context-engineering, source-driven-development, doubt-driven-development, frontend-ui-engineering, api-and-interface-design
+**Build:** incremental-implementation, test-driven-development, context-engineering, source-driven-development, doubt-driven-development, frontend-ui-engineering, figma-design-to-code, api-and-interface-design
 **Verify:** browser-testing-with-devtools, debugging-and-error-recovery
 **Review:** code-review-and-quality, code-simplification, security-and-hardening, performance-optimization
 **Ship:** git-workflow-and-versioning, ci-cd-and-automation, deprecation-and-migration, documentation-and-adrs, observability-and-instrumentation, shipping-and-launch
