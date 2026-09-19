@@ -107,6 +107,7 @@ The `.claude/commands/` directory contains slash commands for Claude Code:
 | Command | Skill Invoked |
 |---------|---------------|
 | `/spec` | spec-driven-development |
+| `/project-compass` | project-compass |
 | `/breakdown-feature-prd` | breakdown-feature-prd |
 | `/breakdown-feature-implementation` | breakdown-feature-implementation |
 | `/plan` | planning-and-task-breakdown |
@@ -137,7 +138,7 @@ Load a reference when you need detailed patterns beyond what the skill covers.
 
 ## Spec and task artifacts
 
-The `/spec`, `/plan`, `/deep-dive`, `/breakdown-feature-prd`, and `/breakdown-feature-implementation` commands (along with `interview-me`, `idea-refine`, `documentation-and-adrs`, and `acquire-codebase-knowledge`) all write their working artifacts to a location **outside the current project's repository** — see [references/external-output-paths.md](../references/external-output-paths.md) for the exact root and per-skill subpaths. None of these files are ever written into a path git in the project tracks, or even a merely-gitignored path inside it.
+The `/spec`, `/plan`, `/deep-dive`, `/project-compass`, `/breakdown-feature-prd`, and `/breakdown-feature-implementation` commands (along with `interview-me`, `idea-refine`, `documentation-and-adrs`, and `acquire-codebase-knowledge`) all write their working artifacts to a location **outside the current project's repository** — see [references/external-output-paths.md](../references/external-output-paths.md) for the exact root and per-skill subpaths. None of these files are ever written into a path git in the project tracks, or even a merely-gitignored path inside it.
 
 Treat them as **living documents** while the work is in progress — update them when scope or decisions change — but look for them at their external path (the skill tells you the full path after writing), not inside `docs/` in the project itself.
 

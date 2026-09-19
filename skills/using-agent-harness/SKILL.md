@@ -374,6 +374,15 @@ These skills fire regardless of domain. They cover situations that happen across
 
 ---
 
+### Orienting in an Unfamiliar or Underspecified Project
+**Trigger words:** help me understand this project, what am I even looking at, give me the full picture from these docs, what could I do with this, understand this codebase and these documents together, suggest some directions for this project
+
+→ **Skill:** `project-compass`
+→ No agent. Invoke when docs and/or a codebase exist for a project but no feature list is confirmed yet — produces one thorough, plain-language Overview (with a story-mode-style per-actor narrative woven in) plus several labeled Suggested Directions, never a committed plan. Upstream of `deep-dive`, `breakdown-feature-prd`, and `spec-driven-development` — those take over once a direction is actually chosen.
+→ **Command:** `/project-compass`
+
+---
+
 ### Writing Feature PRDs
 **Trigger words:** write a PRD for this feature, break down this project into feature PRDs, product requirements, PM-facing spec, user stories and acceptance criteria for this feature, document all the features in this project
 
