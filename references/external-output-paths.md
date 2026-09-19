@@ -26,6 +26,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `breakdown-feature-implementation` | `features/<feature-slug>/implementation-plan.md` |
 | `story-mode` | `features/<feature-slug>/story.md` (whole-project scope: `features/story.md`), sharing the `features/README.md` index with `breakdown-feature-prd` |
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
+| `project-compass` | `briefings/overview.md`, plus `briefings/directions/<direction-slug>.md` per suggested direction and an index at `briefings/README.md` when there's more than one |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
 | `code-review-and-quality` | `review-findings.md` — a single running log, **appended to**, not replaced per review (see below) |
@@ -37,6 +38,8 @@ Every other row above is a fresh artifact per feature/idea/topic. `review-findin
 ### `features/README.md` is a maintained index, not a fresh artifact
 
 Similarly, `features/README.md` isn't a per-topic artifact — it's a single index `breakdown-feature-prd` keeps up to date, adding or refreshing one line per feature every time it writes or updates that feature's `prd.md`. `story-mode` shares this same index, refreshing the same feature's line when it writes `story.md`. Update it in place; don't create numbered variants of it.
+
+`briefings/README.md` follows the same pattern for `project-compass`: a maintained index of every Suggested Direction doc alongside the Overview, updated in place rather than replaced, and only needed once there's more than one direction to link.
 
 ## Conventions every producer follows
 

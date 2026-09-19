@@ -1,0 +1,13 @@
+---
+description: Understand an unfamiliar or underspecified project from its docs/codebase — a thorough Overview plus several labeled Suggested Directions
+---
+
+Invoke the agent-harness:project-compass skill.
+
+Read every document pointed at and explore the codebase if one exists — never invent what isn't actually there. Before writing anything, tell the user what was found and ask whether anything else should be included.
+
+Using the story-mode skill's technique, infer the distinct actors/roles (auth/permission logic, user/entity models, doc mentions) and confirm them with the user (use the AskUserQuestion tool when the choice is small and discrete) before drafting. Then write one detailed, plain-language Project Overview with two parts in the same document: what this project actually is (purpose, current state, stack/domain, unresolved gaps), and a continuous-prose per-actor narrative section following story-mode's approach — not a bulleted summary. Mark genuine gaps as gaps rather than filling them with a plausible guess.
+
+From what was actually found, identify at least two — typically two or three, more for a larger or more complex project — genuinely distinct directions the project could go next. Write one Suggested Directions document per direction: the shape of the approach, its key tradeoffs, and what would need to be confirmed before it became a real plan. Label every one explicitly as an option, never as a decided plan.
+
+Save the Overview to `briefings/overview.md` and each direction to `briefings/directions/<direction-slug>.md` in the project's external output location (see `references/external-output-paths.md`) — never inside the project's own repo. Maintain an index at `briefings/README.md` linking the Overview and every direction. Tell the user the full paths written, which actors the Overview covers, and the natural next skill (`/deep-dive`, `/breakdown-feature-prd`, or `/spec`) for whichever direction they choose to pursue.
