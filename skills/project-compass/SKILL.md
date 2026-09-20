@@ -1,6 +1,6 @@
 ---
 name: project-compass
-description: Reads whatever documents and/or codebase exist for a project — even when incomplete or the feature set isn't decided yet — asks basic grounding questions in batched rounds to fill what the material doesn't answer, then produces one thorough, plain-language Project Overview (including a story-mode-style per-actor narrative, and a per-repo breakdown for multi-repo projects) plus two or more clearly-labeled Suggested Directions documents — speculative "you could do this" options with tradeoffs, not committed plans. Use when asked to "help me understand this project", "what am I even looking at", "give me the full picture from these docs", or "what could I do with this" before any feature or spec is confirmed.
+description: Offers a chance to add more information before starting, then reads whatever documents and/or codebase exist for a project — even when incomplete or the feature set isn't decided yet — asks basic grounding questions in batched rounds to fill what the material doesn't answer, then produces one thorough, plain-language Project Overview (including a story-mode-style per-actor narrative, and a per-repo breakdown for multi-repo projects) plus two or more clearly-labeled Suggested Directions documents — speculative "you could do this" options with tradeoffs, not committed plans. Use when asked to "help me understand this project", "what am I even looking at", "give me the full picture from these docs", or "what could I do with this" before any feature or spec is confirmed.
 ---
 
 # Project Compass
@@ -22,17 +22,21 @@ This is for the stage before anything is confirmed: the feature set isn't known 
 
 ## Process
 
-### 1. Gather everything available
+### 1. Offer the chance to add more information first
 
-Read every document pointed at, and explore the codebase if one exists — same grounding mandate as `acquire-codebase-knowledge`/`deep-dive`/`story-mode`: never invent what isn't actually there. If docs and code conflict (a README describing something the code doesn't do, or vice versa), note the conflict explicitly rather than silently picking one side.
+Before reading anything, ask (`AskUserQuestion`): is there additional information to add — more docs, notes, or context that clears up a doubt or blocker — or should this proceed straight into gathering with what's already been pointed at? This is a proactive open door offered up front, not the same thing as Step 4's grounding questions, which react to gaps *after* the material has been read. If there's more, collect it now and fold it into Step 2's gathering; if not, proceed immediately — don't treat this as a mandatory pause when the user has clearly already given everything relevant.
 
-Note whether the material spans **more than one repository** — separate git roots, or several codebases the user points at together (e.g. a frontend repo, a backend repo, a mobile app repo). This changes the shape of the output: see Step 4.
+### 2. Gather everything available
 
-### 2. Confirm coverage
+Read every document pointed at (including anything added in Step 1), and explore the codebase if one exists — same grounding mandate as `acquire-codebase-knowledge`/`deep-dive`/`story-mode`: never invent what isn't actually there. If docs and code conflict (a README describing something the code doesn't do, or vice versa), note the conflict explicitly rather than silently picking one side.
+
+Note whether the material spans **more than one repository** — separate git roots, or several codebases the user points at together (e.g. a frontend repo, a backend repo, a mobile app repo). This changes the shape of the output: see Step 5.
+
+### 3. Confirm coverage
 
 Before writing anything, tell the user what was actually found and ask whether anything else should be included — another document, a specific folder, someone's notes that weren't shared yet. Thoroughness built on a silently-partial set of material isn't real thoroughness.
 
-### 3. Ask grounding questions, in rounds
+### 4. Ask grounding questions, in rounds
 
 Since nothing detailed about the project is known going in, expect real gaps the source material simply doesn't answer — purpose, intended audience, current stage (existing/greenfield/mid-build), hard constraints, explicit out-of-scope. Ask about these **before** drafting anything, not after, and note them as open questions in the doc only as a last resort.
 
@@ -40,40 +44,40 @@ Keep every question at a **basic, orienting level** — this is grounding, not i
 
 Batch the questions using `grilling`'s frontier mechanic: ask everything currently answerable in one round (`AskUserQuestion`), then recompute what the answers newly unblock and ask that in the next round — rather than one question at a time, or one giant list upfront that ignores how later questions depend on earlier answers. Stop once the basic shape of the project is actually clear; don't manufacture additional rounds once grounding is sufficient.
 
-### 4. Identify actors
+### 5. Identify actors
 
 Using `story-mode`'s method: infer the distinct actors/roles from auth or permission logic, user/entity models, and doc mentions (e.g. admin vs. end user, buyer vs. supplier). List the candidates and confirm them with the user (`AskUserQuestion`, or an explicit listed confirmation) before drafting — don't silently decide who the project is for.
 
-### 5. Per-repo breakdown (multi-repo projects only)
+### 6. Per-repo breakdown (multi-repo projects only)
 
 When more than one repository is involved, give each one its own dedicated breakdown before writing the main Overview — don't blend several codebases into one narrative and lose which fact came from which repo. For each repository: identify its own actors/roles where they differ from the project-wide list (a backend repo might only be relevant to an admin/API-consumer, not an end user), and write one `story-mode`-style document — purpose of this specific repo, how it fits into the larger project, and a continuous-prose per-actor narrative scoped to just this codebase. Save each as `briefings/repos/<repo-slug>.md`.
 
 Skip this step entirely for a single-repo (or docs-only) project — it exists specifically for the multi-repo case, not as a mandatory extra layer on every run.
 
-### 6. Write the Project Overview
+### 7. Write the Project Overview
 
 One document, detailed and plain-language — thorough enough that a reader comes away with nothing major unexplained, but written so someone unfamiliar with the domain's jargon can still follow it, translating jargon as it's introduced rather than leaving it bare. It has two parts, both in the same document:
 
 - **What this is** — the project's purpose, current state, stack/domain at a level a non-specialist grasps, and what's genuinely unclear or unresolved. No implementation detail here, only "what is this and where does it stand."
 - **How it actually works, actor by actor** — following `story-mode`'s technique, one continuous prose section per confirmed actor: their entry point, what they can do at each stage, what they wait on, what they receive at the end. This is what makes the overview *thorough* rather than a dry summary — a reader should be able to follow a real actor's journey through the project, not just read a bullet list of facts about it.
 
-When Step 5 produced per-repo docs, add a **"Repositories in This Project"** section: a short paragraph per repo — what it is, its role in the larger system, how it relates to the others — with a link to its full `briefings/repos/<repo-slug>.md` breakdown. This is a condensed pointer, not a duplicate of the per-repo doc's content; the point is enough context to orient the reader before they follow a link, not to reproduce what's already written there.
+When Step 6 produced per-repo docs, add a **"Repositories in This Project"** section: a short paragraph per repo — what it is, its role in the larger system, how it relates to the others — with a link to its full `briefings/repos/<repo-slug>.md` breakdown. This is a condensed pointer, not a duplicate of the per-repo doc's content; the point is enough context to orient the reader before they follow a link, not to reproduce what's already written there.
 
 Every claim in both parts traces back to something actually read or found — mark genuine gaps as gaps and ask, rather than filling them with a plausible guess.
 
-### 7. Identify possible directions
+### 8. Identify possible directions
 
 From what was actually found — never invented — surface the natural branches: distinct problems this project could solve, or distinct ways it could reasonably be built or extended next. Frame each as a genuine option with a real tradeoff, not a foregone conclusion dressed up as a question.
 
-### 8. Write the Suggested Directions documents
+### 9. Write the Suggested Directions documents
 
 Produce **at least two, typically two or three** — more if the project's real size and complexity actually supports more distinct directions, never padded just to hit a count. One document per direction. Each covers: what pursuing this direction would involve, at the level of a suggestion (the shape of an approach and its key considerations/tradeoffs), and what would still need to be confirmed before it became a real plan. Every one of these is explicitly labeled as a suggestion, not a decision — the reader should come away with options to consider, not a plan to execute.
 
-### 9. Save and index
+### 10. Save and index
 
 Save the Overview, every per-repo breakdown, and every Suggested Directions doc to the project's external output location (see `references/external-output-paths.md`). Maintain an index linking the Overview, every repo breakdown, and every direction together so they're easy to navigate as a set.
 
-### 10. Report back and point to the next step
+### 11. Report back and point to the next step
 
 Tell the user the full paths written, which actors the Overview covers, and (for a multi-repo project) which repos got their own breakdown. For whichever direction they want to pursue for real, name the natural next skill: `deep-dive` if it still needs interrogating into specifics, or `breakdown-feature-prd`/`spec-driven-development` once it's concrete enough to commit to.
 
@@ -91,6 +95,8 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 | "I'll just note the gaps in the doc instead of asking" | Basic grounding questions belong before drafting, not as a list of caveats after the fact — ask what's genuinely unclear, don't defer it to a footnote. |
 | "I'll ask every possible question in one giant list upfront" | Some questions only make sense once earlier ones are answered — batch what's answerable now, recompute, and ask the next round, the same frontier mechanic `grilling` uses. |
 | "I should interrogate this as thoroughly as deep-dive would" | Keep questions basic and orienting — the project isn't understood yet, so exhaustive tree-shaped interrogation is premature; that's `deep-dive`'s job once a direction is chosen. |
+| "I'll just start gathering, the user would speak up if they had more to add" | Offer the option explicitly before starting — a user with a doubt-clearing doc they didn't think to lead with won't necessarily volunteer it unprompted. |
+| "They already gave me a lot of material, no need to ask" | The offer costs one question and is easy to decline — skipping it risks missing something that would have resolved a real blocker later in the process. |
 
 ## Red Flags
 
@@ -106,9 +112,11 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 - Drafting started with no grounding-question round, on a project that was never actually understood at even a basic level
 - Grounding questions phrased as deep, exhaustive interrogation instead of basic orientation
 - All questions dumped in one giant list instead of batched rounds that adapt to earlier answers
+- Gathering started without first offering the user a chance to add more information
 
 ## Verification
 
+- [ ] The user was offered the chance to add more information before gathering started
 - [ ] Every available document was read, and the codebase was explored if one exists — nothing invented
 - [ ] Coverage was confirmed with the user before drafting began
 - [ ] Basic grounding questions (purpose, audience, stage, constraints, out-of-scope) were asked in batched rounds before any drafting, using `grilling`'s frontier mechanic — not skipped, not exhaustive/deep-dive-level, not dumped in one giant list
