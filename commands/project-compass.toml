@@ -3,7 +3,9 @@ description = "Understand an unfamiliar or underspecified project from its docs/
 prompt = """
 Invoke the project-compass skill.
 
-Read every document pointed at and explore the codebase if one exists — never invent what isn't actually there. Before writing anything, tell the user what was found and ask whether anything else should be included.
+Before reading anything, ask directly whether there's additional information to add — more docs, notes, or context that clears up a doubt or blocker — or whether to proceed straight into gathering with what's already been pointed at. If there's more, collect it now; if not, proceed immediately.
+
+Read every document pointed at (including anything just added) and explore the codebase if one exists — never invent what isn't actually there. Before writing anything, tell the user what was found and ask whether anything else should be included.
 
 Since nothing detailed about the project is known going in, ask basic grounding questions before drafting anything — purpose, audience, current stage, hard constraints, explicit out-of-scope. Keep questions at a basic, orienting level only, never as deep or exhaustive as the deep-dive skill's interrogation. Batch them using the grilling skill's frontier mechanic: ask everything currently answerable in one round directly, then recompute what the answers newly unblock for the next round, stopping once the project's basic shape is clear.
 
