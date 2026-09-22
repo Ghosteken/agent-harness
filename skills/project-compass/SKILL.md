@@ -64,11 +64,12 @@ For every ready part, note the recommended next command — `/deep-dive` if it s
 
 ### 8. Write the Project Overview
 
-One document, detailed and plain-language — thorough enough that a reader comes away with nothing major unexplained, but written so someone unfamiliar with the domain's jargon can still follow it, translating jargon as it's introduced rather than leaving it bare. It has three parts, all in the same document:
+One document, detailed and plain-language — thorough enough that a reader comes away with nothing major unexplained, but written so someone unfamiliar with the domain's jargon can still follow it, translating jargon as it's introduced rather than leaving it bare. It has four parts, all in the same document:
 
 - **What this is** — the project's purpose, current state, stack/domain at a level a non-specialist grasps, and what's genuinely unclear or unresolved. No implementation detail here, only "what is this and where does it stand."
 - **How it actually works, actor by actor** — following `story-mode`'s technique, one continuous prose section per confirmed actor: their entry point, what they can do at each stage, what they wait on, what they receive at the end. This is what makes the overview *thorough* rather than a dry summary — a reader should be able to follow a real actor's journey through the project, not just read a bullet list of facts about it.
 - **Ready to Build** — Step 7's readiness assessment, written as two lists: parts that are ready (each with its recommended command and one-line reason), and parts that aren't yet (each with its specific blocker). This is what lets the reader act immediately on the part that's actually ready, instead of re-reading the whole Overview to figure that out themselves.
+- **Open Questions** — genuinely unresolved items that came up anywhere in the process (Steps 3-7) and were never actually answered — something asked in a grounding round the user deferred, a conflict between docs and code noted in Step 2 that's still unexplained, an actor whose role stayed ambiguous. This is not the same list as "Ready to Build"'s per-part blockers (those are specific and tied to one part); this is the catch-all for anything still open that doesn't have a home elsewhere. Leave it empty (or omit it) only when there's genuinely nothing left unresolved — don't pad it, and don't use it as a place to dump every minor detail instead of just stating it as fact.
 
 When Step 6 produced per-repo docs, add a **"Repositories in This Project"** section too: a short paragraph per repo — what it is, its role in the larger system, how it relates to the others — with a link to its full `briefings/repos/<repo-slug>.md` breakdown. This is a condensed pointer, not a duplicate of the per-repo doc's content; the point is enough context to orient the reader before they follow a link, not to reproduce what's already written there.
 
@@ -129,6 +130,7 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 - A "not yet ready" part with no specific blocker named, just a vague sense that more work is needed
 - The whole project assessed as one readiness unit instead of part by part
 - The Overview has no "Ready to Build" section at all
+- A genuinely unresolved item from earlier in the process (a deferred question, an unexplained doc/code conflict) has nowhere to go because the Overview has no Open Questions section
 
 ## Verification
 
@@ -143,6 +145,7 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 - [ ] Every ready part has a recommended next command (`/deep-dive`, `/spec`, or `/breakdown-feature-prd`) and a one-line reason
 - [ ] Every not-yet-ready part names its specific blocking open item
 - [ ] The Overview's "Ready to Build" section reflects this assessment
+- [ ] The Overview has an Open Questions section covering anything genuinely unresolved from Steps 3-7 that isn't already captured as a "Ready to Build" blocker
 - [ ] At least two Suggested Directions were produced, scaled up if the project's real size supports more
 - [ ] Every Suggested Direction traces to something found in the source material, not invented
 - [ ] Each Suggested Direction is clearly labeled as an option, with tradeoffs and open considerations, not a committed plan
