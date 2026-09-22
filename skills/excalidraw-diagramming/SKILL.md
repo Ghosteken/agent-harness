@@ -39,7 +39,7 @@ Re-read the element list as if rendering it mentally: do any two elements overla
 
 ### 6. Save and hand off
 
-Save as a `.excalidraw` file and tell the user where it is and how to open it (the Excalidraw desktop/web app, or VS Code's Excalidraw extension if the project uses one). If the same shapes need to end up in a Markdown doc instead, that's a sign `design-doc-diagramming` was the right skill for this request — reconsider before completing the Excalidraw file.
+Save as a `.excalidraw` file to `diagrams/<diagram-slug>.excalidraw` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Check whether a diagram for this topic already exists before writing; if so, confirm with the user whether to update it in place or start a new one. Tell the user the full external path and how to open it (the Excalidraw desktop/web app, or VS Code's Excalidraw extension pointed at that path). If the same shapes need to end up in a Markdown doc instead, that's a sign `design-doc-diagramming` was the right skill for this request — reconsider before completing the Excalidraw file.
 
 ## Common Rationalizations
 
@@ -67,8 +67,10 @@ Save as a `.excalidraw` file and tell the user where it is and how to open it (t
 - [ ] Relationship line styles and arrowheads match their semantic meaning (inheritance vs. composition vs. association, etc.)
 - [ ] No overlapping elements or disconnected arrows in the final element list
 - [ ] The file was saved as valid `.excalidraw` JSON with `fontFamily: 5` on every text element
+- [ ] The file was saved to `diagrams/<diagram-slug>.excalidraw` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 
 ## See Also
 
 - `references/excalidraw-element-patterns.md` — diagram-type-to-element mapping, layout conventions, and per-type notation rules
 - `design-doc-diagramming` — for a Mermaid diagram meant to live inline in a Markdown design doc, rather than a standalone editable file
+- `references/external-output-paths.md` — where this skill's output lives
