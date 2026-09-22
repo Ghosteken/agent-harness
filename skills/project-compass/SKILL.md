@@ -54,32 +54,41 @@ When more than one repository is involved, give each one its own dedicated break
 
 Skip this step entirely for a single-repo (or docs-only) project — it exists specifically for the multi-repo case, not as a mandatory extra layer on every run.
 
-### 7. Write the Project Overview
+### 7. Assess build-readiness, part by part
 
-One document, detailed and plain-language — thorough enough that a reader comes away with nothing major unexplained, but written so someone unfamiliar with the domain's jargon can still follow it, translating jargon as it's introduced rather than leaving it bare. It has two parts, both in the same document:
+Break the project into its natural distinct parts — threads, phases, sub-systems, or whatever granularity the material and Step 4's grounding rounds actually surfaced. Don't invent divisions just to have something to list; use whatever real seams already exist (e.g. a thread the docs already describe in phases, or a natural split between sub-systems with different actors).
+
+For each part, assess it against what grounding actually cleared, not against a general sense of progress: does it have any real open question left — an unconfirmed requirement, an ambiguous rule, a dependency on something still undecided elsewhere — or are its doubts cleared (or only minor, non-blocking ones remain)? A part is only "ready" when there's nothing left that would stall a concrete spec for it.
+
+For every ready part, note the recommended next command — `/deep-dive` if it still needs interrogating into specifics, or `/spec`/`/breakdown-feature-prd` if it's already concrete enough to skip that — and a one-line reason (e.g. "least discovery-dependent, could go to spec soonest"). For every not-yet-ready part, name the *specific* thing still open — never a vague "needs more discovery." This mirrors how a good human lead would flag it: some parts of a thread are ready to build now, others aren't, and the difference is always a nameable reason, not a feeling.
+
+### 8. Write the Project Overview
+
+One document, detailed and plain-language — thorough enough that a reader comes away with nothing major unexplained, but written so someone unfamiliar with the domain's jargon can still follow it, translating jargon as it's introduced rather than leaving it bare. It has three parts, all in the same document:
 
 - **What this is** — the project's purpose, current state, stack/domain at a level a non-specialist grasps, and what's genuinely unclear or unresolved. No implementation detail here, only "what is this and where does it stand."
 - **How it actually works, actor by actor** — following `story-mode`'s technique, one continuous prose section per confirmed actor: their entry point, what they can do at each stage, what they wait on, what they receive at the end. This is what makes the overview *thorough* rather than a dry summary — a reader should be able to follow a real actor's journey through the project, not just read a bullet list of facts about it.
+- **Ready to Build** — Step 7's readiness assessment, written as two lists: parts that are ready (each with its recommended command and one-line reason), and parts that aren't yet (each with its specific blocker). This is what lets the reader act immediately on the part that's actually ready, instead of re-reading the whole Overview to figure that out themselves.
 
-When Step 6 produced per-repo docs, add a **"Repositories in This Project"** section: a short paragraph per repo — what it is, its role in the larger system, how it relates to the others — with a link to its full `briefings/repos/<repo-slug>.md` breakdown. This is a condensed pointer, not a duplicate of the per-repo doc's content; the point is enough context to orient the reader before they follow a link, not to reproduce what's already written there.
+When Step 6 produced per-repo docs, add a **"Repositories in This Project"** section too: a short paragraph per repo — what it is, its role in the larger system, how it relates to the others — with a link to its full `briefings/repos/<repo-slug>.md` breakdown. This is a condensed pointer, not a duplicate of the per-repo doc's content; the point is enough context to orient the reader before they follow a link, not to reproduce what's already written there.
 
-Every claim in both parts traces back to something actually read or found — mark genuine gaps as gaps and ask, rather than filling them with a plausible guess.
+Every claim in all parts traces back to something actually read or found — mark genuine gaps as gaps and ask, rather than filling them with a plausible guess.
 
-### 8. Identify possible directions
+### 9. Identify possible directions
 
 From what was actually found — never invented — surface the natural branches: distinct problems this project could solve, or distinct ways it could reasonably be built or extended next. Frame each as a genuine option with a real tradeoff, not a foregone conclusion dressed up as a question.
 
-### 9. Write the Suggested Directions documents
+### 10. Write the Suggested Directions documents
 
 Produce **at least two, typically two or three** — more if the project's real size and complexity actually supports more distinct directions, never padded just to hit a count. One document per direction. Each covers: what pursuing this direction would involve, at the level of a suggestion (the shape of an approach and its key considerations/tradeoffs), and what would still need to be confirmed before it became a real plan. Every one of these is explicitly labeled as a suggestion, not a decision — the reader should come away with options to consider, not a plan to execute.
 
-### 10. Save and index
+### 11. Save and index
 
 Save the Overview, every per-repo breakdown, and every Suggested Directions doc to the project's external output location (see `references/external-output-paths.md`). Maintain an index linking the Overview, every repo breakdown, and every direction together so they're easy to navigate as a set.
 
-### 11. Report back and point to the next step
+### 12. Report back and point to the next step
 
-Tell the user the full paths written, which actors the Overview covers, and (for a multi-repo project) which repos got their own breakdown. For whichever direction they want to pursue for real, name the natural next skill: `deep-dive` if it still needs interrogating into specifics, or `breakdown-feature-prd`/`spec-driven-development` once it's concrete enough to commit to.
+Tell the user the full paths written, which actors the Overview covers, and (for a multi-repo project) which repos got their own breakdown. Call out the ready-now parts by name with their recommended command, same as the Overview's "Ready to Build" section — this is the answer to "what do I do next," don't make the user go find it themselves. For whichever Suggested Direction they want to pursue instead, name the natural next skill: `deep-dive` if it still needs interrogating into specifics, or `breakdown-feature-prd`/`spec-driven-development` once it's concrete enough to commit to.
 
 ## Common Rationalizations
 
@@ -97,6 +106,9 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 | "I should interrogate this as thoroughly as deep-dive would" | Keep questions basic and orienting — the project isn't understood yet, so exhaustive tree-shaped interrogation is premature; that's `deep-dive`'s job once a direction is chosen. |
 | "I'll just start gathering, the user would speak up if they had more to add" | Offer the option explicitly before starting — a user with a doubt-clearing doc they didn't think to lead with won't necessarily volunteer it unprompted. |
 | "They already gave me a lot of material, no need to ask" | The offer costs one question and is easy to decline — skipping it risks missing something that would have resolved a real blocker later in the process. |
+| "I'll mark this part ready, it seems close enough" | A part with any real open question stays not-yet-ready — false readiness sends the user straight into a spec that immediately hits a blocker it should have caught first. |
+| "'Needs more discovery' is specific enough for a not-ready part" | Name the actual open item — an unconfirmed rule, a pending dependency — the same way a real lead would, not a generic placeholder that tells the reader nothing actionable. |
+| "Readiness is one judgment for the whole project" | Assess part by part — one thread's phase 1 can be ready while its phase 3 isn't, exactly like a real project usually looks; a single project-wide verdict erases that distinction. |
 
 ## Red Flags
 
@@ -113,6 +125,10 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 - Grounding questions phrased as deep, exhaustive interrogation instead of basic orientation
 - All questions dumped in one giant list instead of batched rounds that adapt to earlier answers
 - Gathering started without first offering the user a chance to add more information
+- A part marked ready that still has an unresolved item from Step 4's grounding rounds
+- A "not yet ready" part with no specific blocker named, just a vague sense that more work is needed
+- The whole project assessed as one readiness unit instead of part by part
+- The Overview has no "Ready to Build" section at all
 
 ## Verification
 
@@ -122,6 +138,11 @@ Tell the user the full paths written, which actors the Overview covers, and (for
 - [ ] Basic grounding questions (purpose, audience, stage, constraints, out-of-scope) were asked in batched rounds before any drafting, using `grilling`'s frontier mechanic — not skipped, not exhaustive/deep-dive-level, not dumped in one giant list
 - [ ] The actor list was confirmed with the user before drafting the narrative section
 - [ ] The Project Overview is detailed and plain-language, and includes a continuous-prose, per-actor narrative section (not just factual bullets)
+- [ ] The project was broken into its natural distinct parts for readiness assessment, not invented divisions
+- [ ] Every part's readiness was assessed against what Step 4's grounding actually cleared, not a general impression of progress
+- [ ] Every ready part has a recommended next command (`/deep-dive`, `/spec`, or `/breakdown-feature-prd`) and a one-line reason
+- [ ] Every not-yet-ready part names its specific blocking open item
+- [ ] The Overview's "Ready to Build" section reflects this assessment
 - [ ] At least two Suggested Directions were produced, scaled up if the project's real size supports more
 - [ ] Every Suggested Direction traces to something found in the source material, not invented
 - [ ] Each Suggested Direction is clearly labeled as an option, with tradeoffs and open considerations, not a committed plan
