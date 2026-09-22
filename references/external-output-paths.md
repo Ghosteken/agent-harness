@@ -2,6 +2,8 @@
 
 Skills that produce planning or documentation artifacts write them **outside the current project's repository** — never into a path git in this project tracks, and never into a merely-gitignored path inside it either. This applies uniformly, including to Architecture Decision Records and codebase-knowledge maps, whose usual value comes from being committed; overriding that for this harness is a deliberate choice, not an oversight.
 
+This is a standing rule, not a per-skill opt-in: **every current and future skill** whose output is a standalone planning/documentation artifact (a spec, plan, PRD, narrative doc, diagram file, report, or similar) creates its project's root and subdirectory on first write and saves there — the same as every skill already listed below. The one deliberate exception is `design-doc-diagramming`, whose diagrams are embedded into other documents rather than saved as standalone files. Process/action skills that edit code already in the project, or that intentionally write in-repo configuration (rules files, CI config), aren't covered by this rule — their output belongs in the repo by design.
+
 ## Root location
 
 ```
@@ -28,6 +30,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `deep-dive` | `deep-dives/<topic-slug>.md` |
 | `project-compass` | `briefings/overview.md`, plus `briefings/repos/<repo-slug>.md` per repository (multi-repo projects only) and `briefings/directions/<direction-slug>.md` per suggested direction, indexed at `briefings/README.md` |
 | `documentation-and-adrs` | `decisions/NNNN-title.md` |
+| `excalidraw-diagramming` | `diagrams/<diagram-slug>.excalidraw` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
 | `code-review-and-quality` | `review-findings.md` — a single running log, **appended to**, not replaced per review (see below) |
 
