@@ -36,7 +36,7 @@ For each feature being documented, draft in order:
 2. **Goal** — Problem / Solution / Impact, 3-5 sentences each. Ask for real impact signals from the provided context; never invent metrics.
 3. **User Personas** — who, and their goals/context.
 4. **User Stories** — `As a <persona>, I want to <action> so I can <benefit>`. Cover primary paths and edge cases.
-5. **Requirements** — Functional (specific, unambiguous bullets) and Non-Functional (performance, security, accessibility, data privacy).
+5. **Requirements** — specific, unambiguous bullets, each tagged with its type: **Business** (why this matters commercially/strategically), **Functional** (what the feature does), **Non-Functional** (performance, accessibility, usability), **Data** (what's collected, its sensitivity class, retention/residency), **Security** (access control, encryption, isolation), **Reporting** (what gets measured or logged, and what must never be — e.g. no raw sensitive content in analytics). Not every feature needs all six — a simple UI tweak may only have Functional and Non-Functional — but check each type rather than defaulting to just Functional/Non-Functional, since Data and Security requirements in particular tend to get silently dropped when only two buckets are offered.
 6. **Acceptance Criteria** — Given/When/Then per story or major requirement.
 7. **Out of Scope** — what this feature explicitly does not include.
 
@@ -63,12 +63,14 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 | "spec-driven-development already covers this" | Different artifact and audience — a PM-facing PRD, not an engineering spec — not a replacement for it. |
 | "I don't need to update the index, just the one doc" | The index is the whole point of a multi-feature project sweep — skipping it leaves later docs undiscoverable. |
 | "I'll fill in the Impact numbers, they sound about right" | An invented metric reads as confirmed data to everyone downstream — ask for the real signal, or leave it as an open question. |
+| "Functional and Non-Functional cover everything, I don't need the other types" | Data and Security requirements in particular tend to vanish inside a generic Non-Functional bucket — checking each type explicitly is what catches "what's the retention period" or "who can see this" before the engineering spec inherits the gap. |
 
 ## Red Flags
 
 - A feature list enumerated and drafted without user confirmation
 - Stories with no acceptance criteria
 - Vague requirements ("fast", "secure") with no specifics
+- Every requirement dumped into Functional/Non-Functional with no Data or Security requirement considered, on a feature that clearly touches either
 - Invented Impact metrics not traceable to the provided context
 - `features/README.md` left stale after a new feature doc is written
 
@@ -78,6 +80,7 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 - [ ] For a sweep, the feature list was confirmed with the user before any doc was drafted
 - [ ] Every section (Goal, Personas, Stories, Requirements, Acceptance Criteria, Out of Scope) traces back to the provided context, with gaps asked about rather than invented
 - [ ] Every user story has at least one Given/When/Then acceptance criterion
+- [ ] Requirements were checked against all six types (Business, Functional, Non-Functional, Data, Security, Reporting), not defaulted to just Functional/Non-Functional
 - [ ] Each feature's PRD was saved to `features/<feature-slug>/prd.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 - [ ] `features/README.md` was created or updated to reflect every feature doc that exists
 - [ ] The user was told the full path(s) written
