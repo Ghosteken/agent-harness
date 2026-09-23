@@ -38,13 +38,15 @@ List exactly what will be created — the folder tree, the key config files, the
 
 Generate the folder layout, package/dependency manifest, linter/formatter config, a minimal working entry point (not a placeholder that doesn't run), `.gitignore`, and test scaffolding — following that stack and framework's real, current conventions. For a monorepo: the workspace config, the `apps/`/`packages/` layout, and shared base configs (tsconfig, eslint) that apps/packages extend rather than duplicate.
 
+**Tests and git hooks are part of every scaffold, not an optional extra.** Include the test runner already wired up with at least one real, passing test against the entry point (a genuine smoke test, not an empty test directory with nothing in it) — see `test-driven-development` for what a real test looks like versus a placeholder. Install and configure a pre-commit git hook — Husky for a Node/TypeScript project, or that ecosystem's real equivalent otherwise (e.g. `pre-commit` for Python, `lefthook` if the project already uses it) — running lint and the test suite before every commit, not just present as an installed dependency with no hook actually wired to run.
+
 **Structure by concern, not by convenience.** Every layer gets dedicated folders for its own distinct responsibilities, matching that stack's real convention — a backend separates routes/controllers from services/business logic from models/data access from config; a frontend separates components from pages/routes from hooks from lib/api-clients/utils. Never collapse these into one flat folder or a single catch-all file, even for a minimal starting scaffold — the tree itself should make the separation obvious, not just file naming within one folder. For a full-stack project, keep frontend and backend as clearly separated top-level concerns — either their own packages in a monorepo, or clearly separated top-level folders — never intermixed in one undifferentiated structure.
 
 Ground every generated file in the ecosystem's actual current convention, not a remembered one that may be stale — if genuinely unsure of a specific version or convention, ask rather than guess.
 
 ### 4. Verify it actually runs
 
-Install dependencies and run the stack's equivalent of a smoke test — the dev server starts, the entry point runs, the test runner executes with zero tests passing cleanly (not erroring). A scaffold that doesn't actually run is a broken deliverable, not a starting point.
+Install dependencies and run the stack's equivalent of a smoke test — the dev server starts, the entry point runs, the test suite's at-least-one real test actually passes (not zero tests, not an error), and the git hook actually fires on a trial commit and runs lint/tests. A scaffold that doesn't actually run — or whose test or hook is present but silently does nothing — is a broken deliverable, not a starting point.
 
 ### 5. Hand off
 
@@ -61,6 +63,8 @@ Tell the user what was created and where. Point to the natural next step: `spec-
 | "I'll skip the monorepo tooling setup, they can add it later" | A monorepo without its workspace config isn't a monorepo yet — set that up as part of the scaffold, not as a follow-up. |
 | "It's small right now, I'll put everything in one folder" | A scaffold models the structure the project grows into — separation of concerns is far cheaper to keep in place from the start than to retrofit once real code has accumulated in one flat folder. |
 | "It's a full-stack-capable framework, I don't need to ask which layer" | The framework name alone doesn't settle it — some can legitimately be frontend-only, backend-only, or full-stack; ask when it's genuinely ambiguous rather than assuming full-stack by default. |
+| "An empty test directory is enough, they'll add real tests later" | A test suite with nothing in it doesn't prove the test runner is actually wired correctly — include one real, passing smoke test now, the same way the entry point itself has to actually run, not just exist. |
+| "I'll add the git hook package but skip wiring an actual hook script" | An installed-but-unconfigured Husky/pre-commit dependency enforces nothing — the hook has to actually fire and run lint/tests on a real commit, not just sit in `package.json`. |
 
 ## Red Flags
 
@@ -72,12 +76,16 @@ Tell the user what was created and where. Point to the natural next step: `spec-
 - A flat structure with no dedicated folder per concern (routes, services, models, components, etc.)
 - Frontend and backend code intermixed in one undifferentiated structure on a full-stack project
 - Application layer (frontend/backend/full-stack) assumed instead of asked, on a framework where it was genuinely ambiguous
+- An empty test directory with no real test in it
+- Husky (or the ecosystem's equivalent) installed as a dependency but no hook script actually wired to run on commit
 
 ## Verification
 
 - [ ] Stack, project type, application layer (frontend/backend/full-stack), and topology were determined via `AskUserQuestion` (or already stated), not guessed
 - [ ] The generated structure has dedicated folders per concern (routes/services/models, or components/pages/hooks/lib, as applicable) — not a flat or catch-all layout
 - [ ] On a full-stack project, frontend and backend are clearly separated (own packages or own top-level folders), not intermixed
+- [ ] At least one real, passing test exists against the entry point — not an empty test directory
+- [ ] A pre-commit git hook (Husky, or the ecosystem's real equivalent) is installed, actually wired to run lint/tests, and was confirmed to fire on a trial commit
 - [ ] Any partial existing files in the project were detected and matched, not overwritten or ignored
 - [ ] The planned structure was confirmed with the user before any file was written
 - [ ] Every generated file follows that stack/framework's real, current convention
