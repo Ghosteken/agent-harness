@@ -383,6 +383,16 @@ These skills fire regardless of domain. They cover situations that happen across
 
 ---
 
+### Scaffolding a New Project
+
+**Trigger words:** scaffold a project, set up a new Next.js project, bootstrap this repo, create the initial structure for, start a new Python service, set up a monorepo, new project skeleton
+
+→ **Skill:** `project-scaffolding`
+→ No agent. Invoke when a new project (or a new package/app in a monorepo) needs its initial folder structure, tooling, and config, with nothing meaningful built yet — asks which stack, framework, and project type apply before generating anything. Sets up *how* code is organized, not *what* it does; run `spec-driven-development` first if the feature set itself isn't decided.
+→ **Command:** `/project-scaffolding`
+
+---
+
 ### Writing Feature PRDs
 **Trigger words:** write a PRD for this feature, break down this project into feature PRDs, product requirements, PM-facing spec, user stories and acceptance criteria for this feature, document all the features in this project
 
