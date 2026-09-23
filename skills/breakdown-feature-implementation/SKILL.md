@@ -26,7 +26,13 @@ Read the PRD's Constraints and Business Rules sections as closely as its Require
 
 ### 2. Ground in the real stack
 
-Explore the codebase's actual stack and architecture before drafting anything. Layers, component trees, and type shapes must reflect what's really there — never an invented or example stack. Ask if the project's stack or conventions are unclear rather than assuming a default.
+Determine the real stack from whichever of these actually applies, in this order:
+
+1. **Stated directly** — the user (or the PRD) already named a stack or framework (e.g. "use NestJS for the backend"). Take it as ground truth; no need to explore or ask further about that choice.
+2. **Detected from the codebase** — code already exists. Explore it and reflect what's really there (e.g. a `nest-cli.json` and `@nestjs/*` packages mean NestJS conventions — modules, controllers, providers, DTOs, decorators — not a generic Express layout).
+3. **Neither** — nothing was stated and there's no existing code to detect from (a greenfield project). Use the `AskUserQuestion` tool to ask rather than defaulting to whatever's most common.
+
+Layers, component trees, and type shapes in the rest of this plan must reflect whichever of these actually resolved the stack — never an invented or example one. If something else about the project's conventions is unclear at any later step (not just the stack itself), the same rule applies: use `AskUserQuestion` rather than guessing.
 
 ### 3. Draft the plan
 
@@ -56,7 +62,8 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 
 | Rationalization | Reality |
 |---|---|
-| "I'll reuse a generic example stack for the diagrams" | The diagrams and component trees must reflect this project's real stack — ground in the actual codebase, ask if unclear. |
+| "I'll reuse a generic example stack for the diagrams" | The diagrams and component trees must reflect this project's real stack — stated, detected, or asked about, never a generic default. |
+| "No stack was mentioned, I'll just pick the most common one" | Defaulting to a popular framework is still guessing — on a greenfield project with nothing stated or detectable, use `AskUserQuestion` instead. |
 | "I'll skip the diagrams, they're slow to get right" | An ASCII box-and-arrow layout takes minutes to draw directly in Markdown — the diagrams are the section's whole point, not an optional extra. |
 | "Mermaid would render cleaner, I'll use it anyway" | This skill's diagrams are plain Markdown only — no Mermaid, no external renderer dependency. If a polished Mermaid version is wanted for a separate design doc later, that's `design-doc-diagramming`'s job, not this plan's. |
 | "Real code is clearer than pseudocode here" | The no-code constraint is explicit — real code belongs downstream, in `incremental-implementation`/`test-driven-development`. |
@@ -66,7 +73,8 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 
 ## Red Flags
 
-- Architecture or stack details invented without checking the actual codebase
+- Architecture or stack details invented without checking whether a stack was stated, detected from the codebase, or actually needed to be asked about
+- A default framework/stack assumed on a greenfield project instead of using `AskUserQuestion`
 - API section reinvents conventions instead of using `api-and-interface-design`'s
 - Real (non-pseudo) code blocks in the plan
 - Missing Security & Performance section
@@ -78,7 +86,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 ## Verification
 
 - [ ] The input PRD or spec was confirmed to exist before drafting began
-- [ ] The project's actual stack and architecture were explored, not assumed
+- [ ] The stack was resolved via one of the three cases (stated directly, detected from the codebase, or asked about via `AskUserQuestion`) — never assumed or defaulted
 - [ ] The System Architecture and Database Schema diagrams were drawn directly in plain Markdown (ASCII boxes/trees) — no Mermaid, no delegation to `design-doc-diagramming`
 - [ ] The API Design section follows `api-and-interface-design`'s conventions
 - [ ] No real code blocks — pseudocode only
