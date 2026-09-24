@@ -28,7 +28,13 @@ Writes PM/stakeholder-facing requirements documents, one per feature — upstrea
 
 Read whatever docs or context the user pointed at. For a whole-project sweep, also explore the codebase — same grounding mandate as `deep-dive` and `acquire-codebase-knowledge`: never invent a feature list from assumption. For a whole-project sweep, enumerate the candidate feature list and confirm it with the user (`AskUserQuestion`, or an explicit listed confirmation) before drafting any individual doc — don't silently decide scope.
 
-### 3. Draft each feature's PRD
+### 3. Check whether this is a refinement, not a fresh draft
+
+Before drafting, check whether a `prd.md` already exists for this feature (single-feature mode, or a feature a prior sweep already covered) and whether it has an Open Questions section. If it does, and what was just gathered in Step 2 answers one or more of them, use the `AskUserQuestion` tool to confirm: refine the existing PRD with these answers, or proceed some other way (a fresh variant, or drafting a different feature instead) — the same "confirm before proceeding" gate `project-compass` uses when offered extra information partway through.
+
+If refining: resolve each newly-answered Open Question by removing it from that section and propagating the answer into whichever section it actually affects — a Requirement becomes more specific, a Constraint gets confirmed as settled, a Business Rule gets its precedence clarified, an Acceptance Criterion gets added — not just noted inline as a comment. Leave any Open Questions that are still genuinely unanswered in place. This is a specific case of the existing-file convention in Step 5 below, driven by resolved questions rather than a generic re-run.
+
+### 4. Draft each feature's PRD
 
 For each feature being documented, draft in order:
 
@@ -41,18 +47,25 @@ For each feature being documented, draft in order:
 7. **Business Rules** — invariant decision logic the feature must enforce across every story, not just one: precedence between conflicting conditions, default behavior under ambiguity, override rules. These rarely fit inside a single story's Given/When/Then and get silently dropped if there's no dedicated place for them — write each as a standalone declarative rule (e.g. "X always overrides Y," "when uncertain, default to the stricter option"), not folded into a story.
 8. **Acceptance Criteria** — Given/When/Then per story or major requirement.
 9. **Out of Scope** — what this feature explicitly does not include.
+10. **Open Questions** — genuinely unresolved items for this feature, drawn from four sources, never invented from nothing:
+    - The source material's own admitted gaps, filtered to this feature — a "PROPOSED" marker, a placeholder, a decision the material itself defers to a future spec, anything the context flags as not yet settled.
+    - The source material's own consolidated open-questions/risks section (if it has one), filtered to whichever items actually apply to this feature.
+    - Ambiguity that only surfaces while drafting this feature's own Requirements, Constraints, Business Rules, or Acceptance Criteria — writing a real Given/When/Then often exposes a case the source's prose never resolved, even when the source is otherwise detailed. This doesn't require more material than what's already there; it's a product of being specific.
+    - A cross-feature dependency — this feature's behavior depends on a decision that actually belongs to a different feature or section not yet finalized. Name the dependency explicitly rather than assuming it'll resolve itself.
+
+    This is not a dumping ground for anything answerable by just asking the user now — that's the "ask rather than invent" rule below, applied during drafting. Open Questions is for what's still unresolved after that, or genuinely belongs to someone else to decide later. Leave it empty (or omit it) when a feature genuinely has nothing left open — don't manufacture one to fill the section.
 
 Everything traces back to the provided context. Ask rather than invent when the context doesn't say.
 
-### 4. Save the feature doc
+### 5. Save the feature doc
 
-Save to `features/<feature-slug>/prd.md` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Check whether a doc for this feature already exists before writing; if so, confirm with the user whether to update it in place or start a new one.
+Save to `features/<feature-slug>/prd.md` under the project's external output location (see `references/external-output-paths.md`) — outside the project's own repo, never a path git in this project tracks or ignores. Check whether a doc for this feature already exists before writing; if so, confirm with the user whether to update it in place or start a new one (Step 3 already covers the specific case of refining with newly-answered Open Questions).
 
-### 5. Update the index
+### 6. Update the index
 
 Create or update `features/README.md` — one line per feature (name, link to its `prd.md`, one-sentence summary) — so it always reflects every feature doc that exists. Create it on first use.
 
-### 6. Report back
+### 7. Report back
 
 Tell the user the full path(s) written, including the index. Note that each `prd.md` is ready to hand directly to `breakdown-feature-implementation`, `spec-driven-development`'s downstream steps, `/build`, or any other spec-consuming skill or command.
 
@@ -68,6 +81,9 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 | "Functional and Non-Functional cover everything, I don't need the other types" | Data and Security requirements in particular tend to vanish inside a generic Non-Functional bucket — checking each type explicitly is what catches "what's the retention period" or "who can see this" before the engineering spec inherits the gap. |
 | "I'll fold this decision rule into whichever story it came up in" | A rule like "X overrides Y" or "default to the stricter option under uncertainty" governs every story it applies to, not just the one where it was noticed — burying it in one story's acceptance criteria means every other story silently relies on unwritten logic. |
 | "Constraints are basically the same as Non-Functional Requirements" | A constraint is imposed from outside (a regulation, a system you must integrate with as-is) — the team doesn't choose it and can't trade it off; a Non-Functional Requirement is a quality the team designs for. Conflating them hides which ones are actually non-negotiable. |
+| "The source material was detailed, there's nothing left to flag as an open question" | A detailed source still has scattered gaps — PROPOSED markers, deferred decisions, cross-feature dependencies — and writing a real Given/When/Then often surfaces ambiguity the prose glossed over. Detailed isn't the same as fully resolved. |
+| "I'll leave the Open Questions section out entirely to keep the doc clean" | Only skip it when a feature genuinely has nothing unresolved — check the four sources first; an empty section from a real check is fine, an omitted section from skipping the check isn't. |
+| "I'll just re-draft the whole PRD from scratch since I have new answers" | Refining resolves the specific Open Questions the new information answers and propagates them into the sections they affect — it doesn't discard everything already confirmed. A full re-draft risks silently losing content that was already agreed. |
 
 ## Red Flags
 
@@ -79,6 +95,10 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 - A regulatory, technical, or resourcing constraint described as if it were a Non-Functional Requirement the team chose
 - Invented Impact metrics not traceable to the provided context
 - `features/README.md` left stale after a new feature doc is written
+- No Open Questions section, and no evidence the four sources were actually checked
+- An Open Questions item that's really just something the user could have been asked directly during drafting
+- A PRD re-drafted from scratch when the actual need was refining specific answered Open Questions
+- Refinement proceeded without confirming via `AskUserQuestion` first
 
 ## Verification
 
@@ -89,6 +109,8 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 - [ ] Requirements were checked against all six types (Business, Functional, Non-Functional, Data, Security, Reporting), not defaulted to just Functional/Non-Functional
 - [ ] Externally imposed limits are captured as Constraints, not folded into Non-Functional Requirements
 - [ ] Cross-story decision logic (precedence, defaults, overrides) is captured as its own Business Rule, not buried in one story's acceptance criteria
+- [ ] Open Questions were checked against all four sources (source's own admitted gaps, source's own open-questions section, ambiguity surfaced while drafting, cross-feature dependencies) — not invented, and not skipped without checking
+- [ ] When new information answered an existing feature's Open Questions, refinement was confirmed via `AskUserQuestion` before updating, and only the resolved questions plus their downstream effects changed
 - [ ] Each feature's PRD was saved to `features/<feature-slug>/prd.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 - [ ] `features/README.md` was created or updated to reflect every feature doc that exists
 - [ ] The user was told the full path(s) written
