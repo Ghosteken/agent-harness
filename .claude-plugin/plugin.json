@@ -1,5 +1,6 @@
 {
   "name": "agent-harness",
+  "version": "1.0.1",
   "description": "Production-grade engineering skills and agents for AI coding assistants, covering the full software development lifecycle from spec to ship.",
   "author": {
     "name": "Nicholas Aigberua"
