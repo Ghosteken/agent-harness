@@ -58,12 +58,31 @@ NAME=$(json_str_field "name" "$(cat "$MANIFEST")")
 SRC="${SOURCE_REPO}/skills/${SKILL_NAME}"
 DST="${PLUGIN_ROOT}/skills/${SKILL_NAME}"
 
-[ -d "$SRC" ] || exit 0
-
-if [ ! -d "$DST" ] || ! diff -rq "$SRC" "$DST" >/dev/null 2>&1; then
-  mkdir -p "$DST"
-  cp -rf "$SRC/." "$DST/"
-  echo "[agent-harness] Synced installed copy of '${SKILL_NAME}' from dev repo (was stale)." >&2
+if [ -d "$SRC" ]; then
+  if [ ! -d "$DST" ] || ! diff -rq "$SRC" "$DST" >/dev/null 2>&1; then
+    mkdir -p "$DST"
+    cp -rf "$SRC/." "$DST/"
+    echo "[agent-harness] Synced installed copy of '${SKILL_NAME}' from dev repo (was stale)." >&2
+  fi
 fi
+
+# Also resync this skill's slash-command wrappers across all three CLI
+# targets — they're separate files that have drifted out of sync with the
+# skill body before (e.g. still instructing Mermaid after the skill itself
+# was updated to drop it), and nothing else keeps them in lockstep.
+for pair in \
+  ".claude/commands/${SKILL_NAME}.md" \
+  ".gemini/commands/${SKILL_NAME}.toml" \
+  "commands/${SKILL_NAME}.toml"
+do
+  CSRC="${SOURCE_REPO}/${pair}"
+  CDST="${PLUGIN_ROOT}/${pair}"
+  [ -f "$CSRC" ] || continue
+  if [ ! -f "$CDST" ] || ! diff -q "$CSRC" "$CDST" >/dev/null 2>&1; then
+    mkdir -p "$(dirname "$CDST")"
+    cp -f "$CSRC" "$CDST"
+    echo "[agent-harness] Synced installed copy of '${pair}' from dev repo (was stale)." >&2
+  fi
+done
 
 exit 0
