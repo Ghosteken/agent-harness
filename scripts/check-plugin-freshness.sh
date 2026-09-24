@@ -28,6 +28,13 @@ if grep -qE '[[:space:]]archive[/\\]' <<< "$LISTING"; then
   fail "agent-harness.plugin contains archive/ entries — pre-prune bulk-import content must be excluded. Rebuild with the current scripts/build-plugin.sh."
 fi
 
+# 1b. No backslash path separators (ZIP spec requires '/'; Windows-built archives
+# with '\' entries break cross-platform unzippers and can serve stale nested
+# files like skills/<name>/SKILL.md on reinstall)
+if grep -qE '[[:space:]][^[:space:]]*\\[^[:space:]]*$' <<< "$LISTING"; then
+  fail "agent-harness.plugin contains entries with backslash path separators — rebuild with the current scripts/build-plugin.ps1 (or .sh)."
+fi
+
 # 2. No local-only settings files
 if grep -qi 'settings\.local' <<< "$LISTING"; then
   fail "agent-harness.plugin contains a settings.local file — local-only config must never ship. Rebuild with the current scripts/build-plugin.sh."

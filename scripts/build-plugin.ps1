@@ -53,9 +53,31 @@ Get-ChildItem -Path $stageDir -Recurse -Filter "settings.local.*" -File | Remove
 
 $stagedItems = Get-ChildItem $stageDir
 
-# Zip the items (skip anything that can't be read)
+# Build the zip entry-by-entry with explicit forward-slash names. Both
+# Compress-Archive and ZipFile.CreateFromDirectory write entries with backslash
+# path separators when run under Windows PowerShell 5.1 (.NET Framework) — that
+# violates the ZIP spec (entries must use '/') and breaks cross-platform
+# unzippers that expect nested paths like skills/<name>/SKILL.md, causing them
+# to silently miss or fail to overwrite content on reinstall. Building entries
+# manually sidesteps the runtime-dependent behavior entirely.
 try {
-  Compress-Archive -Path $stagedItems.FullName -DestinationPath $tmpZip -Force
+  Add-Type -AssemblyName System.IO.Compression
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  if (Test-Path $tmpZip) { Remove-Item -Force $tmpZip }
+
+  $zip = [System.IO.Compression.ZipFile]::Open($tmpZip, [System.IO.Compression.ZipArchiveMode]::Create)
+  try {
+    $files = Get-ChildItem -Path $stageDir -Recurse -File
+    foreach ($file in $files) {
+      $relativePath = $file.FullName.Substring($stageDir.Length + 1) -replace '\\', '/'
+      [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile(
+        $zip, $file.FullName, $relativePath,
+        [System.IO.Compression.CompressionLevel]::Optimal
+      ) | Out-Null
+    }
+  } finally {
+    $zip.Dispose()
+  }
 } catch {
   Write-Warning "Some files could not be included: $_"
 } finally {
