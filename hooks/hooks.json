@@ -12,6 +12,18 @@
         ]
       }
     ],
+    "PreToolUse": [
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "SCRIPT=\"${CLAUDE_PLUGIN_ROOT}/hooks/skill-freshness-sync.sh\"; [ -f \"$SCRIPT\" ] || SCRIPT=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/skill-freshness-sync.sh\"; [ -f \"$SCRIPT\" ] || SCRIPT=\"${CLAUDE_PROJECT_DIR}/hooks/skill-freshness-sync.sh\"; [ -f \"$SCRIPT\" ] && bash \"$SCRIPT\" || true",
+            "async": false
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "hooks": [
