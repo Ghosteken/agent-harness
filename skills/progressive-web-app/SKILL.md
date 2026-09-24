@@ -41,6 +41,7 @@ Steps 1-4 below are written for a plain site with a real `index.html` you contro
   - Use [`@serwist/next`](https://serwist.pages.dev/) (the actively maintained successor to `next-pwa`, which is unmaintained) — it wraps `next.config`, generates the service worker from the real build manifest on every build, and keeps precaching correct automatically.
   - **App Router (Next.js 13+)** has a native manifest file convention — `app/manifest.ts` — instead of a hand-written `public/manifest.json`; Next.js serves it automatically. The manifest *fields* (`name`, `icons`, `display`, etc.) from Step 1 below still apply, just returned from that file instead of written as static JSON.
   - Register the service worker from a small Client Component (`'use client'`) in the root layout, not an inline `<script>` in a static HTML file — there is no `index.html` to edit.
+  - For lighter needs than full offline caching — just knowing the connection dropped and retrying a failed navigation or server call automatically — Next.js also has an experimental connectivity-aware hook that doesn't require a service worker at all. Reach for the full service-worker approach (via `@serwist/next`) only when actual offline asset caching is the goal, not just graceful degradation on a flaky connection.
   - The three caching strategies (Step 4), the offline fallback page, the manifest's required fields, and the shipping checklist all still apply regardless of framework — only *how* the files get generated changes.
 
 ### Monorepo placement
@@ -340,7 +341,11 @@ async function staleWhileRevalidate(request) {
 
 ### HTTPS Requirement
 - Service workers only register on `https://` origins. `http://localhost` is the only exception for development.
-- Use a tool like `mkcert` or `ngrok` if you need HTTPS locally with a custom hostname.
+- Use a tool like `mkcert` or `ngrok` if you need HTTPS locally with a custom hostname — or, on Next.js, its own dev server flag for a self-signed local certificate, no extra tool required.
+
+### Service Worker Response Headers
+- Serve `sw.js` with an explicit `Content-Type` of `application/javascript`, a `no-cache`/`must-revalidate` `Cache-Control` (so the browser always re-checks for a new one rather than serving a stale cached copy of the service worker file itself — a different problem from the app-shell cache versioning above), and a restrictive `Content-Security-Policy` scoped to the service worker's own script.
+- Pair this with the general security headers any app should set — `X-Content-Type-Options: nosniff`, `X-Frame-Options`, `Referrer-Policy` — configured wherever this project already sets HTTP headers (a framework's own headers config, e.g. Next.js's `next.config` `headers()` function, or the static host's config if there's no server-side framework to configure).
 
 ### Cache-Busting on Deploy
 - Always increment `CACHE_VERSION` in `sw.js` when deploying new assets. This ensures activate clears old caches and users get fresh files.
@@ -370,6 +375,27 @@ registerRoute(({ request }) => request.destination === 'image', new CacheFirst()
 registerRoute(({ request }) => request.mode === 'navigate', new NetworkFirst());
 registerRoute(({ request }) => request.destination === 'script', new StaleWhileRevalidate());
 ```
+
+---
+
+## Optional: Web Push Notifications
+
+Not every PWA needs this — add it only when the user actually wants re-engagement notifications, not as a mandatory step alongside installability and offline support.
+
+**What it needs, at a high level:**
+
+- A VAPID key pair, generated once (the `web-push` npm package's CLI can generate one). The public key ships to the client; the private key stays server-side only. Both go in environment variables, never committed.
+- A client-side subscribe flow: confirm `'serviceWorker' in navigator && 'PushManager' in window`, get the service worker registration, call its `pushManager.subscribe()` with the public VAPID key, then send the resulting subscription object to the backend to persist — a real database row, not an in-memory variable that a server restart would lose.
+- A backend endpoint that actually sends the notification, using a push library (e.g. `web-push`) with the stored subscription and the VAPID private key.
+- Two service worker event handlers: `push` (build the notification content and call `self.registration.showNotification()`) and `notificationclick` (close the notification and navigate the user somewhere relevant).
+
+**Where it lives in a monorepo:** the subscribe/unsubscribe/send logic belongs in whichever package actually owns the backend — in a NestJS + Next.js monorepo (see Monorepo Placement above), that's the NestJS API, not a Next.js-side server function, since the backend is already the system of record for that kind of state.
+
+**Platform support:** all major browsers now, including iOS 16.4+ — but only for an app that's actually been installed to the home screen on iOS. Confirm installability (Steps 1-3 above) works before layering push on top of it.
+
+**Don't rely on `beforeinstallprompt` for the primary install path.** It only fires on Chromium-based browsers — Safari, including iOS, never fires it at all. A custom "Install" button built on it is a nice-to-have for Chromium users, not a cross-platform mechanism; the OS-level install prompt and the iOS manual Share-sheet flow (see iOS/Safari Quirks above) are what most users actually see. Hide any custom install button once `window.matchMedia('(display-mode: standalone)').matches` is true, so it doesn't linger after the app is already installed.
+
+**Framework note:** for a build-pipeline framework using Server Actions or a similar server-side function to handle the subscribe/send logic, remember that a static export build has no server to run them in — that logic has to move to a real external API endpoint if the project ever switches to static export (see Before You Start above).
 
 ---
 

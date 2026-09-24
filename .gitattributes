@@ -4,3 +4,12 @@
 # of the delimiter, so the frontmatter fails to strip and renders as raw
 # text instead of being parsed and hidden).
 *.md text eol=lf
+
+# Content excluded from `git archive` output (scripts/build-plugin.ps1 / .sh
+# use git archive to build agent-harness.plugin — this is the single source
+# of truth for what ships, replacing fragile manual file-copy/staging logic
+# that behaved inconsistently across PowerShell runtimes in CI).
+archive/ export-ignore
+agent-harness.plugin export-ignore
+.claude/settings.local.json export-ignore
+.claude/settings.local.* export-ignore

@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 # Recreate agent-harness.plugin for Claude desktop upload.
 #
+# Builds via `git archive` from the current commit — the exclude list lives
+# in .gitattributes (export-ignore), not in this script, so it stays in
+# sync with build-plugin.ps1 instead of two scripts maintaining separate
+# exclude lists that can silently drift apart.
+#
+# Note: `git archive` zips the current commit, not uncommitted working-tree
+# changes — commit first if you need those reflected in the build.
+#
 # Usage:
 #   bash scripts/build-plugin.sh
 #   bash scripts/build-plugin.sh --out /path/to/output.plugin
@@ -17,37 +25,25 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-TMP_ZIP="$(mktemp /tmp/agent-harness-plugin-XXXXXX.zip)"
-trap 'rm -f "$TMP_ZIP"' EXIT
-
 echo "[agent-harness] Building plugin from: $REPO_ROOT"
 echo "[agent-harness] Output: $OUT"
 
-# Build list of items to include (exclude .git and existing .plugin)
-ITEMS=()
-while IFS= read -r -d '' item; do
-  name="$(basename "$item")"
-  [[ "$name" == ".git" || "$name" == "agent-harness.plugin" ]] && continue
-  ITEMS+=("$item")
-done < <(find "$REPO_ROOT" -maxdepth 1 -mindepth 1 -print0)
+rm -f "$OUT"
+git -C "$REPO_ROOT" archive --format=zip --worktree-attributes -o "$OUT" HEAD
 
-if [[ ${#ITEMS[@]} -eq 0 ]]; then
-  echo "ERROR: nothing to zip in $REPO_ROOT" >&2
+[[ -f "$OUT" ]] || { echo "ERROR: zip creation failed - $OUT not found" >&2; exit 1; }
+
+# Self-verify: confirm the zip actually contains the skills on disk, before
+# ever treating this as a valid build.
+LIVE_SKILL_COUNT="$(find "${REPO_ROOT}/skills" -mindepth 2 -maxdepth 2 -name 'SKILL.md' | wc -l | tr -d ' ')"
+ZIPPED_SKILL_COUNT="$(unzip -l "$OUT" | grep -cE '[[:space:]]skills/[^/]+/SKILL\.md$' || true)"
+
+if [[ "$ZIPPED_SKILL_COUNT" -ne "$LIVE_SKILL_COUNT" ]]; then
+  rm -f "$OUT"
+  echo "ERROR: Build verification failed: zip contains ${ZIPPED_SKILL_COUNT} skill(s) but skills/ has ${LIVE_SKILL_COUNT} on disk (uncommitted changes? git archive only zips HEAD). Not leaving a broken output file in place." >&2
   exit 1
 fi
-
-cd "$REPO_ROOT"
-zip -r "$TMP_ZIP" . \
-  --exclude ".git/*" \
-  --exclude "agent-harness.plugin" \
-  --exclude "archive/*" \
-  --exclude ".claude/settings.local.json" \
-  --exclude ".claude/settings.local.*" \
-  2>/dev/null || true
-
-[[ -f "$TMP_ZIP" ]] || { echo "ERROR: zip failed" >&2; exit 1; }
-
-cp "$TMP_ZIP" "$OUT"
+echo "[agent-harness] Verified: ${ZIPPED_SKILL_COUNT} skills bundled, matching skills/ on disk."
 
 SIZE=$(du -sh "$OUT" | cut -f1)
 echo "[agent-harness] Done — agent-harness.plugin ($SIZE)"
