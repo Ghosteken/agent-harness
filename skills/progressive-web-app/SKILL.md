@@ -1,6 +1,6 @@
 ---
 name: progressive-web-app
-description: Build Progressive Web Apps (PWAs) with offline support, installability, and caching strategies. Trigger whenever the user mentions PWA, service workers, web app manifests, Workbox, 'add to home screen', or wants their web app to work offline, feel native, or be installable.
+description: Build Progressive Web Apps (PWAs) with offline support, installability, and caching strategies — for a plain static site by hand-writing the manifest/service worker directly, or for a build-pipeline framework (Next.js, Nuxt, SvelteKit, Vite/CRA/Angular) via that framework's own PWA integration, including inside a monorepo where the frontend is a separate package from a backend API. Trigger whenever the user mentions PWA, service workers, web app manifests, Workbox, 'add to home screen', or wants their web app to work offline, feel native, or be installable.
 ---
 
 # Progressive Web Apps (PWAs)
@@ -21,14 +21,52 @@ A Progressive Web App is a web application that uses modern browser capabilities
 - Use when the user mentions Workbox, web app manifests, background sync, or push notifications for the web.
 - Use when the user asks "can my website be installed like an app?" or "how do I make my site work offline?" — even if they don't use the word PWA.
 
+## Determine the Repo's Nature First
+
+Before anything else, use the `AskUserQuestion` tool to ask which of these the repo actually is — don't infer it silently, since it changes everything that follows:
+
+- **A plain repo** — a static site or simple SPA with a hand-editable `index.html`, no framework build pipeline.
+- **An existing PWA** — some PWA setup is already there (a manifest, a service worker, or both) and this is a refinement, not a from-scratch build.
+- **A Next.js project** (or another build-pipeline framework — Nuxt, SvelteKit, Vite, CRA, Angular).
+- **A web + API monorepo** — a frontend package alongside a separate backend/API package.
+
+Skip asking only when the answer is already unambiguous from what's been stated or from a quick look at the repo root (e.g. a `next.config` file sitting right there makes "Next.js project" obvious) — but default to asking rather than assuming, since this is a case where the wrong guess derails everything that follows it: hand-rolling a static `sw.js` on a Next.js app breaks on the very first deploy, and generating a fresh manifest over an existing PWA setup overwrites real configuration. The answer determines which of the branches below applies, and whether Monorepo Placement and Check What Already Exists First need to be walked through as well (an existing PWA or a monorepo answer means both do; a plain repo skips straight to Step 1).
+
+## Before You Start: Static Site vs. Build-Pipeline Framework
+
+Steps 1-4 below are written for a plain site with a real `index.html` you control directly. Check which case actually applies before following them literally:
+
+- **Plain static site / simple SPA with a hand-editable `index.html`** — Steps 1-4 apply as written: hand-write `manifest.json`, `app.js`, and `sw.js` directly.
+- **A framework with its own build pipeline that fingerprints/hashes output files** (Next.js, Nuxt, SvelteKit, Vite, Create React App, Angular) — **do not hand-write a static `sw.js` that lists filenames.** The build hashes JS/CSS filenames on every deploy, so a manually-listed precache list goes stale immediately. Use that framework's build-integrated PWA plugin instead, which generates the service worker's precache manifest from the actual build output. For **Next.js** specifically:
+  - Use [`@serwist/next`](https://serwist.pages.dev/) (the actively maintained successor to `next-pwa`, which is unmaintained) — it wraps `next.config`, generates the service worker from the real build manifest on every build, and keeps precaching correct automatically.
+  - **App Router (Next.js 13+)** has a native manifest file convention — `app/manifest.ts` — instead of a hand-written `public/manifest.json`; Next.js serves it automatically. The manifest *fields* (`name`, `icons`, `display`, etc.) from Step 1 below still apply, just returned from that file instead of written as static JSON.
+  - Register the service worker from a small Client Component (`'use client'`) in the root layout, not an inline `<script>` in a static HTML file — there is no `index.html` to edit.
+  - The three caching strategies (Step 4), the offline fallback page, the manifest's required fields, and the shipping checklist all still apply regardless of framework — only *how* the files get generated changes.
+
+### Monorepo placement
+
+In a monorepo with a separate frontend and backend package (e.g. a NestJS API alongside a Next.js frontend as sibling workspace packages), everything above belongs **inside the frontend package only** (`apps/web/`, or whatever it's actually named) — never at the monorepo root, and never inside the backend package. A backend API gets no manifest and no service worker of its own; it's simply a data source the frontend's service worker may cache responses from (Step 4's Strategy C, stale-while-revalidate, for `/api/*` requests). If the frontend package's path isn't obvious from the workspace layout, confirm it before generating anything rather than guessing.
+
+## Check What Already Exists First
+
+Before generating anything, this is very often an **existing repo**, not an empty one — check for each of these before assuming it needs to be created from scratch:
+
+- **A manifest** — `public/manifest.json`, `app/manifest.ts`, or the equivalent for whatever framework was identified above.
+- **A service worker** — a hand-written `sw.js`/`public/sw.js`, or a PWA plugin already configured in the build config (`@serwist/next`, `next-pwa`, `vite-plugin-pwa`, etc.).
+- **Icons** — an existing icon set at or near the 192×192/512×512 sizes Step 1 needs, even if not maskable yet.
+- **A root layout or entry point** to extend — for a framework app this already exists (the root layout, `_app`, `index.html`) and needs the manifest link and SW registration *added to it*, not a fresh one created over it.
+- **An offline fallback page**, or something close enough to adapt (an existing 404/error page).
+
+For anything that already exists: read it and work with what's there — complete missing manifest fields, add a missing icon size, wire registration into the existing layout — rather than overwriting or duplicating it. If what's there is incomplete or conflicts with what's needed (a manifest missing `display`/`icons`, a service worker with no offline fallback), extend or fix it in place; don't silently replace a working file wholesale without saying so. If it's genuinely ambiguous whether something should be replaced versus extended, ask rather than guess. Only generate from scratch whatever genuinely isn't there yet — the Deliverables Checklist below is what to confirm is present and correct, not a mandate to create all five items unconditionally.
+
 ## Deliverables Checklist
 
-Every PWA implementation must include these files at minimum:
+Confirm each of these is present and correct, adapted to whichever case above actually applies — creating only whatever the check above found genuinely missing:
 
-- [ ] `index.html` — Links manifest, registers service worker
-- [ ] `manifest.json` — Full app metadata and icon set
-- [ ] `sw.js` — Service worker with install, activate, and fetch handlers
-- [ ] `app.js` — Main app logic with SW registration and install prompt handling
+- [ ] `index.html` (static/SPA) **or** the framework's own root layout/entry point (Next.js: no `index.html` exists — skip this) — links the manifest, registers the service worker
+- [ ] `manifest.json` (static/SPA) **or** the framework's native manifest convention (Next.js App Router: `app/manifest.ts`) — full app metadata and icon set
+- [ ] `sw.js` — hand-written (static/SPA) **or** generated by the framework's PWA plugin (Next.js: via `@serwist/next`, not hand-authored) — install, activate, and fetch handlers
+- [ ] `app.js` (static/SPA) **or** a client component (framework) — SW registration and install prompt handling
 - [ ] `offline.html` — Fallback page shown when navigation fails offline (required — missing file will cause install to fail)
 
 ---
@@ -345,6 +383,8 @@ registerRoute(({ request }) => request.destination === 'script', new StaleWhileR
 - [ ] `offline.html` fallback is cached and served when navigation fails offline
 - [ ] Lighthouse PWA audit passes (Chrome DevTools → Lighthouse tab)
 - [ ] Tested on iOS Safari (manual install flow) and Android Chrome (install prompt)
+- [ ] For a build-pipeline framework: the generated `sw.js` was inspected after a real production build (not `dev` mode) — precached filenames should match the actual hashed build output, not a hand-written guess
+- [ ] In a monorepo: the manifest and service worker were confirmed to live inside the frontend package, not the repo root or the backend package
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

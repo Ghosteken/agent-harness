@@ -24,6 +24,8 @@ Locate one feature's `features/<feature-slug>/prd.md` (from `breakdown-feature-p
 
 Read the PRD's Constraints and Business Rules sections as closely as its Requirements — they carry forward into Step 3, not just the Requirements list. If the PRD predates these sections (an older doc without them) but the feature clearly has either — a regulatory limit, a precedence rule — use the `AskUserQuestion` tool to confirm what's actually there before drafting the plan, rather than silently assuming none exist.
 
+Also read the PRD's Open Questions section. For each one that's actually relevant to this plan (touches the architecture, data model, API, or a security/performance decision — not every open question will), use `AskUserQuestion` to check whether it can be resolved now. If it can, treat the answer as settled input to Step 3. If it can't, it doesn't block the rest of the plan — carry it forward with a suggested workaround instead of silently picking an answer and drafting around it as if it were decided (see Step 3's Inherited Open Questions).
+
 ### 2. Ground in the real stack
 
 Determine the real stack from whichever of these actually applies, in this order:
@@ -43,6 +45,10 @@ Layers, component trees, and type shapes in the rest of this plan must reflect w
 **Constraints** — restate each of the PRD's Constraints as a concrete technical constraint on this plan, not a copy-pasted sentence: a regulatory data-residency rule becomes a specific statement about which Infrastructure-layer region/deployment it rules out; a "must integrate with X as-is" constraint becomes a specific integration-point note in the Architecture Overview. A constraint that doesn't visibly shape some part of the plan below wasn't actually carried forward.
 
 **Business Rules → Technical Invariants** — translate each of the PRD's Business Rules into an explicit, concrete rule tied to a specific place in this plan: a precedence rule becomes an explicit ordering step in the System Architecture Overview or API Design's request handling; a default-under-ambiguity rule becomes an explicit fallback branch, not an assumption left implicit in prose. Name which layer or endpoint enforces each one.
+
+**Inherited Open Questions** — any of the PRD's Open Questions that Step 1 couldn't resolve, and that are actually relevant to this plan, get carried forward here — each tied to the specific section it affects (e.g. "API Design's retry policy assumes X, pending confirmation of Y"). This is not the same list as the Constraints/Business Rules above: those are settled and now translated; these are still genuinely open, and the plan has to say so rather than quietly resolving them by picking whichever answer was most convenient to draft around.
+
+Don't let an unresolved one stall the rest of the plan, though. For each, give a **suggested workaround** — the simplest reasonable interim approach the plan actually uses so the affected section (Architecture, Schema, API, etc.) can still be drafted concretely, labeled clearly as provisional and pending confirmation, not silently folded in as if it were settled. This is what keeps the plan buildable in the meantime while still being honest about what's still open — the same posture as an Assumption in a spec, not a blocker that halts everything else. Omit this subsection only when there's genuinely nothing inherited — don't leave a stale placeholder.
 
 **Technical Considerations:**
 
@@ -70,6 +76,9 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 | "I'll invent the API conventions for this feature" | `api-and-interface-design` already owns error envelope, naming, and pagination conventions — reuse them, don't reinvent. |
 | "I'll copy the PRD's Constraints and Business Rules text in as-is" | Copying the sentence isn't carrying it forward — each one needs to visibly shape a specific part of the plan (a layer, an endpoint, a fallback branch), or it wasn't actually translated. |
 | "The PRD didn't have Constraints or Business Rules sections, so there aren't any" | An older PRD predating those sections can still have a real regulatory limit or precedence rule buried in its Requirements — ask rather than assume none exist. |
+| "I'll just pick the most likely answer to this Open Question and draft around it" | That's the same guessing this skill refuses to do for the stack — if it can't be resolved via `AskUserQuestion`, carry it forward explicitly as an Inherited Open Question instead of quietly deciding it. |
+| "The PRD's Open Questions are its problem, not this plan's" | Some of them are directly about this plan's architecture, data model, or API — checking which ones apply is what keeps the technical design honest about what's actually still undecided. |
+| "I'll leave that section vague until the open question is answered" | Vagueness isn't neutral — it leaves the next person nothing to build from. Give a labeled, provisional workaround so the plan stays concrete, without pretending the question is actually settled. |
 
 ## Red Flags
 
@@ -82,6 +91,10 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - A Mermaid code fence anywhere in the plan
 - A PRD Constraint or Business Rule that doesn't visibly shape any specific part of the plan
 - Database Schema Design with no data classification noted for sensitive tables/columns
+- A relevant Open Question from the PRD silently resolved instead of carried forward or asked about
+- The plan reads as fully settled when a real Inherited Open Question was quietly dropped
+- An Inherited Open Question with no suggested workaround, leaving the section it affects vague instead of concrete
+- A workaround presented without being clearly labeled as provisional/pending confirmation
 
 ## Verification
 
@@ -93,6 +106,8 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - [ ] Security & Performance considerations are present and cross-reference the relevant checklists
 - [ ] Every Constraint and Business Rule from the input PRD is reflected somewhere concrete in this plan, not just copied as prose
 - [ ] Database Schema Design states each table/column's data classification and how sensitive ones are protected
+- [ ] The PRD's Open Questions were checked for relevance to this plan; the relevant ones were either resolved via `AskUserQuestion` or carried forward as Inherited Open Questions, never silently picked
+- [ ] Every unresolved Inherited Open Question has a labeled, provisional workaround so its affected section stays concrete rather than vague
 - [ ] The plan was saved to `features/<feature-slug>/implementation-plan.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 
 ## See Also
