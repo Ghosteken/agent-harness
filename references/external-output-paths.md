@@ -22,6 +22,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 |---|---|
 | `interview-me` | `intent/[topic].md` |
 | `idea-refine` | `ideas/[idea-name].md` |
+| `product-saas` | `product/prd.md` |
 | `spec-driven-development` | `specs/<feature-slug>/SPEC.md` |
 | `planning-and-task-breakdown` | `plans/<feature-slug>-plan.md` (+ `-todo.md` if a separate task list is kept) |
 | `breakdown-feature-prd` | `features/<feature-slug>/prd.md`, plus a maintained index at `features/README.md` (see below) |

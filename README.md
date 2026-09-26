@@ -9,7 +9,7 @@
 Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-179-brightgreen)](docs/SCOPE.md)
+[![Skills](https://img.shields.io/badge/skills-180-brightgreen)](docs/SCOPE.md)
 [![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
 [![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
@@ -178,7 +178,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## 🛠️ Skills
 
-The library contains a curated set of **179 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **24-skill core** 23 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **180 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **25-skill core** 24 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -198,6 +198,7 @@ The library contains a curated set of **179 skills** across every engineering do
 | [deep-dive](skills/deep-dive/SKILL.md) | Builds a decision tree from a one-line feature idea and interrogates it in batched rounds scaled to its real size, producing a ready-to-use prompt plus a detailed spec file | A short idea implies a whole feature domain with many independent sub-decisions — role-based access, multi-tenancy, notifications, payments |
 | [spec-driven-development](skills/spec-driven-development/SKILL.md) | Write a PRD covering objectives, commands, structure, code style, testing, and boundaries before any code | Starting a new project, feature, or significant change |
 | [project-compass](skills/project-compass/SKILL.md) | Reads whatever docs/codebase exist for a project and produces one thorough, plain-language Overview (with a story-mode-style per-actor narrative woven in) plus several labeled Suggested Directions — options, not a committed plan | You want to understand an unfamiliar or underspecified project before any feature list is confirmed |
+| [product-saas](skills/product-saas/SKILL.md) | Writes a whole-product PRD from a problem + idea — fundamentals (app type, stack direction), a confirmed feature list, external integrations, web-grounded MVP guidance, and an end-to-end build roadmap | A new product/app idea needs one grounding document before any feature-level PRD, spec, or scaffold exists |
 | [breakdown-feature-prd](skills/breakdown-feature-prd/SKILL.md) | Writes a product-facing PRD per feature (Problem/Solution/Impact, personas, Given/When/Then user stories) grounded in project context or docs, sweeping a whole project or one named feature, with a maintained index of every feature doc | A PM-facing requirements doc is needed before an engineering spec, for one feature or every feature in a project |
 | [breakdown-feature-implementation](skills/breakdown-feature-implementation/SKILL.md) | Turns a feature PRD into a technical implementation plan — architecture, database schema, API design, frontend architecture, security/performance — in prose and diagrams, no real code | A feature PRD exists and needs a technical design before task breakdown |
 | [design-doc-diagramming](skills/design-doc-diagramming/SKILL.md) | Picks the right Mermaid diagram type for the content, drafts and validates it, and assembles it into an architecture/API/feature/database/system design doc | Writing or updating a design doc, or converting existing code/config into an architecture or deployment diagram |
@@ -459,7 +460,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 24 core lifecycle skills + curated specialist skills (179 total)
+├── skills/                            # 25 core lifecycle skills + curated specialist skills (180 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

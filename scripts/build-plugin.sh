@@ -28,22 +28,35 @@ done
 echo "[agent-harness] Building plugin from: $REPO_ROOT"
 echo "[agent-harness] Output: $OUT"
 
-rm -f "$OUT"
-git -C "$REPO_ROOT" archive --format=zip --worktree-attributes -o "$OUT" HEAD
+TMP_OUT="${OUT}.tmp"
+rm -f "$TMP_OUT"
+git -C "$REPO_ROOT" archive --format=zip --worktree-attributes -o "$TMP_OUT" HEAD
 
-[[ -f "$OUT" ]] || { echo "ERROR: zip creation failed - $OUT not found" >&2; exit 1; }
+[[ -f "$TMP_OUT" ]] || { echo "ERROR: zip creation failed - $TMP_OUT not found" >&2; exit 1; }
 
-# Self-verify: confirm the zip actually contains the skills on disk, before
-# ever treating this as a valid build.
-LIVE_SKILL_COUNT="$(find "${REPO_ROOT}/skills" -mindepth 2 -maxdepth 2 -name 'SKILL.md' | wc -l | tr -d ' ')"
-ZIPPED_SKILL_COUNT="$(unzip -l "$OUT" | grep -cE '[[:space:]]skills/[^/]+/SKILL\.md$' || true)"
+# Self-verify against git's own committed tree (HEAD), not the raw working
+# directory — git archive only ever bundles committed content, so comparing
+# against uncommitted disk state produces false failures whenever there's
+# WIP. This still catches a genuine zip-writer bug (a HEAD/zip mismatch),
+# just not "you have an uncommitted skill" as a false positive.
+HEAD_SKILL_COUNT="$(git -C "$REPO_ROOT" ls-tree -r --name-only HEAD -- skills | grep -cE '^skills/[^/]+/SKILL\.md$' || true)"
+ZIPPED_SKILL_COUNT="$(unzip -l "$TMP_OUT" | grep -cE '[[:space:]]skills/[^/]+/SKILL\.md$' || true)"
 
-if [[ "$ZIPPED_SKILL_COUNT" -ne "$LIVE_SKILL_COUNT" ]]; then
-  rm -f "$OUT"
-  echo "ERROR: Build verification failed: zip contains ${ZIPPED_SKILL_COUNT} skill(s) but skills/ has ${LIVE_SKILL_COUNT} on disk (uncommitted changes? git archive only zips HEAD). Not leaving a broken output file in place." >&2
+if [[ "$ZIPPED_SKILL_COUNT" -ne "$HEAD_SKILL_COUNT" ]]; then
+  rm -f "$TMP_OUT"
+  echo "ERROR: Build verification failed: zip contains ${ZIPPED_SKILL_COUNT} skill(s) but HEAD has ${HEAD_SKILL_COUNT}. Leaving any existing $OUT untouched." >&2
   exit 1
 fi
-echo "[agent-harness] Verified: ${ZIPPED_SKILL_COUNT} skills bundled, matching skills/ on disk."
+
+# Only replace the real output now that the new build is confirmed good —
+# never delete a known-good $OUT before the replacement is verified.
+mv -f "$TMP_OUT" "$OUT"
+echo "[agent-harness] Verified: ${ZIPPED_SKILL_COUNT} skills bundled, matching HEAD."
+
+UNCOMMITTED_SKILLS="$(git -C "$REPO_ROOT" status --porcelain -- skills | wc -l | tr -d ' ')"
+if [[ "$UNCOMMITTED_SKILLS" -gt 0 ]]; then
+  echo "[agent-harness] Note: skills/ has uncommitted changes — this build reflects HEAD, not your working tree. Commit first if you need those included."
+fi
 
 SIZE=$(du -sh "$OUT" | cut -f1)
 echo "[agent-harness] Done — agent-harness.plugin ($SIZE)"
