@@ -65,6 +65,8 @@ Save to `features/<feature-slug>/prd.md` under the project's external output loc
 
 Create or update `features/README.md` — one line per feature (name, link to its `prd.md`, one-sentence summary) — so it always reflects every feature doc that exists. Create it on first use.
 
+If the feature's PRD has an Open Questions section, add its open items to that feature's index entry too, condensed into one or two sentences — not the full bulleted list copied verbatim. The point is a reader can tell at a glance whether a feature still has unresolved items without opening its `prd.md`. Omit this from the entry when the feature has no Open Questions section (or it's empty).
+
 ### 7. Report back
 
 Tell the user the full path(s) written, including the index. Note that each `prd.md` is ready to hand directly to `breakdown-feature-implementation`, `spec-driven-development`'s downstream steps, `/build`, or any other spec-consuming skill or command.
@@ -84,6 +86,7 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 | "The source material was detailed, there's nothing left to flag as an open question" | A detailed source still has scattered gaps — PROPOSED markers, deferred decisions, cross-feature dependencies — and writing a real Given/When/Then often surfaces ambiguity the prose glossed over. Detailed isn't the same as fully resolved. |
 | "I'll leave the Open Questions section out entirely to keep the doc clean" | Only skip it when a feature genuinely has nothing unresolved — check the four sources first; an empty section from a real check is fine, an omitted section from skipping the check isn't. |
 | "I'll just re-draft the whole PRD from scratch since I have new answers" | Refining resolves the specific Open Questions the new information answers and propagates them into the sections they affect — it doesn't discard everything already confirmed. A full re-draft risks silently losing content that was already agreed. |
+| "The index just needs the summary, Open Questions are in the prd.md if anyone needs them" | A reader scanning the index to decide what to work on next can't see that without opening every linked doc — a one- or two-sentence hint of what's still open is what makes the index actually useful for prioritizing, not just for navigation. |
 
 ## Red Flags
 
@@ -95,6 +98,8 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 - A regulatory, technical, or resourcing constraint described as if it were a Non-Functional Requirement the team chose
 - Invented Impact metrics not traceable to the provided context
 - `features/README.md` left stale after a new feature doc is written
+- A feature with real Open Questions has no hint of that in its `features/README.md` entry
+- A feature's Open Questions copied into `features/README.md` as the full bulleted list instead of a one- or two-sentence condensation
 - No Open Questions section, and no evidence the four sources were actually checked
 - An Open Questions item that's really just something the user could have been asked directly during drafting
 - A PRD re-drafted from scratch when the actual need was refining specific answered Open Questions
@@ -113,6 +118,7 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 - [ ] When new information answered an existing feature's Open Questions, refinement was confirmed via `AskUserQuestion` before updating, and only the resolved questions plus their downstream effects changed
 - [ ] Each feature's PRD was saved to `features/<feature-slug>/prd.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 - [ ] `features/README.md` was created or updated to reflect every feature doc that exists
+- [ ] Any feature with a non-empty Open Questions section has those items summarized in one or two sentences in its `features/README.md` entry — not omitted, and not pasted verbatim
 - [ ] The user was told the full path(s) written
 
 ## See Also

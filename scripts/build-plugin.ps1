@@ -38,27 +38,31 @@ if (-not $Out) {
 Write-Host "[agent-harness] Building plugin from: $RepoRoot"
 Write-Host "[agent-harness] Output: $Out"
 
-if (Test-Path $Out) {
-  Remove-Item -Force $Out
+$tmpOut = "$Out.tmp"
+if (Test-Path $tmpOut) {
+  Remove-Item -Force $tmpOut
 }
 
-& git -C $RepoRoot archive --format=zip --worktree-attributes -o $Out HEAD
+& git -C $RepoRoot archive --format=zip --worktree-attributes -o $tmpOut HEAD
 if ($LASTEXITCODE -ne 0) {
   throw "git archive failed with exit code $LASTEXITCODE"
 }
 
-if (-not (Test-Path $Out)) {
-  throw "Zip creation failed - $Out not found"
+if (-not (Test-Path $tmpOut)) {
+  throw "Zip creation failed - $tmpOut not found"
 }
 
-# Self-verify: reopen the zip we just wrote and confirm it actually contains
-# the skills currently on disk, before ever treating this as a valid build.
+# Self-verify against git's own committed tree (HEAD), not the raw working
+# directory — git archive only ever bundles committed content, so comparing
+# against uncommitted disk state produces false failures whenever there's
+# WIP. This still catches a genuine zip-writer bug (a HEAD/zip mismatch),
+# just not "you have an uncommitted skill" as a false positive.
 Add-Type -AssemblyName System.IO.Compression
 
-$liveSkillCount = @(Get-ChildItem -Path (Join-Path $RepoRoot "skills") -Directory |
-  Where-Object { Test-Path (Join-Path $_.FullName "SKILL.md") }).Count
+$headSkillPaths = & git -C $RepoRoot ls-tree -r --name-only HEAD -- skills
+$headSkillCount = @($headSkillPaths | Where-Object { $_ -match '^skills/[^/]+/SKILL\.md$' }).Count
 
-$verifyStream = [System.IO.File]::OpenRead($Out)
+$verifyStream = [System.IO.File]::OpenRead($tmpOut)
 try {
   $verifyArchive = New-Object System.IO.Compression.ZipArchive($verifyStream, [System.IO.Compression.ZipArchiveMode]::Read)
   try {
@@ -70,11 +74,23 @@ try {
   $verifyStream.Dispose()
 }
 
-if ($zippedSkillCount -ne $liveSkillCount) {
-  Remove-Item -Force $Out -ErrorAction SilentlyContinue
-  throw "Build verification failed: zip contains $zippedSkillCount skill(s) but skills/ has $liveSkillCount on disk (uncommitted changes? git archive only zips HEAD). Not leaving a broken output file in place."
+if ($zippedSkillCount -ne $headSkillCount) {
+  Remove-Item -Force $tmpOut -ErrorAction SilentlyContinue
+  throw "Build verification failed: zip contains $zippedSkillCount skill(s) but HEAD has $headSkillCount. Leaving any existing $Out untouched."
 }
-Write-Host "[agent-harness] Verified: $zippedSkillCount skills bundled, matching skills/ on disk."
+
+# Only replace the real output now that the new build is confirmed good —
+# never delete a known-good $Out before the replacement is verified.
+if (Test-Path $Out) {
+  Remove-Item -Force $Out
+}
+Move-Item -Force $tmpOut $Out
+Write-Host "[agent-harness] Verified: $zippedSkillCount skills bundled, matching HEAD."
+
+$uncommittedSkills = & git -C $RepoRoot status --porcelain -- skills
+if ($uncommittedSkills) {
+  Write-Host "[agent-harness] Note: skills/ has uncommitted changes — this build reflects HEAD, not your working tree. Commit first if you need those included."
+}
 
 $size = [math]::Round((Get-Item $Out).Length / 1MB, 2)
 Write-Host "[agent-harness] Done - agent-harness.plugin ($size MB)"
