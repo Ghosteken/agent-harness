@@ -30,6 +30,59 @@ export default defineConfig({
 });
 ```
 
+## Setup project with dependencies (auth reuse, not globalSetup)
+
+A `globalSetup` function runs outside the test runner — no fixtures, no retries, no trace on failure. Prefer a real `setup` project that other projects depend on:
+
+```typescript
+// playwright.config.ts
+export default defineConfig({
+  projects: [
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json' },
+      dependencies: ['setup'],
+    },
+  ],
+});
+```
+
+```typescript
+// auth.setup.ts
+import { test as setup, request } from '@playwright/test';
+
+setup('authenticate', async () => {
+  // Prefer an API call over driving the login form through the UI —
+  // faster, and isolates "is the session valid" from "does the login form work"
+  const ctx = await request.newContext();
+  const response = await ctx.post('/api/auth/login', {
+    data: { email: 'test@example.com', password: 'Test123!@#' },
+  });
+  await ctx.storageState({ path: 'playwright/.auth/user.json' });
+});
+```
+
+Every test in a project that depends on `setup` starts already authenticated — no per-test login step, no login-flow flakiness bleeding into unrelated tests.
+
+## Seeding complex preconditions via API
+
+```typescript
+// A guarded, non-production-only endpoint that bulk-creates a scenario in one call
+test('user sees their populated dashboard', async ({ page, request }) => {
+  const seed = await request.post('/api/test/seed', {
+    data: { scenario: 'dashboard-with-3-projects', ownerId: 'test-user-42' },
+  });
+  const { seedId } = await seed.json();
+
+  await page.goto('/dashboard');
+  await expect(page.getByText('3 projects')).toBeVisible();
+
+  // Teardown: delete by the unique seedId so parallel tests never collide
+  await request.delete(`/api/test/seed/${seedId}`);
+});
+```
+
 ## Page Object Model
 
 ```typescript
@@ -130,6 +183,54 @@ test('payment flow with mocked provider', async ({ page }) => {
 });
 ```
 
+## `test.step` and soft assertions for complex workflows
+
+```typescript
+test('checkout flow', async ({ page }) => {
+  await test.step('Add item to cart', async () => {
+    await page.goto('/products');
+    await page.getByRole('button', { name: 'Add to Cart' }).click();
+  }, { subtitle: 'as guest' }); // subtitle/params show up in the trace viewer and HTML report
+
+  await test.step('Proceed to checkout', async () => {
+    await page.getByRole('button', { name: 'Checkout' }).click();
+  });
+});
+
+// Soft assertions: only for independent checks — a dashboard smoke test
+// where you want every failure in one run, not fix-one/rerun/find-the-next
+test('dashboard summary panel is correct', async ({ page }) => {
+  await page.goto('/dashboard');
+  await expect.soft(page.getByTestId('total-users')).toHaveText('1,204');
+  await expect.soft(page.getByTestId('active-projects')).toHaveText('12');
+  await expect.soft(page.getByTestId('storage-used')).toHaveText('42 GB');
+  // All three are checked even if one fails — the report shows every mismatch at once
+});
+```
+
+## Test locks for tests sharing an unisolatable resource
+
+```typescript
+// Tests holding the same lock name never run concurrently, across files
+// and workers — everything else keeps running in parallel.
+test('update global rate-limit setting', { lock: 'account-settings' }, async ({ page }) => {
+  // ...
+});
+
+test.describe('billing settings', () => {
+  test.describe.configure({ lock: 'account-settings' });
+  // every test in this describe block shares the lock
+});
+```
+
+## Locating across frames (embedded/third-party content)
+
+```typescript
+// Old way: locate the iframe first, then search inside it
+// New way: frameLocator() with no selector searches every frame automatically
+await page.frameLocator().getByRole('button', { name: 'Pay now' }).click();
+```
+
 ## Visual regression (where it earns its cost)
 
 ```typescript
@@ -168,13 +269,15 @@ npx playwright show-trace trace.zip   # inspect a CI failure's captured trace
 ```
 
 ```typescript
-test('checkout flow', async ({ page }) => {
-  await test.step('Add item to cart', async () => {
-    await page.goto('/products');
-    await page.getByRole('button', { name: 'Add to Cart' }).click();
-  });
-  await test.step('Proceed to checkout', async () => {
-    await page.getByRole('button', { name: 'Checkout' }).click();
-  });
+// playwright.config.ts — capture aria + screenshot snapshots on every action,
+// so the trace viewer's Aria mode shows the screenshot next to the accessibility
+// tree at that moment (fast way to tell "wrong element" from "not visible yet")
+export default defineConfig({
+  use: {
+    trace: {
+      mode: 'on-first-retry',
+      snapshots: { dom: true, aria: true, screen: true },
+    },
+  },
 });
 ```

@@ -34,6 +34,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `excalidraw-diagramming` | `diagrams/<diagram-slug>.excalidraw` |
 | `acquire-codebase-knowledge` | `codebase/{STACK,STRUCTURE,ARCHITECTURE,CONVENTIONS,INTEGRATIONS,TESTING,CONCERNS}.md` |
 | `code-review-and-quality` | `review-findings.md` — a single running log, **appended to**, not replaced per review (see below) |
+| `record-a-demo` | `demos/<feature-slug>/<scenario-slug>.webm` (+ key-beat screenshots alongside) |
 
 ### `review-findings.md` is append-only, not per-topic
 

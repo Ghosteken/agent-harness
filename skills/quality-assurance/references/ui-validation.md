@@ -8,11 +8,11 @@ You will receive a local URL, Figma node IDs, frame dimensions, and a descriptio
 
 Validation uses two co-equal evidence layers — they catch different bugs and neither replaces the other. The pixel diff is an instrument that serves both, not a third layer (see below).
 
-**Deterministic layer** (computed ground truth, measured through Playwright `run_code`) owns geometry/layout and color:
+**Deterministic layer** (computed ground truth, measured through Playwright `run_code`) owns geometry/layout, spacing, color, and text metrics (font-size/weight/line-height/letter-spacing) — everything that's a computable number, not a judgment call:
 - **Layout and positioning** — compared via computed bounding boxes (`getBoundingClientRect`) and computed styles. Report pixel deltas.
 - **Color** — pulled via `getComputedStyle` on the live elements, not eyeballed off a screenshot (edge anti-aliasing makes screenshot hex unreliable). Report the actual hex codes so the main agent can act on them directly.
 
-**Vision layer** owns typography and overall visual consistency, judged by inspecting implementation screenshot, Figma reference, and pixel diff mask together. Some rendering leeway is intentional: font hinting and sub-pixel anti-aliasing differ across environments (a Linux cloud sandbox will never byte-match a Figma export) — so visual fidelity is judged within tolerance, not by identical bytes.
+**Vision layer** owns font-rendering quality, asset rendering, and overall visual consistency, judged by inspecting implementation screenshot, Figma reference, and pixel diff mask together. Some rendering leeway is intentional: font hinting and sub-pixel anti-aliasing differ across environments (a Linux cloud sandbox will never byte-match a Figma export) — so visual fidelity is judged within tolerance, not by identical bytes.
 
 **Pixel diff — instrument, not a layer.** pixelmatch aligns the implementation screenshot and Figma reference and emits a diff mask. It issues no verdict of its own: it points the vision layer at regions worth inspecting — catching divergences the deterministic layer would never think to query (a stray badge, a missing icon, a shifted block) — and cross-checks the deterministic layer. Its `pct` is an inspection trigger, never a pass/fail gate; a clean deterministic + vision result stands even when `pct` is a noisy low-single-digit number.
 
@@ -113,14 +113,16 @@ The criteria are the specific items in the validation description, each routed t
 **Deterministic layer — judge on computed values, report the actionable numbers:**
 
 1. **Layout** — pull bounding boxes and positions via `run_code` (`getBoundingClientRect`, `getComputedStyle`). Compare against Figma node dimensions. Report pixel deltas. Use the pixelmatch diff mask to direct attention to visually divergent regions.
-2. **Colors** — pull hex values from live elements via `getComputedStyle`. Report actual hex codes in findings (e.g., "button background is `#2563EB`, Figma shows `#1D4ED8`").
-3. **Borders & Radii** — pull `border-radius`, `border-width`, `border-color` from `getComputedStyle`.
+2. **Spacing** — pull `margin`, `padding`, and flex/grid `gap` via `getComputedStyle` on the relevant elements and their containers; compare against Figma's auto-layout spacing values. Spacing drift (wrong gap between two elements, wrong padding inside a container) is one of the most common fidelity bugs and is fully computable — don't fold it vaguely into "Layout" or leave it to the vision pass.
+3. **Colors** — pull hex values from live elements via `getComputedStyle`. Report actual hex codes in findings (e.g., "button background is `#2563EB`, Figma shows `#1D4ED8`").
+4. **Borders & Radii** — pull `border-radius`, `border-width`, `border-color` from `getComputedStyle`.
+5. **Text metrics** — pull `font-size`, `font-weight`, `line-height`, and `letter-spacing` via `getComputedStyle` and compare directly against Figma's values. These are computable numbers, not a judgment call — only actual glyph-rendering quality (hinting, anti-aliasing) belongs to the vision layer below.
 
 **Vision layer — judge by inspecting implementation + reference + diff mask together:**
 
-4. **Typography** — font family, size, weight, line height, color rendering.
-5. **Assets** — images, icons, illustrations rendering correctly.
-6. **Overall visual consistency** — review the diff mask for regions flagged as different that computed styles did not catch.
+6. **Typography rendering** — font family correctness and actual glyph rendering quality (hinting, anti-aliasing differences across environments) — not the numeric metrics above, which are deterministic.
+7. **Assets** — images, icons, illustrations rendering correctly.
+8. **Overall visual consistency** — review the diff mask for regions flagged as different that computed styles did not catch.
 
 ### 8. Validate Interactive States
 
