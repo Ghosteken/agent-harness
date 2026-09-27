@@ -1,6 +1,6 @@
 ---
 name: playwright-skill
-description: "IMPORTANT - Path Resolution: This skill can be installed in different locations (plugin system, manual installation, global, or project-specific). Before executing any commands, determine the skill directory based on where you loaded this SKILL.md file, and use that path in all commands below."
+description: Writes and runs a disposable, one-off Playwright automation script for an immediate check — a screenshot, a quick flow test, a responsive-design spot check — executed once via a universal executor, never saved as a project test file. Use when you need a real-browser check right now and nothing needs to persist afterward. Use `playwright-e2e-testing` instead when the test should be checked into the project and run in CI.
 ---
 
 **IMPORTANT - Path Resolution:**
@@ -453,7 +453,15 @@ User: "Use 3001"
 - Progressive disclosure - API_REFERENCE.md loaded only when advanced features needed
 
 ## When to Use
-This skill is applicable to execute the workflow or actions described in the overview.
+
+- A quick, one-off browser check is needed right now (screenshot, "does this flow still work", a responsive-design spot check)
+- Nothing about the check needs to persist as a project file or run again in CI
+- NOT when the test should be checked into the repo and run in CI on every change — use `playwright-e2e-testing` for that instead
+
+## See Also
+
+- `playwright-e2e-testing` — for a persistent, CI-integrated test suite instead of a disposable script
+- `browser-testing-with-devtools` — live DOM/console/network/performance inspection via Chrome DevTools MCP, an alternative live-verification path that doesn't require Playwright installed
 
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.

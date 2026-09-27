@@ -453,6 +453,7 @@ User: /ship
 | request a review, ready for review, PR is ready | `requesting-code-review` |
 | I'm done, implementation complete, ready to merge, all tests pass | `finishing-a-development-branch` |
 | it works, looks good, should be fixed, I think it's done | `verification-before-completion` |
+| demo this, record a walkthrough, show this to the team, ready for sign-off | `record-a-demo` |
 
 ---
 
