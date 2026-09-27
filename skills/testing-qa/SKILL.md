@@ -72,7 +72,6 @@ Use @unit-testing-test-generate to generate unit tests
 
 #### Skills to Invoke
 - `api-testing-observability-api-mock` - API testing
-- `e2e-testing-patterns` - Integration patterns
 
 #### Actions
 1. Design integration tests
@@ -90,7 +89,7 @@ Use @api-testing-observability-api-mock to test APIs
 
 #### Skills to Invoke
 - `playwright-skill` - Playwright testing
-- `e2e-testing-patterns` - E2E patterns
+- `playwright-e2e-testing` - E2E patterns
 
 #### Actions
 1. Design E2E scenarios
@@ -105,7 +104,7 @@ Use @playwright-skill to create E2E tests
 ```
 
 ```
-Use @e2e-testing-patterns to design E2E strategy
+Use @playwright-e2e-testing to design E2E strategy
 ```
 
 ### Phase 5: Browser Automation
