@@ -9,7 +9,7 @@
 Skills encode the workflows, quality gates, and best practices that senior engineers use when building software packaged so AI agents follow them consistently across every phase of development.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/skills-180-brightgreen)](docs/SCOPE.md)
+[![Skills](https://img.shields.io/badge/skills-181-brightgreen)](docs/SCOPE.md)
 [![Agent Personas](https://img.shields.io/badge/agent%20personas-12-orange)](docs/agents.md)
 [![Slash Commands](https://img.shields.io/badge/slash%20commands-7-blueviolet)](#commands)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-6B4FBB)](docs/getting-started.md)
@@ -178,7 +178,7 @@ Skills are plain Markdown - they work with any agent that accepts system prompts
 
 ## 🛠️ Skills
 
-The library contains a curated set of **180 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **25-skill core** 24 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
+The library contains a curated set of **181 skills** across every engineering domain — the rest of the original bulk import lives in `archive/skills-community/`, unexposed but recoverable. The commands above are built on a **25-skill core** 24 lifecycle workflow skills plus the `using-agent-harness` meta-skill that runs the spec → plan → build → review → ship cycle. Every specialist skill in the library can also be invoked directly or through an agent scope (see [`docs/SCOPE.md`](docs/SCOPE.md)).
 
 ### Core Lifecycle Skills
 
@@ -211,6 +211,7 @@ The library contains a curated set of **180 skills** across every engineering do
 |-------|-------------|----------|
 | [planning-and-task-breakdown](skills/planning-and-task-breakdown/SKILL.md) | Decompose specs into small, verifiable tasks with acceptance criteria and dependency ordering | You have a spec and need implementable units |
 | [github-issue-planning](skills/github-issue-planning/SKILL.md) | Turns a completed spec into a GitHub Issues hierarchy (Epic → Feature → Story/Enabler → Task) with dependencies, priorities, and board placement | The team tracks work in GitHub Issues/Projects and needs that specific artifact shape |
+| [slice-to-issues](skills/slice-to-issues/SKILL.md) | One self-contained skill: finds or builds a feature's context, cuts it into small independently-verifiable slices, waits for approval, then creates one GitHub issue per slice with real dependency links | A feature needs to become GitHub issues — one per verifiable piece — without chaining separate planning and issue-creation skills |
 
 ### Build - Write the code
 
@@ -298,6 +299,7 @@ Quick-reference material that skills pull in when needed:
 | [orchestration-patterns.md](references/orchestration-patterns.md) | Endorsed and anti-pattern agent orchestration — who's allowed to invoke whom |
 | [external-output-paths.md](references/external-output-paths.md) | Where every file-producing skill writes its output — always outside the project's repo |
 | [coding-patterns.md](references/coding-patterns.md) | Structural patterns for build/plan/spec work — clear main path, boundaries around external systems, unrepresentable invalid states, decisions separated from actions, useful errors |
+| [no-internal-tooling-in-output.md](references/no-internal-tooling-in-output.md) | Generated documents and anything posted to GitHub (issues, PRs, comments) contain only project content — never a skill name, "agent-harness," or the plugin |
 
 ---
 
@@ -461,7 +463,7 @@ User: /ship
 
 ```
 agent-harness/
-├── skills/                            # 25 core lifecycle skills + curated specialist skills (180 total)
+├── skills/                            # 25 core lifecycle skills + curated specialist skills (181 total)
 │   ├── interview-me/                  #   Define
 │   ├── idea-refine/                   #   Define
 │   ├── spec-driven-development/       #   Define

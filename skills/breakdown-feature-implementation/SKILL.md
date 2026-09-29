@@ -54,15 +54,15 @@ Don't let an unresolved one stall the rest of the plan, though. For each, give a
 
 - **System Architecture Overview** — draw the diagram directly, in plain Markdown: an ASCII box-and-arrow layout (`┌──┐`, `│`, `└──┘`, `─▶`) organized top-to-bottom or left-to-right as Frontend, API, Business Logic, Data, and Infrastructure layers, with labeled data-flow arrows. No Mermaid, no external tool, no delegation — this skill draws its own diagrams.
 - **Database Schema Design** — a plain-Markdown entity/relationship layout (one block per table — name, fields with type, PK/FK markers — with relationships stated in prose or a simple `Orders 1──N LineItems` line, not a Mermaid ER diagram) plus indexing strategy, foreign-key relationships, migration strategy, and **data classification per table/column** (sensitivity class, and how sensitive ones are protected — e.g. separate encryption key) — mirroring the PRD's Data requirement type, not left as an afterthought.
-- **API Design** — a per-feature endpoint table (method, path, auth, request, response), following `api-and-interface-design`'s conventions (error envelope, naming, pagination, contract-first) rather than inventing new ones.
+- **API Design** — a per-feature endpoint table (method, path, auth, request, response), applying the `api-and-interface-design` skill's conventions (error envelope, naming, pagination, contract-first) rather than inventing new ones — apply the conventions, never name the skill in the saved document itself (see `references/no-internal-tooling-in-output.md`).
 - **Frontend Architecture** — a component hierarchy tree (plain-Markdown indented list, not a diagram file) genericized to the project's actual UI library (never hardcoded to a specific library the project doesn't use), its state-management approach, and key type/interface shapes.
-- **Security & Performance** — cross-reference `security-and-hardening` and `performance-optimization` checklists rather than re-deriving them.
+- **Security & Performance** — apply the `security-and-hardening` and `performance-optimization` skills' checklists rather than re-deriving them from scratch — again, apply the thinking, never cite the skill name in the document.
 
 Pseudocode only — no real code blocks. Real implementation belongs to `incremental-implementation` and `test-driven-development`, later.
 
 ### 4. Save and hand off
 
-Save to `features/<feature-slug>/implementation-plan.md` under the project's external output location (see `references/external-output-paths.md`), sibling to the feature's `prd.md`. Check whether a plan for this feature already exists before writing; if so, confirm with the user whether to update it in place or start a new one. Tell the user the full path, and suggest `planning-and-task-breakdown` as the next step to cut this into ordered tasks.
+Save to `features/<feature-slug>/implementation-plan.md` under the project's external output location (see `references/external-output-paths.md`), sibling to the feature's `prd.md`. Check whether a plan for this feature already exists before writing; if so, confirm with the user whether to update it in place or start a new one. Tell the user the full path, and suggest `planning-and-task-breakdown` as the next step to cut this into ordered tasks — that suggestion belongs in this chat reply, never written into the saved document itself (see `references/no-internal-tooling-in-output.md`).
 
 ## Common Rationalizations
 
@@ -119,3 +119,4 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - `security-and-hardening` / `performance-optimization` — checklists for the Security & Performance section
 - `references/coding-patterns.md` — structural conventions worth encoding into the plan's pseudocode (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
 - `references/external-output-paths.md` — where this skill's output lives
+- `references/no-internal-tooling-in-output.md` — why the saved plan never names a skill, even where the plan applies that skill's conventions

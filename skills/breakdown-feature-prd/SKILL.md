@@ -69,7 +69,7 @@ If the feature's PRD has an Open Questions section, add its open items to that f
 
 ### 7. Report back
 
-Tell the user the full path(s) written, including the index. Note that each `prd.md` is ready to hand directly to `breakdown-feature-implementation`, `spec-driven-development`'s downstream steps, `/build`, or any other spec-consuming skill or command.
+Tell the user the full path(s) written, including the index. Note that each `prd.md` is ready to hand directly to `breakdown-feature-implementation`, `spec-driven-development`'s downstream steps, `/build`, or any other spec-consuming skill or command — this next-step guidance belongs in this chat reply, never written into the saved `prd.md` itself (see `references/no-internal-tooling-in-output.md`).
 
 ## Common Rationalizations
 
@@ -124,6 +124,7 @@ Tell the user the full path(s) written, including the index. Note that each `prd
 ## See Also
 
 - `spec-driven-development` — the downstream engineering spec this PRD typically feeds
+- `references/no-internal-tooling-in-output.md` — why the saved PRD never names a skill
 - `github-issue-planning` — turns a PRD into a GitHub Issues hierarchy
 - `deep-dive` / `interview-me` / `idea-refine` — upstream, if the idea or context is still too fuzzy to enumerate personas and stories from
 - `acquire-codebase-knowledge` — grounding for a whole-project sweep when the codebase itself is the context
