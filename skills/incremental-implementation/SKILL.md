@@ -222,6 +222,7 @@ After each increment, verify:
 | "I'll add the feature flag later" | If the feature isn't complete, it shouldn't be user-visible. Add the flag now. |
 | "This refactor is small enough to include" | Refactors mixed with features make both harder to review and debug. Separate them. |
 | "Let me run the build command again just to be sure" | After a successful run, repeating the same command adds nothing unless the code has changed since. Run it again after subsequent edits, not as reassurance. |
+| "All the unit tests pass, so the feature works" | Unit tests confirm the code does what the code does — they don't confirm it does what the spec asked for. Run `quality-assurance` for that. |
 
 ## Red Flags
 
@@ -236,6 +237,7 @@ After each increment, verify:
 - Creating new utility files for one-time operations
 - Running the same build/test command twice in a row without any intervening code change
 - Running `git commit` yourself without the user explicitly asking you to in that session
+- The feature declared done once unit tests pass, without running `quality-assurance` against the spec
 
 ## Verification
 
@@ -244,10 +246,11 @@ After completing all increments for a task:
 - [ ] Each increment was individually tested (a unit test was added, not just an existing-suite check) and left with a proposed commit message
 - [ ] The full test suite passes
 - [ ] The build is clean
-- [ ] The feature works end-to-end as specified
+- [ ] The feature works end-to-end as specified — run the `quality-assurance` skill against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing (unit tests confirm the code does what the code does; they don't confirm the feature does what the spec asked for)
 - [ ] No unreviewed changes remain — the user has a summary and a proposed commit message for each increment; committing is theirs to do (or explicitly delegated to you)
 
 ## See Also
 
+- `quality-assurance` — the live/end-to-end check once all increments are complete; unit tests alone don't confirm the feature works against the spec
 - `references/coding-patterns.md` — structural patterns to apply while implementing each slice (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
 - `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — check it before starting a task, if it exists; it's a running log of patterns code review has already flagged in this project, and repeating one is avoidable

@@ -53,6 +53,7 @@ digraph process {
     "Read plan, extract all tasks with full text, note context, create TodoWrite" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Dispatch final code reviewer subagent for entire implementation" [shape=box];
+    "Run quality-assurance against the spec" [shape=box];
     "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks with full text, note context, create TodoWrite" -> "Dispatch implementer subagent (./implementer-prompt.md)";
@@ -72,7 +73,8 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use finishing-a-development-branch";
+    "Dispatch final code reviewer subagent for entire implementation" -> "Run quality-assurance against the spec";
+    "Run quality-assurance against the spec" -> "Use finishing-a-development-branch";
 }
 ```
 
@@ -155,6 +157,9 @@ Code reviewer: ✅ Approved
 [Dispatch final code-reviewer]
 Final reviewer: All requirements met, ready to merge
 
+[Run quality-assurance against the spec]
+QA: Executed scenarios against the spec — PASS, evidence attached
+
 Done!
 ```
 
@@ -178,6 +183,7 @@ Done!
 - Review loops ensure fixes actually work
 - Spec compliance prevents over/under-building
 - Code quality ensures implementation is well-built
+- `quality-assurance` after the final code review confirms the whole implementation actually works end-to-end, against the spec — the per-task reviews check the code itself, not live behavior; neither replaces the other
 
 **Cost:**
 - More subagent invocations (implementer + 2 reviewers per task)
@@ -199,6 +205,7 @@ Done!
 - Let implementer self-review replace actual review (both are needed)
 - **Start code quality review before spec compliance is ✅** (wrong order)
 - Move to next task while either review has open issues
+- Call the implementation done after the final code review without running `quality-assurance` — code review confirms the code is well-built, not that it works live against the spec
 
 **If subagent asks questions:**
 - Answer clearly and completely
@@ -220,6 +227,7 @@ Done!
 **Required workflow skills:**
 - **planning-and-task-breakdown** - Creates the plan this skill executes
 - **requesting-code-review** - Code review template for reviewer subagents
+- **quality-assurance** - Live/end-to-end verification against the spec, after the final code review and before finishing the branch
 - **finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**
@@ -227,6 +235,7 @@ Done!
 
 ## See Also
 
+- `quality-assurance` — the live/end-to-end check after the final code review; code review and QA verify different things, neither replaces the other
 - `references/coding-patterns.md` — structural patterns each dispatched subagent should apply to its task's implementation
 - `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — worth including in each subagent's task brief, if it exists, so previously-flagged patterns don't get repeated by a fresh subagent with no memory of past reviews
 
