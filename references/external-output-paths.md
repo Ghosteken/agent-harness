@@ -25,6 +25,7 @@ Create the root and any subdirectory on first write. None of this is expected to
 | `product-saas` | `product/prd.md` |
 | `spec-driven-development` | `specs/<feature-slug>/SPEC.md` |
 | `planning-and-task-breakdown` | `plans/<feature-slug>-plan.md` (+ `-todo.md` if a separate task list is kept) |
+| `slice-to-issues` | `slices/<feature-slug>-slices.md` |
 | `breakdown-feature-prd` | `features/<feature-slug>/prd.md`, plus a maintained index at `features/README.md` (see below) |
 | `breakdown-feature-implementation` | `features/<feature-slug>/implementation-plan.md` |
 | `story-mode` | `features/<feature-slug>/story.md` (whole-project scope: `features/story.md`), sharing the `features/README.md` index with `breakdown-feature-prd` |

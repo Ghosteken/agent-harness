@@ -71,7 +71,7 @@ Save to `product/prd.md` under the project's external output location (see `refe
 
 ### 12. Report back
 
-Tell the user the full path written and the confirmed product name. Note that the confirmed feature list is ready to hand to `breakdown-feature-prd` one feature at a time, that the stack direction is ready to hand to `project-scaffolding`, and that either can go first.
+Tell the user the full path written and the confirmed product name. Note that the confirmed feature list is ready to hand to `breakdown-feature-prd` one feature at a time, that the stack direction is ready to hand to `project-scaffolding`, and that either can go first — this next-step guidance belongs in this chat reply, never written into the saved `product/prd.md` itself (see `references/no-internal-tooling-in-output.md`).
 
 ## Common Rationalizations
 
@@ -125,4 +125,5 @@ Tell the user the full path written and the confirmed product name. Note that th
 - `breakdown-feature-prd` — downstream, expands each listed feature into its own full PRD
 - `project-scaffolding` — downstream, sets up the actual folder structure/tooling for the confirmed stack direction
 - `spec-driven-development` / `planning-and-task-breakdown` — further downstream, once a feature has its own PRD
+- `references/no-internal-tooling-in-output.md` — why the saved PRD never names a skill
 - `references/external-output-paths.md` — where this skill's output lives

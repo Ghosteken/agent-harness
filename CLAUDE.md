@@ -39,7 +39,7 @@ CONTRIBUTING.md    → Guidelines for adding or editing skills
 ## Skills by Phase
 
 **Define:** interview-me, grilling, idea-refine, deep-dive, project-compass, product-saas, spec-driven-development, breakdown-feature-prd, breakdown-feature-implementation, story-mode, design-doc-diagramming, excalidraw-diagramming, acquire-codebase-knowledge
-**Plan:** planning-and-task-breakdown, github-issue-planning
+**Plan:** planning-and-task-breakdown, github-issue-planning, slice-to-issues
 **Build:** incremental-implementation, test-driven-development, context-engineering, project-scaffolding, source-driven-development, doubt-driven-development, frontend-ui-engineering, figma-design-to-code, api-and-interface-design
 **Verify:** browser-testing-with-devtools, debugging-and-error-recovery
 **Review:** code-review-and-quality, code-simplification, security-and-hardening, performance-optimization

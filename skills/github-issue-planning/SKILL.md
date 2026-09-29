@@ -38,7 +38,7 @@ Apply INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable) to 
 
 ### 3. Write each issue against a fixed template
 
-Every issue at every level needs, at minimum: a one-paragraph description, an acceptance-criteria checklist, its parent link (Feature → Epic, Story/Enabler → Feature, Task → Story/Enabler), an explicit **Blocks / Blocked by** dependency list, a size estimate, and a Definition of Done. Keep the fields identical across issues of the same level — a Story missing a field a sibling Story has is a sign it was rushed, not that the field didn't apply.
+Every issue at every level needs, at minimum: a one-paragraph description, an acceptance-criteria checklist, its parent link (Feature → Epic, Story/Enabler → Feature, Task → Story/Enabler), an explicit **Blocks / Blocked by** dependency list, a size estimate, and a Definition of Done. Keep the fields identical across issues of the same level — a Story missing a field a sibling Story has is a sign it was rushed, not that the field didn't apply. Every issue reads as project content only — no mention of this skill, agent-harness, or how the hierarchy was produced (see `references/no-internal-tooling-in-output.md`).
 
 Size with story points for Story/Enabler/Task (Fibonacci: 1, 2, 3, 5, 8 — anything estimated 13+ is an Epic-sized chunk hiding inside a Story and needs breaking down), and t-shirt sizes (XS–XL) for Epic/Feature, where XL is itself a signal to split the Feature.
 
@@ -75,6 +75,7 @@ Output a checklist ordered Epic → Feature → Story/Enabler → Task, so issue
 - An Epic with no Features under it, or a Feature with no Stories — a hierarchy level skipped entirely
 - Issues generated from a plan that was never actually written down (no PRD, no technical breakdown)
 - A dependency chain that, once drawn out, reveals a cycle (A blocks B blocks A)
+- An issue mentioning this skill, agent-harness, or any other skill by name
 
 ## Verification
 
@@ -90,3 +91,4 @@ Output a checklist ordered Epic → Feature → Story/Enabler → Task, so issue
 - `spec-driven-development` — produces the PRD/spec this skill turns into issues; run first
 - `planning-and-task-breakdown` — for a task list an agent executes directly in this session, rather than a GitHub Issues hierarchy for a team
 - `ci-cd-and-automation` — for wiring the project-board automation (PR-to-column moves) this skill's Step 6 assumes may already exist
+- `references/no-internal-tooling-in-output.md` — why no issue mentions this skill or the plugin
