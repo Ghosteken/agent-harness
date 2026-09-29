@@ -336,7 +336,7 @@ These skills fire regardless of domain. They cover situations that happen across
 ### Executing a Plan
 **Trigger words:** execute the plan, follow the plan, implement the plan, carry out the steps, run through the plan, start the plan
 
-→ **Skill:** `executing-plans`
+→ **Skill:** `subagent-driven-development`
 → No agent. Invoke when a written plan exists and execution is starting.
 
 ---

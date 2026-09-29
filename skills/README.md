@@ -1,6 +1,6 @@
 # Skills Directory
 
-This folder holds agent-harness's curated skill set: **181 skills** — the 25 hand-authored lifecycle skills, a role-scoped extension set defined in [`scripts/agent-scopes.json`](../scripts/agent-scopes.json), and a couple of skills restored because other kept skills depend on them (e.g. `multi-agent-brainstorming`, required by `brainstorming`'s handoff rule).
+This folder holds agent-harness's curated skill set: **180 skills** — the 25 hand-authored lifecycle skills, a role-scoped extension set defined in [`scripts/agent-scopes.json`](../scripts/agent-scopes.json), and a couple of skills restored because other kept skills depend on them (e.g. `multi-agent-brainstorming`, required by `brainstorming`'s handoff rule).
 
 ## What Are Skills?
 
@@ -27,7 +27,7 @@ This directory is intentionally small. `agent-harness` started from a bulk impor
 
 The set that remains here is:
 1. **25 core lifecycle skills** — `using-agent-harness` (the intent router and pre-flight mandate) plus 24 others covering the full define → plan → build → verify → review → ship lifecycle. See root [`CLAUDE.md`](../CLAUDE.md) and [`README.md`](../README.md) for the full list.
-2. **A handful of cross-cutting process skills** the router treats as always-relevant regardless of domain: `brainstorming`, `planning-and-task-breakdown`, `executing-plans`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `subagent-driven-development`.
+2. **A handful of cross-cutting process skills** the router treats as always-relevant regardless of domain: `brainstorming`, `planning-and-task-breakdown`, `systematic-debugging`, `verification-before-completion`, `requesting-code-review`, `receiving-code-review`, `finishing-a-development-branch`, `subagent-driven-development`.
 3. **Role-scoped extension skills** — each of the 12 agent personas (`agents/*.md`) has a ~20-skill scope defined in `scripts/agent-scopes.json`, validated by `scripts/validate-skills.js`.
 
 ## How to Use Skills

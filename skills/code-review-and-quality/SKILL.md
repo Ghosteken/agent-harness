@@ -99,7 +99,7 @@ If any Critical or Important finding survived Phase 2 (Suggestions are too routi
 
 Create the file (with a one-line header explaining its purpose) if this is the first entry for the project. Skip this step entirely on a clean review with nothing above Suggestion severity — an empty review doesn't need a log entry. Tell the user the entry was recorded and where, the same as any other external-output artifact.
 
-This log exists so `incremental-implementation`, `test-driven-development`, `executing-plans`, `subagent-driven-development`, and code-writing agent personas can check it before starting new work and avoid repeating a mistake this project has already made once.
+This log exists so `incremental-implementation`, `test-driven-development`, `subagent-driven-development`, and code-writing agent personas can check it before starting new work and avoid repeating a mistake this project has already made once.
 
 ## Dead Code Hygiene
 
