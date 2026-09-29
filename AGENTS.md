@@ -130,7 +130,7 @@ When the user describes a task without naming an agent or command, map their wor
 
 #### Executing a Plan
 **Keywords:** execute the plan, follow the plan, implement the plan, carry out the steps, run through the plan
-→ `executing-plans`
+→ `subagent-driven-development`
 
 #### Brainstorming
 **Keywords:** brainstorm, ideas for, what are the options, how could we, explore approaches, what are the possibilities, think through
