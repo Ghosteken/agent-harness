@@ -12,6 +12,10 @@ The arguments select the mode. Treat `auto` (canonical) or `all` as autonomous m
 
 Never run `git commit` (or `git add` followed by a commit) yourself, in either mode, unless the user explicitly asks you to commit in that message. Draft a commit message and tell the user the change is ready, then leave the actual commit to them.
 
+## Before either mode: branch setup
+
+Before the first task in either mode, use the AskUserQuestion tool to confirm branch setup — never create a branch silently. Check whether `dev` exists (locally or on the remote); if it does, fetch and pull it to latest before branching from it, then confirm via the ask that it's fine to create a feature branch from `dev` (pulled to latest). If `dev` doesn't exist, say so explicitly in the same ask and ask which branch to use instead, rather than guessing `main` or any other default. Create the feature branch only after that confirmation comes back.
+
 ## Default: one task
 
 Pick the next pending task from the plan. Then:

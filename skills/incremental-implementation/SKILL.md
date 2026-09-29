@@ -18,6 +18,18 @@ Build in thin vertical slices — implement one piece, test it, verify it, then 
 
 **When NOT to use:** Single-file, single-function changes where the scope is already minimal.
 
+## Before You Start: Branch Setup
+
+Before any implementation begins, use the `AskUserQuestion` tool to confirm branch setup — never create a branch silently, even when the answer seems obvious.
+
+1. Check whether `dev` exists (locally or on the remote). If it does, fetch and pull it to make sure it's current *before* branching from it — a feature branch cut from a stale local `dev` silently misses whatever's landed since.
+2. Ask via `AskUserQuestion`:
+   - If `dev` exists: propose creating a feature branch from `dev` (pulled to latest) — confirm before creating it, don't assume yes.
+   - If `dev` doesn't exist: say so explicitly in the same ask ("`dev` branch not found") and ask which branch to use instead, rather than guessing `main` or any other default.
+3. Create the feature branch only after that confirmation comes back.
+
+**Never run `git commit` when the work is done** — this applies to the whole increment cycle below, not just the branch-setup step. Draft commit messages and propose them; leave the actual commit to the user unless they've explicitly asked you to commit in that session.
+
 ## The Increment Cycle
 
 ```
@@ -223,6 +235,8 @@ After each increment, verify:
 | "This refactor is small enough to include" | Refactors mixed with features make both harder to review and debug. Separate them. |
 | "Let me run the build command again just to be sure" | After a successful run, repeating the same command adds nothing unless the code has changed since. Run it again after subsequent edits, not as reassurance. |
 | "All the unit tests pass, so the feature works" | Unit tests confirm the code does what the code does — they don't confirm it does what the spec asked for. Run `quality-assurance` for that. |
+| "I'll just branch from dev without asking, it's the obvious choice" | Ask anyway — confirming before creating a branch costs one question and prevents working on the wrong base entirely. |
+| "dev doesn't exist, I'll just use main" | Guessing a fallback base branch silently can put the feature on the wrong branch structure for this project — ask which branch to use instead. |
 
 ## Red Flags
 
@@ -238,8 +252,16 @@ After each increment, verify:
 - Running the same build/test command twice in a row without any intervening code change
 - Running `git commit` yourself without the user explicitly asking you to in that session
 - The feature declared done once unit tests pass, without running `quality-assurance` against the spec
+- A feature branch created without asking first, or without pulling `dev` to latest before branching from it
+- `dev` missing and a fallback branch picked silently instead of asked about
 
 ## Verification
+
+Before starting:
+
+- [ ] Branch setup was confirmed via `AskUserQuestion` before any implementation began — not assumed
+- [ ] If `dev` existed, it was pulled to latest before the feature branch was created from it
+- [ ] If `dev` didn't exist, that was stated explicitly and an alternative base branch was asked for, not guessed
 
 After completing all increments for a task:
 
