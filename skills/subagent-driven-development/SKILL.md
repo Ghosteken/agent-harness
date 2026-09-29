@@ -29,6 +29,18 @@ digraph when_to_use {
 - Two-stage review after each task: spec compliance first, then code quality
 - Faster iteration (no human-in-loop between tasks)
 
+## Before You Start: Branch Setup
+
+Before dispatching any subagent, use the `AskUserQuestion` tool to confirm branch setup — never create a branch silently, even when the answer seems obvious.
+
+1. Check whether `dev` exists (locally or on the remote). If it does, fetch and pull it to make sure it's current *before* branching from it — a feature branch cut from a stale local `dev` silently misses whatever's landed since.
+2. Ask via `AskUserQuestion`:
+   - If `dev` exists: propose creating a feature branch from `dev` (pulled to latest) — confirm before creating it, don't assume yes.
+   - If `dev` doesn't exist: say so explicitly in the same ask ("`dev` branch not found") and ask which branch to use instead, rather than guessing `main` or any other default.
+3. Create the feature branch only after that confirmation comes back, then proceed to the process below.
+
+**Never run `git commit` when the work is done** — draft commit messages and propose them at every point this skill calls for a commit (implementer's own proposed commit, and `finishing-a-development-branch` at the end); leave the actual commit to the user unless they've explicitly asked you to commit in that session.
+
 ## The Process
 
 ```dot
@@ -206,6 +218,9 @@ Done!
 - **Start code quality review before spec compliance is ✅** (wrong order)
 - Move to next task while either review has open issues
 - Call the implementation done after the final code review without running `quality-assurance` — code review confirms the code is well-built, not that it works live against the spec
+- Dispatch the first implementer subagent before branch setup was confirmed via `AskUserQuestion`
+- Branch from a local `dev` without pulling it to latest first
+- `dev` missing and a fallback branch picked silently instead of asked about
 
 **If subagent asks questions:**
 - Answer clearly and completely
