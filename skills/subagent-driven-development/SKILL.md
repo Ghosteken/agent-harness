@@ -90,7 +90,7 @@ digraph process {
 }
 ```
 
-**Running `quality-assurance` after the final code review is a mandatory action, not a box to mentally check off afterward.** In practice, agents following this skill have gone straight from "final reviewer approved" to declaring the implementation done, and only run `quality-assurance` when the user notices and asks for it. Don't let that be the trigger — invoke it yourself, unprompted, as the actual next step once the final code review passes.
+**Running `quality-assurance` after the final code review is a mandatory action, not a box to mentally check off afterward — and it must be genuinely live: a real server, real database, real authenticated user, not mocked tests or a suite merely named "e2e."** In practice, agents following this skill have gone straight from "final reviewer approved" to declaring the implementation done, and only run `quality-assurance` when the user notices and asks for it — and even then, have substituted mocked/unit-level tests for live verification without saying so. Don't let either be the trigger — invoke it live yourself, unprompted, as the actual next step once the final code review passes. If full live verification is tedious to set up, `quality-assurance`'s own graduated fallback applies (a lighter live check via curl/CLI or an automated test against the real dev server, offered via `AskUserQuestion`) — never downgrade straight to mocks on your own.
 
 ## Prompt Templates
 
@@ -221,6 +221,7 @@ Done!
 - **Start code quality review before spec compliance is ✅** (wrong order)
 - Move to next task while either review has open issues
 - Call the implementation done after the final code review without running `quality-assurance` — code review confirms the code is well-built, not that it works live against the spec
+- `quality-assurance` run against mocks or a suite merely named "e2e", reported as if it were genuinely live verification
 - Dispatch the first implementer subagent before branch setup was confirmed via `AskUserQuestion`
 - Branch from a local `dev` without pulling it to latest first
 - `dev` missing and a fallback branch picked silently instead of asked about

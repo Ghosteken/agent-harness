@@ -80,6 +80,10 @@ Use PostgreSQL with Prisma ORM.
 - Hosting on managed service (Supabase, Neon, or RDS)
 ```
 
+### Ground Structural Decisions in `references/coding-patterns.md`
+
+When the decision being recorded has implications those patterns cover — a new external integration, a data model, an auth strategy, anything with a retry/permission/pricing decision buried in it — read `references/coding-patterns.md` before writing Decision/Consequences, and name the concrete implication (e.g. "the provider lives behind a `PaymentGateway` interface, not called directly from order logic") rather than leaving it implicit. Not every ADR needs this — a build-tool choice usually doesn't — but skipping it for one that clearly does leaves the ADR's Consequences section silent about a real architectural commitment.
+
 ### ADR Lifecycle
 
 ```
@@ -265,6 +269,7 @@ Special consideration for AI agent context:
 - TODO comments that have been there for weeks
 - No ADRs in a project with significant architectural choices
 - Documentation that restates the code instead of explaining intent
+- An ADR for an external integration, data model, or decision-heavy flow with no mention of the relevant `references/coding-patterns.md` implication
 
 ## Verification
 

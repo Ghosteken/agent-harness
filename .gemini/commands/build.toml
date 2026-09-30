@@ -27,7 +27,7 @@ Pick the next pending task from the plan. Then:
 5. Run the full test suite to check for regressions
 6. Run the build to verify compilation
 7. Draft a commit message and tell the user the change is ready to commit — do not run `git commit` yourself
-8. Mark the task complete. If this was the last pending task in the plan, run the quality-assurance skill against the spec before stopping — do this yourself, unprompted, not only when the user asks for it. Then stop.
+8. Mark the task complete. If this was the last pending task in the plan, run the quality-assurance skill against the spec before stopping — live (real server, real database, real authenticated user, not mocked tests or a suite merely named "e2e") — do this yourself, unprompted, not only when the user asks for it. If full live verification is tedious to set up, use quality-assurance's own graduated fallback (curl/CLI or an automated test against the real dev server, offered via AskUserQuestion) rather than downgrading straight to mocks. Then stop.
 
 ## Autonomous: the whole plan (`/build auto`)
 
@@ -43,7 +43,7 @@ Use this once a spec exists and you want to collapse plan + build into one run. 
    - the spec is ambiguous, or a task needs a decision the spec doesn't cover
    - a task is high-risk or irreversible — auth/permission changes, destructive data migrations, payments, deletions, deploys, anything touching secrets, or anything that would be hard to undo without a commit history to revert to → follow the doubt-driven-development skill and get explicit sign-off before continuing
    After the user resolves a blocker, they re-invoke /build auto — it resumes from the next pending task.
-7. Run quality-assurance against the spec once every task is complete — this is a mandatory action, not something to wait for the user to request. Unit tests passing per task doesn't confirm the whole feature works end-to-end; do this before summarizing, not after the user notices it's missing.
+7. Run quality-assurance against the spec once every task is complete — live (real server, real database, real authenticated user), not mocked tests or a suite merely named "e2e" — this is a mandatory action, not something to wait for the user to request. Unit tests passing per task doesn't confirm the whole feature works end-to-end; do this before summarizing, not after the user notices it's missing. If full live verification is tedious to set up, use quality-assurance's own graduated fallback (curl/CLI or an automated test against the real dev server, offered via AskUserQuestion) rather than downgrading straight to mocks.
 8. Summarize at the end: tasks completed, tests added, the quality-assurance verdict, commit messages proposed (not yet run), and anything skipped, flagged, or left for the user.
 
 If any step fails, follow the debugging-and-error-recovery skill.

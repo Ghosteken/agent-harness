@@ -52,9 +52,11 @@ Don't let an unresolved one stall the rest of the plan, though. For each, give a
 
 **Technical Considerations:**
 
-- **System Architecture Overview** — draw the diagram directly, in plain Markdown: an ASCII box-and-arrow layout (`┌──┐`, `│`, `└──┘`, `─▶`) organized top-to-bottom or left-to-right as Frontend, API, Business Logic, Data, and Infrastructure layers, with labeled data-flow arrows. No Mermaid, no external tool, no delegation — this skill draws its own diagrams.
-- **Database Schema Design** — a plain-Markdown entity/relationship layout (one block per table — name, fields with type, PK/FK markers — with relationships stated in prose or a simple `Orders 1──N LineItems` line, not a Mermaid ER diagram) plus indexing strategy, foreign-key relationships, migration strategy, and **data classification per table/column** (sensitivity class, and how sensitive ones are protected — e.g. separate encryption key) — mirroring the PRD's Data requirement type, not left as an afterthought.
-- **API Design** — a per-feature endpoint table (method, path, auth, request, response), applying the `api-and-interface-design` skill's conventions (error envelope, naming, pagination, contract-first) rather than inventing new ones — apply the conventions, never name the skill in the saved document itself (see `references/no-internal-tooling-in-output.md`).
+Before drafting the sections below, actually read `references/coding-patterns.md` — its five structural patterns (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) aren't optional background reading, they're what this step applies. Bake each one that genuinely applies into the specific section it shapes — don't cite the pattern by name in the document (see `references/no-internal-tooling-in-output.md`), just make the concrete decision it implies visible in the plan itself:
+
+- **System Architecture Overview** — draw the diagram directly, in plain Markdown: an ASCII box-and-arrow layout (`┌──┐`, `│`, `└──┘`, `─▶`) organized top-to-bottom or left-to-right as Frontend, API, Business Logic, Data, and Infrastructure layers, with labeled data-flow arrows. No Mermaid, no external tool, no delegation — this skill draws its own diagrams. Any third-party service (payment processor, email provider, external API) gets its own named boundary/adapter in the diagram — never drawn as if business logic talks to the vendor directly.
+- **Database Schema Design** — a plain-Markdown entity/relationship layout (one block per table — name, fields with type, PK/FK markers — with relationships stated in prose or a simple `Orders 1──N LineItems` line, not a Mermaid ER diagram) plus indexing strategy, foreign-key relationships, migration strategy, and **data classification per table/column** (sensitivity class, and how sensitive ones are protected — e.g. separate encryption key) — mirroring the PRD's Data requirement type, not left as an afterthought. Model status/state fields as one closed-set field, not several independently-settable booleans/nullables that could combine into an invalid state.
+- **API Design** — a per-feature endpoint table (method, path, auth, request, response), applying the `api-and-interface-design` skill's conventions (error envelope, naming, pagination, contract-first) rather than inventing new ones — apply the conventions, never name the skill in the saved document itself (see `references/no-internal-tooling-in-output.md`). Every error response names what failed and with what input, not a bare generic message; any decision logic behind an endpoint (validation, retries, pricing, permissions) gets named as its own step, separate from the action it triggers — this is also where each Business Rule's "Technical Invariant" from above actually lands.
 - **Frontend Architecture** — a component hierarchy tree (plain-Markdown indented list, not a diagram file) genericized to the project's actual UI library (never hardcoded to a specific library the project doesn't use), its state-management approach, and key type/interface shapes.
 - **Security & Performance** — apply the `security-and-hardening` and `performance-optimization` skills' checklists rather than re-deriving them from scratch — again, apply the thinking, never cite the skill name in the document.
 
@@ -79,6 +81,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 | "I'll just pick the most likely answer to this Open Question and draft around it" | That's the same guessing this skill refuses to do for the stack — if it can't be resolved via `AskUserQuestion`, carry it forward explicitly as an Inherited Open Question instead of quietly deciding it. |
 | "The PRD's Open Questions are its problem, not this plan's" | Some of them are directly about this plan's architecture, data model, or API — checking which ones apply is what keeps the technical design honest about what's actually still undecided. |
 | "I'll leave that section vague until the open question is answered" | Vagueness isn't neutral — it leaves the next person nothing to build from. Give a labeled, provisional workaround so the plan stays concrete, without pretending the question is actually settled. |
+| "`references/coding-patterns.md` is in See Also, I don't need to read it to draft this" | See Also isn't optional further reading here — the patterns are what Technical Considerations is supposed to apply. A plan drafted without them is generic, not grounded in this feature's actual boundaries and decisions. |
 
 ## Red Flags
 
@@ -95,6 +98,10 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - The plan reads as fully settled when a real Inherited Open Question was quietly dropped
 - An Inherited Open Question with no suggested workaround, leaving the section it affects vague instead of concrete
 - A workaround presented without being clearly labeled as provisional/pending confirmation
+- Third-party services drawn as if business logic talks to them directly, with no named boundary/adapter
+- Status/state modeled as several independent booleans/nullables instead of one closed-set field
+- A decision (validation, retry, pricing, permission) buried inline in an endpoint's action instead of named as its own step
+- Errors in the API Design with no indication of what failed or with what input
 
 ## Verification
 
@@ -104,6 +111,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - [ ] The API Design section follows `api-and-interface-design`'s conventions
 - [ ] No real code blocks — pseudocode only
 - [ ] Security & Performance considerations are present and cross-reference the relevant checklists
+- [ ] `references/coding-patterns.md` was actually read and applied — external services have a named boundary, state is modeled to exclude invalid combinations, decisions are separated from actions, and errors carry real context
 - [ ] Every Constraint and Business Rule from the input PRD is reflected somewhere concrete in this plan, not just copied as prose
 - [ ] Database Schema Design states each table/column's data classification and how sensitive ones are protected
 - [ ] The PRD's Open Questions were checked for relevance to this plan; the relevant ones were either resolved via `AskUserQuestion` or carried forward as Inherited Open Questions, never silently picked
