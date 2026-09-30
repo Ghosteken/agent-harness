@@ -47,6 +47,7 @@ If a Gherkin `test-cases.md` already exists for the feature, its scenarios are a
 | Fix confirmation | Specific issue from bug report no longer occurs |
 | Regression | Previously passing behaviour still works |
 
+**Don't stop once one scenario type is covered.** Checking that all 6 endpoints reject unauthenticated requests is a real result, but it's one type (error handling) — it says nothing about whether the happy path actually works, whether validation rejects bad input, or whether the specific fix/edge case this feature exists for behaves correctly. Every scenario type that genuinely applies to this feature needs at least one concrete check before the verdict is reported — not just whichever type was easiest or fastest to exercise.
 ### Step 3 — Select Transport
 
 Choose the right execution channel for each scenario. For full auth setup and Playwright MCP guidance, see [transport-and-auth.md](references/transport-and-auth.md).
@@ -100,12 +101,14 @@ Drive each scenario to completion:
 | "I'll try a few things until it works" | Two strikes and stop. Iteration without a baseline is guessing, not verification. |
 | "The tests pass so it works" | Passing tests confirm what tests check — not that the feature works. Execute the scenarios. |
 | "I can infer the expected behaviour from the code" | That makes verification circular. Spec or ask. |
+| "I checked that all the endpoints reject bad requests, that's a solid check" | It's a real check of one scenario type — it says nothing about whether the happy path, validation, or the specific fix under test actually work. Cover every scenario type that applies, not just the one that was fastest to verify. |
 
 ## Red Flags
 
 - Producing a PASS verdict without observable evidence
 - Starting execution before identifying expected behaviour
 - Skipping regression scenarios because "only one thing changed"
+- Reporting a verdict having exercised only one scenario type (e.g., only that requests get rejected) when happy-path, validation, or fix-specific scenarios genuinely applied too
 - Using API-seeded state for a browser test (separate sessions)
 - Retrying a failing step more than twice without stopping to report
 
@@ -115,6 +118,7 @@ Exit criteria — all must be met before marking QA complete:
 
 - [ ] Expected behaviour source is documented (spec file, issue link, or user confirmation)
 - [ ] Every planned scenario has a recorded result (PASS / FAIL + evidence)
+- [ ] Every scenario type that genuinely applies (happy path, edge cases, error handling, fix confirmation, regression) was actually exercised — not just one type
 - [ ] Regression scenarios were run (at least the scenarios most likely affected by the change)
 - [ ] Issues found are categorised by severity with reproduction steps
 - [ ] Overall verdict (PASS / FAIL / PARTIAL) is stated explicitly

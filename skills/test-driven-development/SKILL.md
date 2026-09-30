@@ -305,6 +305,15 @@ it('applies a 10% discount for orders over $100, none below', () => {
 
 If a slice has no core logic of its own (pure wiring — routing a call through to an already-tested layer), it doesn't need its own core-contract test; don't manufacture one. But when a slice implements or changes real logic, that logic is what gets the dedicated test — not an incidental side effect of testing the wiring around it.
 
+**Cover the core logic from more than one angle — don't stop at whichever case was easiest to write.** A real example of this going wrong: testing that 6 API endpoints all reject unauthenticated requests, and treating that as "tested" — it's a genuine result, but it's one angle (error handling) on the feature. It says nothing about whether the happy path with a valid request actually produces the right result, whether boundary/edge values are handled correctly, or whether the specific bug/fix this change exists for actually behaves correctly now. For any core logic worth a dedicated test, that means covering (as they genuinely apply, mirroring `quality-assurance`'s own scenario types so unit and live-verification coverage stay consistent):
+
+- **Happy path** — valid input, expected output
+- **Edge cases** — boundary values, empty/null states, optional fields absent
+- **Error handling** — invalid input, malformed requests → correct rejection
+- **Fix/regression confirmation** — the specific bug or edge case this change exists for
+
+Not just the single type that happened to be fastest to check.
+
 ## Test Anti-Patterns to Avoid
 
 | Anti-Pattern | Problem | Fix |
@@ -379,6 +388,7 @@ For detailed testing patterns, examples, and anti-patterns across frameworks, se
 | "It's just a prototype" | Prototypes become production code. Tests from day one prevent the "test debt" crisis. |
 | "Let me run the tests again just to be extra sure" | After a clean test run, repeating the same command adds nothing unless the code has changed since. Run again after subsequent edits, not as reassurance. |
 | "It has a test, that's enough" | A test that only checks the function doesn't throw won't catch the core logic regressing later — the test needs to assert the actual expected behavior of whatever's core to this slice, not just that it ran. |
+| "I tested that it rejects bad input, that covers it" | That's one angle on the feature — it says nothing about whether the valid case actually produces the right result, or whether boundary/edge values are handled. Cover happy path, edge cases, error handling, and fix confirmation together, not just whichever was fastest. |
 
 ## Red Flags
 
@@ -391,6 +401,7 @@ For detailed testing patterns, examples, and anti-patterns across frameworks, se
 - Skipping tests to make the suite pass
 - Running the same test command twice in a row without any intervening code change
 - A test that only asserts "didn't throw" for a slice with real core logic (a calculation, a state transition, a validation rule), instead of asserting the actual expected behavior
+- Coverage for a feature that only exercises one scenario type (e.g., only rejection/error handling) when happy path, edge cases, or fix confirmation genuinely applied too
 
 ## Verification
 
@@ -398,6 +409,7 @@ After completing any implementation:
 
 - [ ] Every new behavior has a corresponding test
 - [ ] Each slice's core logic (if it has any beyond wiring) has a test asserting its actual expected behavior, not just that it runs without error — this is what catches a future regression
+- [ ] Coverage spans every scenario type that genuinely applies (happy path, edge cases, error handling, fix/regression confirmation) — not just the one type that was fastest to check
 - [ ] All tests pass: `npm test`
 - [ ] Bug fixes include a reproduction test that failed before the fix
 - [ ] Test names describe the behavior being verified
