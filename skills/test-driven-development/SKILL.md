@@ -284,6 +284,27 @@ describe('TaskService', () => {
 });
 ```
 
+### Identify and Cover the Core Component, Not Just the Happy Path
+
+Before writing a slice's or task's test, name what's actually *core* to it — the piece of logic other code depends on, or that represents the feature's real contract (a calculation, a state transition, a validation rule, an invariant) — as distinct from the glue/wiring code around it. That core piece is what needs a test written directly against its behavior, not just a smoke test that the surrounding function runs without erroring.
+
+The point of this is regression detection, not coverage percentage: a test that exercises the actual core contract is what fails the moment someone — a future change, a refactor, an unrelated-seeming edit — breaks that logic, giving an instant, specific signal ("this stopped working") instead of a silent break discovered later in production or by a user. A test that only checks "the function didn't throw" doesn't provide that signal; a test that asserts the actual expected output for the core behavior does.
+
+```typescript
+// Weak: passes even if the discount logic is completely wrong
+it('calculates a price', () => {
+  expect(() => calculateDiscount(order)).not.toThrow();
+});
+
+// Strong: this is the core contract — breaks loudly if the logic regresses
+it('applies a 10% discount for orders over $100, none below', () => {
+  expect(calculateDiscount({ total: 150 })).toBe(15);
+  expect(calculateDiscount({ total: 99 })).toBe(0);
+});
+```
+
+If a slice has no core logic of its own (pure wiring — routing a call through to an already-tested layer), it doesn't need its own core-contract test; don't manufacture one. But when a slice implements or changes real logic, that logic is what gets the dedicated test — not an incidental side effect of testing the wiring around it.
+
 ## Test Anti-Patterns to Avoid
 
 | Anti-Pattern | Problem | Fix |
@@ -357,6 +378,7 @@ For detailed testing patterns, examples, and anti-patterns across frameworks, se
 | "The code is self-explanatory" | Tests ARE the specification. They document what the code should do, not what it does. |
 | "It's just a prototype" | Prototypes become production code. Tests from day one prevent the "test debt" crisis. |
 | "Let me run the tests again just to be extra sure" | After a clean test run, repeating the same command adds nothing unless the code has changed since. Run again after subsequent edits, not as reassurance. |
+| "It has a test, that's enough" | A test that only checks the function doesn't throw won't catch the core logic regressing later — the test needs to assert the actual expected behavior of whatever's core to this slice, not just that it ran. |
 
 ## Red Flags
 
@@ -368,12 +390,14 @@ For detailed testing patterns, examples, and anti-patterns across frameworks, se
 - Test names that don't describe the expected behavior
 - Skipping tests to make the suite pass
 - Running the same test command twice in a row without any intervening code change
+- A test that only asserts "didn't throw" for a slice with real core logic (a calculation, a state transition, a validation rule), instead of asserting the actual expected behavior
 
 ## Verification
 
 After completing any implementation:
 
 - [ ] Every new behavior has a corresponding test
+- [ ] Each slice's core logic (if it has any beyond wiring) has a test asserting its actual expected behavior, not just that it runs without error — this is what catches a future regression
 - [ ] All tests pass: `npm test`
 - [ ] Bug fixes include a reproduction test that failed before the fix
 - [ ] Test names describe the behavior being verified
