@@ -200,10 +200,6 @@ Services: Cloud Run, GKE, Cloud Functions, BigQuery
 - [ ] Cost optimization applied
 - [ ] DR procedures documented
 
-## Related Workflow Bundles
-
-- `testing-qa` - Testing workflows
-
 ## Limitations
 - Use this skill only when the task clearly matches the scope described above.
 - Do not treat the output as a substitute for environment-specific validation, testing, or expert review.
