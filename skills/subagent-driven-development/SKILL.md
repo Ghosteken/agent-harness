@@ -90,6 +90,8 @@ digraph process {
 }
 ```
 
+**Running `quality-assurance` after the final code review is a mandatory action, not a box to mentally check off afterward.** In practice, agents following this skill have gone straight from "final reviewer approved" to declaring the implementation done, and only run `quality-assurance` when the user notices and asks for it. Don't let that be the trigger — invoke it yourself, unprompted, as the actual next step once the final code review passes.
+
 ## Prompt Templates
 
 - `./implementer-prompt.md` - Dispatch implementer subagent
@@ -196,6 +198,7 @@ Done!
 - Spec compliance prevents over/under-building
 - Code quality ensures implementation is well-built
 - `quality-assurance` after the final code review confirms the whole implementation actually works end-to-end, against the spec — the per-task reviews check the code itself, not live behavior; neither replaces the other
+- Code quality review confirms each task's tests actually cover its core logic (a real assertion on expected behavior, not just "didn't throw") — a test that only proves the code ran isn't what catches a future regression
 
 **Cost:**
 - More subagent invocations (implementer + 2 reviewers per task)

@@ -40,7 +40,12 @@ Before any implementation begins, use the `AskUserQuestion` tool to confirm bran
 │       └───── Propose commit ◄─────┘        │
 │              │                             │
 │              ▼                             │
-│          Next slice                        │
+│   More slices? ──yes──→ Next slice         │
+│              │                             │
+│              no                            │
+│              ▼                             │
+│   Run quality-assurance (mandatory,        │
+│   not a checkbox) ──→ THEN task is done    │
 │                                            │
 └────────────────────────────────────────────┘
 ```
@@ -48,10 +53,12 @@ Before any implementation begins, use the `AskUserQuestion` tool to confirm bran
 For each slice:
 
 1. **Implement** the smallest complete piece of functionality
-2. **Test** — every slice gets a unit test, not just slices that "need" one; run the full suite alongside it
+2. **Test** — every slice gets a unit test, not just slices that "need" one; if the slice has real core logic (a calculation, a state transition, a validation rule), the test must assert its actual expected behavior, not just that it runs without error (see `test-driven-development`'s core-component coverage) — that's what catches a regression later, not just now. Run the full suite alongside it.
 3. **Verify** — confirm the slice works as expected (unit tests pass, build succeeds, manual check)
 4. **Propose a commit** — draft a descriptive message and tell the user the slice is ready (see `git-workflow-and-versioning` for atomic commit guidance). **Never run `git commit` yourself** — leave the actual commit to the user unless they've explicitly asked you to commit in this session.
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
+
+**When the last slice for this task is done — stop. Before saying the task is complete, actually invoke the `quality-assurance` skill against the spec.** This is a mandatory action to take, not a box to mentally check off afterward: in practice, agents following this skill have skipped straight to declaring the task done with unit tests passing, and only run `quality-assurance` when the user notices and asks for it. Don't let that be the trigger — run it yourself, unprompted, as the actual last step of the cycle, every time all slices for a task are complete.
 
 ## Slicing Strategies
 
