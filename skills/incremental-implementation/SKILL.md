@@ -58,7 +58,7 @@ For each slice:
 4. **Propose a commit** — draft a descriptive message and tell the user the slice is ready (see `git-workflow-and-versioning` for atomic commit guidance). **Never run `git commit` yourself** — leave the actual commit to the user unless they've explicitly asked you to commit in this session.
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
 
-**When the last slice for this task is done — stop. Before saying the task is complete, actually invoke the `quality-assurance` skill against the spec.** This is a mandatory action to take, not a box to mentally check off afterward: in practice, agents following this skill have skipped straight to declaring the task done with unit tests passing, and only run `quality-assurance` when the user notices and asks for it. Don't let that be the trigger — run it yourself, unprompted, as the actual last step of the cycle, every time all slices for a task are complete.
+**When the last slice for this task is done — stop. Before saying the task is complete, actually invoke the `quality-assurance` skill against the spec, and it must be genuinely live — a real server, real database, real authenticated user — not mocked tests or a suite that merely happens to be named "e2e."** This is a mandatory action to take, not a box to mentally check off afterward: in practice, agents following this skill have skipped straight to declaring the task done with unit tests passing, and only run `quality-assurance` when the user notices and asks for it — and even then, have substituted mocked/unit-level tests for live verification without saying so. Don't let either be the trigger — run `quality-assurance` live yourself, unprompted, as the actual last step of the cycle. If full live verification is tedious to set up, `quality-assurance`'s own graduated fallback applies (a lighter live check via curl/CLI or an automated test against the real dev server, offered via `AskUserQuestion`) — never downgrade straight to mocks on your own.
 
 ## Slicing Strategies
 
@@ -259,6 +259,7 @@ After each increment, verify:
 - Running the same build/test command twice in a row without any intervening code change
 - Running `git commit` yourself without the user explicitly asking you to in that session
 - The feature declared done once unit tests pass, without running `quality-assurance` against the spec
+- `quality-assurance` run against mocks or a suite merely named "e2e", reported as if it were genuinely live verification
 - A feature branch created without asking first, or without pulling `dev` to latest before branching from it
 - `dev` missing and a fallback branch picked silently instead of asked about
 
@@ -275,7 +276,7 @@ After completing all increments for a task:
 - [ ] Each increment was individually tested (a unit test was added, not just an existing-suite check) and left with a proposed commit message
 - [ ] The full test suite passes
 - [ ] The build is clean
-- [ ] The feature works end-to-end as specified — run the `quality-assurance` skill against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing (unit tests confirm the code does what the code does; they don't confirm the feature does what the spec asked for)
+- [ ] The feature works end-to-end as specified — run the `quality-assurance` skill *live* (real server, real database, real authenticated user) against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing and not mocks substituted for live verification
 - [ ] No unreviewed changes remain — the user has a summary and a proposed commit message for each increment; committing is theirs to do (or explicitly delegated to you)
 
 ## See Also

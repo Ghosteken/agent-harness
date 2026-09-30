@@ -114,6 +114,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - Producing either output before the user has given an explicit "yes" to the restatement
 - A branch that doesn't change either output regardless of how it's answered — a sign it was manufactured to inflate the count, not a real decision
 - A spec with no Architectural Fit section, or no edge cases listed in any branch — a sign step 1's codebase exploration was skipped
+- An Architectural Fit section that doesn't name any `references/coding-patterns.md` pattern even though the idea clearly touches an external system, a decision-heavy flow, or shared state
 - A genuine architectural fork asked as a plain question instead of framed with tradeoffs and a recommendation
 
 ## Verification
