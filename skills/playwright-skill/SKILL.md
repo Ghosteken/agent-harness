@@ -30,7 +30,21 @@ General-purpose browser automation skill. I'll write custom Playwright code for 
 
 2. **Write scripts to /tmp** - NEVER write test files to skill directory; always use `/tmp/playwright-test-*.js`
 
-3. **Use visible browser by default** - Always use `headless: false` unless user specifically requests headless mode
+3. **Use visible browser by default, with an automatic headless fallback** - Prefer `headless: false` unless the user asks for headless. But a sandboxed shell with no display can only run headless — `chromium.launch({ headless: false })` there fails with `spawn UNKNOWN`, not a normal error to debug. Launch defensively so this never blocks the task:
+
+   ```javascript
+   let browser;
+   try {
+     browser = await chromium.launch({ headless: false });
+   } catch (err) {
+     if (String(err.message || err).includes('spawn UNKNOWN')) {
+       console.log('No display available in this environment — falling back to headless.');
+       browser = await chromium.launch({ headless: true });
+     } else {
+       throw err;
+     }
+   }
+   ```
 
 4. **Parameterize URLs** - Always make URLs configurable via environment variable or constant at top of script
 
@@ -387,8 +401,8 @@ For comprehensive Playwright API documentation, see [API_REFERENCE.md](API_REFER
 - **Custom headers** - Use `PW_HEADER_NAME`/`PW_HEADER_VALUE` env vars to identify automated traffic to your backend
 - **Use /tmp for test files** - Write to `/tmp/playwright-test-*.js`, never to skill directory or user's project
 - **Parameterize URLs** - Put detected/provided URL in a `TARGET_URL` constant at the top of every script
-- **DEFAULT: Visible browser** - Always use `headless: false` unless user explicitly asks for headless mode
-- **Headless mode** - Only use `headless: true` when user specifically requests "headless" or "background" execution
+- **DEFAULT: Visible browser** - Prefer `headless: false` unless user explicitly asks for headless mode, **but treat this as a preference, not a hard requirement** — a sandboxed shell with no display can only launch headless, and `chromium.launch({ headless: false })` there fails with `spawn UNKNOWN`, not a graceful error. If a headed launch fails with `spawn UNKNOWN` (or any spawn/display-related error), retry immediately with `headless: true` and tell the user this environment can't show a visible browser — don't treat it as a one-off failure to debug.
+- **Headless mode** - Use `headless: true` when the user requests it, or automatically as the fallback above when a headed launch isn't possible in the current environment
 - **Slow down:** Use `slowMo: 100` to make actions visible and easier to follow
 - **Wait strategies:** Use `waitForURL`, `waitForSelector`, `waitForLoadState` instead of fixed timeouts
 - **Error handling:** Always use try-catch for robust automation
@@ -405,8 +419,8 @@ cd $SKILL_DIR && npm run setup
 **Module not found:**
 Ensure running from skill directory via `run.js` wrapper
 
-**Browser doesn't open:**
-Check `headless: false` and ensure display available
+**Browser doesn't open, or fails with `spawn UNKNOWN`:**
+This is the signature of no display being available (a sandboxed/headless shell) — `headless: false` cannot work there regardless of retries. Switch to `headless: true` and continue; this is expected in that kind of environment, not a bug to chase.
 
 **Element not found:**
 Add wait: `await page.waitForSelector('.element', { timeout: 10000 })`
@@ -457,6 +471,12 @@ User: "Use 3001"
 - A quick, one-off browser check is needed right now (screenshot, "does this flow still work", a responsive-design spot check)
 - Nothing about the check needs to persist as a project file or run again in CI
 - NOT when the test should be checked into the repo and run in CI on every change — use `playwright-e2e-testing` for that instead
+
+## Cover More Than One Angle When Asked to "Test This Feature"
+
+When the ask is to check a whole feature (not a single narrow question like "does this one page load"), don't stop after exercising just one scenario type and call it tested. A real example of this going wrong: checking that every endpoint rejects unauthenticated requests, and reporting that as "tested" — it's a genuine result, but it only covers error handling. It says nothing about whether the happy path with valid input actually works, whether edge/boundary cases behave correctly, or whether the specific fix the check exists for actually holds. Cover happy path, edge cases, error handling, and fix confirmation together, as they genuinely apply — the same scenario types `quality-assurance` and `test-driven-development` use, so a quick script here and a formal QA pass elsewhere don't silently diverge on what "tested" means.
+
+If the ask (or the time available) genuinely only calls for one narrow check — say so explicitly *before* running it, not only when asked afterward what was actually covered. "This will just confirm the auth guard rejects anonymous requests, not the full feature" takes one sentence and prevents a narrow check from being mistaken for full coverage.
 
 ## See Also
 
