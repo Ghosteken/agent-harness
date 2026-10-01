@@ -74,7 +74,7 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
 
 4. **Code Style** — One real code snippet showing your style beats three paragraphs describing it. Include naming conventions, formatting rules, and examples of good output. Before writing this section, actually read `references/coding-patterns.md` — its five structural patterns (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) aren't optional background: check each one against what this feature actually touches, and name the ones that apply as concrete style expectations here, not a footnote to check later.
 
-Also read `references/library-reuse.md` before finalizing Tech Stack and Code Style. Where the feature needs logic in one of that reference's categories (date/time, validation, HTTP, auth, ORM, forms, background jobs, and the rest), name the specific library in Tech Stack rather than leaving it to be hand-written during implementation — this is what keeps a senior engineer's default choices visible in the spec instead of silently deferred.
+Also read `references/library-reuse.md` before finalizing Tech Stack and Code Style — it's language-agnostic, naming the idiomatic library per category (date/time, validation, HTTP, auth, ORM, forms, background jobs, and the rest) for whichever language/framework this spec is actually targeting (Node/TS, Python, C#/.NET, Go, and more), not a JS/TS default applied out of habit. Where the feature needs logic in one of that reference's categories, name the specific library for this project's real stack in Tech Stack rather than leaving it to be hand-written during implementation — this is what keeps a senior engineer's default choices visible in the spec instead of silently deferred.
 
 5. **Testing Strategy** — What framework, where tests live, coverage expectations, which test levels for which concerns. **Unit tests are always in scope, non-negotiably** — state the unit-testing framework and where unit tests live even when integration/e2e coverage is lighter; a spec that only discusses higher-level test levels is incomplete.
 
@@ -198,6 +198,7 @@ The spec is a living document, not a one-time artifact:
 - Skipping the spec because "it's obvious what to build"
 - Code Style written without reading `references/coding-patterns.md`, or none of its patterns named even when the feature clearly touches an external system, a decision-heavy flow, or error handling
 - Tech Stack describing logic in prose for a category `references/library-reuse.md` covers (date math, validation, auth, HTTP retries, etc.) with no library named
+- A library recommended from the wrong ecosystem (e.g. a JS/TS default named for a Python or C# spec) instead of the one idiomatic to this project's actual language/framework
 
 ## Verification
 

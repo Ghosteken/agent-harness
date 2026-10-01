@@ -103,7 +103,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | A bug is found and needs root-cause isolation | `debugging-and-error-recovery` |
 | Code needs simplification before approval | `code-simplification` |
 
-**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) and `references/library-reuse.md` for which proven library to name instead of hand-written logic (date/time, validation, HTTP, auth, ORM, and more) — both when writing or reviewing code and when drafting technical documentation or specs.
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) and `references/library-reuse.md` for which proven library to name instead of hand-written logic (date/time, validation, HTTP, auth, ORM, and more), idiomatic to this project's actual language/ecosystem (Node/TS, Python, C#/.NET, Go, and more) rather than a JS/TS default out of habit — both when writing or reviewing code and when drafting technical documentation or specs.
 
 ## Composition
 

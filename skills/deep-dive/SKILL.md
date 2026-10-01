@@ -76,8 +76,11 @@ step 1's exploration, not generic advice. Check decisions against
 references/coding-patterns.md where relevant (boundaries around external
 systems, decisions separated from actions, etc.), and against
 references/library-reuse.md for any branch needing logic a proven library
-already solves (date/time, validation, auth, HTTP, ORM, etc.) — name the
-library, not a description of custom logic.]
+already solves (date/time, validation, auth, HTTP, ORM, etc.) — that
+reference is language-agnostic, so name the library idiomatic to whichever
+language/framework step 1 actually detected (Node/TS, Python, C#/.NET, Go,
+etc.), never a JS/TS default out of habit, and never a description of
+custom logic instead.]
 
 ## [Branch Name]
 **Decision:** [what was decided]
@@ -120,6 +123,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - A spec with no Architectural Fit section, or no edge cases listed in any branch — a sign step 1's codebase exploration was skipped
 - An Architectural Fit section that doesn't name any `references/coding-patterns.md` pattern even though the idea clearly touches an external system, a decision-heavy flow, or shared state
 - A branch describing date/validation/auth/HTTP/etc. logic in prose with no `references/library-reuse.md` library named
+- A library named from the wrong ecosystem (e.g. a JS/TS default on a Python or C# codebase) because the codebase's actual language wasn't checked against `references/library-reuse.md`'s per-ecosystem columns
 - A genuine architectural fork asked as a plain question instead of framed with tradeoffs and a recommendation
 
 ## Verification

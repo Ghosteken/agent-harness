@@ -86,7 +86,7 @@ When the decision being recorded has implications those patterns cover — a new
 
 ### Check `references/library-reuse.md` Before Recording a "Build It Ourselves" Decision
 
-When the ADR's Decision is to hand-write something — date handling, validation, an HTTP layer, auth, a queue, any category `references/library-reuse.md` covers — read that reference first. If it names a proven library for this category, the ADR's Alternatives Considered must include that library as an option and state why it was rejected (a real constraint — bundle size, licensing, an unusual requirement the library doesn't support) rather than the ADR silently never considering it. An ADR that reinvents a solved problem without this comparison reads as if the option was never known, not deliberately passed over.
+When the ADR's Decision is to hand-write something — date handling, validation, an HTTP layer, auth, a queue, any category `references/library-reuse.md` covers — read that reference first. It's language-agnostic: find the row for this project's actual language/framework (Node/TS, Python, C#/.NET, Go, and more), not a JS/TS default out of habit. If it names a proven library for this category in that ecosystem, the ADR's Alternatives Considered must include that library as an option and state why it was rejected (a real constraint — bundle size, licensing, an unusual requirement the library doesn't support) rather than the ADR silently never considering it. An ADR that reinvents a solved problem without this comparison reads as if the option was never known, not deliberately passed over.
 
 ### ADR Lifecycle
 
