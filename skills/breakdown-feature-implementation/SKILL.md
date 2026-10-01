@@ -54,6 +54,8 @@ Don't let an unresolved one stall the rest of the plan, though. For each, give a
 
 Before drafting the sections below, actually read `references/coding-patterns.md` — its five structural patterns (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) aren't optional background reading, they're what this step applies. Bake each one that genuinely applies into the specific section it shapes — don't cite the pattern by name in the document (see `references/no-internal-tooling-in-output.md`), just make the concrete decision it implies visible in the plan itself:
 
+Also read `references/library-reuse.md` before drafting. Wherever the plan calls for logic that a proven library already solves — date math, schema validation, HTTP retries, auth, background jobs, and the rest of that reference's categories — name the specific library in the relevant section (e.g. "validated with `zod`", "date range math via `date-fns`") instead of describing custom logic to hand-write. This applies most visibly in System Architecture Overview (which library backs each boundary/adapter), API Design (validation and auth libraries), and Database Schema Design (ORM choice).
+
 - **System Architecture Overview** — draw the diagram directly, in plain Markdown: an ASCII box-and-arrow layout (`┌──┐`, `│`, `└──┘`, `─▶`) organized top-to-bottom or left-to-right as Frontend, API, Business Logic, Data, and Infrastructure layers, with labeled data-flow arrows. No Mermaid, no external tool, no delegation — this skill draws its own diagrams. Any third-party service (payment processor, email provider, external API) gets its own named boundary/adapter in the diagram — never drawn as if business logic talks to the vendor directly.
 - **Database Schema Design** — a plain-Markdown entity/relationship layout (one block per table — name, fields with type, PK/FK markers — with relationships stated in prose or a simple `Orders 1──N LineItems` line, not a Mermaid ER diagram) plus indexing strategy, foreign-key relationships, migration strategy, and **data classification per table/column** (sensitivity class, and how sensitive ones are protected — e.g. separate encryption key) — mirroring the PRD's Data requirement type, not left as an afterthought. Model status/state fields as one closed-set field, not several independently-settable booleans/nullables that could combine into an invalid state.
 - **API Design** — a per-feature endpoint table (method, path, auth, request, response), applying the `api-and-interface-design` skill's conventions (error envelope, naming, pagination, contract-first) rather than inventing new ones — apply the conventions, never name the skill in the saved document itself (see `references/no-internal-tooling-in-output.md`). Every error response names what failed and with what input, not a bare generic message; any decision logic behind an endpoint (validation, retries, pricing, permissions) gets named as its own step, separate from the action it triggers — this is also where each Business Rule's "Technical Invariant" from above actually lands.
@@ -82,6 +84,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 | "The PRD's Open Questions are its problem, not this plan's" | Some of them are directly about this plan's architecture, data model, or API — checking which ones apply is what keeps the technical design honest about what's actually still undecided. |
 | "I'll leave that section vague until the open question is answered" | Vagueness isn't neutral — it leaves the next person nothing to build from. Give a labeled, provisional workaround so the plan stays concrete, without pretending the question is actually settled. |
 | "`references/coding-patterns.md` is in See Also, I don't need to read it to draft this" | See Also isn't optional further reading here — the patterns are what Technical Considerations is supposed to apply. A plan drafted without them is generic, not grounded in this feature's actual boundaries and decisions. |
+| "I'll describe the date/validation/auth logic in prose, the implementer can pick a library" | Naming the library is the plan's job — `references/library-reuse.md` exists so a senior engineer's default choices are visible in the plan itself, not deferred to whoever implements it. |
 
 ## Red Flags
 
@@ -102,6 +105,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - Status/state modeled as several independent booleans/nullables instead of one closed-set field
 - A decision (validation, retry, pricing, permission) buried inline in an endpoint's action instead of named as its own step
 - Errors in the API Design with no indication of what failed or with what input
+- Logic described in prose for a category `references/library-reuse.md` covers (date math, validation, auth, HTTP retries, etc.) with no library named
 
 ## Verification
 
@@ -112,6 +116,7 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - [ ] No real code blocks — pseudocode only
 - [ ] Security & Performance considerations are present and cross-reference the relevant checklists
 - [ ] `references/coding-patterns.md` was actually read and applied — external services have a named boundary, state is modeled to exclude invalid combinations, decisions are separated from actions, and errors carry real context
+- [ ] `references/library-reuse.md` was actually read and applied — every category it covers that the feature touches names a specific library rather than describing custom logic
 - [ ] Every Constraint and Business Rule from the input PRD is reflected somewhere concrete in this plan, not just copied as prose
 - [ ] Database Schema Design states each table/column's data classification and how sensitive ones are protected
 - [ ] The PRD's Open Questions were checked for relevance to this plan; the relevant ones were either resolved via `AskUserQuestion` or carried forward as Inherited Open Questions, never silently picked
@@ -126,5 +131,6 @@ Save to `features/<feature-slug>/implementation-plan.md` under the project's ext
 - `planning-and-task-breakdown` — downstream, turns this plan into an ordered task list
 - `security-and-hardening` / `performance-optimization` — checklists for the Security & Performance section
 - `references/coding-patterns.md` — structural conventions worth encoding into the plan's pseudocode (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
+- `references/library-reuse.md` — which proven library to name for a given category (date/time, validation, auth, HTTP, ORM, etc.) instead of describing custom logic
 - `references/external-output-paths.md` — where this skill's output lives
 - `references/no-internal-tooling-in-output.md` — why the saved plan never names a skill, even where the plan applies that skill's conventions

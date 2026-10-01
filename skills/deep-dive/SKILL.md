@@ -74,7 +74,10 @@ Structure:
 concerns — which layer owns what, matching current conventions. Grounded in
 step 1's exploration, not generic advice. Check decisions against
 references/coding-patterns.md where relevant (boundaries around external
-systems, decisions separated from actions, etc.).]
+systems, decisions separated from actions, etc.), and against
+references/library-reuse.md for any branch needing logic a proven library
+already solves (date/time, validation, auth, HTTP, ORM, etc.) — name the
+library, not a description of custom logic.]
 
 ## [Branch Name]
 **Decision:** [what was decided]
@@ -104,6 +107,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 | "I should add a few more branches to seem thorough" | Padding degrades both outputs with noise the user has to read past. A branch earns its place only if answering it differently would change the prompt or spec. A smaller idea deserves a smaller tree. |
 | "Edge cases can go in Open Questions instead of their own branch" | Open Questions is for genuinely unresolved items. A known edge case with a knowable answer belongs in its branch, decided like everything else — not deferred. |
 | "The feature can live in its own new module, I'll skip checking existing patterns" | A spec that ignores the codebase's current separation of concerns produces something that gets re-architected on review. Step 1's exploration is mandatory, not optional context-gathering. |
+| "I'll describe the date/validation/auth logic in a branch, whoever builds it can pick a library" | `references/library-reuse.md` is read for the same reason `coding-patterns.md` is — so the spec names a specific library for any branch that needs one, not a description left for implementation to resolve. |
 | "I'll just save the spec into docs/ in the project, it's easier to find" | Both outputs go to the project's external output location (`references/external-output-paths.md`), never a path inside the project's repo — not even a gitignored one. Tell the user the full external path so it's still easy to find. |
 
 ## Red Flags
@@ -115,6 +119,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - A branch that doesn't change either output regardless of how it's answered — a sign it was manufactured to inflate the count, not a real decision
 - A spec with no Architectural Fit section, or no edge cases listed in any branch — a sign step 1's codebase exploration was skipped
 - An Architectural Fit section that doesn't name any `references/coding-patterns.md` pattern even though the idea clearly touches an external system, a decision-heavy flow, or shared state
+- A branch describing date/validation/auth/HTTP/etc. logic in prose with no `references/library-reuse.md` library named
 - A genuine architectural fork asked as a plain question instead of framed with tradeoffs and a recommendation
 
 ## Verification
@@ -128,6 +133,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - [ ] The user gave an explicit "yes" to the full restatement before either output was produced
 - [ ] Output A (the Desired Prompt) is 2-3 paragraphs, self-contained, and usable without the interview transcript
 - [ ] Output B (the spec file) has an Architectural Fit section grounded in real codebase conventions, and every branch lists its edge cases, rationale, and assumptions
+- [ ] `references/library-reuse.md` was actually read, with a specific library named wherever a branch needs logic it covers (date/time, validation, HTTP, auth, ORM, etc.)
 - [ ] The spec was saved to `deep-dives/<topic-slug>.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 
 ## Interaction with Other Skills

@@ -84,6 +84,10 @@ Use PostgreSQL with Prisma ORM.
 
 When the decision being recorded has implications those patterns cover — a new external integration, a data model, an auth strategy, anything with a retry/permission/pricing decision buried in it — read `references/coding-patterns.md` before writing Decision/Consequences, and name the concrete implication (e.g. "the provider lives behind a `PaymentGateway` interface, not called directly from order logic") rather than leaving it implicit. Not every ADR needs this — a build-tool choice usually doesn't — but skipping it for one that clearly does leaves the ADR's Consequences section silent about a real architectural commitment.
 
+### Check `references/library-reuse.md` Before Recording a "Build It Ourselves" Decision
+
+When the ADR's Decision is to hand-write something — date handling, validation, an HTTP layer, auth, a queue, any category `references/library-reuse.md` covers — read that reference first. If it names a proven library for this category, the ADR's Alternatives Considered must include that library as an option and state why it was rejected (a real constraint — bundle size, licensing, an unusual requirement the library doesn't support) rather than the ADR silently never considering it. An ADR that reinvents a solved problem without this comparison reads as if the option was never known, not deliberately passed over.
+
 ### ADR Lifecycle
 
 ```
@@ -270,6 +274,7 @@ Special consideration for AI agent context:
 - No ADRs in a project with significant architectural choices
 - Documentation that restates the code instead of explaining intent
 - An ADR for an external integration, data model, or decision-heavy flow with no mention of the relevant `references/coding-patterns.md` implication
+- An ADR deciding to hand-write something `references/library-reuse.md` covers, with no library named in Alternatives Considered and no stated reason for rejecting it
 
 ## Verification
 
@@ -281,3 +286,4 @@ After documenting:
 - [ ] Known gotchas are documented inline where they matter
 - [ ] No commented-out code remains
 - [ ] Rules files (CLAUDE.md etc.) are current and accurate
+- [ ] Any ADR deciding to hand-write a `references/library-reuse.md` category checked that reference first and names the rejected library with a real reason
