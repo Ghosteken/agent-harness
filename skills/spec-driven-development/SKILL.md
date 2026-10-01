@@ -74,6 +74,8 @@ Don't silently fill in ambiguous requirements. The spec's entire purpose is to s
 
 4. **Code Style** — One real code snippet showing your style beats three paragraphs describing it. Include naming conventions, formatting rules, and examples of good output. Before writing this section, actually read `references/coding-patterns.md` — its five structural patterns (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) aren't optional background: check each one against what this feature actually touches, and name the ones that apply as concrete style expectations here, not a footnote to check later.
 
+Also read `references/library-reuse.md` before finalizing Tech Stack and Code Style — it's language-agnostic, naming the idiomatic library per category (date/time, validation, HTTP, auth, ORM, forms, background jobs, and the rest) for whichever language/framework this spec is actually targeting (Node/TS, Python, C#/.NET, Go, and more), not a JS/TS default applied out of habit. Where the feature needs logic in one of that reference's categories, name the specific library for this project's real stack in Tech Stack rather than leaving it to be hand-written during implementation — this is what keeps a senior engineer's default choices visible in the spec instead of silently deferred.
+
 5. **Testing Strategy** — What framework, where tests live, coverage expectations, which test levels for which concerns. **Unit tests are always in scope, non-negotiably** — state the unit-testing framework and where unit tests live even when integration/e2e coverage is lighter; a spec that only discusses higher-level test levels is incomplete.
 
 6. **Boundaries** — Three-tier system:
@@ -185,6 +187,7 @@ The spec is a living document, not a one-time artifact:
 | "Requirements will change anyway" | That's why the spec is a living document. An outdated spec is still better than no spec. |
 | "The user knows what they want" | Even clear requests have implicit assumptions. The spec surfaces those assumptions. |
 | "`references/coding-patterns.md` is just background reading for Code Style" | It's what Code Style is supposed to apply, not optional context — read it and name which patterns this feature's boundaries/decisions actually need. |
+| "Tech Stack just needs the framework, libraries are an implementation detail" | Naming the validation/date/HTTP/auth library in Tech Stack is exactly what `references/library-reuse.md` is for — it's a design decision, not a detail to leave for whoever writes the code. |
 
 ## Red Flags
 
@@ -194,6 +197,8 @@ The spec is a living document, not a one-time artifact:
 - Making architectural decisions without documenting them
 - Skipping the spec because "it's obvious what to build"
 - Code Style written without reading `references/coding-patterns.md`, or none of its patterns named even when the feature clearly touches an external system, a decision-heavy flow, or error handling
+- Tech Stack describing logic in prose for a category `references/library-reuse.md` covers (date math, validation, auth, HTTP retries, etc.) with no library named
+- A library recommended from the wrong ecosystem (e.g. a JS/TS default named for a Python or C# spec) instead of the one idiomatic to this project's actual language/framework
 
 ## Verification
 
@@ -204,4 +209,5 @@ Before proceeding to implementation, confirm:
 - [ ] Success criteria are specific and testable
 - [ ] Boundaries (Always/Ask First/Never) are defined
 - [ ] `references/coding-patterns.md` was actually read, with the patterns that genuinely apply to this feature named in Code Style
+- [ ] `references/library-reuse.md` was actually read, with a specific library named in Tech Stack for every category it covers that this feature touches
 - [ ] The spec is saved to `specs/<feature-slug>/SPEC.md` in the project's external output location (see `references/external-output-paths.md`), not a path inside the project's own repo

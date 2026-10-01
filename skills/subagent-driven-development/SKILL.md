@@ -199,6 +199,7 @@ Done!
 - Code quality ensures implementation is well-built
 - `quality-assurance` after the final code review confirms the whole implementation actually works end-to-end, against the spec — the per-task reviews check the code itself, not live behavior; neither replaces the other
 - Code quality review confirms each task's tests actually cover its core logic (a real assertion on expected behavior, not just "didn't throw") — a test that only proves the code ran isn't what catches a future regression
+- Code quality review also confirms that coverage spans every scenario type that genuinely applies — happy path, edge cases, error handling, fix/regression confirmation — not just whichever one the implementer subagent found fastest to write
 
 **Cost:**
 - More subagent invocations (implementer + 2 reviewers per task)
@@ -225,6 +226,7 @@ Done!
 - Dispatch the first implementer subagent before branch setup was confirmed via `AskUserQuestion`
 - Branch from a local `dev` without pulling it to latest first
 - `dev` missing and a fallback branch picked silently instead of asked about
+- Approving a task's tests when they only cover one scenario type (e.g. only error/rejection handling) and happy path, edge cases, or fix confirmation genuinely applied too
 
 **If subagent asks questions:**
 - Answer clearly and completely

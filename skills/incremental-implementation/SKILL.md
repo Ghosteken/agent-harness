@@ -53,7 +53,7 @@ Before any implementation begins, use the `AskUserQuestion` tool to confirm bran
 For each slice:
 
 1. **Implement** the smallest complete piece of functionality
-2. **Test** — every slice gets a unit test, not just slices that "need" one; if the slice has real core logic (a calculation, a state transition, a validation rule), the test must assert its actual expected behavior, not just that it runs without error (see `test-driven-development`'s core-component coverage) — that's what catches a regression later, not just now. Run the full suite alongside it.
+2. **Test** — every slice gets a unit test, not just slices that "need" one; if the slice has real core logic (a calculation, a state transition, a validation rule), the test must assert its actual expected behavior, not just that it runs without error (see `test-driven-development`'s core-component coverage) — that's what catches a regression later, not just now. That coverage must span every scenario type that genuinely applies to the slice's core logic — happy path, edge cases (boundary/empty/null/optional-absent), error handling (invalid/malformed input), and fix/regression confirmation when the slice exists to fix something — not just whichever one was fastest to write. Run the full suite alongside it.
 3. **Verify** — confirm the slice works as expected (unit tests pass, build succeeds, manual check)
 4. **Propose a commit** — draft a descriptive message and tell the user the slice is ready (see `git-workflow-and-versioning` for atomic commit guidance). **Never run `git commit` yourself** — leave the actual commit to the user unless they've explicitly asked you to commit in this session.
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
@@ -244,6 +244,7 @@ After each increment, verify:
 | "All the unit tests pass, so the feature works" | Unit tests confirm the code does what the code does — they don't confirm it does what the spec asked for. Run `quality-assurance` for that. |
 | "I'll just branch from dev without asking, it's the obvious choice" | Ask anyway — confirming before creating a branch costs one question and prevents working on the wrong base entirely. |
 | "dev doesn't exist, I'll just use main" | Guessing a fallback base branch silently can put the feature on the wrong branch structure for this project — ask which branch to use instead. |
+| "I tested that this slice rejects bad input, it's covered" | That's one scenario type. A slice's core logic needs happy path, edge cases, error handling, and fix/regression confirmation covered together, as each genuinely applies — not just whichever was fastest to write. |
 
 ## Red Flags
 
@@ -260,6 +261,7 @@ After each increment, verify:
 - Running `git commit` yourself without the user explicitly asking you to in that session
 - The feature declared done once unit tests pass, without running `quality-assurance` against the spec
 - `quality-assurance` run against mocks or a suite merely named "e2e", reported as if it were genuinely live verification
+- A slice's core-logic test covering only one scenario type (e.g. only error/rejection handling) when happy path, edge cases, or fix confirmation genuinely applied too
 - A feature branch created without asking first, or without pulling `dev` to latest before branching from it
 - `dev` missing and a fallback branch picked silently instead of asked about
 
@@ -274,6 +276,7 @@ Before starting:
 After completing all increments for a task:
 
 - [ ] Each increment was individually tested (a unit test was added, not just an existing-suite check) and left with a proposed commit message
+- [ ] Each slice's core-logic test covers every scenario type that genuinely applies (happy path, edge cases, error handling, fix/regression confirmation) — not just the one type that was fastest to check
 - [ ] The full test suite passes
 - [ ] The build is clean
 - [ ] The feature works end-to-end as specified — run the `quality-assurance` skill *live* (real server, real database, real authenticated user) against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing and not mocks substituted for live verification

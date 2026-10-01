@@ -114,7 +114,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Verification surfaces code quality concerns worth documenting | `code-review-and-quality` |
 | Spec is absent and needs to be written before verification can begin | `spec-driven-development` |
 
-**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) when writing or reviewing code.
+**Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) and `references/library-reuse.md` for which proven library to name instead of hand-written logic (date/time, validation, HTTP, auth, ORM, and more), idiomatic to this project's actual language/ecosystem (Node/TS, Python, C#/.NET, Go, and more) rather than a JS/TS default out of habit — both when writing or reviewing code and when drafting technical documentation or specs.
 
 ## Composition
 
