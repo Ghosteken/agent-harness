@@ -227,6 +227,7 @@ Done!
 - Branch from a local `dev` without pulling it to latest first
 - `dev` missing and a fallback branch picked silently instead of asked about
 - Approving a task's tests when they only cover one scenario type (e.g. only error/rejection handling) and happy path, edge cases, or fix confirmation genuinely applied too
+- Marking a task complete when the implementer reported tests passing but never ran (or never reported) this project's build and lint commands
 
 **If subagent asks questions:**
 - Answer clearly and completely

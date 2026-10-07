@@ -54,7 +54,7 @@ For each slice:
 
 1. **Implement** the smallest complete piece of functionality
 2. **Test** — every slice gets a unit test, not just slices that "need" one; if the slice has real core logic (a calculation, a state transition, a validation rule), the test must assert its actual expected behavior, not just that it runs without error (see `test-driven-development`'s core-component coverage) — that's what catches a regression later, not just now. That coverage must span every scenario type that genuinely applies to the slice's core logic — happy path, edge cases (boundary/empty/null/optional-absent), error handling (invalid/malformed input), and fix/regression confirmation when the slice exists to fix something — not just whichever one was fastest to write. Run the full suite alongside it.
-3. **Verify** — confirm the slice works as expected (unit tests pass, build succeeds, manual check)
+3. **Verify** — confirm the slice works as expected: the full test suite passes, the project's build/compile step succeeds, and its linter (and type checker, where the language has one) passes — using whatever commands this project actually defines (its `package.json` scripts, `Makefile`, `pyproject.toml`/`tox.ini`, `.csproj` targets, etc.), never assumed to be `npm test`/`npm run build` by habit — plus a manual check
 4. **Propose a commit** — draft a descriptive message and tell the user the slice is ready (see `git-workflow-and-versioning` for atomic commit guidance). **Never run `git commit` yourself** — leave the actual commit to the user unless they've explicitly asked you to commit in this session.
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
 
@@ -209,22 +209,22 @@ When directing an agent to implement incrementally:
 Start with just the database schema change and the API endpoint.
 Don't touch the UI yet — we'll do that in the next increment.
 
-After implementing, run `npm test` and `npm run build` to verify
-nothing is broken."
+After implementing, run this project's test, build, and lint
+commands to verify nothing is broken."
 ```
 
 Be explicit about what's in scope and what's NOT in scope for each increment.
 
 ## Increment Checklist
 
-After each increment, verify:
+Resolve this project's actual commands first (never assume `npm`/`tsc` by habit) — check `package.json` scripts, a `Makefile`, `pyproject.toml`/`tox.ini`, `.csproj` targets, or whatever this ecosystem/project actually defines, the same way `references/library-reuse.md`'s Step 0 resolves the ecosystem. After each increment, verify:
 
 - [ ] The change does one thing and does it completely
 - [ ] A unit test was added for this increment's new logic
-- [ ] All existing tests still pass (`npm test`)
-- [ ] The build succeeds (`npm run build`)
-- [ ] Type checking passes (`npx tsc --noEmit`)
-- [ ] Linting passes (`npm run lint`)
+- [ ] All existing tests still pass (this project's test command — e.g. `npm test`, `pytest`, `dotnet test`, `go test ./...`)
+- [ ] The build/compile step succeeds (e.g. `npm run build`, `dotnet build`, `go build ./...`; for a dynamically-typed language with no separate build step, this may just be the test command itself)
+- [ ] Type checking passes where the language has a separate step for it (e.g. `tsc --noEmit`, `mypy`)
+- [ ] Linting passes (this project's configured linter — e.g. `npm run lint`/`eslint`, `ruff`/`flake8`, `dotnet format --verify-no-changes`, `golangci-lint run`)
 - [ ] The new functionality works as expected
 - [ ] A descriptive commit message has been proposed for the change (do not run `git commit` yourself — leave it to the user unless they've explicitly asked you to commit)
 
@@ -279,6 +279,7 @@ After completing all increments for a task:
 - [ ] Each slice's core-logic test covers every scenario type that genuinely applies (happy path, edge cases, error handling, fix/regression confirmation) — not just the one type that was fastest to check
 - [ ] The full test suite passes
 - [ ] The build is clean
+- [ ] Linting (and type checking, where the language has one) passes
 - [ ] The feature works end-to-end as specified — run the `quality-assurance` skill *live* (real server, real database, real authenticated user) against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing and not mocks substituted for live verification
 - [ ] No unreviewed changes remain — the user has a summary and a proposed commit message for each increment; committing is theirs to do (or explicitly delegated to you)
 

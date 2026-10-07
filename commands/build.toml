@@ -26,8 +26,9 @@ Pick the next pending task from the plan. Then:
 4. Implement the minimum code to pass the test (GREEN)
 5. Run the full test suite to check for regressions
 6. Run the build to verify compilation
-7. Draft a commit message and tell the user the change is ready to commit — do not run `git commit` yourself
-8. Mark the task complete. If this was the last pending task in the plan, run the quality-assurance skill against the spec before stopping — live (real server, real database, real authenticated user, not mocked tests or a suite merely named "e2e") — do this yourself, unprompted, not only when the user asks for it. If full live verification is tedious to set up, use quality-assurance's own graduated fallback (curl/CLI or an automated test against the real dev server, offered via AskUserQuestion) rather than downgrading straight to mocks. Then stop.
+7. Run this project's linter (and type checker, where the language has one) — use whatever commands this project actually defines, never assumed to be npm-based by habit — and fix anything it flags
+8. Draft a commit message and tell the user the change is ready to commit — do not run `git commit` yourself
+9. Mark the task complete. If this was the last pending task in the plan, run the quality-assurance skill against the spec before stopping — live (real server, real database, real authenticated user, not mocked tests or a suite merely named "e2e") — do this yourself, unprompted, not only when the user asks for it. If full live verification is tedious to set up, use quality-assurance's own graduated fallback (curl/CLI or an automated test against the real dev server, offered via AskUserQuestion) rather than downgrading straight to mocks. Then stop.
 
 ## Autonomous: the whole plan (`/build auto`)
 
@@ -37,9 +38,9 @@ Use this once a spec exists and you want to collapse plan + build into one run. 
 2. Establish a clean baseline. Run `git status --porcelain`. Planning artifacts live outside the repo now, so they never appear here — if there are any uncommitted changes at all, stop and ask the user how to handle them; do not commit, stash, or discard anything yourself.
 3. Plan if needed. If there is no plans/<feature-slug>-plan.md at the external output location, invoke the planning-and-task-breakdown skill to generate one.
 4. Single checkpoint. Present the full plan and wait for an unambiguous affirmative (e.g. "approve", "go", "yes"). Treat hedged responses ("looks reasonable", "I guess") as NOT approved. This is the only human gate — after approval, run autonomously through implementation (but still never auto-commit).
-5. Execute every task in dependency order. Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → draft commit message → mark complete). Since nothing gets committed automatically, the per-task "clean rollback" property now lives in the task-status log and diffs you present, not in git history — call this out to the user, and suggest they commit after each task (or batch) themselves if they want that guarantee restored as real git history.
+5. Execute every task in dependency order. Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → lint → draft commit message → mark complete). Since nothing gets committed automatically, the per-task "clean rollback" property now lives in the task-status log and diffs you present, not in git history — call this out to the user, and suggest they commit after each task (or batch) themselves if they want that guarantee restored as real git history.
 6. Stop and ask the user (do not push through) when:
-   - a test can't be made to pass or the build breaks without an obvious fix → follow the debugging-and-error-recovery skill
+   - a test can't be made to pass, the build breaks, or lint fails without an obvious fix → follow the debugging-and-error-recovery skill
    - the spec is ambiguous, or a task needs a decision the spec doesn't cover
    - a task is high-risk or irreversible — auth/permission changes, destructive data migrations, payments, deletions, deploys, anything touching secrets, or anything that would be hard to undo without a commit history to revert to → follow the doubt-driven-development skill and get explicit sign-off before continuing
    After the user resolves a blocker, they re-invoke /build auto — it resumes from the next pending task.

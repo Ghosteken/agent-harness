@@ -31,7 +31,7 @@ Task tool (general-purpose):
     Once you're clear on requirements:
     1. Implement exactly what the task specifies
     2. Write tests (following TDD if task says to)
-    3. Verify implementation works
+    3. Verify implementation works — run this project's actual test, build, and lint commands (check `package.json`/`Makefile`/`pyproject.toml`/`.csproj` etc. for what they are; never assume `npm test`/`npm run build` by habit), and fix anything they flag before moving on
     4. Stage the change and draft a commit message — do NOT run `git commit` yourself, leave the actual commit for the user
     5. Self-review (see below)
     6. Report back
@@ -64,6 +64,7 @@ Task tool (general-purpose):
     - Do tests actually verify behavior (not just mock behavior)?
     - Did I follow TDD if required?
     - Are tests comprehensive?
+    - Do the project's test, build, and lint commands all pass cleanly right now — not just when I last ran them?
 
     If you find issues during self-review, fix them now before reporting.
 
