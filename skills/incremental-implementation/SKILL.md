@@ -45,7 +45,33 @@ Before any implementation begins, use the `AskUserQuestion` tool to confirm bran
 │              no                            │
 │              ▼                             │
 │   Run quality-assurance (mandatory,        │
-│   not a checkbox) ──→ THEN task is done    │
+│   not a checkbox)                          │
+│              │                             │
+│              ▼                             │
+│   Ask: run code review? (optional,         │
+│   via AskUserQuestion) ──no──→ task is done│
+│              │                             │
+│             yes                            │
+│              ▼                             │
+│   Run code-review                          │
+│              │                             │
+│              ▼                             │
+│   Findings? ──none──→ task is done         │
+│              │                             │
+│            some                            │
+│              ▼                             │
+│   Ask: fix Blockers / Blockers+Warnings /  │
+│   fix everything / fix nothing             │
+│   (via AskUserQuestion) ──nothing──→ done  │
+│              │                             │
+│      Blockers/Warnings/Suggestions         │
+│              ▼                             │
+│   Fix via the normal Implement→Test→       │
+│   Verify loop above ──→ re-run             │
+│   quality-assurance (regression check)     │
+│              │                             │
+│              ▼                             │
+│         task is done                       │
 │                                            │
 └────────────────────────────────────────────┘
 ```
@@ -59,6 +85,17 @@ For each slice:
 5. **Move to the next slice** — carry forward, don't restart, and don't wait for the commit to happen first
 
 **When the last slice for this task is done — stop. Before saying the task is complete, actually invoke the `quality-assurance` skill against the spec, and it must be genuinely live — a real server, real database, real authenticated user — not mocked tests or a suite that merely happens to be named "e2e."** This is a mandatory action to take, not a box to mentally check off afterward: in practice, agents following this skill have skipped straight to declaring the task done with unit tests passing, and only run `quality-assurance` when the user notices and asks for it — and even then, have substituted mocked/unit-level tests for live verification without saying so. Don't let either be the trigger — run `quality-assurance` live yourself, unprompted, as the actual last step of the cycle. If full live verification is tedious to set up, `quality-assurance`'s own graduated fallback applies (a lighter live check via curl/CLI or an automated test against the real dev server, offered via `AskUserQuestion`) — never downgrade straight to mocks on your own.
+
+**After `quality-assurance` finishes (pass or fail) — offer an optional code review, via `AskUserQuestion`.** This is a separate, optional step, not part of the mandatory QA gate above: ask something like "QA is done. Run a code review pass over this work before finishing? (recommended, but optional)" with options to run it now or skip. If the user chooses to run it, invoke `code-review` against the full diff for this task (not just the last slice) and report its findings before declaring the task done. If the user skips, say so plainly and move on; don't ask twice or treat a skip as something to revisit later in the same task.
+
+**If the review ran and surfaced anything, ask how much of it to fix — via `AskUserQuestion`, as a single cumulative choice, not a separate question per finding.** The review's own severities give the natural scope boundaries, so offer exactly these options (omit any tier the review found nothing in):
+
+- **Fix Blockers only**
+- **Fix Blockers + Warnings**
+- **Fix everything (Blockers + Warnings + Suggestions)**
+- **Don't fix anything — leave the findings as reported**
+
+Whichever scope is picked, fix every finding within it the same way the rest of this task was built: through the normal Implement → Test → Verify loop above, one finding (or a tightly related group) treated like any other slice — not a bare patch applied outside that loop. Once the fixes are in, **re-run `quality-assurance` live, the same way as before** — this is a regression check, confirming the fixes didn't break anything the first QA pass already confirmed working, not a second independent QA run from scratch. Only then is the task actually done. If "don't fix anything" was picked, the task is done once the findings have been reported — don't fix silently and don't ask the fix-scope question twice for the same review.
 
 ## Slicing Strategies
 
@@ -245,6 +282,9 @@ Resolve this project's actual commands first (never assume `npm`/`tsc` by habit)
 | "I'll just branch from dev without asking, it's the obvious choice" | Ask anyway — confirming before creating a branch costs one question and prevents working on the wrong base entirely. |
 | "dev doesn't exist, I'll just use main" | Guessing a fallback base branch silently can put the feature on the wrong branch structure for this project — ask which branch to use instead. |
 | "I tested that this slice rejects bad input, it's covered" | That's one scenario type. A slice's core logic needs happy path, edge cases, error handling, and fix/regression confirmation covered together, as each genuinely applies — not just whichever was fastest to write. |
+| "QA passed, I'll skip offering the code review and just finish" | The review is optional for the *user* to decline, not for you to pre-decide on their behalf — always ask via `AskUserQuestion` once QA is done, even when everything's green. |
+| "There's only one Blocker, I'll just fix it without asking" | The user decides the fix scope, not you — even an obvious one-line fix still goes through the `AskUserQuestion` scope choice first. |
+| "I fixed the Blockers, no need to re-run QA, the fix was small" | Small fixes break things too. The re-run is what confirms the fix didn't regress what QA already proved worked — skipping it turns "confirmed fixed" into "probably fixed." |
 
 ## Red Flags
 
@@ -264,6 +304,11 @@ Resolve this project's actual commands first (never assume `npm`/`tsc` by habit)
 - A slice's core-logic test covering only one scenario type (e.g. only error/rejection handling) when happy path, edge cases, or fix confirmation genuinely applied too
 - A feature branch created without asking first, or without pulling `dev` to latest before branching from it
 - `dev` missing and a fallback branch picked silently instead of asked about
+- The task declared done right after `quality-assurance` with no `AskUserQuestion` offer of a code review pass
+- A code review offered and accepted, then skipped or the findings never reported before declaring the task done
+- Findings fixed without first asking which scope (Blockers only / +Warnings / everything / nothing) to fix
+- Fixes applied as a bare patch instead of through the normal Implement → Test → Verify loop
+- `quality-assurance` not re-run after findings were fixed, leaving the fix's effect on previously-passing behavior unconfirmed
 
 ## Verification
 
@@ -281,10 +326,14 @@ After completing all increments for a task:
 - [ ] The build is clean
 - [ ] Linting (and type checking, where the language has one) passes
 - [ ] The feature works end-to-end as specified — run the `quality-assurance` skill *live* (real server, real database, real authenticated user) against the spec/acceptance criteria to confirm this with real evidence, not just unit tests passing and not mocks substituted for live verification
+- [ ] After `quality-assurance` completed, an optional code review pass was offered via `AskUserQuestion` — and if accepted, `code-review` was actually run and its findings reported before declaring the task done
+- [ ] If the review surfaced any findings, a fix-scope choice (Blockers only / +Warnings / everything / nothing) was offered via `AskUserQuestion` before fixing anything
+- [ ] Any accepted fixes went through the normal Implement → Test → Verify loop, and `quality-assurance` was re-run live afterward to confirm no regression
 - [ ] No unreviewed changes remain — the user has a summary and a proposed commit message for each increment; committing is theirs to do (or explicitly delegated to you)
 
 ## See Also
 
 - `quality-assurance` — the live/end-to-end check once all increments are complete; unit tests alone don't confirm the feature works against the spec
+- `code-review` — the optional review offered via `AskUserQuestion` after `quality-assurance` finishes
 - `references/coding-patterns.md` — structural patterns to apply while implementing each slice (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors)
 - `review-findings.md` at the project's external output location (see `references/external-output-paths.md`) — check it before starting a task, if it exists; it's a running log of patterns code review has already flagged in this project, and repeating one is avoidable

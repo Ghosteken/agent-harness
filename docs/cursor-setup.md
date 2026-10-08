@@ -12,7 +12,7 @@ mkdir -p .cursor/rules
 
 # Copy skills you want as rules
 cp /path/to/agent-harness/skills/test-driven-development/SKILL.md .cursor/rules/test-driven-development.md
-cp /path/to/agent-harness/skills/code-review-and-quality/SKILL.md .cursor/rules/code-review-and-quality.md
+cp /path/to/agent-harness/skills/code-review/SKILL.md .cursor/rules/code-review.md
 cp /path/to/agent-harness/skills/incremental-implementation/SKILL.md .cursor/rules/incremental-implementation.md
 ```
 
@@ -26,7 +26,7 @@ Create a `.cursorrules` file in your project root with the essential skills inli
 # Generate a combined rules file
 cat /path/to/agent-harness/skills/test-driven-development/SKILL.md > .cursorrules
 echo "\n---\n" >> .cursorrules
-cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md >> .cursorrules
+cat /path/to/agent-harness/skills/code-review/SKILL.md >> .cursorrules
 ```
 
 ## Recommended Configuration
@@ -36,7 +36,7 @@ cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md >> .cursorrul
 Add these to `.cursor/rules/`:
 
 1. `test-driven-development.md` — TDD workflow and Prove-It pattern
-2. `code-review-and-quality.md` — Five-axis review
+2. `code-review.md` — Five-axis review
 3. `incremental-implementation.md` — Build in small verifiable slices
 
 ### Phase-Specific Skills (Load on Demand)

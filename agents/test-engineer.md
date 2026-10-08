@@ -98,7 +98,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Writing a Prove-It test for a reported bug | `test-driven-development` |
 | Debugging a failing test or unexpected behavior | `debugging-and-error-recovery` |
 | Analyzing coverage gaps in existing tests | `test-driven-development` |
-| Reviewing code quality alongside test coverage | `code-review-and-quality` |
+| Reviewing code quality alongside test coverage | `code-review` |
 
 **Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) and `references/library-reuse.md` for which proven library to name instead of hand-written logic (date/time, validation, HTTP, auth, ORM, and more), idiomatic to this project's actual language/ecosystem (Node/TS, Python, C#/.NET, Go, and more) rather than a JS/TS default out of habit — both when writing or reviewing code and when drafting technical documentation or specs.
 
@@ -106,5 +106,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user asks for test design, coverage analysis, or a Prove-It test for a specific bug.
 - **Invoke via:** `/test` (TDD workflow) or `/ship` (parallel fan-out for coverage gap analysis alongside `code-reviewer` and `security-auditor`).
-- **Skill scope:** `test-driven-development`, `debugging-and-error-recovery`, `code-review-and-quality`, `quality-assurance`, `browser-testing-with-devtools`, `spec-driven-development`, `source-driven-development`, `playwright-e2e-testing`, `testing-patterns`, `javascript-testing-patterns`, `playwright-skill`, `api-testing-observability-api-mock`, `unit-testing-test-generate`, `tdd-workflows`, `awt-e2e-testing`, `test-automator`, `debugging-strategies`, `performance-testing-review-ai-review`, `deep-dive`.
+- **Skill scope:** `test-driven-development`, `debugging-and-error-recovery`, `code-review`, `quality-assurance`, `browser-testing-with-devtools`, `spec-driven-development`, `source-driven-development`, `playwright-e2e-testing`, `testing-patterns`, `javascript-testing-patterns`, `playwright-skill`, `api-testing-observability-api-mock`, `unit-testing-test-generate`, `tdd-workflows`, `awt-e2e-testing`, `test-automator`, `debugging-strategies`, `performance-testing-review-ai-review`, `deep-dive`.
 - **Do not invoke from another persona.** Recommendations to add tests belong in your report; the user or a slash command decides when to act on them. See [docs/agents.md](../docs/agents.md).

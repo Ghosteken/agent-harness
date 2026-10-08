@@ -238,7 +238,7 @@ The library contains a curated set of **179 skills** across every engineering do
 
 | Skill | What It Does | Use When |
 |-------|-------------|----------|
-| [code-review-and-quality](skills/code-review-and-quality/SKILL.md) | Five-axis review, change sizing (~100 lines), severity labels (Nit/Optional/FYI), review speed norms, splitting strategies | Before merging any change |
+| [code-review](skills/code-review/SKILL.md) | Checklist-driven review (correctness/security/risk + code quality), verifies every Blocker/Warning before reporting, Blocker/Warning/Suggestion report with a PASS/FAIL verdict | Before merging any change |
 | [code-simplification](skills/code-simplification/SKILL.md) | Chesterton's Fence, Rule of 500, reduce complexity while preserving exact behavior | Code works but is harder to read or maintain than it should be |
 | [security-and-hardening](skills/security-and-hardening/SKILL.md) | OWASP Top 10 prevention, auth patterns, secrets management, dependency auditing, three-tier boundary system | Handling user input, auth, data storage, or external integrations |
 | [performance-optimization](skills/performance-optimization/SKILL.md) | Measure-first approach - Core Web Vitals targets, profiling workflows, bundle analysis, anti-pattern detection | Performance requirements exist or you suspect regressions |
@@ -377,7 +377,7 @@ User: /build
 User: /review
 ```
 → `/review` activates `code-reviewer` persona  
-→ `code-reviewer` applies the `code-review-and-quality` skill  
+→ `code-reviewer` applies the `code-review` skill  
 → Five-axis assessment: correctness · readability · architecture · security · performance
 
 **Step 5 — Ship with confidence**
@@ -400,7 +400,7 @@ User: /ship
 | `/spec` | `spec-driven-development` skill | Writes the spec before any code |
 | `/plan` | `planning-and-task-breakdown` skill | Decomposes spec into tasks |
 | `/build` | `api-developer` or `senior-backend-engineer` persona | Invokes TDD + incremental-implementation skills |
-| `/review` | `code-reviewer` persona | Five-axis review via `code-review-and-quality` skill |
+| `/review` | `code-reviewer` persona | Checklist-driven review via `code-review` skill (Blocker/Warning/Suggestion, PASS/FAIL) |
 | `/ship` | Three personas in parallel | Each applies its domain skill; main agent synthesises |
 
 ### Which persona for which work?
@@ -435,7 +435,7 @@ User: /ship
 | cloud, AWS, Azure, GCP, IAM, multi-region, serverless | `cloud-architect`, `documentation-and-adrs` | `senior-cloud-architect` |
 | backend, microservice, async, Kafka, cache, Redis | `backend-architect`, `api-and-interface-design` | `senior-backend-engineer` |
 | AI, LLM, prompt, RAG, vector, embedding, hallucination | `spec-driven-development`, `llm-app-patterns` | `ai-ml-engineer` |
-| review, check my code, feedback, before merge, PR | `code-review-and-quality` | `code-reviewer` |
+| review, check my code, feedback, before merge, PR | `code-review` | `code-reviewer` |
 | security, vulnerability, XSS, OWASP, harden, CVE | `security-and-hardening` | `security-auditor` |
 | test, coverage, unit test, E2E, Jest, Playwright, mock | `test-driven-development` | `test-engineer` |
 | verify, QA, does this work, confirm the fix, smoke test | `quality-assurance` | `senior-qa-engineer` |
@@ -477,7 +477,7 @@ agent-harness/
 │   ├── api-and-interface-design/      #   Build
 │   ├── browser-testing-with-devtools/ #   Verify
 │   ├── debugging-and-error-recovery/  #   Verify
-│   ├── code-review-and-quality/       #   Review
+│   ├── code-review/       #   Review
 │   ├── code-simplification/           #   Review
 │   ├── security-and-hardening/        #   Review
 │   ├── performance-optimization/      #   Review

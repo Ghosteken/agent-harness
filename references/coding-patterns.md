@@ -1,6 +1,6 @@
 # Coding Patterns
 
-Eight structural patterns that apply across API, backend, and frontend logic — what a senior engineer actually means by "good design," made concrete rather than left as an acronym. Use alongside `incremental-implementation`, `spec-driven-development`, `deep-dive`, `breakdown-feature-implementation`, and `code-review-and-quality` — these describe the *shape* code should have, not a specific framework or language.
+Eight structural patterns that apply across API, backend, and frontend logic — what a senior engineer actually means by "good design," made concrete rather than left as an acronym. Use alongside `incremental-implementation`, `spec-driven-development`, `deep-dive`, `breakdown-feature-implementation`, and `code-review` — these describe the *shape* code should have, not a specific framework or language.
 
 Every code sample below also exists as a standalone, runnable file under [`examples/coding-patterns/`](examples/coding-patterns/) (`01-main-path.ts` through `08-dependency-injection.ts`) — each compiles clean under `tsc --strict` and its `main()` prints the BAD vs. GOOD behavior side by side so you can run it and see the difference rather than take the markdown's word for it.
 

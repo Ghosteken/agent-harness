@@ -68,7 +68,7 @@ Examples:
 - "build a feature" → `incremental-implementation` + `test-driven-development`
 - "design a system" → `spec-driven-development`
 - "fix a bug" → `debugging-and-error-recovery`
-- "review this code" → `code-review-and-quality`
+- "review this code" → `code-review`
 
 The user does **not** need to explicitly request skills.
 
@@ -80,7 +80,7 @@ The development lifecycle is encoded implicitly:
 - PLAN → `planning-and-task-breakdown`
 - BUILD → `incremental-implementation` + `test-driven-development`
 - VERIFY → `debugging-and-error-recovery`
-- REVIEW → `code-review-and-quality`
+- REVIEW → `code-review`
 - SHIP → `shipping-and-launch`
 
 This replaces slash commands like `/spec`, `/plan`, etc.
@@ -125,7 +125,7 @@ Review this PR
 ```
 
 Agent behavior:
-- Invokes `code-review-and-quality`
+- Invokes `code-review`
 - Applies structured review (correctness, design, readability, etc.)
 
 ---

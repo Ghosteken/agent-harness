@@ -106,7 +106,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Writing migration tests or query correctness tests | `test-driven-development` |
 | Reviewing encryption, least-privilege DB users, or parameterized queries | `security-and-hardening` |
 | Analyzing query plans, indexes, or connection pool tuning | `performance-optimization` |
-| Reviewing schema changes for correctness or normalization | `code-review-and-quality` |
+| Reviewing schema changes for correctness or normalization | `code-review` |
 | Designing entity-relationship models or normalization (3NF/BCNF) | `database-design` |
 | Managing DB users, roles, backups, or replication | `database-admin` |
 | Planning partitioning, sharding, or disaster recovery | `database-architect` |
@@ -128,5 +128,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user is designing a schema, writing migrations, optimising queries, or reviewing database-related code.
 - **Invoke via:** `/review` (single-perspective) or `/ship` alongside `security-auditor`.
-- **Skill scope:** `source-driven-development`, `incremental-implementation`, `test-driven-development`, `security-and-hardening`, `performance-optimization`, `code-review-and-quality`, `database-design`, `database-admin`, `database-architect`, `database-migration`, `database-optimizer`, `postgres-best-practices`, `postgresql`, `postgresql-optimization`, `prisma-expert`, `drizzle-orm-expert`, `nosql-expert`, `sql-optimization-patterns`, `neon-postgres`, `dbt-transformation-patterns`.
+- **Skill scope:** `source-driven-development`, `incremental-implementation`, `test-driven-development`, `security-and-hardening`, `performance-optimization`, `code-review`, `database-design`, `database-admin`, `database-architect`, `database-migration`, `database-optimizer`, `postgres-best-practices`, `postgresql`, `postgresql-optimization`, `prisma-expert`, `drizzle-orm-expert`, `nosql-expert`, `sql-optimization-patterns`, `neon-postgres`, `dbt-transformation-patterns`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

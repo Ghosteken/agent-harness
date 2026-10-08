@@ -43,7 +43,7 @@ For skills you want always loaded as persistent project context (rather than on-
 # Create GEMINI.md with core skills as persistent context
 cat /path/to/agent-harness/skills/incremental-implementation/SKILL.md > GEMINI.md
 echo -e "\n---\n" >> GEMINI.md
-cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md >> GEMINI.md
+cat /path/to/agent-harness/skills/code-review/SKILL.md >> GEMINI.md
 ```
 
 You can also modularize by importing from separate files:
@@ -66,7 +66,7 @@ Use `/memory show` to verify loaded context, and `/memory reload` to refresh aft
 Add these as persistent context for every session:
 
 - `incremental-implementation` — Build in small verifiable slices
-- `code-review-and-quality` — Five-axis review
+- `code-review` — Five-axis review
 
 ### On-Demand (Skills)
 

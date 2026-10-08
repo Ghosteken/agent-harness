@@ -42,7 +42,7 @@ CONTRIBUTING.md    → Guidelines for adding or editing skills
 **Plan:** planning-and-task-breakdown, github-issue-planning, slice-to-issues
 **Build:** incremental-implementation, test-driven-development, context-engineering, project-scaffolding, source-driven-development, doubt-driven-development, frontend-ui-engineering, figma-design-to-code, api-and-interface-design
 **Verify:** browser-testing-with-devtools, debugging-and-error-recovery
-**Review:** code-review-and-quality, code-simplification, security-and-hardening, performance-optimization
+**Review:** code-review, code-simplification, security-and-hardening, performance-optimization
 **Ship:** git-workflow-and-versioning, ci-cd-and-automation, deprecation-and-migration, documentation-and-adrs, observability-and-instrumentation, shipping-and-launch
 
 ## Conventions

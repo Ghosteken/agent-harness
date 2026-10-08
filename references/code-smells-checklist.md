@@ -1,8 +1,8 @@
 # Code Smells Checklist
 
-Reference material for the `reuse`, `simplification`, and `altitude` finder angles in
-`code-review-and-quality`. Each smell is named so a finding can cite it directly
-("this is a Data Clump") instead of describing the problem from scratch.
+Reference material for the Code Quality checklist in `code-review`. Each smell
+is named so a finding can cite it directly ("this is a Data Clump") instead of
+describing the problem from scratch.
 
 ## Structural smells (Fowler-style catalog)
 

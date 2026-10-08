@@ -74,7 +74,7 @@ When the user describes a task without naming an agent or command, map their wor
 
 #### Code Review & Quality
 **Keywords:** review, check my code, is this good, feedback, before merge, pull request, PR, refactor, simplify, code smell, technical debt
-→ `code-reviewer` → `code-review-and-quality`
+→ `code-reviewer` → `code-review`
 
 #### Security
 **Keywords:** security, vulnerability, audit, XSS, SQL injection, CSRF, auth bypass, secure, harden, OWASP, CVE, token, password, encryption, sensitive data, prompt injection
@@ -146,7 +146,7 @@ Instead, the agent must internally follow this lifecycle:
 - PLAN → `planning-and-task-breakdown`
 - BUILD → `incremental-implementation` + `test-driven-development`
 - VERIFY → `debugging-and-error-recovery`
-- REVIEW → `code-review-and-quality`
+- REVIEW → `code-review`
 - SHIP → `shipping-and-launch`
 
 ### Execution Model

@@ -11,7 +11,7 @@ mkdir -p .github
 
 # Create files for essential skills
 cat /path/to/agent-harness/skills/test-driven-development/SKILL.md > .github/skills/test-driven-development/SKILL.md
-cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md > .github/skills/code-review-and-quality/SKILL.md
+cat /path/to/agent-harness/skills/code-review/SKILL.md > .github/skills/code-review/SKILL.md
 ```
 
 For more details, refer [Creating agent harness skills for GitHub Copilot](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills).
