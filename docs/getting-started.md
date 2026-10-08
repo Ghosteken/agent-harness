@@ -47,7 +47,7 @@ Load three essential skills into your rules file:
 
 1. **spec-driven-development** — For defining what to build
 2. **test-driven-development** — For proving it works
-3. **code-review-and-quality** — For verifying quality before merge
+3. **code-review** — For verifying quality before merge
 
 These three cover the most critical quality gaps in AI-assisted development.
 
@@ -58,7 +58,7 @@ For comprehensive coverage, load skills by phase:
 ```
 Starting a project:  spec-driven-development → planning-and-task-breakdown
 During development:  incremental-implementation + test-driven-development
-Before merge:        code-review-and-quality + security-and-hardening
+Before merge:        code-review + security-and-hardening
 Before deploy:       shipping-and-launch
 ```
 
@@ -113,7 +113,7 @@ The `.claude/commands/` directory contains slash commands for Claude Code:
 | `/plan` | planning-and-task-breakdown |
 | `/build` | incremental-implementation + test-driven-development |
 | `/test` | test-driven-development |
-| `/review` | code-review-and-quality |
+| `/review` | code-review |
 | `/code-simplify` | code-simplification |
 | `/ship` | shipping-and-launch |
 | `/webperf` | web-performance-auditor (specialist agent, web apps only) |
@@ -132,7 +132,7 @@ The `references/` directory contains supplementary checklists:
 | `accessibility-checklist.md` | frontend-ui-engineering |
 | `orchestration-patterns.md` | using-agent-harness (who's allowed to invoke whom) |
 | `external-output-paths.md` | every file-producing skill (where generated artifacts live, outside the project's repo) |
-| `coding-patterns.md` | incremental-implementation, spec-driven-development, breakdown-feature-implementation, deep-dive, code-review-and-quality (structural patterns for build/plan/spec work) |
+| `coding-patterns.md` | incremental-implementation, spec-driven-development, breakdown-feature-implementation, deep-dive, code-review (structural patterns for build/plan/spec work) |
 
 Load a reference when you need detailed patterns beyond what the skill covers.
 

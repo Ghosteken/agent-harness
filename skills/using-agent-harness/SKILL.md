@@ -146,7 +146,7 @@ Users can always invoke a command directly. Commands route straight to their ski
 | `/plan` | `planning-and-task-breakdown` | Break work into tasks with acceptance criteria |
 | `/build` | `incremental-implementation` + `test-driven-development` | Implement the next task (or whole plan with `auto`) |
 | `/test` | `test-driven-development` | TDD loop — red, green, refactor |
-| `/review` | `code-review-and-quality` | Five-axis code review before merge |
+| `/review` | `code-review` | Checklist-driven code review before merge — Blocker/Warning/Suggestion, PASS/FAIL |
 | `/ship` | `shipping-and-launch` | Fan-out to code-reviewer + security-auditor + test-engineer |
 | `/webperf` | `performance-optimization` | Web performance audit via web-performance-auditor |
 | `/code-simplify` | `code-simplification` | Simplify without changing behavior |
@@ -240,7 +240,7 @@ When a user describes what they want to build, fix, or review — without using 
 **Trigger words:** review, check my code, is this good, feedback on, before merge, pull request, PR, clean up, refactor, simplify, code smell, technical debt
 
 → **Agent:** `code-reviewer`
-→ **Start with skill:** `code-review-and-quality`
+→ **Start with skill:** `code-review`
 → **Command:** `/review`
 
 ---
@@ -437,7 +437,7 @@ When the user describes a full feature (not just one concern), follow the lifecy
 | Plan | `/plan` | domain agent | `planning-and-task-breakdown` |
 | Build | `/build` | domain agent | `incremental-implementation` + `test-driven-development` |
 | Verify | `/test` | `test-engineer` | `test-driven-development` |
-| Review | `/review` | `code-reviewer` | `code-review-and-quality` |
+| Review | `/review` | `code-reviewer` | `code-review` |
 | Ship | `/ship` | `code-reviewer` + `security-auditor` + `test-engineer` | `shipping-and-launch` |
 
 ## Routing Decision Process

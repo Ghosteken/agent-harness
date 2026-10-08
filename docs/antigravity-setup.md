@@ -51,7 +51,7 @@ The plugin registers 8 custom slash commands: 7 lifecycle commands plus the `/we
 | `/planning` | Break work into small, verifiable tasks | `planning-and-task-breakdown` |
 | `/build` | Implement the next task incrementally | `incremental-implementation` |
 | `/test` | Run TDD workflow — red, green, refactor | `test-driven-development` |
-| `/review` | Five-axis code review | `code-review-and-quality` |
+| `/review` | Five-axis code review | `code-review` |
 | `/code-simplify` | Reduce complexity without changing behavior | `code-simplification` |
 | `/ship` | Pre-launch checklist via parallel persona fan-out | `shipping-and-launch` |
 | `/webperf` | Audit browser-facing apps for Core Web Vitals and performance issues | `web-performance-auditor` |

@@ -110,7 +110,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Writing contract or integration tests for an endpoint | `test-driven-development` |
 | Reviewing auth, input validation, or OWASP API security | `security-and-hardening` |
 | Adding tracing, metrics, or request logging to an API | `observability-and-instrumentation` |
-| Reviewing API code quality and correctness | `code-review-and-quality` |
+| Reviewing API code quality and correctness | `code-review` |
 | Applying REST or GraphQL design patterns | `api-design-principles` |
 | Generating or improving API documentation | `api-documentation` |
 | Auto-generating docs from code or schema | `api-documenter` |
@@ -132,5 +132,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user asks for a review or design of an API endpoint, contract, or integration.
 - **Invoke via:** `/review` (single-perspective) or alongside `security-auditor` via `/ship`.
-- **Skill scope:** `api-and-interface-design`, `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `code-review-and-quality`, `api-design-principles`, `api-documentation`, `api-documenter`, `api-endpoint-builder`, `api-patterns`, `api-security-best-practices`, `api-security-testing`, `api-testing-observability-api-mock`, `api-fuzzing-bug-bounty`, `graphql`, `graphql-architect`, `openapi-spec-generation`, `api-documentation-generator`, `debugging-and-error-recovery`.
+- **Skill scope:** `api-and-interface-design`, `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `code-review`, `api-design-principles`, `api-documentation`, `api-documenter`, `api-endpoint-builder`, `api-patterns`, `api-security-best-practices`, `api-security-testing`, `api-testing-observability-api-mock`, `api-fuzzing-bug-bounty`, `graphql`, `graphql-architect`, `openapi-spec-generation`, `api-documentation-generator`, `debugging-and-error-recovery`.
 - **Do not invoke from another persona.** Surface cross-cutting concerns as recommendations. See [docs/agents.md](../docs/agents.md).

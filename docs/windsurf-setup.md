@@ -12,7 +12,7 @@ cat /path/to/agent-harness/skills/test-driven-development/SKILL.md > .windsurfru
 echo "\n---\n" >> .windsurfrules
 cat /path/to/agent-harness/skills/incremental-implementation/SKILL.md >> .windsurfrules
 echo "\n---\n" >> .windsurfrules
-cat /path/to/agent-harness/skills/code-review-and-quality/SKILL.md >> .windsurfrules
+cat /path/to/agent-harness/skills/code-review/SKILL.md >> .windsurfrules
 ```
 
 ### Global Rules
@@ -38,7 +38,7 @@ Keep `.windsurfrules` focused on 2-3 essential skills to stay within context lim
 
 ---
 
-[Paste code-review-and-quality SKILL.md]
+[Paste code-review SKILL.md]
 ```
 
 ## Usage Tips

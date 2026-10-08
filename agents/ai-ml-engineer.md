@@ -104,7 +104,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Reviewing prompt injection risks, output validation, or PII handling | `security-and-hardening` |
 | Setting up token usage tracking, latency metrics, or model version pinning | `observability-and-instrumentation` |
 | Packing context for RAG, writing rules files, or configuring MCP | `context-engineering` |
-| Reviewing AI feature code for correctness, safety, or evaluation coverage | `code-review-and-quality` |
+| Reviewing AI feature code for correctness, safety, or evaluation coverage | `code-review` |
 | Building prompt chains, structured output, or function calling | `llm-app-patterns` |
 | Setting up evaluation frameworks, LLM-as-judge, or RAGAS pipelines | `llm-evaluation` |
 | Managing model versioning, A/B prompt tests, or cost tracking | `llm-ops` |
@@ -126,5 +126,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user is building or reviewing AI-powered features, LLM integrations, RAG pipelines, or agent workflows.
 - **Invoke via:** `/review` or `/ship` alongside `security-auditor`.
-- **Skill scope:** `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `context-engineering`, `code-review-and-quality`, `llm-app-patterns`, `llm-evaluation`, `llm-ops`, `rag-engineer`, `rag-implementation`, `embedding-strategies`, `ai-agent-development`, `ai-agents-architect`, `ai-engineering-toolkit`, `langchain-architecture`, `langgraph`, `advanced-evaluation`, `agent-evaluation`, `autonomous-agent-patterns`.
+- **Skill scope:** `spec-driven-development`, `test-driven-development`, `security-and-hardening`, `observability-and-instrumentation`, `context-engineering`, `code-review`, `llm-app-patterns`, `llm-evaluation`, `llm-ops`, `rag-engineer`, `rag-implementation`, `embedding-strategies`, `ai-agent-development`, `ai-agents-architect`, `ai-engineering-toolkit`, `langchain-architecture`, `langgraph`, `advanced-evaluation`, `agent-evaluation`, `autonomous-agent-patterns`.
 - **Do not invoke from another persona.** See [docs/agents.md](../docs/agents.md).

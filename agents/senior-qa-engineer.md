@@ -111,7 +111,7 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 | Verification reveals a bug — need root-cause isolation | `debugging-and-error-recovery` |
 | Browser runtime inspection (console errors, network, DOM) | `browser-testing-with-devtools` |
 | Need to understand expected behaviour from code when no spec exists | `source-driven-development` |
-| Verification surfaces code quality concerns worth documenting | `code-review-and-quality` |
+| Verification surfaces code quality concerns worth documenting | `code-review` |
 | Spec is absent and needs to be written before verification can begin | `spec-driven-development` |
 
 **Also consult:** `references/coding-patterns.md` for structural conventions (clear main path, external systems behind a boundary, unrepresentable invalid states, decisions separated from actions, useful errors) and `references/library-reuse.md` for which proven library to name instead of hand-written logic (date/time, validation, HTTP, auth, ORM, and more), idiomatic to this project's actual language/ecosystem (Node/TS, Python, C#/.NET, Go, and more) rather than a JS/TS default out of habit — both when writing or reviewing code and when drafting technical documentation or specs.
@@ -120,5 +120,5 @@ Invoke skills from your scope by name: `Use the <skill-name> skill to <purpose>`
 
 - **Invoke directly when:** the user asks to verify a feature, confirm a fix, run a regression check, or QA a change — rather than write new tests or design coverage.
 - **Invoke via:** `/ship` (parallel fan-out for pre-launch go/no-go alongside `code-reviewer` and `security-auditor`).
-- **Skill scope:** `quality-assurance`, `record-a-demo`, `test-driven-development`, `browser-testing-with-devtools`, `debugging-and-error-recovery`, `source-driven-development`, `code-review-and-quality`, `spec-driven-development`, `story-mode`, `incremental-implementation`, `git-workflow-and-versioning`, `observability-and-instrumentation`, `playwright-e2e-testing`, `testing-patterns`, `playwright-skill`, `awt-e2e-testing`, `api-testing-observability-api-mock`, `debugging-strategies`, `performance-testing-review-ai-review`, `security-and-hardening`, `deep-dive`.
+- **Skill scope:** `quality-assurance`, `record-a-demo`, `test-driven-development`, `browser-testing-with-devtools`, `debugging-and-error-recovery`, `source-driven-development`, `code-review`, `spec-driven-development`, `story-mode`, `incremental-implementation`, `git-workflow-and-versioning`, `observability-and-instrumentation`, `playwright-e2e-testing`, `testing-patterns`, `playwright-skill`, `awt-e2e-testing`, `api-testing-observability-api-mock`, `debugging-strategies`, `performance-testing-review-ai-review`, `security-and-hardening`, `deep-dive`.
 - **Do not invoke from another persona.** If another persona discovers a correctness concern, surface it as a recommendation; the user or a slash command decides when to invoke verification. See [docs/agents.md](../docs/agents.md).
