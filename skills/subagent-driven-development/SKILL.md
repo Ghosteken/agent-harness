@@ -68,6 +68,10 @@ digraph process {
     "Run quality-assurance against the spec" [shape=box];
     "Ask: run optional code-review pass?" [shape=diamond];
     "Run code-review against the full diff" [shape=box];
+    "Findings surfaced?" [shape=diamond];
+    "Ask: fix Blockers / +Warnings / everything / nothing" [shape=diamond];
+    "Dispatch implementer subagent to fix chosen scope" [shape=box];
+    "Re-run quality-assurance (regression check)" [shape=box];
     "Use finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks with full text, note context, create TodoWrite" -> "Dispatch implementer subagent (./implementer-prompt.md)";
@@ -90,14 +94,29 @@ digraph process {
     "Dispatch final code reviewer subagent for entire implementation" -> "Run quality-assurance against the spec";
     "Run quality-assurance against the spec" -> "Ask: run optional code-review pass?";
     "Ask: run optional code-review pass?" -> "Run code-review against the full diff" [label="yes"];
-    "Run code-review against the full diff" -> "Use finishing-a-development-branch";
+    "Run code-review against the full diff" -> "Findings surfaced?";
+    "Findings surfaced?" -> "Use finishing-a-development-branch" [label="none"];
+    "Findings surfaced?" -> "Ask: fix Blockers / +Warnings / everything / nothing" [label="some"];
+    "Ask: fix Blockers / +Warnings / everything / nothing" -> "Dispatch implementer subagent to fix chosen scope" [label="Blockers/Warnings/Suggestions"];
+    "Dispatch implementer subagent to fix chosen scope" -> "Re-run quality-assurance (regression check)";
+    "Re-run quality-assurance (regression check)" -> "Use finishing-a-development-branch";
+    "Ask: fix Blockers / +Warnings / everything / nothing" -> "Use finishing-a-development-branch" [label="nothing"];
     "Ask: run optional code-review pass?" -> "Use finishing-a-development-branch" [label="no"];
 }
 ```
 
 **Running `quality-assurance` after the final code review is a mandatory action, not a box to mentally check off afterward — and it must be genuinely live: a real server, real database, real authenticated user, not mocked tests or a suite merely named "e2e."** In practice, agents following this skill have gone straight from "final reviewer approved" to declaring the implementation done, and only run `quality-assurance` when the user notices and asks for it — and even then, have substituted mocked/unit-level tests for live verification without saying so. Don't let either be the trigger — invoke it live yourself, unprompted, as the actual next step once the final code review passes. If full live verification is tedious to set up, `quality-assurance`'s own graduated fallback applies (a lighter live check via curl/CLI or an automated test against the real dev server, offered via `AskUserQuestion`) — never downgrade straight to mocks on your own.
 
-**Once `quality-assurance` finishes (pass or fail), offer one more optional step via `AskUserQuestion`: a `code-review` pass over the full implementation diff, before handing off to `finishing-a-development-branch`.** This is deliberately separate from the mandatory per-task code-quality reviews and the mandatory final code reviewer above — those check each task and the assembled whole as the plan intended it; this optional pass is a last, whole-diff sanity check the user can accept or decline. Ask plainly (e.g. "QA is done. Want to run one more code review pass over the full diff before finishing? (optional)"). If accepted, invoke `code-review` and report its findings — a Critical finding here is still worth fixing even though the step itself was optional. If declined, say so and proceed straight to `finishing-a-development-branch`; don't ask again.
+**Once `quality-assurance` finishes (pass or fail), offer one more optional step via `AskUserQuestion`: a `code-review` pass over the full implementation diff, before handing off to `finishing-a-development-branch`.** This is deliberately separate from the mandatory per-task code-quality reviews and the mandatory final code reviewer above — those check each task and the assembled whole as the plan intended it; this optional pass is a last, whole-diff sanity check the user can accept or decline. Ask plainly (e.g. "QA is done. Want to run one more code review pass over the full diff before finishing? (optional)"). If accepted, invoke `code-review` and report its findings. If declined, say so and proceed straight to `finishing-a-development-branch`; don't ask again.
+
+**If that review surfaced any findings, ask how much to fix — via `AskUserQuestion`, one cumulative choice, not a question per finding.** Offer exactly these options (omit any tier the review found nothing in):
+
+- **Fix Blockers only**
+- **Fix Blockers + Warnings**
+- **Fix everything (Blockers + Warnings + Suggestions)**
+- **Don't fix anything — leave the findings as reported**
+
+If a fix scope was chosen, dispatch an implementer subagent to fix every finding in that scope — same `implementer-prompt.md` template as any other task, including its own build/lint/test verification, not a bare patch applied outside that loop. Once the fix subagent reports back, **re-run `quality-assurance` live** — a regression check confirming the fix didn't break what the first QA pass already proved working, not a second independent QA run from scratch. Only then hand off to `finishing-a-development-branch`. If "don't fix anything" was picked, hand off once the findings have been reported — don't fix silently, and don't ask the fix-scope question twice for the same review.
 
 ## Prompt Templates
 
@@ -237,6 +256,9 @@ Done!
 - Marking a task complete when the implementer reported tests passing but never ran (or never reported) this project's build and lint commands
 - Moving straight to `finishing-a-development-branch` after `quality-assurance` without offering the optional `code-review` pass via `AskUserQuestion`
 - The optional review accepted, then skipped or its findings never reported before finishing the branch
+- Findings fixed without first asking which scope (Blockers only / +Warnings / everything / nothing) to fix
+- A fix dispatched outside the normal implementer-subagent loop, skipping its own build/lint/test verification
+- `quality-assurance` not re-run after findings were fixed, leaving the fix's effect on previously-passing behavior unconfirmed
 
 **If subagent asks questions:**
 - Answer clearly and completely
