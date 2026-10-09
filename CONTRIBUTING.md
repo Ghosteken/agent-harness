@@ -44,6 +44,10 @@ The frontmatter fields above are required. The section anatomy is a recommended 
 - Don't create an empty `scripts/` directory just to match another skill — add `scripts/` only when the skill includes runnable helpers
 - Don't put reference material inside skill directories — use `references/` instead
 
+### A Known Gotcha: `references/` Is at the Plugin Root, Not Inside Any Skill
+
+An agent reading a SKILL.md that says "see `references/foo.md`" will often guess this means a `references/` subdirectory inside *that skill's own* directory (`skills/<name>/references/foo.md`) — that's the normal convention for most other skill repositories, and it's a wrong guess here, since this repo keeps one shared `references/` at the plugin root instead (see above). In practice this has caused an agent to fail a `Read`, then burn a long filesystem-wide `find /` trying to locate the file instead of just checking the plugin root. `hooks/session-start.sh` mitigates this by injecting a PATH NOTE with the exact resolved absolute path at the start of every session — if you see an agent still get this wrong, check that note is present and still accurate before assuming the skill text itself needs a path fix.
+
 ## Modifying Existing Skills
 
 - Keep changes focused and minimal

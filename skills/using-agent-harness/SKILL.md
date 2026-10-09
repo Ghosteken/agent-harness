@@ -52,6 +52,10 @@ digraph skill_flow {
 }
 ```
 
+## Resolving `references/...` Paths
+
+Any skill or agent persona file in this plugin may say "see `references/foo.md`." That path is **relative to the plugin root, not to the skill's own directory** — there is one shared `references/` folder, not a per-skill copy. Session start injects a PATH NOTE with the exact resolved absolute path for this installation; use that value. If it's not available (e.g. this meta-skill was re-invoked mid-session and that earlier note scrolled out of view), derive it yourself rather than guessing or scanning the filesystem: take the absolute path of the `SKILL.md` you're currently reading, go up two directories (past `<skill-name>/` and `skills/`) to reach the plugin root, then append `references/<file>`. For an agent persona file (`agents/<name>.md`, one level shallower than a skill), go up only one directory instead. Never fall back to a filesystem-wide `find`/`grep` across `/` — it's slow, has timed out in practice, and the two methods above are always sufficient.
+
 ## Red Flags
 
 These thoughts mean STOP — you are rationalising. Invoke the skill instead.

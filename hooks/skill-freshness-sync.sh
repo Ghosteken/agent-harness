@@ -66,6 +66,21 @@ if [ -d "$SRC" ]; then
   fi
 fi
 
+# Also resync the whole shared references/ directory (at the plugin root, not
+# inside any skill's own directory — see the PATH NOTE injected at session
+# start). Every skill can cite any reference file, not just ones named after
+# it, so this can't be scoped to the one skill being invoked the way the
+# per-skill sync above is.
+REFS_SRC="${SOURCE_REPO}/references"
+REFS_DST="${PLUGIN_ROOT}/references"
+if [ -d "$REFS_SRC" ]; then
+  if [ ! -d "$REFS_DST" ] || ! diff -rq "$REFS_SRC" "$REFS_DST" >/dev/null 2>&1; then
+    mkdir -p "$REFS_DST"
+    cp -rf "$REFS_SRC/." "$REFS_DST/"
+    echo "[agent-harness] Synced installed copy of 'references/' from dev repo (was stale)." >&2
+  fi
+fi
+
 # Also resync this skill's slash-command wrappers across all three CLI
 # targets — they're separate files that have drifted out of sync with the
 # skill body before (e.g. still instructing Mermaid after the skill itself

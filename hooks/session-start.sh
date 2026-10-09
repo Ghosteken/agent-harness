@@ -14,6 +14,21 @@ fi
 
 skill_content=$(cat "$META_SKILL")
 
+# The path shown to the model must be in whatever form its own file-reading
+# tool expects on this host (e.g. a native C:\... path on Windows) — that's
+# whatever the host itself set in CURSOR_PLUGIN_ROOT/CLAUDE_PLUGIN_ROOT, not
+# necessarily the POSIX-style $PLUGIN_ROOT this script derived above for its
+# own internal `cat`/file access.
+DISPLAY_ROOT="${CURSOR_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-$PLUGIN_ROOT}}"
+# Strip a trailing separator, then join with whichever separator this root
+# already uses, so the example paths below don't mix slash styles.
+DISPLAY_ROOT="${DISPLAY_ROOT%/}"
+DISPLAY_ROOT="${DISPLAY_ROOT%\\}"
+case "$DISPLAY_ROOT" in
+  *\\*) SEP='\' ;;
+  *) SEP='/' ;;
+esac
+
 # Escape string for JSON embedding
 escape_for_json() {
     local s="$1"
@@ -26,7 +41,9 @@ escape_for_json() {
 }
 
 skill_escaped=$(escape_for_json "$skill_content")
-session_context="<EXTREMELY_IMPORTANT>\nYou have agent-harness superpowers.\n\n**Below is the full content of your 'agent-harness:using-agent-harness' meta-skill - your introduction to using agent-harness skills. For all other skills, use the 'Skill' tool:**\n\n${skill_escaped}\n</EXTREMELY_IMPORTANT>"
+path_note='PATH NOTE (read before ever opening a "references/..." path mentioned by a skill or agent file): this plugin'"'"'s shared references'"${SEP}"' directory is NOT inside any individual skill'"'"'s own directory. Its absolute path in this installation is exactly: '"${DISPLAY_ROOT}${SEP}"'references'"${SEP}"' -- so "references/coding-patterns.md" means '"${DISPLAY_ROOT}${SEP}"'references'"${SEP}"'coding-patterns.md, never '"${DISPLAY_ROOT}${SEP}"'skills'"${SEP}"'<skill-name>'"${SEP}"'references'"${SEP}"'coding-patterns.md. If a Read at that path ever fails, the fix is to re-check this exact prefix -- never fall back to a filesystem-wide find/grep across "/", which is slow and has repeatedly timed out in practice.'
+path_note_escaped=$(escape_for_json "$path_note")
+session_context="<EXTREMELY_IMPORTANT>\n${path_note_escaped}\n\nYou have agent-harness superpowers.\n\n**Below is the full content of your 'agent-harness:using-agent-harness' meta-skill - your introduction to using agent-harness skills. For all other skills, use the 'Skill' tool:**\n\n${skill_escaped}\n</EXTREMELY_IMPORTANT>"
 
 # Output format depends on platform:
 # - Cursor sets CURSOR_PLUGIN_ROOT
