@@ -121,7 +121,7 @@ If a skill does not need runnable helpers, do not create an empty `scripts/` dir
 - Skill directories: `lowercase-hyphen-separated`
 - Skill files: `SKILL.md` (always uppercase)
 - Supporting files: `lowercase-hyphen-separated.md`
-- References: stored in `references/` at the project root, not inside skill directories
+- References: stored in `references/` at the project root, not inside skill directories — an agent reading "`references/foo.md`" in a SKILL.md can wrongly guess this means a `references/` subfolder of that skill itself; see CONTRIBUTING.md's "A Known Gotcha" note and the PATH NOTE `hooks/session-start.sh` injects at session start
 
 ## Cross-Skill References
 
