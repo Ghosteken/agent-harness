@@ -57,11 +57,20 @@ Choose the right execution channel for each scenario. For full auth setup and Pl
 |---|---|
 | UI behaviour, visual correctness | Headless Playwright MCP (default) |
 | API contract, response shape | curl / HTTP tool |
-| Requires user's existing browser session (Google SSO) | Bridge mode |
+| Requires an authenticated session (Google/Microsoft/Okta SSO, or any login) | Reuse a saved session or the user's already-signed-in bridge/Chrome first; a one-time interactive login only if neither exists — see **Authentication Blocking Live Verification** below before falling back to anything else |
 
 **Every transport here means a real, running instance — not a mocked stand-in.** This skill's whole value is proving the feature works against real dependencies (a real server process, a real database, a real authenticated user), not a client double standing in for one. A project's own test suite naming isn't proof of this: a suite called "e2e" can still run fully mocked, or can hit a real server but have an earlier guard/middleware reject the request before the code under test ever runs — verify the request actually reached and exercised the target logic, don't take the suite's name at face value.
 
-If genuine live verification needs something not currently available — a real signed-in user's access token, a live database connection, an API key, test account credentials — don't silently substitute a mocked check, and don't rigidly block on the heaviest option either. Assembling full live access can genuinely be tedious; when it is, use `AskUserQuestion` to offer the real tradeoff instead of deciding unilaterally:
+#### Authentication Blocking Live Verification: Try in This Order
+
+Needing to be signed in is the single most common reason live verification stalls — and it's almost always solvable without any human doing manual work, let alone the agent handling a password. Full mechanics in [transport-and-auth.md](references/transport-and-auth.md)'s Session Persistence section; the order itself:
+
+1. **Reuse an existing session first.** Check whether the user's connected bridge/Chrome is already signed in as the right account (very often true — it's their daily-driver browser), or whether a saved Playwright `storageState` already exists for this project from a prior run. Either one means fully automated verification proceeds immediately, no human step at all.
+2. **Nothing to reuse? Ask once, via `AskUserQuestion`, for a one-time interactive login** — the user signs in themselves, in whichever surface is active. The agent never sees or types the password. The instant they confirm, persist the session (save `storageState`, or rely on the bridge profile's own persistence) so this is never asked again for this project.
+3. **Never type a real password, and never ask the user for one to type on their behalf** — this covers any real identity provider (Microsoft, Google, Okta, corporate SSO), full stop, regardless of how much friction the alternative is. The only credentials an agent types directly belong to the project's own local test account, a different and much narrower case.
+4. **Only after both 1 and 2 are genuinely unavailable** — a disposable sandbox with no persistent storage, or no human present to click through even one login — does this fall through to the lighter graduated options below. Manual/screenshot verification by the user is the true last resort reached only after this whole chain has been tried, not the default response to any auth friction.
+
+If genuine live verification needs something *else* not currently available — a live database connection, an API key, access that has nothing to do with the auth chain above — don't silently substitute a mocked check, and don't rigidly block on the heaviest option either. Assembling full live access can genuinely be tedious; when it is, use `AskUserQuestion` to offer the real tradeoff instead of deciding unilaterally:
 
 - **Full live verification** — real credentials/access, the most complete option, when it's not much friction to set up
 - **A minimal live check via curl/CLI** — against the real running dev server (real process, real database) but a narrower surface, e.g. without a fully authenticated session if that's the specific friction point
@@ -116,6 +125,9 @@ Drive each scenario to completion, against the real instance selected above:
 | "The existing test suite is called 'e2e', running it counts as live verification" | A suite's name isn't proof — it can still run against a mocked client, or hit a real server while an earlier guard rejects the request before the code under test ever runs. Confirm the target logic was actually reached and exercised. |
 | "I don't have a real token/test account, I'll just run the mocked unit tests instead and report what I have" | Silently substituting a mocked check misrepresents what was verified. Offer the lighter-but-still-live options (curl/CLI against the real server, or an automated test hitting real dependencies) via `AskUserQuestion` before falling back to mocks or state plainly that live verification didn't happen. |
 | "Full live verification is too tedious to set up, I'll just skip straight to mocks" | Tedious doesn't mean impossible — a curl/CLI check or an automated test against the real dev server is still genuinely live and usually much less setup than a full authenticated session. Ask which live option to use; don't jump straight to a mocked substitute. |
+| "I need credentials, I'll ask the user to type their password or hand it to me" | Never, for any real identity provider — check for a reusable session first, and if none exists, ask for a one-time *interactive* login where the user types their own password into their own browser. The agent never sees or handles it. |
+| "The user signed in once, I'll just ask again next run — saving the session is extra work" | That defeats the entire point of the one-time login. Persist the session (`storageState`, or rely on the bridge's own persistence) immediately after a successful login so this is never asked twice for the same project. |
+| "No saved session exists, I'll just ask the user to verify this manually" | Manual verification by the user is the last resort after session reuse *and* a one-time interactive login have both been tried — not the second option reached for as soon as auth gets involved. |
 
 ## Red Flags
 
@@ -128,6 +140,9 @@ Drive each scenario to completion, against the real instance selected above:
 - Full live verification assumed to be the only acceptable option, with no `AskUserQuestion` offering the curl/CLI or real-dev-server-test alternatives when the full setup was genuinely tedious
 - Using API-seeded state for a browser test (separate sessions)
 - Retrying a failing step more than twice without stopping to report
+- Asking the user for their real password, or typing a password into a real (non-local-test) identity provider's login form, under any framing
+- A successful one-time interactive login that was never persisted (`storageState`/cookies saved), forcing the same question again on a later run for the same project
+- Jumping straight to manual/screenshot verification by the user without first trying session reuse (bridge/saved `storageState`) and a one-time persisted login
 
 ## Verification
 
@@ -139,6 +154,10 @@ Exit criteria — all must be met before marking QA complete:
 - [ ] Verification actually ran against a real, live instance (real server, real database, real authenticated user) — not a mocked client, and not just a suite that happens to be named "e2e"/"integration"
 - [ ] If full live verification was genuinely tedious to set up, graduated live alternatives (curl/CLI against the real dev server, or an automated test hitting real dependencies) were offered via `AskUserQuestion` rather than downgrading straight to mocks
 - [ ] If no live option was possible at all, that was stated explicitly in the report — never silently substituted with a mocked check reported as if equivalent
+- [ ] If authentication blocked live verification, session reuse (a saved `storageState`, or an already-signed-in bridge/Chrome session) was tried before anything else
+- [ ] If no reusable session existed, a one-time interactive login was requested via `AskUserQuestion` and the resulting session was persisted — not left to be re-requested on the next run
+- [ ] No real password for a non-local-test identity provider was ever typed by the agent or requested from the user
+- [ ] Manual/screenshot verification by the user was used only as the genuine last resort, after session reuse and the one-time login were both exhausted
 - [ ] Regression scenarios were run (at least the scenarios most likely affected by the change)
 - [ ] Issues found are categorised by severity with reproduction steps
 - [ ] Overall verdict (PASS / FAIL / PARTIAL) is stated explicitly
