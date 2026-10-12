@@ -231,6 +231,8 @@ Preference order (most to least preferred):
 
 **Use mocks only when:** the real implementation is too slow, non-deterministic, or has side effects you can't control (external APIs, email sending). Over-mocking creates tests that pass while production breaks.
 
+**When a mock has to stand in for a write/save call, make it record what was actually passed, not just echo it back.** A mock that simply returns whatever argument it received can make a test pass even when the code under test builds the wrong object — the mock never checked, it just handed the same thing back. Capture the argument the mock was called with and assert on *that*, so the test is actually verifying what gets persisted, not just that something was called.
+
 ### Use the Arrange-Act-Assert Pattern
 
 ```typescript
@@ -324,6 +326,8 @@ Not just the single type that happened to be fastest to check.
 | Snapshot abuse | Large snapshots nobody reviews, break on any change | Use snapshots sparingly and review every change |
 | No test isolation | Tests pass individually but fail together | Each test sets up and tears down its own state |
 | Mocking everything | Tests pass but production breaks | Prefer real implementations > fakes > stubs > mocks. Mock only at boundaries where real deps are slow or non-deterministic |
+| Echo-mock for a save/write call | Mock returns whatever it was given, so a wrong object still "passes" | Capture the actual argument the mock received and assert on it |
+| Test file placed inside a file-based-routing or file-based-serving directory (e.g. a `pages/`/`app/` dir in a framework that maps files to routes) | The test file itself can become a live, publicly reachable route | Keep test files outside any directory the framework serves or routes from |
 
 ## Browser Testing with DevTools
 

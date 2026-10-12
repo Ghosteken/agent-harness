@@ -28,6 +28,14 @@ describing the problem from scratch.
 - **Long Function** — a function doing too much to hold in your head at once. Split it into focused pieces.
 - **Magic Number / String** — a bare literal with no name explaining what it means. Extract it to a named constant.
 
+## View-layer smells (UI/templates)
+
+These apply to whatever templating or component system the project uses — JSX, Vue/Svelte templates, server-rendered templates — not any one of them specifically.
+
+- **Hardcoded style values instead of the project's own token/theme system** — a raw hex color, an arbitrary one-off spacing/size value, or any other literal that duplicates what the project's design-token system already names. If the project has a token system at all, a literal that bypasses it is a finding; name the token that should have been used if one clearly fits, or flag that a new token is needed if the value is legitimately new.
+- **Non-data-driven duplicated markup** — the same block of markup (a table row, a list item, a section with a heading) repeated several times in the template with only the text changed, instead of one data array (or equivalent config) mapped over to render it once. This is `Duplicated Code` specifically applied to the view layer, and it's exactly where facts (an address, a contact email, a date) tend to get hardcoded in more than one place and drift out of sync.
+- **UI affordance not gated by the access control it implies** — a button, menu item, or action visible/enabled for a role or user that the backend will reject (or that shouldn't be able to reach it at all). The server remains the actual authority, but an ungated affordance in the UI is still a finding — it's a broken affordance at best and a false promise at worst, and for any especially sensitive action (one requiring a reason, a confirmation, an elevated role) checking that the UI actually enforces that precondition is worth a dedicated look, not an assumption.
+
 ## Type-safety patterns worth a dedicated look
 
 - **`any`/`unknown` introduced without justification**, or a type assertion / non-null assertion (`as X`, `!`) used where proper narrowing should have been possible instead.

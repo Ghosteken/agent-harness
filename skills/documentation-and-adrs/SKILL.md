@@ -88,6 +88,10 @@ When the decision being recorded has implications those patterns cover — a new
 
 When the ADR's Decision is to hand-write something — date handling, validation, an HTTP layer, auth, a queue, any category `references/library-reuse.md` covers — read that reference first. It's language-agnostic: find the row for this project's actual language/framework (Node/TS, Python, C#/.NET, Go, and more), not a JS/TS default out of habit. If it names a proven library for this category in that ecosystem, the ADR's Alternatives Considered must include that library as an option and state why it was rejected (a real constraint — bundle size, licensing, an unusual requirement the library doesn't support) rather than the ADR silently never considering it. An ADR that reinvents a solved problem without this comparison reads as if the option was never known, not deliberately passed over.
 
+### Check `references/code-review-checklist.md` for the Decisions It Already Covers
+
+Several ADR-worthy decisions have a known-good default shape that `references/code-review-checklist.md` already states, as architectural rules rather than review nits: crossing into another domain's data (module/domain boundaries, §3a), a schema or index change (migration discipline, §3b), two fields representing overlapping state (redundant-state/dual-write consistency, §4), and a third-party integration's permission scope (least privilege, §5). When the ADR being recorded is one of these, read the relevant section before writing Decision/Consequences, and state the concrete shape explicitly (e.g. "cross-domain reads go through `OrderReader`, never the `Order` model directly" or "status is written only through `applyOrderStatus`, never set independently at each call site") — these decisions tend to get revisited expensively once a PR has already shipped the wrong shape, which is exactly what an ADR exists to prevent.
+
 ### ADR Lifecycle
 
 ```
@@ -275,6 +279,7 @@ Special consideration for AI agent context:
 - Documentation that restates the code instead of explaining intent
 - An ADR for an external integration, data model, or decision-heavy flow with no mention of the relevant `references/coding-patterns.md` implication
 - An ADR deciding to hand-write something `references/library-reuse.md` covers, with no library named in Alternatives Considered and no stated reason for rejecting it
+- An ADR for a cross-domain data access, schema/index change, dual-write state, or integration-scope decision with no mention of the matching `references/code-review-checklist.md` section
 
 ## Verification
 
@@ -287,3 +292,4 @@ After documenting:
 - [ ] No commented-out code remains
 - [ ] Rules files (CLAUDE.md etc.) are current and accurate
 - [ ] Any ADR deciding to hand-write a `references/library-reuse.md` category checked that reference first and names the rejected library with a real reason
+- [ ] Any ADR covering a cross-domain access, schema/index, dual-write-state, or integration-scope decision checked `references/code-review-checklist.md`'s matching section and states the concrete shape, not just the general intent
