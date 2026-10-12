@@ -184,6 +184,8 @@ COMPARE BEFORE AND AFTER:
 
 If the "simplified" version is harder to understand or review, revert. Not every simplification attempt succeeds.
 
+**"Tests still pass" is not proof of behavior preservation on its own — get concrete evidence of identical output.** For anything that produces an observable artifact (rendered HTML/UI, an API response body, a computed value, a generated file), capture that artifact before the change and after, then diff them directly — not just rerun the test suite and call it confirmed. A passing test suite only proves the behaviors that suite happens to assert; a direct before/after diff of the real output catches anything it doesn't. This is especially important for a refactor with light or no test coverage going in — the diff *is* the proof in that case, not a nice-to-have.
+
 ## Language-Specific Guidance
 
 ### TypeScript / JavaScript
@@ -305,6 +307,7 @@ function UserBadge({ user }: Props) {
 | "This abstraction might be useful later" | Don't preserve speculative abstractions. If it's not used now, it's complexity without value. Remove it and re-add when needed. |
 | "The original author must have had a reason" | Maybe. Check git blame — apply Chesterton's Fence. But accumulated complexity often has no reason; it's just the residue of iteration under pressure. |
 | "I'll refactor while adding this feature" | Separate refactoring from feature work. Mixed changes are harder to review, revert, and understand in history. |
+| "The tests still pass, so behavior is preserved" | Tests only prove what they assert. For anything with an observable output (rendered markup, an API response, a computed value), diff the actual before/after output directly — that's the real proof, especially where coverage is thin. |
 
 ## Red Flags
 
@@ -315,12 +318,14 @@ function UserBadge({ user }: Props) {
 - Simplifying code you don't fully understand
 - Batching many simplifications into one large, hard-to-review commit
 - Refactoring code outside the scope of the current task without being asked
+- A claim of "behavior preserved" resting only on the test suite passing, with no direct before/after diff of the actual output for a change that produces one
 
 ## Verification
 
 After completing a simplification pass:
 
 - [ ] All existing tests pass without modification
+- [ ] For a change with an observable artifact (rendered output, API response, computed value), the actual before/after output was captured and diffed directly — not inferred from the test suite passing alone
 - [ ] Build succeeds with no new warnings
 - [ ] Linter/formatter passes (no style regressions)
 - [ ] Each simplification is a reviewable, incremental change

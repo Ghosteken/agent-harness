@@ -80,7 +80,12 @@ already solves (date/time, validation, auth, HTTP, ORM, etc.) — that
 reference is language-agnostic, so name the library idiomatic to whichever
 language/framework step 1 actually detected (Node/TS, Python, C#/.NET, Go,
 etc.), never a JS/TS default out of habit, and never a description of
-custom logic instead.]
+custom logic instead; and against references/code-review-checklist.md's
+architectural sections (module/domain boundaries, migration discipline,
+object construction safety, entry-point responsibility, scope/PII/regex
+security) for any branch that touches cross-domain data, a schema change,
+or an external integration — these are design-time decisions this section
+should settle, not findings to surface later in review.]
 
 ## [Branch Name]
 **Decision:** [what was decided]
@@ -111,6 +116,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 | "Edge cases can go in Open Questions instead of their own branch" | Open Questions is for genuinely unresolved items. A known edge case with a knowable answer belongs in its branch, decided like everything else — not deferred. |
 | "The feature can live in its own new module, I'll skip checking existing patterns" | A spec that ignores the codebase's current separation of concerns produces something that gets re-architected on review. Step 1's exploration is mandatory, not optional context-gathering. |
 | "I'll describe the date/validation/auth logic in a branch, whoever builds it can pick a library" | `references/library-reuse.md` is read for the same reason `coding-patterns.md` is — so the spec names a specific library for any branch that needs one, not a description left for implementation to resolve. |
+| "Module boundaries and migration/PII rules are review concerns, not deep-dive concerns" | `references/code-review-checklist.md`'s architectural sections are exactly the kind of decision this skill exists to settle during the interview, not leave implicit for a reviewer to catch after the fact. |
 | "I'll just save the spec into docs/ in the project, it's easier to find" | Both outputs go to the project's external output location (`references/external-output-paths.md`), never a path inside the project's repo — not even a gitignored one. Tell the user the full external path so it's still easy to find. |
 
 ## Red Flags
@@ -124,6 +130,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - An Architectural Fit section that doesn't name any `references/coding-patterns.md` pattern even though the idea clearly touches an external system, a decision-heavy flow, or shared state
 - A branch describing date/validation/auth/HTTP/etc. logic in prose with no `references/library-reuse.md` library named
 - A library named from the wrong ecosystem (e.g. a JS/TS default on a Python or C# codebase) because the codebase's actual language wasn't checked against `references/library-reuse.md`'s per-ecosystem columns
+- A branch touching cross-domain data, a schema change, or an external integration with no mention of `references/code-review-checklist.md`'s module-boundary, migration, or security rules
 - A genuine architectural fork asked as a plain question instead of framed with tradeoffs and a recommendation
 
 ## Verification
@@ -138,6 +145,7 @@ Save to `deep-dives/<topic-slug>.md` under the project's external output locatio
 - [ ] Output A (the Desired Prompt) is 2-3 paragraphs, self-contained, and usable without the interview transcript
 - [ ] Output B (the spec file) has an Architectural Fit section grounded in real codebase conventions, and every branch lists its edge cases, rationale, and assumptions
 - [ ] `references/library-reuse.md` was actually read, with a specific library named wherever a branch needs logic it covers (date/time, validation, HTTP, auth, ORM, etc.)
+- [ ] `references/code-review-checklist.md`'s architectural sections were checked for any branch touching cross-domain data, a schema change, or an external integration
 - [ ] The spec was saved to `deep-dives/<topic-slug>.md` in the project's external output location (see `references/external-output-paths.md`), with the existing-file case handled if applicable
 
 ## Interaction with Other Skills
