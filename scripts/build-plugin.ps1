@@ -3,7 +3,7 @@
   Recreate the agent-harness.plugin file for Claude desktop upload.
 
 .DESCRIPTION
-  Builds the zip via `git archive` from the current commit — the exclude
+  Builds the zip via `git archive` from the current commit - the exclude
   list lives in .gitattributes (export-ignore), not in this script. This
   replaces an earlier manual Copy-Item/Compress-Archive staging approach
   that behaved inconsistently between Windows PowerShell 5.1 (.NET
@@ -12,7 +12,7 @@
   own archive writer is a single, well-tested code path on every runtime.
 
   Note: `git archive` zips the current commit, not uncommitted working-tree
-  changes — commit first if you need those reflected in the build.
+  changes - commit first if you need those reflected in the build.
 
 .PARAMETER RepoRoot
   Path to the repo root. Defaults to the parent of the scripts/ directory.
@@ -53,7 +53,7 @@ if (-not (Test-Path $tmpOut)) {
 }
 
 # Self-verify against git's own committed tree (HEAD), not the raw working
-# directory — git archive only ever bundles committed content, so comparing
+# directory - git archive only ever bundles committed content, so comparing
 # against uncommitted disk state produces false failures whenever there's
 # WIP. This still catches a genuine zip-writer bug (a HEAD/zip mismatch),
 # just not "you have an uncommitted skill" as a false positive.
@@ -79,7 +79,7 @@ if ($zippedSkillCount -ne $headSkillCount) {
   throw "Build verification failed: zip contains $zippedSkillCount skill(s) but HEAD has $headSkillCount. Leaving any existing $Out untouched."
 }
 
-# Only replace the real output now that the new build is confirmed good —
+# Only replace the real output now that the new build is confirmed good -
 # never delete a known-good $Out before the replacement is verified.
 if (Test-Path $Out) {
   Remove-Item -Force $Out
@@ -89,7 +89,7 @@ Write-Host "[agent-harness] Verified: $zippedSkillCount skills bundled, matching
 
 $uncommittedSkills = & git -C $RepoRoot status --porcelain -- skills
 if ($uncommittedSkills) {
-  Write-Host "[agent-harness] Note: skills/ has uncommitted changes — this build reflects HEAD, not your working tree. Commit first if you need those included."
+  Write-Host "[agent-harness] Note: skills/ has uncommitted changes - this build reflects HEAD, not your working tree. Commit first if you need those included."
 }
 
 $size = [math]::Round((Get-Item $Out).Length / 1MB, 2)
