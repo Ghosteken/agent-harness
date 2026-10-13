@@ -2,6 +2,8 @@
 
 Work through this against every hunk in the diff, plus the enclosing function for each one (a bug in an unchanged line of a touched function is still in scope — the change re-exposes it or fails to fix it).
 
+**This checklist is not the whole of Phase 1 on its own.** The `code-review` skill also requires, in the same pass, actually reading `references/code-smells-checklist.md` and `references/coding-patterns.md` (the latter specifically for the Altitude judgment call — §3a's module-boundary question is a direct application of its "external systems/domains behind a boundary" pattern) and every CLAUDE.md/AGENTS.md file governing the changed code, in full — not recalled from a previous review, and not satisfied by grepping a convention file for keywords, which misses anything not stated in the exact words searched for. A review that worked through only this file, and reports no finding on module boundaries, Altitude, or conventions, hasn't actually cleared those sections — it's skipped them.
+
 ## 1. Correctness
 
 For each line, ask what input, state, timing, or platform makes it wrong: inverted or wrong conditions, off-by-one, a null/undefined dereference, a missing `await`, a falsy-zero check, copy-paste with the wrong variable, an error swallowed in a catch, unescaped regex metacharacters, a wrong default. Does every code path produce the right result, or only the happy path?
