@@ -32,14 +32,14 @@ Treat the resulting diff (or file set, for a from-scratch read) as the full revi
 
 ### Phase 1 — Review against the checklist
 
-Read every hunk once, working it against two checklists:
+**Before writing a single finding, actually open and read every file this phase cites — in full, this run.** Not from memory (plugin content changes between runs, and a prior review doesn't count as this one), and not via grep (a grep only surfaces lines containing your search term; it misses context, unstated-but-implied rules, and anything you didn't know to search for — a 30-line file is still a file you read top to bottom, not one you pattern-match against). This applies to every item below, not just the two checklists:
 
 - **Correctness, regression & risk** — `references/code-review-checklist.md` (correctness, removed-behavior/regression, cross-file impact, concurrency/idempotency, security, performance, test quality)
 - **Code quality** — `references/code-smells-checklist.md` (Fowler-style smells, dead code, type safety, discriminated unions)
 
-Plus two quick judgment calls that aren't fixed checklists:
-- **Altitude** — a special case layered onto shared infrastructure instead of a deeper fix. Prefer generalizing the underlying mechanism over adding another `if` for one more case.
-- **Conventions (CLAUDE.md)** — read the CLAUDE.md files that govern the changed code (user-level, repo-root, any ancestor directory's CLAUDE.md/CLAUDE.local.md). Flag only a clear violation you can quote: the exact rule, and the exact line that breaks it. No style preferences, no "spirit of the doc" inferences.
+Plus two quick judgment calls that aren't fixed checklists, but still require reading their source material first, not just being named in See Also:
+- **Altitude** — read `references/coding-patterns.md` first (the structural patterns — boundaries, decision/action separation, unrepresentable invalid states, useful errors), then look for a special case layered onto shared infrastructure instead of a deeper fix. Prefer generalizing the underlying mechanism over adding another `if` for one more case.
+- **Conventions (CLAUDE.md)** — read, in full, every CLAUDE.md/AGENTS.md (or equivalent) file that governs the changed code (user-level, repo-root, any ancestor directory's own copy). Flag only a clear violation you can quote: the exact rule, and the exact line that breaks it. No style preferences, no "spirit of the doc" inferences.
 
 **Raise a candidate only if it clears the bar in `references/code-review-checklist.md`'s "What's worth raising" section** — a real risk, or a genuinely useful callout, not a minor nit that happens to be technically true. This is the main thing that keeps the report short and worth reading instead of padded with trivia. For each candidate that clears the bar, note `file`, `line`, a one-line `summary`, and — for anything in the Correctness/Regression/Risk checklist — a concrete `failure_scenario` (what input/state/timing triggers it, and what breaks).
 
@@ -74,6 +74,8 @@ PASS / FAIL  (FAIL if any Blocker remains)
 ```
 
 If a section has no findings, write `None` under it — don't omit sections. Each finding states the file:line, the problem, the concrete failure scenario (for Blockers/Warnings), and — where there's an obvious one — the fix.
+
+**State the Altitude and Conventions conclusions explicitly, even when clean.** A reader of the report can't tell "checked, no issue" apart from "not actually checked" unless the report says which it was — add one line for each, e.g. "Altitude: no special-case-on-shared-infrastructure pattern found" or "Conventions: reviewed against CLAUDE.md, no violations." This is also where a module/domain-boundary conclusion from `references/code-review-checklist.md` §3a belongs, when the diff touches cross-domain data — state it explicitly rather than letting a silent report imply nothing was wrong versus nothing was looked at.
 
 - **Blocker** — must be fixed before the review passes: security vulnerability, data loss, broken functionality, a correctness bug with a confirmed or plausible trigger.
 - **Warning** — should be fixed but won't block: a real but lower-stakes correctness/security/performance concern, an architecture issue worth raising.
@@ -120,6 +122,9 @@ After any refactor or implementation change, check for now-orphaned code: an old
 | "This is technically true, I'll report it" | Technically true isn't the bar — `references/code-review-checklist.md`'s "What's worth raising" is. A report padded with nits a senior engineer wouldn't mention is noise, not thoroughness. |
 | "This finding felt right, I'll report it without checking" | Skipping Phase 2 for a Blocker/Warning is exactly how a review degrades into noise; an unverified candidate at that severity stays a candidate. |
 | "The author already knows about this finding, no need to log it" | The log isn't for this author in this session — it's for whoever writes the next similar code, possibly a different agent with no memory of this conversation. |
+| "I remember this skill's checklists from a previous review, I don't need to reopen them" | Memory drifts, and the plugin's content can change between runs. A review conducted without actually opening the checklist files this run is a review written from recollection, not from the checklist — open them every time. |
+| "I grepped the CLAUDE.md/AGENTS.md for relevant-looking keywords, that counts as reading it" | A grep only returns lines containing your search term — it misses a rule stated in different words, context that changes what a rule means, and anything you didn't know to search for. Read the file; even a short one can hold a rule a keyword search would never surface. |
+| "`coding-patterns.md` is in See Also, I'll open it if I need it" | For the Altitude call specifically, it's not optional further reading — Phase 1 requires reading it before making that call, every review, not only when something already feels off. |
 
 ## Red Flags
 
@@ -131,6 +136,10 @@ After any refactor or implementation change, check for now-orphaned code: an old
 - A large diff that's "too big to review properly" — ask the author to split it instead of skimming
 - No regression test accompanying a bug-fix PR
 - The report missing the PASS/FAIL verdict, or a FAIL verdict with no Blocker listed
+- A review written from memory, without having actually opened this run's copy of `code-review-checklist.md`, `code-smells-checklist.md`, or `coding-patterns.md`
+- Project conventions "checked" by grepping CLAUDE.md/AGENTS.md for keywords instead of reading the file in full
+- The Altitude judgment call made without first reading `references/coding-patterns.md`
+- A report silent on Altitude, Conventions, or module-boundary conclusions instead of stating explicitly that each was checked and found clean
 
 ## Verification
 
